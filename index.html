@@ -69,53 +69,60 @@
             height: 100%;
             object-fit: cover;
         }
-        
-        #videos{
-            width: 80%;
-            height:80%;
+
+        #register-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+            background-color: transparent  rgb(62, 12, 132);
+            border: none;
+            color: rgb(117, 219, 188);
+            font-size: 15px;
+            padding: 8px 15px;
+            cursor: pointer;
+            outline: none;
         }
-    
+
     </style>
 </head>
 
 <body>
 
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div id="menu-links">
-                <a href="Aprendizaje.html">Virtual Learn</a>
-                <a href="https://soundtarot.com/">Listen</a>
-                <a href="index.html">ARTE & PSIQUE</a>
-                <a href="collage.html">Collage</a>
-                <a href="contact.html">Contact</a>
-            </div>
-        </nav>
-    </header>
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div id="menu-links">
+            <a href="Aprendizaje.html">Virtual Learn</a>
+            <a href="https://soundtarot.com/">Listen</a>
+            <a href="index.html">ARTE & PSIQUE</a>
+            <a href="collage.html">Collage</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </nav>
+</header>
 
-    <!-- Contenedor del video -->
-    <div id="video-container">
-        <video autoplay muted loop>
-            <source src="collagetarot.mp4"style: height type="video/mp4">
-            Tu navegador no soporta la etiqueta de video.
-        </video>
-    </div>
+<!-- Contenedor del video -->
+<div id="video-container">
+    <video autoplay muted loop>
+        <source src="collagetarot.mp4" type="video/mp4">
+        Tu navegador no soporta la etiqueta de video.
+    </video>
+    <button id="register-button" onclick="window.location.href='Register.html'">Register</button>
+</div>
 
-    <!-- Contenido adicional de la página (puedes añadir más secciones según sea necesario) -->
-    <div id="content">
-        <!-- Tu contenido aquí -->
-    </div>
+<script>
+    // Array de nombres de archivo de video
+    var videos = ['vid2.mp4', 'collagetarot.mp4', "vid3.mp4", "vid1.mp4"];
 
-    <script>
-        // Array de nombres de archivo de video
-        var videos = ['vid2.mp4', 'collagetarot.mp4', "vid3.mp4", "vid1.mp4"];
+    //// Selecciona un video aleatorio del array
+    var randomVideo = videos[Math.floor(Math.random() * videos.length)];
 
-        //// Selecciona un video aleatorio del array
-        var randomVideo = videos[Math.floor(Math.random() * videos.length)];
-
-        // Actualiza la fuente del primer video con el video seleccionado aleatoriamente
-        document.querySelector('#video-container video').src = randomVideo;
-    </script>
+    // Actualiza la fuente del primer video con el video seleccionado aleatoriamente
+    document.querySelector('#video-container video').src = randomVideo;
+</script>
 
 </body>
 
 </html>
+
