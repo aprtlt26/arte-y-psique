@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="description" content="Alfonso Pretelt Artista">
-    <meta name="keywords" content="collage, alfonsopretelt, tarot, arosion">
+    <meta name="keywords" content="collage, alfonsopretelt,tarot,arosion,">
     <meta name="author" content="alfonsopretelt">
-    <meta name="robots" content="index">
+    <meta name="robots" content="index,">
     <meta name="google" content="translate">
     <meta property="og:image" content="rostro.jpg">
 
@@ -108,16 +108,26 @@
         }
 
         #collage-container {
-            margin-top: 300px;
-            width: 85%;
-            height: calc(200vh - 80px);
-            overflow-y: hidden;
-            position: relative;
-            float: left;
-            display: flex;
-            flex-direction: row; /* Cambio a flex-direction: row; */
-            background-color: rgb(8, 8, 8);
-        }
+    margin-top: 300px;
+    width: 85%;
+    height: calc(200vh - 80px);
+    overflow-y: hidden;
+    position: relative;
+    float: left;
+    display: flex;
+    flex-direction: row; /* Cambio a flex-direction: row; */
+    background-color: rgb(8, 8, 8);
+}
+
+/* Estilos adicionales para dispositivos móviles */
+@media (max-width: 768px) {
+    #collage-container {
+        margin-top: 0; /* Eliminar el margen superior */
+        width: 100%; /* Ocupar todo el ancho */
+        height: calc(100vh - 50px); /* Usar el 100% de la altura de la ventana */
+        overflow-y: auto; /* Agregar desplazamiento vertical si es necesario */
+    }
+}
 
         #collage-footer {
             text-align: center;
@@ -253,7 +263,173 @@
         window.addEventListener('DOMContentLoaded', function() {
             const galleryContainer = document.getElementById('gallery-container');
 
-            const images = ['brazomago.png', 'cancer.jpg', 'Capa 1 (2).png', 'Capa 1 (3).png', 'Capa 1.png', 'Capa 1@2x.png', 'Capa 1@3x (1).png', 'Capa 1@3x.png', 'Capa 1@4x.png', 'Capa 1@4x@2x.png', 'Capa 2@3x.png', 'Capa 4@3x.png', 'Capa 5.png', 'Capa 5@2x.png', 'Capa 5@3x@3x (1).png', 'Capa 5@3x@3x.png', 'Capa 6.png', 'Capa 6@3x (2).png', 'Capa 6@3x (3).png', 'Capa 6@3x (4).png', 'Capa 6@3x (5).png', 'Capa 6@3x.png', 'Capa 7.png', 'Capa 7@3x (1).png', 'Capa 7@3x (2).png', 'Capa 7@3x (3).png', 'Capa 7@3x (4).png', 'Capa 7@3x (5).png', 'Capa 7@3x (6).png', 'Capa 7@3x (7).png', 'Capa 7@3x (8).png', 'Capa 7@3x.png', 'Capa 8 (1).png', 'Capa 8 (2).png', 'Capa 8 (3).png', 'Capa 8.png', 'Capa 8@3x (1).png', 'Capa 8@3x (2).png', 'Capa 8@3x (3).png', 'Capa 8@3x (4).png', 'Capa 8@3x (5).png', 'Capa 8@3x (6).png', 'Capa 8@3x (7).png', 'Capa 8@3x (8).png', 'Capa 8@3x (9).png', 'Capa 8@3x (10).png', 'Capa 8@3x (11).png', 'Capa 8@3x (12).png', 'Capa 8@3x (13).png', 'Capa 8@3x.png', 'Capa 9.png', 'Capa 9@3x (1).png', 'Capa 9@3x (2).png', 'Capa 9@3x (3).png', 'Capa 9@3x (6).png', 'Capa 9@3x (7).png', 'Capa 9@3x (8).png', 'Capa 9@3x (9).png', 'Capa 9@3x (10).png', 'Capa 9@3x (11).png', 'Capa 9@3x (12).png', 'Capa 9@3x (13).png', 'Capa 9@3x (14).png', 'Capa 9@3x (15).png', 'Capa 9@3x (16).png', 'Capa 9@3x (17).png', 'Capa 9@3x (20).png', 'Capa 9@3x (21).png', 'Capa 9@3x (22).png', 'Capa 9@3x (23).png', 'Capa 9@3x (24).png', 'Capa 9@3x.png', 'Capa 10 (1).png', 'Capa 10 (3).png', 'Capa 10.png', 'Capa 10@3x (1).png', 'Capa 10@3x (3).png', 'Capa 10@3x (4).png', 'Capa 10@3x (5).png', 'Capa 10@3x (6).png', 'Capa 10@3x (7).png', 'Capa 10@3x (8).png', 'Capa 10@3x (9).png', 'Capa 10@3x (10).png', 'Capa 10@3x.png', 'Capa 11.png', 'Capa 11@3x (1).png', 'Capa 11@3x (2).png', 'Capa 11@3x (3).png', 'Capa 11@3x (4).png', 'Capa 11@3x (6).png', 'Capa 11@3x (7).png', 'Capa 11@3x (8).png', 'Capa 11@3x (9).png', 'Capa 11@3x (10).png', 'Capa 11@3x (11).png', 'Capa 11@3x (12).png', 'Capa 11@3x (13).png', 'Capa 11@3x.png', 'Capa 12 (1).png', 'Capa 12.png', 'Capa 12@3x (1).png', 'Capa 12@3x (2).png', 'Capa 12@3x (3).png', 'Capa 12@3x (4).png', 'Capa 12@3x (5).png', 'Capa 12@3x (6).png', 'Capa 12@3x (7).png', 'Capa 12@3x (8).png', 'Capa 12@3x (9).png', 'Capa 12@3x.png', 'Capa 13@2x.png', 'Capa 13@3x (1).png', 'Capa 13@3x (2).png', 'Capa 13@3x.png', 'Capa 14 (1).png', 'Capa 14.png', 'Capa 14@3x (1).png', 'Capa 14@3x (2).png', 'Capa 14@3x (3).png', 'Capa 14@3x.png', 'Capa 15.png', 'Capa 15@3x (1).png', 'Capa 15@3x (2).png', 'Capa 15@3x.png', 'Capa 16@3x (1).png', 'Capa 16@3x (2).png', 'Capa 16@3x.png', 'Capa 17.png', 'Capa 17@3x (1).png', 'Capa 17@3x (2).png', 'Capa 17@3x (3).png', 'Capa 17@3x (7).png', 'Capa 17@3x.png', 'Capa 18@3x (1).png', 'Capa 18@3x.png', 'Capa 19@3x (2).png', 'Capa 19@3x.png', 'Capa 20@3x (1).png', 'Capa 20@3x (2).png', 'Capa 20@3x (4).png', 'Capa 20@3x.png', 'Capa 21@3x (1).png', 'Capa 22 copy 89@3x.png', 'Capa 22@3x.png', 'Capa 27@3x.png', 'Capa 31@3x.png', 'Capa 36@3x.png', 'Copia de Capa 1@3x.png', 'Copia de Capa 6.png', 'Copia de Capa 9.png', 'Copia de Capa 10.png', 'Copia de Capa 11.png', 'Copia de Capa 12.png', 'cuchillo.png', 'elementos.png', 'espada.jpg', 'hombrerasluna@3x.png', 'mago.png', 'manomago.png', 'mesa mago.png', 'pelomago.png', 'perro.jpg', 'perros.jpg', 'sol.jpg',];
+            const images = [ 'brazomago.png',
+'cancer.jpg',
+'Capa 1 (2).png',
+'Capa 1 (3).png',
+'Capa 1.png',
+'Capa 1@2x.png',
+'Capa 1@3x (1).png',
+'Capa 1@3x.png',
+'Capa 1@4x.png',
+'Capa 1@4x@2x.png',
+'Capa 2@3x.png',
+'Capa 4@3x.png',
+'Capa 5.png',
+'Capa 5@2x.png',
+'Capa 5@3x@3x (1).png',
+'Capa 5@3x@3x.png',
+'Capa 6.png',
+'Capa 6@3x (2).png',
+'Capa 6@3x (3).png',
+'Capa 6@3x (4).png',
+'Capa 6@3x (5).png',
+'Capa 6@3x.png',
+'Capa 7.png',
+'Capa 7@3x (1).png',
+'Capa 7@3x (2).png',
+'Capa 7@3x (3).png',
+'Capa 7@3x (4).png',
+'Capa 7@3x (5).png',
+'Capa 7@3x (6).png',
+'Capa 7@3x (7).png',
+'Capa 7@3x (8).png',
+'Capa 7@3x.png',
+'Capa 8 (1).png',
+'Capa 8 (2).png',
+'Capa 8 (3).png',
+'Capa 8.png',
+'Capa 8@3x (1).png',
+'Capa 8@3x (2).png',
+'Capa 8@3x (3).png',
+'Capa 8@3x (4).png',
+'Capa 8@3x (5).png',
+'Capa 8@3x (6).png',
+'Capa 8@3x (7).png',
+'Capa 8@3x (8).png',
+'Capa 8@3x (9).png',
+'Capa 8@3x (10).png',
+'Capa 8@3x (11).png',
+'Capa 8@3x (12).png',
+'Capa 8@3x (13).png',
+'Capa 8@3x.png',
+'Capa 9.png',
+'Capa 9@3x (1).png',
+'Capa 9@3x (2).png',
+'Capa 9@3x (3).png',
+'Capa 9@3x (6).png',
+'Capa 9@3x (7).png',
+'Capa 9@3x (8).png',
+'Capa 9@3x (9).png',
+'Capa 9@3x (10).png',
+'Capa 9@3x (11).png',
+'Capa 9@3x (12).png',
+'Capa 9@3x (13).png',
+'Capa 9@3x (14).png',
+'Capa 9@3x (15).png',
+'Capa 9@3x (16).png',
+'Capa 9@3x (17).png',
+'Capa 9@3x (20).png',
+'Capa 9@3x (21).png',
+'Capa 9@3x (22).png',
+'Capa 9@3x (23).png',
+'Capa 9@3x (24).png',
+'Capa 9@3x.png',
+'Capa 10 (1).png',
+'Capa 10 (3).png',
+'Capa 10.png',
+'Capa 10@3x (1).png',
+'Capa 10@3x (3).png',
+'Capa 10@3x (4).png',
+'Capa 10@3x (5).png',
+'Capa 10@3x (6).png',
+'Capa 10@3x (7).png',
+'Capa 10@3x (8).png',
+'Capa 10@3x (9).png',
+'Capa 10@3x (10).png',
+'Capa 10@3x.png',
+'Capa 11.png',
+'Capa 11@3x (1).png',
+'Capa 11@3x (2).png',
+'Capa 11@3x (3).png',
+'Capa 11@3x (4).png',
+'Capa 11@3x (6).png',
+'Capa 11@3x (7).png',
+'Capa 11@3x (8).png',
+'Capa 11@3x (9).png',
+'Capa 11@3x (10).png',
+'Capa 11@3x (11).png',
+'Capa 11@3x (12).png',
+'Capa 11@3x (13).png',
+'Capa 11@3x.png',
+'Capa 12 (1).png',
+'Capa 12.png',
+'Capa 12@3x (1).png',
+'Capa 12@3x (2).png',
+'Capa 12@3x (3).png',
+'Capa 12@3x (4).png',
+'Capa 12@3x (5).png',
+'Capa 12@3x (6).png',
+'Capa 12@3x (7).png',
+'Capa 12@3x (8).png',
+'Capa 12@3x (9).png',
+'Capa 12@3x.png',
+'Capa 13@2x.png',
+'Capa 13@3x (1).png',
+'Capa 13@3x (2).png',
+'Capa 13@3x.png',
+'Capa 14 (1).png',
+'Capa 14.png',
+'Capa 14@3x (1).png',
+'Capa 14@3x (2).png',
+'Capa 14@3x (3).png',
+'Capa 14@3x.png',
+'Capa 15.png',
+'Capa 15@3x (1).png',
+'Capa 15@3x (2).png',
+'Capa 15@3x.png',
+'Capa 16@3x (1).png',
+'Capa 16@3x (2).png',
+'Capa 16@3x.png',
+'Capa 17.png',
+'Capa 17@3x (1).png',
+'Capa 17@3x (2).png',
+'Capa 17@3x (3).png',
+
+'Capa 17@3x (7).png',
+'Capa 17@3x.png',
+'Capa 18@3x (1).png',
+'Capa 18@3x.png',
+'Capa 19@3x (2).png',
+'Capa 19@3x.png',
+'Capa 20@3x (1).png',
+'Capa 20@3x (2).png',
+'Capa 20@3x (4).png',
+'Capa 20@3x.png',
+'Capa 21@3x (1).png',
+'Capa 22 copy 89@3x.png',
+
+'Capa 22@3x.png',
+'Capa 27@3x.png',
+'Capa 31@3x.png',
+'Capa 36@3x.png',
+'Copia de Capa 1@3x.png',
+'Copia de Capa 6.png',
+'Copia de Capa 9.png',
+'Copia de Capa 10.png',
+'Copia de Capa 11.png',
+'Copia de Capa 12.png',
+'cuchillo.png',
+'elementos.png',
+'espada.jpg',
+'hombrerasluna@3x.png',
+'mago.png',
+'manomago.png',
+'mesa mago.png',
+'pelomago.png',
+'perro.jpg',
+'perros.jpg',
+'sol.jpg', ];
 
             images.forEach(function(image) {
                 const img = new Image();
@@ -326,29 +502,83 @@
 
             interact('.draggable')
                 .draggable({
-                    inertia: true,
-                    modifiers: [
-                        interact.modifiers.restrictRect({
-                            restriction: 'parent',
-                            endOnly: true
-                        })
-                    ],
-                    autoScroll: true,
-                    listeners: {
-                        start(event) {
-                            event.target.style.zIndex = zIndexCounter++;
-                        }
-                    }
+                    onmove: dragMoveListener
+                })
+                .resizable({
+                    edges: { left: true, right: true, bottom: true, top: true }
+                })
+                .on('resizemove', function(event) {
+                    var target = event.target;
+                    var x = (parseFloat(target.getAttribute('data-x')) || 0);
+                    var y = (parseFloat(target.getAttribute('data-y')) || 0);
+
+                    target.style.width = event.rect.width + 'px';
+                    target.style.height = event.rect.height + 'px';
+
+                    x += event.deltaRect.left;
+                    y += event.deltaRect.top;
+
+                    target.style.webkitTransform = target.style.transform =
+                        'translate(' + x + 'px,' + y + 'px)';
+
+                    target.setAttribute('data-x', x);
+                    target.setAttribute('data-y', y);
                 });
+
+            function dragMoveListener(event) {
+                var target = event.target;
+                var x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx;
+                var y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
+
+                target.style.webkitTransform = target.style.transform =
+                    'translate(' + x + 'px, ' + y + 'px)';
+
+                target.setAttribute('data-x', x);
+                target.setAttribute('data-y', y);
+            }
+
+            interact.maxInteractions(Infinity);
         });
 
-        function saveCollage() {
-            html2canvas(document.getElementById('collage-container')).then(function(canvas) {
-                canvas.toBlob(function(blob) {
-                    saveAs(blob, 'collage.png');
-                });
-            });
+        // Historial de cambios
+        let history = [];
+        let historyIndex = -1;
+
+        // Función para guardar el estado actual del collage en el historial
+        function saveState() {
+            const collageContainer = document.getElementById('collage-container').innerHTML;
+            history = history.slice(0, historyIndex + 1);
+            history.push(collageContainer);
+            historyIndex++;
         }
+
+        // Función para deshacer
+        function undo() {
+            if (historyIndex > 0) {
+                historyIndex--;
+                document.getElementById('collage-container').innerHTML = history[historyIndex];
+            }
+        }
+
+        // Función para rehacer
+        function redo() {
+            if (historyIndex < history.length - 1) {
+                historyIndex++;
+                document.getElementById('collage-container').innerHTML = history[historyIndex];
+            }
+        }
+
+        // Escuchar los eventos de teclado
+        document.addEventListener('keydown', function(event) {
+            if (event.ctrlKey && event.key === 'z') {
+                undo();
+            } else if (event.ctrlKey && event.shiftKey && event.key === 'Z') {
+                redo();
+            }
+        });
+
+        // Llamar a saveState() cuando se realice un cambio en el collage
+        // Por ejemplo, después de agregar, mover o eliminar una imagen
     </script>
 
 </body>
