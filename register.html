@@ -93,7 +93,7 @@
         }
 
         /* Estilos para el formulario */
-        #register-form {
+        #login-form, #register-form {
             max-width: 400px;
             margin: 0 auto;
             padding: 20px;
@@ -102,6 +102,8 @@
             background-color: #f9f9f9;
         }
 
+        #login-form input[type="email"],
+        #login-form input[type="password"],
         #register-form input[type="text"],
         #register-form input[type="email"],
         #register-form input[type="password"] {
@@ -114,6 +116,7 @@
             box-sizing: border-box;
         }
 
+        #login-form input[type="submit"],
         #register-form input[type="submit"] {
             width: 100%;
             background-color: #4c95af;
@@ -125,6 +128,7 @@
             cursor: pointer;
         }
 
+        #login-form input[type="submit"]:hover,
         #register-form input[type="submit"]:hover {
             background-color: #5badc8;
         }
@@ -148,16 +152,45 @@
 </header>
 
 <div class="section">
-    <h2>Register for ARTE & PSIQUE Platform</h2>
- <form id="login-form" action="process_login.php" method="post">
-    <input type="email" name="email" placeholder="Your Email" required><br>
-    <input type="password" name="password" placeholder="Your Password" required><br>
-    <input type="submit" value="Login">
-</form>
-
+    <h2>Welcome to ARTE & PSIQUE Platform</h2>
+    <div id="login-section">
+        <h3>Login</h3>
+        <form id="login-form" action="process_login.php" method="post">
+            <input type="email" name="email" placeholder="Your Email" required><br>
+            <input type="password" name="password" placeholder="Your Password" required><br>
+            <input type="submit" value="Login">
+        </form>
+    </div>
+    <div id="register-section" style="display: none;">
+        <h3>Register</h3>
+        <form id="register-form" action="process_registration.php" method="post">
+            <input type="text" name="name" placeholder="Your Name" required><br>
+            <input type="email" name="email" placeholder="Your Email" required><br>
+            <input type="password" name="password" placeholder="Your Password" required><br>
+            <input type="submit" value="Register">
+        </form>
+    </div>
+    <button onclick="toggleForm()">To Register</button>
 </div>
+
+<script>
+    function toggleForm() {
+        var loginSection = document.getElementById("login-section");
+        var registerSection = document.getElementById("register-section");
+        var button = document.querySelector("button");
+
+        if (loginSection.style.display === "none") {
+            loginSection.style.display = "block";
+            registerSection.style.display = "none";
+            button.textContent = "Switch to Register";
+        } else {
+            loginSection.style.display = "none";
+            registerSection.style.display = "block";
+            button.textContent = "To Login";
+        }
+    }
+</script>
 
 </body>
 
 </html>
-
