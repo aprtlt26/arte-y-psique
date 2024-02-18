@@ -7,7 +7,7 @@ def send_email():
     smtp_port = 587
     smtp_username = 'tu_correo@example.com'
     smtp_password = 'tu_contraseña'
-    to_email = 'destinatario@example.com'
+    to_email = 'arteypsique00@gmail.com'
 
     message = MIMEMultipart()
     message['From'] = smtp_username
