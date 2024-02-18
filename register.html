@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="About">
+    <meta name="keywords" content="Cursoonline, tarot, alfonsopretelt, collage, eorsión">
+    <meta name="author" content="alfonsopretelt">
+    <meta name="robots" content="Learning">
+    <meta name="google" content="translate">
+
+    <script>
+        document.addEventListener('contextmenu', function (e) {
+            e.preventDefault();
+        });
+    </script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .section {
+            padding: 20px; /* Reducido el padding para móviles */
+            text-align: center;
+        }
+
+        #menu-links {
+            display: flex;
+            justify-content: space-between; /* Espacio uniforme entre elementos */
+            align-items: center; /* Alinear verticalmente al centro */
+            width: 100%; /* Ancho del contenedor de enlaces */
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            font-size: 15px; /* Tamaño del texto */
+        }
+
+        #menu-links a {
+            color: #767676; /* Color del texto */
+            text-decoration: none;
+         }
+
+        .section img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        /* Ajustes de estilos para dispositivos móviles */
+        @media (max-width: 576px) {
+            .section {
+                padding: 10px; /* Reducido aún más el padding para móviles pequeños */
+            }
+        }
+
+        .slideshow-container {
+            position: relative;
+            max-width: 100%;
+            margin: auto;
+        }
+
+        .mySlides {
+            display: none;
+            max-width: 100%;
+        }
+
+        /* Estilo para la flecha lateral */
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            margin-top: -22px;
+            padding: 16px;
+            color: white;
+            font-weight: bold;
+            font-size: 20px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+
+        .prev:hover, .next:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        /* Estilos para el formulario */
+        #register-form {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        #register-form input[type="text"],
+        #register-form input[type="email"],
+        #register-form input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        #register-form input[type="submit"] {
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        #register-form input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+
+<header id="header">
+    <header class="container">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div id="menu-links">
+                <a href="Aprendizaje.html">Virtual Learn</a>
+                <a href="https://soundtarot.com/">Listen</a>
+                <a href="index.html">ARTE & PSIQUE</a>
+                <a href="collage.html">Collage</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </nav>
+    </header>
+</header>
+
+<div class="section">
+    <h2>Register for ARTE & PSIQUE Platform</h2>
+    <form id="register-form" action="send_email.php" method="post">
+        <input type="text" name="name" placeholder="Your Name" required><br>
+        <input type="email" name="email" placeholder="Your Email" required><br>
+        <input type="password" name="password" placeholder="Your Password" required><br>
+        <input type="submit" value="Register">
+    </form>
+</div>
+
+</body>
+
+</html>
