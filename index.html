@@ -35,12 +35,15 @@
             align-items: center;
             width: 100%;
             font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-            font-size: 15px;
+            font-size: 12px;
         }
 
         #menu-links a {
-            color: #767676;
+            color: #767676; /* Color del texto */
             text-decoration: none;
+            margin: 0 90px; /* Espaciado horizontal entre enlaces */
+           
+            
         }
 
         #video-container {
@@ -83,14 +86,15 @@
             }
         }
 
+        #menu-links a {
+                font-size: 10px; /* Reducir aún más el tamaño de la letra en dispositivos móviles más pequeños */
+            }
         @media screen and (max-width: 576px) {
             #video-container {
                 margin-top: 40px;
             }
 
-            #menu-links a {
-                font-size: 10px; /* Reducir aún más el tamaño de la letra en dispositivos móviles más pequeños */
-            }
+           
 
             #register-button {
                 font-size: 12px; /* Reducir el tamaño del botón de registro en dispositivos móviles pequeños */
@@ -138,4 +142,5 @@
 </body>
 
 </html>
+
 
