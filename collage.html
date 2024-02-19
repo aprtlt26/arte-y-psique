@@ -522,18 +522,8 @@
                     selectionBox.style.left = (mouseX > startX ? startX : mouseX) + 'px';
                     selectionBox.style.top = (mouseY > startY ? startY : mouseY) + 'px';
     
-                    const selectedRect = selectionBox.getBoundingClientRect();
-                    selectedImages = [];
-                    document.querySelectorAll('.draggable').forEach(function(el) {
-                        const imgRect = el.getBoundingClientRect();
-                        if (selectedRect.left < imgRect.right && selectedRect.right > imgRect.left &&
-                            selectedRect.top < imgRect.bottom && selectedRect.bottom > imgRect.top) {
-                            el.classList.add('selected');
-                            selectedImages.push(el);
-                        } else {
-                            el.classList.remove('selected');
-                        }
-                    });
+                    
+                    
                 }
             });
     
