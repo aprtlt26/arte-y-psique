@@ -3,29 +3,46 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>ARTE & PSIQUE</title>
+    <meta name="description" content="Alfonso Pretelt Artista">
+    <meta name="keywords" content="collage, alfonsopretelt,tarot,arosion,">
+    <meta name="author" content="alfonsopretelt">
+    <meta name="robots" content="index,">
+    <meta name="google" content="translate">
+    <meta property="og:image" content="rostro.jpg">
+
+    <script>
+        document.addEventListener('contextmenu', function (e) {
+            e.preventDefault();
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.min.js"></script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
+        /* Estilos personalizados */
         body {
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            height: 100vh;
+            background-color: #fffffff6;
+            margin-top: 20px;
+            margin-left: 10px;
+            margin-right: 10px;
+            margin-bottom: 100px; /* Agregado: Espacio entre el collage y el pie de página */
         }
 
+        /* Estilos para el header */
         header {
             width: 100%;
-            background-color: #fff;
-            padding: 20px;
-            color: #333;
+            background-color: #ffffff;
+            color: #ffffff;
             text-align: left;
             position: fixed;
             top: 0;
             left: 0;
+            right: 0;
             z-index: 1;
         }
 
@@ -41,102 +58,526 @@
         #menu-links a {
             color: #767676; /* Color del texto */
             text-decoration: none;
-            margin: 0 90px; /* Espaciado horizontal entre enlaces */
+            margin: 0 80px; /* Espaciado horizontal entre enlaces */
            
             
         }
 
-        #video-container {
-            position: relative;
-            width: 100%;
-            max-width: 100%;
+        #menu-links a:hover {
+            color: #9ad2bd; /* Agregado: Color del texto al pasar el mouse */
+        }
+
+        #header img {
+            width: 75px;
             height: auto;
-            overflow: hidden;
-            margin-top: 80px;
+            margin-right: 10px;
         }
 
-        #video-container video {
+        img[src="Capa%2031@3x.png"] {
+            display: none;
+        }
+
+        .section {
+            padding: 20px; /* Reducido el padding para móviles */
+            text-align: center;
+        }
+
+        /* Estilos para el contenedor de la galería */
+        #gallery-container {
+            position: fixed;
+            top: 10px;
+            left: 0;
             width: 100%;
-            height: 100%;
-            object-fit: cover;
+            height: 40vh; /* Ajuste del alto vertical de la galería */
+            overflow-x: auto;
+            white-space: nowrap;
+            padding: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            overflow-y: hidden;
         }
 
-        #register-button {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 2;
-            background-color: transparent rgb(62, 12, 132);
-            border: none;
-            color: rgb(117, 219, 188);
-            font-size: 15px;
-            padding: 8px 15px;
+        #gallery-container img {
+            width: 60px;
+            height: 60px;
+            margin-right: 5px;
+            margin-bottom: 5px;
             cursor: pointer;
-            outline: none;
         }
 
-        @media screen and (max-width: 768px) {
-            #video-container {
-                margin-top: 60px;
-            }
+        /* Estilos para el contenedor de collage */
+        #collage-container {
+            margin-top: 300px;
+            width: 100%;
+            height: calc(200vh - 80px);
+            overflow-y: hidden;
+            position: relative;
+            float: left;
+            display: flex;
+            flex-direction: row; /* Cambio a flex-direction: row; */
+            background-color: rgb(8, 8, 8);
+        }
 
-            #menu-links a {
-                font-size: 12px; /* Reducir el tamaño de la letra en dispositivos móviles */
+        /* Estilos adicionales para dispositivos móviles */
+        @media (max-width: 100%) {
+            #collage-container {
+                margin-top: 280px; /* Eliminar el margen superior en dispositivos móviles */
+                width: 100%; /* Cambiar el ancho para que ocupe toda la pantalla */
+                height: calc(500vh - 20px); /* Altura ajustada para dispositivos móviles */
+                overflow-y: auto; /* Agregar desplazamiento vertical si es necesario */
+                margin: 1;
+                float: none; /* Eliminar el flotante en dispositivos móviles */
             }
         }
 
-        #menu-links a {
-                font-size: 10px; /* Reducir aún más el tamaño de la letra en dispositivos móviles más pequeños */
-            }
-        @media screen and (max-width: 576px) {
-            #video-container {
-                margin-top: 40px;
-            }
+        #collage-footer {
+            text-align: center;
+            font-size: 12px;
+            margin-top: 200px;
+            color: gray;
+            position: fixed;
+            bottom: -5px;
+            left: 0;
+            right: 0;
+        }
 
-           
+        /* Estilos para el recuadro de selección */
+        #selection-box {
+            border: 1px solid #ffffff;
+            background-color: rgba(255, 255, 255, 0.1);
+            position: absolute;
+            z-index: 1000;
+            pointer-events: none;
+        }
 
-            #register-button {
-                font-size: 12px; /* Reducir el tamaño del botón de registro en dispositivos móviles pequeños */
-            }
+        /* Estilos para el botón de guardar */
+        #save-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
         }
     </style>
 </head>
 
 <body>
 
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div id="menu-links">
-                <a href="Aprendizaje.html">Virtual Learn</a>
-                <a href="https://soundtarot.com/">Listen</a>
-                <a href="index.html">ARTE & PSIQUE</a>
-                <a href="collage.html">Collage</a>
-                <a href="contact.html">Contact</a>
-            </div>
-        </nav>
+    <header id="header">
+        <header class="container">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div id="menu-links">
+                    <a href="Aprendizaje.html">Virtual Learn</a>
+                    <a href="https://soundtarot.com/">Listen</a>
+                    <a href="index.html">ARTE & PSIQUE</a>
+                    <a href="collage.html">Collage</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+            </nav>
+        </header>
     </header>
 
-    <!-- Contenedor del video -->
-    <div id="video-container">
-        <video autoplay muted loop>
-            <source src="collagetarot.mp4" type="video/mp4">
-            Tu navegador no soporta la etiqueta de video.
-        </video>
-        <button id="register-button" onclick="redirectRegister()">Register</button>
-        <button id="google-signin" onclick="redirectGoogle()">Register with Google</button>
+    <!-- Galería de imágenes -->
+    <div id="gallery-container">
+        <!-- Aquí se mostrarán las imágenes -->
     </div>
 
+    <!-- Espacio central del collage -->
+    <div id="collage-container" ondrop="drop(event)" ondragover="allowDrop(event)" ondragenter="return false"
+        ondragleave="return false"></div>
+
+    <!-- Recuadro de selección -->
+    <div id="selection-box"></div>
+
+    <!-- Pie de página -->
+    <div id="collage-footer">
+        <p>®Alfonso Pretelt All Rights Reserved</p>
+    </div>
+
+
     <script>
-        // Función para redirigir al usuario a la página de registro
-        function redirectRegister() {
-            window.location.href = 'Register.html';
+        const imageSize = 100;
+        let zIndexCounter = 1;
+        let selectedImages = [];
+        let isDragging = false;
+        let startCoords = { x: 0, y: 0 };
+
+        function allowDrop(event) {
+            event.preventDefault();
         }
 
-        // Función para redirigir al usuario a la página de aprendizaje después del pago
-        function redirectAprendizaje() {
-            window.location.href = 'Aprendizaje.html';
+        function drop(event) {
+            event.preventDefault();
+            const collageContainer = document.getElementById('collage-container');
+            const imageURL = event.dataTransfer.getData('text/plain');
+
+            if (imageURL !== 'Capa 31@3x.png') {
+                if (!collageContainer.contains(document.querySelector(`img[src="${encodeURIComponent(imageURL)}"]`))) {
+                    const img = new Image();
+                    img.src = imageURL;
+                    img.classList.add('draggable');
+                    img.style.zIndex = zIndexCounter++;
+
+                    img.width = imageSize;
+                    img.height = imageSize;
+
+                    // Establecer la posición inicial en la parte superior izquierda del collage-container
+                    img.style.left = '0px';
+                    img.style.top = '0px';
+
+                    // Buscar la posición más alta y más a la izquierda para colocar la nueva imagen
+                    let highestTop = 0;
+                    let leftMostLeft = 0;
+                    document.querySelectorAll('.draggable').forEach(function(el) {
+                        const rect = el.getBoundingClientRect();
+                        if (rect.top < highestTop || highestTop === 0) {
+                            highestTop = rect.top;
+                        }
+                        if (rect.left < leftMostLeft || leftMostLeft === 0) {
+                            leftMostLeft = rect.left;
+                        }
+                    });
+
+                    img.style.left = leftMostLeft + 'px';
+                    img.style.top = highestTop + 'px';
+
+                    img.addEventListener('click', function() {
+                        document.querySelectorAll('.draggable').forEach(function(el) {
+                            el.classList.remove('selected');
+                        });
+                        this.classList.add('selected');
+                        selectedImages = [this];
+                    });
+
+                    img.addEventListener('dragstart', function(event) {
+                        event.dataTransfer.setData('text/plain', imageURL);
+                    });
+
+                    collageContainer.appendChild(img);
+                }
+            }
         }
+
+        window.addEventListener('DOMContentLoaded', function() {
+            const galleryContainer = document.getElementById('gallery-container');
+
+            const images = [ 
+            'brazomago.png',
+'cancer.jpg',
+'Capa 1 (2).png',
+'Capa 1 (3).png',
+'Capa 1.png',
+'Capa 1@2x.png',
+'Capa 1@3x (1).png',
+'Capa 1@3x.png',
+'Capa 1@4x.png',
+'Capa 1@4x@2x.png',
+'Capa 2@3x.png',
+'Capa 4@3x.png',
+'Capa 5.png',
+'Capa 5@2x.png',
+'Capa 5@3x@3x (1).png',
+'Capa 5@3x@3x.png',
+'Capa 6.png',
+'Capa 6@3x (2).png',
+'Capa 6@3x (3).png',
+'Capa 6@3x (4).png',
+'Capa 6@3x (5).png',
+'Capa 6@3x.png',
+'Capa 7.png',
+'Capa 7@3x (1).png',
+'Capa 7@3x (2).png',
+'Capa 7@3x (3).png',
+'Capa 7@3x (4).png',
+'Capa 7@3x (5).png',
+'Capa 7@3x (6).png',
+'Capa 7@3x (7).png',
+'Capa 7@3x (8).png',
+'Capa 7@3x.png',
+'Capa 8 (1).png',
+'Capa 8 (2).png',
+'Capa 8 (3).png',
+'Capa 8.png',
+'Capa 8@3x (1).png',
+'Capa 8@3x (2).png',
+'Capa 8@3x (3).png',
+'Capa 8@3x (4).png',
+'Capa 8@3x (5).png',
+'Capa 8@3x (6).png',
+'Capa 8@3x (7).png',
+'Capa 8@3x (8).png',
+'Capa 8@3x (9).png',
+'Capa 8@3x (10).png',
+'Capa 8@3x (11).png',
+'Capa 8@3x (12).png',
+'Capa 8@3x (13).png',
+'Capa 8@3x.png',
+'Capa 9.png',
+'Capa 9@3x (1).png',
+'Capa 9@3x (2).png',
+'Capa 9@3x (3).png',
+'Capa 9@3x (6).png',
+'Capa 9@3x (7).png',
+'Capa 9@3x (8).png',
+'Capa 9@3x (9).png',
+'Capa 9@3x (10).png',
+'Capa 9@3x (11).png',
+'Capa 9@3x (12).png',
+'Capa 9@3x (13).png',
+'Capa 9@3x (14).png',
+'Capa 9@3x (15).png',
+'Capa 9@3x (16).png',
+'Capa 9@3x (17).png',
+'Capa 9@3x (20).png',
+'Capa 9@3x (21).png',
+'Capa 9@3x (22).png',
+'Capa 9@3x (23).png',
+'Capa 9@3x (24).png',
+'Capa 9@3x.png',
+'Capa 10 (1).png',
+'Capa 10 (3).png',
+'Capa 10.png',
+'Capa 10@3x (1).png',
+'Capa 10@3x (3).png',
+'Capa 10@3x (4).png',
+'Capa 10@3x (5).png',
+'Capa 10@3x (6).png',
+'Capa 10@3x (7).png',
+'Capa 10@3x (8).png',
+'Capa 10@3x (9).png',
+'Capa 10@3x (10).png',
+'Capa 10@3x.png',
+'Capa 11.png',
+'Capa 11@3x (1).png',
+'Capa 11@3x (2).png',
+'Capa 11@3x (3).png',
+'Capa 11@3x (4).png',
+'Capa 11@3x (6).png',
+'Capa 11@3x (7).png',
+'Capa 11@3x (8).png',
+'Capa 11@3x (9).png',
+'Capa 11@3x (10).png',
+'Capa 11@3x (11).png',
+'Capa 11@3x (12).png',
+'Capa 11@3x (13).png',
+'Capa 11@3x.png',
+'Capa 12 (1).png',
+'Capa 12.png',
+'Capa 12@3x (1).png',
+'Capa 12@3x (2).png',
+'Capa 12@3x (3).png',
+'Capa 12@3x (4).png',
+'Capa 12@3x (5).png',
+'Capa 12@3x (6).png',
+'Capa 12@3x (7).png',
+'Capa 12@3x (8).png',
+'Capa 12@3x (9).png',
+'Capa 12@3x.png',
+'Capa 13@2x.png',
+'Capa 13@3x (1).png',
+'Capa 13@3x (2).png',
+'Capa 13@3x.png',
+'Capa 14 (1).png',
+'Capa 14.png',
+'Capa 14@3x (1).png',
+'Capa 14@3x (2).png',
+'Capa 14@3x (3).png',
+'Capa 14@3x.png',
+'Capa 15.png',
+'Capa 15@3x (1).png',
+'Capa 15@3x (2).png',
+'Capa 15@3x.png',
+'Capa 16@3x (1).png',
+'Capa 16@3x (2).png',
+'Capa 16@3x.png',
+'Capa 17.png',
+'Capa 17@3x (1).png',
+'Capa 17@3x (2).png',
+'Capa 17@3x (3).png',
+
+'Capa 17@3x (7).png',
+'Capa 17@3x.png',
+'Capa 18@3x (1).png',
+'Capa 18@3x.png',
+'Capa 19@3x (2).png',
+'Capa 19@3x.png',
+'Capa 20@3x (1).png',
+'Capa 20@3x (2).png',
+'Capa 20@3x (4).png',
+'Capa 20@3x.png',
+'Capa 21@3x (1).png',
+'Capa 22 copy 89@3x.png',
+
+'Capa 22@3x.png',
+'Capa 27@3x.png',
+'Capa 31@3x.png',
+'Capa 36@3x.png',
+'Copia de Capa 1@3x.png',
+'Copia de Capa 6.png',
+'Copia de Capa 9.png',
+'Copia de Capa 10.png',
+'Copia de Capa 11.png',
+'Copia de Capa 12.png',
+'cuchillo.png',
+'elementos.png',
+'espada.jpg',
+'hombrerasluna@3x.png',
+'mago.png',
+'manomago.png',
+'mesa mago.png',
+'pelomago.png',
+'perro.jpg',
+'perros.jpg',
+'sol.jpg', ];
+
+            images.forEach(function(image) {
+                const img = new Image();
+                img.src = image;
+                img.width = 60;
+                img.height = 60;
+                img.draggable = true;
+                img.style.marginRight = '5px';
+                img.style.marginBottom = '5px';
+                img.addEventListener('dragstart', function(event) {
+                    event.dataTransfer.setData('text/plain', image);
+                });
+
+                galleryContainer.appendChild(img);
+            });
+
+            const collageContainer = document.getElementById('collage-container');
+            const selectionBox = document.getElementById('selection-box');
+
+            collageContainer.addEventListener('mousedown', function(event) {
+                if (event.shiftKey) {
+                    isDragging = true;
+                    startCoords = { x: event.clientX, y: event.clientY };
+                    selectionBox.style.left = event.clientX + 'px';
+                    selectionBox.style.top = event.clientY + 'px';
+                } else {
+                    document.querySelectorAll('.draggable').forEach(function(el) {
+                        el.classList.remove('selected');
+                    });
+                    selectedImages = [];
+                }
+            });
+
+            collageContainer.addEventListener('mousemove', function(event) {
+                if (isDragging) {
+                    const mouseX = event.clientX;
+                    const mouseY = event.clientY;
+
+                    const startX = startCoords.x;
+                    const startY = startCoords.y;
+
+                    const width = Math.abs(mouseX - startX);
+                    const height = Math.abs(mouseY - startY);
+
+                    selectionBox.style.width = width + 'px';
+                    selectionBox.style.height = height + 'px';
+                    selectionBox.style.left = (mouseX > startX ? startX : mouseX) + 'px';
+                    selectionBox.style.top = (mouseY > startY ? startY : mouseY) + 'px';
+
+                    const selectedRect = selectionBox.getBoundingClientRect();
+                    selectedImages = [];
+                    document.querySelectorAll('.draggable').forEach(function(el) {
+                        const imgRect = el.getBoundingClientRect();
+                        if (selectedRect.left < imgRect.right && selectedRect.right > imgRect.left &&
+                            selectedRect.top < imgRect.bottom && selectedRect.bottom > imgRect.top) {
+                            el.classList.add('selected');
+                            selectedImages.push(el);
+                        } else {
+                            el.classList.remove('selected');
+                        }
+                    });
+                }
+            });
+
+            collageContainer.addEventListener('mouseup', function() {
+                isDragging = false;
+                selectionBox.style.width = '0px';
+                selectionBox.style.height = '0px';
+            });
+
+            interact('.draggable')
+                .draggable({
+                    onmove: dragMoveListener
+                })
+                .resizable({
+                    edges: { left: true, right: true, bottom: true, top: true }
+                })
+                .on('resizemove', function(event) {
+                    var target = event.target;
+                    var x = (parseFloat(target.getAttribute('data-x')) || 0);
+                    var y = (parseFloat(target.getAttribute('data-y')) || 0);
+
+                    target.style.width = event.rect.width + 'px';
+                    target.style.height = event.rect.height + 'px';
+
+                    x += event.deltaRect.left;
+                    y += event.deltaRect.top;
+
+                    target.style.webkitTransform = target.style.transform =
+                        'translate(' + x + 'px,' + y + 'px)';
+
+                    target.setAttribute('data-x', x);
+                    target.setAttribute('data-y', y);
+                });
+
+            function dragMoveListener(event) {
+                var target = event.target;
+                var x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx;
+                var y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
+
+                target.style.webkitTransform = target.style.transform =
+                    'translate(' + x + 'px, ' + y + 'px)';
+
+                target.setAttribute('data-x', x);
+                target.setAttribute('data-y', y);
+            }
+
+            interact.maxInteractions(Infinity);
+        });
+
+        // Historial de cambios
+        let history = [];
+        let historyIndex = -1;
+
+        // Función para guardar el estado actual del collage en el historial
+        function saveState() {
+            const collageContainer = document.getElementById('collage-container').innerHTML;
+            history = history.slice(0, historyIndex + 1);
+            history.push(collageContainer);
+            historyIndex++;
+        }
+
+        // Función para deshacer
+        function undo() {
+            if (historyIndex > 0) {
+                historyIndex--;
+                document.getElementById('collage-container').innerHTML = history[historyIndex];
+            }
+        }
+
+        // Función para rehacer
+        function redo() {
+            if (historyIndex < history.length - 1) {
+                historyIndex++;
+                document.getElementById('collage-container').innerHTML = history[historyIndex];
+            }
+        }
+
+        // Escuchar los eventos de teclado
+        document.addEventListener('keydown', function(event) {
+            if (event.ctrlKey && event.key === 'z') {
+                undo();
+            } else if (event.ctrlKey && event.shiftKey && event.key === 'Z') {
+                redo();
+            }
+        });
+
+        // Llamar a saveState() cuando se realice un cambio en el collage
+        // Por ejemplo, después de agregar, mover o eliminar una imagen
     </script>
 
 </body>
