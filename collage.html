@@ -163,10 +163,12 @@
 
 
         #collage-container img {
-    max-width: 300px;
-    max-height: 250px;
+  
+    min-width:  50px;
+    min-height: 50px;
+    max-width: 100px;
+    max-height: 200px;
     cursor: move;
-    box-shadow: 0 0 5px rgba(0,0,0,0.5);
     transition: transform 0.1s ease; /* Anima la transformación suavemente */
 
 
@@ -188,9 +190,7 @@
    
 
 /* Clase para imágenes seleccionadas para resaltar */
-.selected {
-    box-shadow: 0 0 10px rgba(0,0,0,0.8);
-}
+
 
         /* Estilos adicionales para dispositivos móviles */
         @media (max-width: 100%) {
@@ -289,10 +289,21 @@
         <p>®Alfonso Pretelt All Rights Reserved</p>
     </div>
 
+    <!-- Primero, jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<!-- Luego, Popper.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<!-- Finalmente, Bootstrap JS -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
     <script>
 document.addEventListener('DOMContentLoaded', function() {
+    
+    
+
     let selectedImage = null;
     const galleryContainer = document.getElementById('gallery-container');
+    
     const images = ['brazomago.png',
 'cancer.jpg',
 'Capa 1 (2).png',
@@ -466,7 +477,24 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
   document.addEventListener('DOMContentLoaded', function() {
-    // Código existente para manejar imágenes...
+    $('.navbar-nav .nav-link').click(function() {
+        $('.navbar-collapse').collapse('hide');
+    });
+
+    interact('.draggable').draggable({
+        // Opciones de arrastre
+    });
+
+    let lastTouchEnd = 0;
+    document.addEventListener('touchend', function(event) {
+        const now = (new Date()).getTime();
+        if (now - lastTouchEnd <= 300) {
+            // Aquí manejas el doble toque
+            event.preventDefault();
+        }
+        lastTouchEnd = now;
+    }, false);
+
     
     // Referencia al control deslizante
     const rotationControl = document.getElementById('rotation-control');
@@ -592,6 +620,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
     
+    
+
+    </script>
+</body>
+</html>
     
 
     </script>
