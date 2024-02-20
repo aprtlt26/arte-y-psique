@@ -3,30 +3,45 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="description" content="Alfonso Pretelt Artista">
-    <meta name="keywords" content="arquetipos, arcanos, tarot, alfonsopretelt,">
+    <meta name="keywords" content="collage, alfonsopretelt,tarot,erosion,">
     <meta name="author" content="alfonsopretelt">
-    <meta name="robots" content="index,">
+    <meta name="robots" content="collage,">
     <meta name="google" content="translate">
-    <meta property="og:image" content="rostro.jpg">
+    <meta property="og:image" content="log.jpg">
 
-    <title>ART & PSYCHE</title>
+    <script>
+        document.addEventListener('contextmenu', function (e) {
+            e.preventDefault();
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/interactjs@1.10.11/dist/interact.min.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+$(document).ready(function() {
+    $('.navbar-toggler').click(function() {
+        $('.navbar-collapse').collapse('toggle');
+    });
+});
+</script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
+        /* Estilos personalizados */
         body {
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            height: 100vh;
-            background-color: #ffffff;
-            font-family: Arial, sans-serif; /* Cambia la fuente según tus preferencias */
+            background-color: #fffffff6;
+            margin-top: 20px;
+            margin-left: 10px;
+            margin-right: 10px;
+            margin-bottom: 100px; /* Agregado: Espacio entre el collage y el pie de página */
         }
-       
+
+        /* Estilos para el header */
+     
         header {
             width: 100%;
             background-color: #ffffff;
@@ -69,7 +84,6 @@
 
         .navbar-collapse {
             background-color: #ffffff; /* Color de fondo del menú desplegable */
-
         }
 
         .navbar-collapse .navbar-nav .nav-link {
@@ -81,114 +95,169 @@
             border-bottom: none; /* Quita el borde inferior del último enlace */
         }
 
-    
-
-        #video-container {
-            position: relative;
-            width: 100%;
-            max-width: 100%;
-            height: auto;
-            overflow: hidden;
-            margin-top: 10px;
-        }
-
-        #video-container video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-      
-        #register-button {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 2;
-            background-color: transparent rgb(62, 12, 132);
-            border: none;
-            color: rgb(117, 219, 188);
-            font-size: 15px;
-            padding: 8px 15px;
-            cursor: pointer;
-            outline: none;
-        }
-
- 
-
-        @media screen and (max-width: 768px) {
-            #video-container {
-                margin-top: 100px;
-                width: 100%;
-            height: 100%;
-            object-fit: cover;
-            }
-        }
-
         @media screen and (max-width: 576px) {
-            #video-container {
-                margin-top: 100px;
-                width: 100%;
-            height: 100%;
-            object-fit: cover;
+            .navbar-nav .nav-link {
+                font-size: 0.9rem; /* Tamaño de la fuente de los enlaces en dispositivos móviles */
+                margin: 10px 15px; /* Espacio entre los enlaces en dispositivos móviles */
             }
         }
-    /* Estilos generales aquí */
 
-/* Estilos específicos para iPad Air (por ejemplo, 9.7" y 10.5") */
-@media only screen 
-  and (min-device-width: 768px) 
-  and (max-device-width: 1024px) 
-  and (-webkit-min-device-pixel-ratio: 2) {
-    /* Tus estilos específicos para iPad Air aquí */
-    #video-container video {
-        /* Asegura que el video cubra toda la pantalla */
-        min-height: 100vh;
-    }
+     
 
-    /* Otros estilos específicos para iPad Air */
+        #menu-links a {
+            color: #767676; /* Color del texto */
+            text-decoration: none;
+            margin: 0 20px; /* Espaciado horizontal entre enlaces */
+        }
+
+        #menu-links a:hover {
+            color: #9ad2bd; /* Agregado: Color del texto al pasar el mouse */
+        }
+
+        #header img {
+            width: 75px;
+            height: auto;
+            margin-right: 10px;
+        }
+
+        img[src="Capa%2031@3x.png"] {
+            display: none;
+        }
+
+        .section {
+            padding: 20px; /* Reducido el padding para móviles */
+            text-align: center;
+        }
+
+        /* Estilos para el contenedor de la galería */
+        #gallery-container {
+            position: fixed;
+            top: 10px;
+            left: 0;
+            width: 100%;
+            height: 40vh; /* Ajuste del alto vertical de la galería */
+            overflow-x: auto;
+            white-space: nowrap;
+            padding: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            overflow-y: hidden;
+        }
+
+        #gallery-container img {
+            width: 60px;
+            height: 60px;
+            margin-right: 5px;
+            margin-bottom: 5px;
+            cursor: pointer;
+            }
+        
+
+        /* Estilos para el contenedor de collage */
+        #collage-container {
+            margin-top: 300px;
+            width: 100%;
+            height: calc(200vh - 80px);
+            overflow-y: hidden;
+            position: relative;
+            float: left;
+            display: flex;
+            flex-direction: row; /* Cambio a flex-direction: row; */
+            background-color: rgb(8, 8, 8);
+
+        }
+
+
+        #collage-container img {
+  
+    min-width:  50px;
+    min-height: 50px;
+    max-width: 200px;
+    max-height: 200px;
+    cursor: move;
+    transition: transform 0.1s ease; /* Anima la transformación suavemente */
+
+
+
 }
 
-/* Estilos específicos para iPad Pro (11" y 12.9") */
-@media only screen 
-  and (min-device-width: 1024px) 
-  and (max-device-width: 1366px) 
-  and (-webkit-min-device-pixel-ratio: 2) {
-    /* Tus estilos específicos para iPad Pro aquí */
-    #video-container video {
-        /* Asegura que el video cubra toda la pantalla */
-        min-height: 100vh;
-    }
 
-    /* Otros estilos específicos para iPad Pro */
-}
 
-/* Considera añadir estilos para orientaciones específicas si es necesario */
-@media only screen 
-  and (min-device-width: 768px) 
-  and (max-device-width: 1024px) 
-  and (orientation: landscape) 
-  and (-webkit-min-device-pixel-ratio: 2) {
-    /* Estilos para iPad Air en orientación horizontal */
-}
 
-@media only screen 
-  and (min-device-width: 1024px) 
-  and (max-device-width: 1366px) 
-  and (orientation: landscape) 
-  and (-webkit-min-device-pixel-ratio: 2) {
-    /* Estilos para iPad Pro en orientación horizontal */
-}
 
-         
+.draggable {
+            position: absolute;
+            cursor: move;
+            background-size: cover;
+            background-position: center;
+       
+        }
+
+   
+
+/* Clase para imágenes seleccionadas para resaltar */
+
+
+        /* Estilos adicionales para dispositivos móviles */
+        @media (max-width: 100%) {
+            #collage-container {
+                margin-top: 280px; /* Eliminar el margen superior en dispositivos móviles */
+                width: 100%; /* Cambiar el ancho para que ocupe toda la pantalla */
+                height: calc(500vh - 20px); /* Altura ajustada para dispositivos móviles */
+                overflow-y: auto; /* Agregar desplazamiento vertical si es necesario */
+                margin: 1;
+                float: none; /* Eliminar el flotante en dispositivos móviles */
+            }
+        }
+
+        @media (max-width: 100%) {
+
+        #collage-container img {
+    max-width: 300px;
+    max-height: 250px;
+    cursor: move;
+    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+    transition: transform 0.1s ease; /* Anima la transformación suavemente */
+
+
+
+} }
+
+        #collage-footer {
+            text-align: center;
+            font-size: 12px;
+            margin-top: 200px;
+            color: gray;
+            position: fixed;
+            bottom: -5px;
+            left: 0;
+            right: 0;
+        }
+
+        /* Estilos para el recuadro de selección */
+        #selection-box {
+            border: 1px solid #000000;
+            position: absolute;
+            z-index: 1000;
+            pointer-events: none;
+        }
+
+        /* Estilos para el botón de guardar */
+        #save-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
     </style>
 </head>
 
 <body>
 
-    <header>
-
+    <header id="header">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="index.html">ART & PSYCHE</a>
+            <a class="navbar-brand" href="index.html">ARTE & PSIQUE</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -201,39 +270,411 @@
                     <a class="nav-link" href="contact.html">Contact</a>
                     <a class="nav-link" href="Register.html">Register</a>
                 </div>
-            </div>
-        </nav>
+            </nav>
+        </header>
     </header>
 
-    <!-- Contenedor del video -->
-    <div id="video-container">
-        <video autoplay muted loop id="background-video">
-            Tu navegador no soporta la etiqueta de video.
-        </video>
+    <!-- Galería de imágenes -->
+    <div id="gallery-container">
+        <!-- Aquí se mostrarán las imágenes -->
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+
+    <!-- Espacio central del collage -->
+    <div id="collage-container" ondrop="drop(event)" ondragover="allowDrop(event)" ondragenter="return false"
+    ondragleave="return false">
+
+
+<input type="range" id="rotation-control" min="0" max="360" value="0" style="position: fixed; top: 100px; left: 50%; transform: translateX(-50%); display: none;">
+   
+
+
+    <!-- Pie de página -->
+    <div id="collage-footer">
+        <p>®Alfonso Pretelt All Rights Reserved</p>
+    </div>
+
+    <!-- Primero, jQuery -->
+
     <script>
-        // Array de los nombres de los videos disponibles
-        var videos = ['vid3.mp4', 'collagetarot.mp4', 'vid2.mp4','vid4.mp4']
+document.addEventListener('DOMContentLoaded', function() {
+    
+    
 
-        // Función para seleccionar un video aleatorio y establecerlo como fuente del video de fondo
-        function changeBackgroundVideo() {
-            var randomIndex = Math.floor(Math.random() * videos.length);
-            var video = document.getElementById('background-video');
-            video.src = videos[randomIndex];
-            video.load();
+    let selectedImage = null;
+    const galleryContainer = document.getElementById('gallery-container');
+    
+    const images = ['brazomago.png',
+'cancer.jpg',
+'Capa 1 (2).png',
+'Capa 1 (3).png',
+'Capa 1.png',
+'Capa 1@2x.png',
+'Capa 1@3x (1).png',
+'Capa 1@3x.png',
+'Capa 1@4x.png',
+'Capa 1@4x@2x.png',
+'Capa 2@3x.png',
+'Capa 4@3x.png',
+'Capa 5.png',
+'Capa 5@2x.png',
+'Capa 5@3x@3x (1).png',
+'Capa 5@3x@3x.png',
+'Capa 6.png',
+'Capa 6@3x (2).png',
+'Capa 6@3x (3).png',
+'Capa 6@3x (4).png',
+'Capa 6@3x (5).png',
+'Capa 6@3x.png',
+'Capa 7.png',
+'Capa 7@3x (1).png',
+'Capa 7@3x (2).png',
+'Capa 7@3x (3).png',
+'Capa 7@3x (4).png',
+'Capa 7@3x (5).png',
+'Capa 7@3x (6).png',
+'Capa 7@3x (7).png',
+'Capa 7@3x (8).png',
+'Capa 7@3x.png',
+'Capa 8 (1).png',
+'Capa 8 (2).png',
+'Capa 8 (3).png',
+'Capa 8.png',
+'Capa 8@3x (1).png',
+'Capa 8@3x (2).png',
+'Capa 8@3x (3).png',
+'Capa 8@3x (4).png',
+'Capa 8@3x (5).png',
+'Capa 8@3x (6).png',
+'Capa 8@3x (7).png',
+'Capa 8@3x (8).png',
+'Capa 8@3x (9).png',
+'Capa 8@3x (10).png',
+'Capa 8@3x (11).png',
+'Capa 8@3x (12).png',
+'Capa 8@3x (13).png',
+'Capa 8@3x.png',
+'Capa 9.png',
+'Capa 9@3x (1).png',
+'Capa 9@3x (2).png',
+'Capa 9@3x (3).png',
+'Capa 9@3x (6).png',
+'Capa 9@3x (7).png',
+'Capa 9@3x (8).png',
+'Capa 9@3x (9).png',
+'Capa 9@3x (10).png',
+'Capa 9@3x (11).png',
+'Capa 9@3x (12).png',
+'Capa 9@3x (13).png',
+'Capa 9@3x (14).png',
+'Capa 9@3x (15).png',
+'Capa 9@3x (16).png',
+'Capa 9@3x (17).png',
+'Capa 9@3x (20).png',
+'Capa 9@3x (21).png',
+'Capa 9@3x (22).png',
+'Capa 9@3x (23).png',
+'Capa 9@3x (24).png',
+'Capa 9@3x.png',
+'Capa 10 (1).png',
+'Capa 10 (3).png',
+'Capa 10.png',
+'Capa 10@3x (1).png',
+'Capa 10@3x (3).png',
+'Capa 10@3x (4).png',
+'Capa 10@3x (5).png',
+'Capa 10@3x (6).png',
+'Capa 10@3x (7).png',
+'Capa 10@3x (8).png',
+'Capa 10@3x (9).png',
+'Capa 10@3x (10).png',
+'Capa 10@3x.png',
+'Capa 11.png',
+'Capa 11@3x (1).png',
+'Capa 11@3x (2).png',
+'Capa 11@3x (3).png',
+'Capa 11@3x (4).png',
+'Capa 11@3x (6).png',
+'Capa 11@3x (7).png',
+'Capa 11@3x (8).png',
+'Capa 11@3x (9).png',
+'Capa 11@3x (10).png',
+'Capa 11@3x (11).png',
+'Capa 11@3x (12).png',
+'Capa 11@3x (13).png',
+'Capa 11@3x.png',
+'Capa 12 (1).png',
+'Capa 12.png',
+'Capa 12@3x (1).png',
+'Capa 12@3x (2).png',
+'Capa 12@3x (3).png',
+'Capa 12@3x (4).png',
+'Capa 12@3x (5).png',
+'Capa 12@3x (6).png',
+'Capa 12@3x (7).png',
+'Capa 12@3x (8).png',
+'Capa 12@3x (9).png',
+'Capa 12@3x.png',
+'Capa 13@2x.png',
+'Capa 13@3x (1).png',
+'Capa 13@3x (2).png',
+'Capa 13@3x.png',
+'Capa 14 (1).png',
+'Capa 14.png',
+'Capa 14@3x (1).png',
+'Capa 14@3x (2).png',
+'Capa 14@3x (3).png',
+'Capa 14@3x.png',
+'Capa 15.png',
+'Capa 15@3x (1).png',
+'Capa 15@3x (2).png',
+'Capa 15@3x.png',
+'Capa 16@3x (1).png',
+'Capa 16@3x (2).png',
+'Capa 16@3x.png',
+'Capa 17.png',
+'Capa 17@3x (1).png',
+'Capa 17@3x (2).png',
+'Capa 17@3x (3).png',
+
+'Capa 17@3x (7).png',
+'Capa 17@3x.png',
+'Capa 18@3x (1).png',
+'Capa 18@3x.png',
+'Capa 19@3x (2).png',
+'Capa 19@3x.png',
+'Capa 20@3x (1).png',
+'Capa 20@3x (2).png',
+'Capa 20@3x (4).png',
+'Capa 20@3x.png',
+'Capa 21@3x (1).png',
+'Capa 22 copy 89@3x.png',
+
+'Capa 22@3x.png',
+'Capa 27@3x.png',
+'Capa 31@3x.png',
+'Capa 36@3x.png',
+'Copia de Capa 1@3x.png',
+'Copia de Capa 6.png',
+'Copia de Capa 9.png',
+'Copia de Capa 10.png',
+'Copia de Capa 11.png',
+'Copia de Capa 12.png',
+'cuchillo.png',
+'elementos.png',
+'espada.jpg',
+'hombrerasluna@3x.png',
+'mago.png',
+'manomago.png',
+'mesa mago.png',
+'pelomago.png',
+'perro.jpg',
+'perros.jpg',
+'sol.jpg',
+
+  ];
+
+
+  document.addEventListener('DOMContentLoaded', function() {
+    // Asignar el evento click a todas las imágenes en la galería
+    document.querySelectorAll('#gallery-container img').forEach(img => {
+        img.addEventListener('click', function(e) {
+            // Evitar el comportamiento predeterminado
+            e.preventDefault();
+
+            // Crear una nueva imagen y configurar sus propiedades
+            const newImg = new Image();
+            newImg.src = this.src; // Usar la misma fuente de la imagen original
+            newImg.classList.add('draggable'); // Asegurarse de que la nueva imagen sea arrastrable
+            newImg.style.position = 'absolute';
+            
+            // Opcionalmente, colocar la imagen en el centro del contenedor de collage
+            // o en una posición basada en el scroll actual o un valor predeterminado
+            const collageContainer = document.getElementById('collage-container');
+            newImg.style.left = '50px'; // Ejemplo, ajustar según sea necesario
+            newImg.style.top = '50px'; // Ejemplo, ajustar según sea necesario
+
+            // Agregar la nueva imagen al contenedor de collage
+            collageContainer.appendChild(newImg);
+
+            // Agregar eventos a la nueva imagen si es necesario, por ejemplo, para hacerla arrastrable
+            makeDraggable(newImg);
+        });
+    });
+
+    // Función para hacer arrastrables las imágenes
+    function makeDraggable(img) {
+        // Inicializar interact.js para la nueva imagen
+        interact(img).draggable({
+            // Opciones y eventos para tu elemento draggable
+            onmove: dragMoveListener,
+            inertia: true,
+            modifiers: [
+                interact.modifiers.restrictRect({
+                    restriction: 'parent',
+                    endOnly: true
+                })
+            ],
+        });
+
+        function dragMoveListener(event) {
+            var target = event.target,
+                // keep the dragged position in the data-x/data-y attributes
+                x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
+                y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
+
+            // translate the element
+            target.style.webkitTransform =
+            target.style.transform =
+              'translate(' + x + 'px, ' + y + 'px)';
+
+            // update the position attributes
+            target.setAttribute('data-x', x);
+            target.setAttribute('data-y', y);
         }
+    }
 
-        // Llamar a la función cuando se carga la página
-        window.onload = function () {
-            changeBackgroundVideo();
-        };
+
+
+    // Función para hacer arrastrables las imágenes
+    function makeDraggable(img) {
+        // Inicializar interact.js para la nueva imagen
+        interact(img).draggable({
+            // Opciones y eventos para tu elemento draggable
+            onmove: dragMoveListener,
+            inertia: true,
+            modifiers: [
+                interact.modifiers.restrictRect({
+                    restriction: 'parent',
+                    endOnly: true
+                })
+            ],
+        });
+
+        function dragMoveListener(event) {
+            var target = event.target,
+                // keep the dragged position in the data-x/data-y attributes
+                x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
+                y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
+
+            // translate the element
+            target.style.webkitTransform =
+            target.style.transform =
+              'translate(' + x + 'px, ' + y + 'px)';
+
+            // update the position attributes
+            target.setAttribute('data-x', x);
+            target.setAttribute('data-y', y);
+        }
+    }
+});
+
+    
+    
+
+    images.forEach(src => {
+        const img = document.createElement('img');
+        img.src = src;
+        img.draggable = true;
+        img.addEventListener('dragstart', function(event) {
+            event.dataTransfer.setData('text', src);
+        });
+        galleryContainer.appendChild(img);
+    });
+
+    const collageContainer = document.getElementById('collage-container');
+    collageContainer.addEventListener('dragover', function(event) {
+        event.preventDefault();
+    });
+
+    collageContainer.addEventListener('drop', function(event) {
+        event.preventDefault();
+        const src = event.dataTransfer.getData('text');
+        const img = new Image();
+        img.src = src;
+        img.classList.add('draggable');
+        img.style.position = 'absolute';
+        img.style.left = `${event.offsetX}px`;
+        img.style.top = `${event.offsetY}px`;
+        collageContainer.appendChild(img);
+        selectImage(img);
+
+        // Asignar controlador de eventos de doble clic para rotar la imagen
+        img.addEventListener('dblclick', () => {
+            const currentRotation = img.style.transform.match(/rotate\((\d+)deg\)/);
+            const currentAngle = currentRotation ? parseInt(currentRotation[1]) : 0;
+            const newAngle = currentAngle + 180;
+            img.style.transform = `translate(${img.getAttribute('data-x')}px, ${img.getAttribute('data-y')}px) rotate(${newAngle}deg)`;
+            img.setAttribute('data-angle', newAngle); // Actualizar el ángulo en los atributos de datos
+        });
+    });
+
+    function selectImage(img) {
+        if (selectedImage) {
+            selectedImage.classList.remove('selected');
+        }
+        selectedImage = img;
+        img.classList.add('selected');
+    }
+    
+
+
+
+            
+                
+           
+            
+            interact('.draggable').draggable({
+            listeners: {
+                move(event) {
+                    const target = event.target;
+                    // Keep the dragged position in the data-x/data-y attributes
+                    const x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx;
+                    const y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
+
+                    // Translate the element
+                    target.style.webkitTransform =
+                    target.style.transform =
+                        'translate(' + x + 'px, ' + y + 'px) rotate(' + (target.getAttribute('data-angle') || 0) + 'deg)';
+
+                    // Update the posiion attributes
+                    target.setAttribute('data-x', x);
+                    target.setAttribute('data-y', y);
+                }
+            },
+            inertia: true
+        }).resizable({
+            // Resize from all edges and corners
+            edges: { left: true, right: true, bottom: true, top: true },
+            
+            listeners: {
+                move(event) {
+                    let { x, y } = event.target.dataset;
+
+                    x = (parseFloat(x) || 0) + event.deltaRect.left;
+                    y = (parseFloat(y) || 0) + event.deltaRect.top;
+
+                    Object.assign(event.target.style, {
+                        width: `${event.rect.width}px`,
+                        height: `${event.rect.height}px`,
+                        transform: `translate(${x}px, ${y}px) rotate(${event.target.getAttribute('data-angle') || 0}deg)`
+                    });
+
+                    Object.assign(event.target.dataset, { x, y });
+                }
+            }
+        });
+    });
+
+    const images = document.querySelectorAll('#collage-container img');
+
+
+    
+    
+
     </script>
 </body>
-
 </html>
-
 
