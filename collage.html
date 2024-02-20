@@ -10,7 +10,7 @@
     <meta name="author" content="alfonsopretelt">
     <meta name="robots" content="collage,">
     <meta name="google" content="translate">
-    <meta property="og:image" content="rostro.jpg">
+    <meta property="og:image" content="log.jpg">
 
     <script>
         document.addEventListener('contextmenu', function (e) {
@@ -173,7 +173,7 @@ $(document).ready(function() {
   
     min-width:  50px;
     min-height: 50px;
-    max-width: 100px;
+    max-width: 200px;
     max-height: 200px;
     cursor: move;
     transition: transform 0.1s ease; /* Anima la transformación suavemente */
@@ -478,9 +478,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
   document.addEventListener('DOMContentLoaded', function() {
-    // Asignar el evento dblclick a todas las imágenes en la galería
+    // Asignar el evento click a todas las imágenes en la galería
     document.querySelectorAll('#gallery-container img').forEach(img => {
-        img.addEventListener('dblclick', function(e) {
+        img.addEventListener('click', function(e) {
             // Evitar el comportamiento predeterminado
             e.preventDefault();
 
@@ -503,6 +503,40 @@ document.addEventListener('DOMContentLoaded', function() {
             makeDraggable(newImg);
         });
     });
+
+    // Función para hacer arrastrables las imágenes
+    function makeDraggable(img) {
+        // Inicializar interact.js para la nueva imagen
+        interact(img).draggable({
+            // Opciones y eventos para tu elemento draggable
+            onmove: dragMoveListener,
+            inertia: true,
+            modifiers: [
+                interact.modifiers.restrictRect({
+                    restriction: 'parent',
+                    endOnly: true
+                })
+            ],
+        });
+
+        function dragMoveListener(event) {
+            var target = event.target,
+                // keep the dragged position in the data-x/data-y attributes
+                x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
+                y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
+
+            // translate the element
+            target.style.webkitTransform =
+            target.style.transform =
+              'translate(' + x + 'px, ' + y + 'px)';
+
+            // update the position attributes
+            target.setAttribute('data-x', x);
+            target.setAttribute('data-y', y);
+        }
+    }
+
+
 
     // Función para hacer arrastrables las imágenes
     function makeDraggable(img) {
@@ -638,6 +672,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
     
+    
+
+    </script>
+</body>
+</html>
     
 
     </script>
