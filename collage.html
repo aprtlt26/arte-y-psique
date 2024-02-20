@@ -144,7 +144,8 @@
             margin-right: 5px;
             margin-bottom: 5px;
             cursor: pointer;
-        }
+            }
+        
 
         /* Estilos para el contenedor de collage */
         #collage-container {
@@ -157,7 +158,39 @@
             display: flex;
             flex-direction: row; /* Cambio a flex-direction: row; */
             background-color: rgb(8, 8, 8);
+
         }
+
+
+        #collage-container img {
+    max-width: 300px;
+    max-height: 250px;
+    cursor: move;
+    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+    transition: transform 0.1s ease; /* Anima la transformación suavemente */
+
+
+
+}
+
+
+
+
+
+.draggable {
+            position: absolute;
+            cursor: move;
+            background-size: cover;
+            background-position: center;
+       
+        }
+
+   
+
+/* Clase para imágenes seleccionadas para resaltar */
+.selected {
+    box-shadow: 0 0 10px rgba(0,0,0,0.8);
+}
 
         /* Estilos adicionales para dispositivos móviles */
         @media (max-width: 100%) {
@@ -170,6 +203,19 @@
                 float: none; /* Eliminar el flotante en dispositivos móviles */
             }
         }
+
+        @media (max-width: 100%) {
+
+        #collage-container img {
+    max-width: 300px;
+    max-height: 250px;
+    cursor: move;
+    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+    transition: transform 0.1s ease; /* Anima la transformación suavemente */
+
+
+
+} }
 
         #collage-footer {
             text-align: center;
@@ -184,8 +230,7 @@
 
         /* Estilos para el recuadro de selección */
         #selection-box {
-            border: 1px solid #ffffff;
-            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid #000000;
             position: absolute;
             z-index: 1000;
             pointer-events: none;
@@ -227,86 +272,28 @@
         <!-- Aquí se mostrarán las imágenes -->
     </div>
 
+
+
+
     <!-- Espacio central del collage -->
     <div id="collage-container" ondrop="drop(event)" ondragover="allowDrop(event)" ondragenter="return false"
-        ondragleave="return false"></div>
+    ondragleave="return false">
 
-    <!-- Recuadro de selección -->
-    <div id="selection-box"></div>
+
+<input type="range" id="rotation-control" min="0" max="360" value="0" style="position: fixed; top: 100px; left: 50%; transform: translateX(-50%); display: none;">
+   
+
 
     <!-- Pie de página -->
     <div id="collage-footer">
         <p>®Alfonso Pretelt All Rights Reserved</p>
     </div>
 
-
     <script>
-        const imageSize = 100;
-        let zIndexCounter = 1;
-        let selectedImages = [];
-        let isDragging = false;
-        let startCoords = { x: 0, y: 0 };
-    
-        function allowDrop(event) {
-            event.preventDefault();
-        }
-    
-        function drop(event) {
-            event.preventDefault();
-            const collageContainer = document.getElementById('collage-container');
-            const imageURL = event.dataTransfer.getData('text/plain');
-    
-            if (imageURL !== 'Capa 31@3x.png') {
-                if (!collageContainer.contains(document.querySelector(`img[src="${encodeURIComponent(imageURL)}"]`))) {
-                    const img = new Image();
-                    img.src = imageURL;
-                    img.classList.add('draggable');
-                    img.style.zIndex = zIndexCounter++;
-    
-                    img.width = imageSize;
-                    img.height = imageSize;
-    
-                    // Establecer la posición inicial en la parte superior izquierda del collage-container
-                    img.style.left = '0px';
-                    img.style.top = '0px';
-    
-                    // Buscar la posición más alta y más a la izquierda para colocar la nueva imagen
-                    let highestTop = 0;
-                    let leftMostLeft = 0;
-                    document.querySelectorAll('.draggable').forEach(function(el) {
-                        const rect = el.getBoundingClientRect();
-                        if (rect.top < highestTop || highestTop === 0) {
-                            highestTop = rect.top;
-                        }
-                        if (rect.left < leftMostLeft || leftMostLeft === 0) {
-                            leftMostLeft = rect.left;
-                        }
-                    });
-    
-                    img.style.left = leftMostLeft + 'px';
-                    img.style.top = highestTop + 'px';
-    
-                    img.addEventListener('click', function() {
-                        document.querySelectorAll('.draggable').forEach(function(el) {
-                            el.classList.remove('selected');
-                        });
-                        this.classList.add('selected');
-                        selectedImages = [this];
-                    });
-    
-                    img.addEventListener('dragstart', function(event) {
-                        event.dataTransfer.setData('text/plain', imageURL);
-                    });
-    
-                    collageContainer.appendChild(img);
-                }
-            }
-        }
-    
-        window.addEventListener('DOMContentLoaded', function() {
-            const galleryContainer = document.getElementById('gallery-container');
-    
-            const images = ['brazomago.png',
+document.addEventListener('DOMContentLoaded', function() {
+    let selectedImage = null;
+    const galleryContainer = document.getElementById('gallery-container');
+    const images = ['brazomago.png',
 'cancer.jpg',
 'Capa 1 (2).png',
 'Capa 1 (3).png',
@@ -475,133 +462,138 @@
 'sol.jpg',
 
   ];
+
+
+
+  document.addEventListener('DOMContentLoaded', function() {
+    // Código existente para manejar imágenes...
     
-            images.forEach(function(image) {
-                const img = new Image();
-                img.src = image;
-                img.width = 60;
-                img.height = 60;
-                img.draggable = true;
-                img.style.marginRight = '5px';
-                img.style.marginBottom = '5px';
-                img.addEventListener('dragstart', function(event) {
-                    event.dataTransfer.setData('text/plain', image);
-                });
+    // Referencia al control deslizante
+    const rotationControl = document.getElementById('rotation-control');
+
+    const images = document.querySelectorAll('#collage-container img');
+    images.forEach(img => {
+        img.addEventListener('dblclick', function() {
+            // Mostrar el control deslizante
+            rotationControl.style.display = 'block';
+            
+            // Actualiza el control deslizante y la rotación de la imagen seleccionada
+            rotationControl.value = img.getAttribute('data-angle') || 0;
+            rotationControl.oninput = function() {
+                const angle = this.value;
+                img.style.transform = `translate(${img.getAttribute('data-x')}px, ${img.getAttribute('data-y')}px) rotate(${angle}deg)`;
+                img.setAttribute('data-angle', angle);
+            };
+        });
+    });
     
-                galleryContainer.appendChild(img);
-            });
+    // Asegúrate de ocultar el control deslizante si se hace clic fuera de una imagen
+    document.addEventListener('click', function(e) {
+        if (!e.target.matches('#collage-container img')) {
+            rotationControl.style.display = 'none';
+        }
+    });
+});
+
+    images.forEach(src => {
+        const img = document.createElement('img');
+        img.src = src;
+        img.draggable = true;
+        img.addEventListener('dragstart', function(event) {
+            event.dataTransfer.setData('text', src);
+        });
+        galleryContainer.appendChild(img);
+    });
+
+    const collageContainer = document.getElementById('collage-container');
+    collageContainer.addEventListener('dragover', function(event) {
+        event.preventDefault();
+    });
+
+    collageContainer.addEventListener('drop', function(event) {
+        event.preventDefault();
+        const src = event.dataTransfer.getData('text');
+        const img = new Image();
+        img.src = src;
+        img.classList.add('draggable');
+        img.style.position = 'absolute';
+        img.style.left = `${event.offsetX}px`;
+        img.style.top = `${event.offsetY}px`;
+        collageContainer.appendChild(img);
+        selectImage(img);
+
+        // Asignar controlador de eventos de doble clic para rotar la imagen
+        img.addEventListener('dblclick', () => {
+            const currentRotation = img.style.transform.match(/rotate\((\d+)deg\)/);
+            const currentAngle = currentRotation ? parseInt(currentRotation[1]) : 0;
+            const newAngle = currentAngle + 180;
+            img.style.transform = `translate(${img.getAttribute('data-x')}px, ${img.getAttribute('data-y')}px) rotate(${newAngle}deg)`;
+            img.setAttribute('data-angle', newAngle); // Actualizar el ángulo en los atributos de datos
+        });
+    });
+
+    function selectImage(img) {
+        if (selectedImage) {
+            selectedImage.classList.remove('selected');
+        }
+        selectedImage = img;
+        img.classList.add('selected');
+    }
     
-            const collageContainer = document.getElementById('collage-container');
-            const selectionBox = document.getElementById('selection-box');
-    
-            // Manejo de eventos táctiles
-            collageContainer.addEventListener('touchstart', function(event) {
-                if (event.touches.length === 1) {
-                    const touch = event.touches[0];
-                    startCoords = { x: touch.clientX, y: touch.clientY };
-                    isDragging = true;
-                    selectionBox.style.left = touch.clientX + 'px';
-                    selectionBox.style.top = touch.clientY + 'px';
-                }
-            });
-    
-            collageContainer.addEventListener('touchmove', function(event) {
-                if (event.touches.length === 1 && isDragging) {
-                    const touch = event.touches[0];
-                    const mouseX = touch.clientX;
-                    const mouseY = touch.clientY;
-    
-                    const startX = startCoords.x;
-                    const startY = startCoords.y;
-    
-                    const width = Math.abs(mouseX - startX);
-                    const height = Math.abs(mouseY - startY);
-    
-                    selectionBox.style.width = width + 'px';
-                    selectionBox.style.height = height + 'px';
-                    selectionBox.style.left = (mouseX > startX ? startX : mouseX) + 'px';
-                    selectionBox.style.top = (mouseY > startY ? startY : mouseY) + 'px';
-    
-                    
-                    
-                }
-            });
-    
-            collageContainer.addEventListener('touchend', function() {
-                isDragging = false;
-                selectionBox.style.width = '0px';
-                selectionBox.style.height = '0px';
-            });
-    
-            // Interact.js para manejar eventos táctiles y de arrastre
-            interact('.draggable')
-                .draggable({
-                    onmove: dragMoveListener
-                })
-                .resizable({
-                    edges: { left: true, right: true, bottom: true, top: true }
-                })
-                .on('resizemove', function(event) {
-                    var target = event.target;
-                    var x = (parseFloat(target.getAttribute('data-x')) || 0);
-                    var y = (parseFloat(target.getAttribute('data-y')) || 0);
-    
-                    target.style.width = event.rect.width + 'px';
-                    target.style.height = event.rect.height + 'px';
-    
-                    x += event.deltaRect.left;
-                    y += event.deltaRect.top;
-    
-                    target.style.webkitTransform = target.style.transform =
-                        'translate(' + x + 'px,' + y + 'px)';
-    
+
+
+
+            
+                
+           
+            
+            interact('.draggable').draggable({
+            listeners: {
+                move(event) {
+                    const target = event.target;
+                    // Keep the dragged position in the data-x/data-y attributes
+                    const x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx;
+                    const y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
+
+                    // Translate the element
+                    target.style.webkitTransform =
+                    target.style.transform =
+                        'translate(' + x + 'px, ' + y + 'px) rotate(' + (target.getAttribute('data-angle') || 0) + 'deg)';
+
+                    // Update the posiion attributes
                     target.setAttribute('data-x', x);
                     target.setAttribute('data-y', y);
-                });
-    
-            function dragMoveListener(event) {
-                var target = event.target;
-                var x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx;
-                var y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
-    
-                target.style.webkitTransform = target.style.transform =
-                    'translate(' + x + 'px, ' + y + 'px)';
-    
-                target.setAttribute('data-x', x);
-                target.setAttribute('data-y', y);
-            }
-    
-            interact('.dropzone').dropzone({
-                accept: '.draggable',
-                overlap: 0.75,
-                ondropactivate: function(event) {
-                    event.target.classList.add('drop-active');
-                },
-                ondragenter: function(event) {
-                    var draggableElement = event.relatedTarget;
-                    var dropzoneElement = event.target;
-    
-                    dropzoneElement.classList.add('drop-target');
-                    draggableElement.classList.add('can-drop');
-                },
-                ondragleave: function(event) {
-                    event.target.classList.remove('drop-target');
-                    event.relatedTarget.classList.remove('can-drop');
-                },
-                ondrop: function(event) {
-                    const dropzoneElement = event.target;
-                    const draggableElement = event.relatedTarget;
-    
-                    dropzoneElement.classList.remove('drop-target');
-                    draggableElement.classList.remove('can-drop');
-    
-                    dropzoneElement.appendChild(draggableElement);
-                },
-                ondropdeactivate: function(event) {
-                    event.target.classList.remove('drop-active');
-                    event.target.classList.remove('drop-target');
                 }
-            });
+            },
+            inertia: true
+        }).resizable({
+            // Resize from all edges and corners
+            edges: { left: true, right: true, bottom: true, top: true },
+            
+            listeners: {
+                move(event) {
+                    let { x, y } = event.target.dataset;
+
+                    x = (parseFloat(x) || 0) + event.deltaRect.left;
+                    y = (parseFloat(y) || 0) + event.deltaRect.top;
+
+                    Object.assign(event.target.style, {
+                        width: `${event.rect.width}px`,
+                        height: `${event.rect.height}px`,
+                        transform: `translate(${x}px, ${y}px) rotate(${event.target.getAttribute('data-angle') || 0}deg)`
+                    });
+
+                    Object.assign(event.target.dataset, { x, y });
+                }
+            }
         });
-    </script>
+    });
+    const images = document.querySelectorAll('#collage-container img');
+
+
     
+    
+
+    </script>
+</body>
+</html>
