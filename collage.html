@@ -476,33 +476,52 @@ document.addEventListener('DOMContentLoaded', function() {
 
   ];
 
-
   document.addEventListener('DOMContentLoaded', function() {
     // Asignar el evento click a todas las imágenes en la galería
     document.querySelectorAll('#gallery-container img').forEach(img => {
-        img.addEventListener('click', function(e) {
-            // Evitar el comportamiento predeterminado
-            e.preventDefault();
-
+        img.addEventListener('click', function() {
             // Crear una nueva imagen y configurar sus propiedades
-            const newImg = new Image();
+            const newImg = document.createElement('img');
             newImg.src = this.src; // Usar la misma fuente de la imagen original
-            newImg.classList.add('draggable'); // Asegurarse de que la nueva imagen sea arrastrable
+            newImg.classList.add('draggable', 'img-fluid'); // Asegurarse de que la nueva imagen sea arrastrable y responsive
             newImg.style.position = 'absolute';
-            
-            // Opcionalmente, colocar la imagen en el centro del contenedor de collage
-            // o en una posición basada en el scroll actual o un valor predeterminado
-            const collageContainer = document.getElementById('collage-container');
-            newImg.style.left = '50px'; // Ejemplo, ajustar según sea necesario
-            newImg.style.top = '50px'; // Ejemplo, ajustar según sea necesario
+            newImg.style.left = '10px'; // Posición inicial en el contenedor de collage
+            newImg.style.top = '10px';
 
             // Agregar la nueva imagen al contenedor de collage
-            collageContainer.appendChild(newImg);
+            document.getElementById('collage-container').appendChild(newImg);
 
-            // Agregar eventos a la nueva imagen si es necesario, por ejemplo, para hacerla arrastrable
+            // Hacer la nueva imagen arrastrable
             makeDraggable(newImg);
         });
     });
+
+    function makeDraggable(element) {
+        interact(element).draggable({
+            onmove: dragMoveListener,
+            inertia: true
+        });
+    }
+
+    function dragMoveListener(event) {
+        var target = event.target,
+            // keep the dragged position in the data-x/data-y attributes
+            x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
+            y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
+
+        // translate the element
+        target.style.webkitTransform =
+        target.style.transform =
+            'translate(' + x + 'px, ' + y + 'px)';
+
+        // update the position attributes
+        target.setAttribute('data-x', x);
+        target.setAttribute('data-y', y);
+    }
+
+    // Llamar a makeDraggable para las imágenes ya presentes en el collage
+    document.querySelectorAll('#collage-container img').forEach(makeDraggable);
+
 
     // Función para hacer arrastrables las imágenes
     function makeDraggable(img) {
@@ -672,11 +691,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
     
-    
-
-    </script>
-</body>
-</html>
     
 
     </script>
