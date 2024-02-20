@@ -478,53 +478,67 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
   document.addEventListener('DOMContentLoaded', function() {
-    interact('.draggable').draggable({
-        listeners: {
-            move(event) {
-                var target = event.target,
-                    // keep the dragged position in the data-x/data-y attributes
-                    x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
-                    y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
+    // Asignar el evento dblclick a todas las imágenes en la galería
+    document.querySelectorAll('#gallery-container img').forEach(img => {
+        img.addEventListener('dblclick', function(e) {
+            // Evitar el comportamiento predeterminado
+            e.preventDefault();
 
-                // translate the element
-                target.style.transform = 'translate(' + x + 'px, ' + y + 'px)';
-
-                // update the posiion attributes
-                target.setAttribute('data-x', x);
-                target.setAttribute('data-y', y);
-            }
-        },
-        inertia: true
-    });
-
-
-    
-    // Referencia al control deslizante
-    const rotationControl = document.getElementById('rotation-control');
-
-    const images = document.querySelectorAll('#collage-container img');
-    images.forEach(img => {
-        img.addEventListener('dblclick', function() {
-            // Mostrar el control deslizante
-            rotationControl.style.display = 'block';
+            // Crear una nueva imagen y configurar sus propiedades
+            const newImg = new Image();
+            newImg.src = this.src; // Usar la misma fuente de la imagen original
+            newImg.classList.add('draggable'); // Asegurarse de que la nueva imagen sea arrastrable
+            newImg.style.position = 'absolute';
             
-            // Actualiza el control deslizante y la rotación de la imagen seleccionada
-            rotationControl.value = img.getAttribute('data-angle') || 0;
-            rotationControl.oninput = function() {
-                const angle = this.value;
-                img.style.transform = `translate(${img.getAttribute('data-x')}px, ${img.getAttribute('data-y')}px) rotate(${angle}deg)`;
-                img.setAttribute('data-angle', angle);
-            };
+            // Opcionalmente, colocar la imagen en el centro del contenedor de collage
+            // o en una posición basada en el scroll actual o un valor predeterminado
+            const collageContainer = document.getElementById('collage-container');
+            newImg.style.left = '50px'; // Ejemplo, ajustar según sea necesario
+            newImg.style.top = '50px'; // Ejemplo, ajustar según sea necesario
+
+            // Agregar la nueva imagen al contenedor de collage
+            collageContainer.appendChild(newImg);
+
+            // Agregar eventos a la nueva imagen si es necesario, por ejemplo, para hacerla arrastrable
+            makeDraggable(newImg);
         });
     });
-    
-    // Asegúrate de ocultar el control deslizante si se hace clic fuera de una imagen
-    document.addEventListener('click', function(e) {
-        if (!e.target.matches('#collage-container img')) {
-            rotationControl.style.display = 'none';
+
+    // Función para hacer arrastrables las imágenes
+    function makeDraggable(img) {
+        // Inicializar interact.js para la nueva imagen
+        interact(img).draggable({
+            // Opciones y eventos para tu elemento draggable
+            onmove: dragMoveListener,
+            inertia: true,
+            modifiers: [
+                interact.modifiers.restrictRect({
+                    restriction: 'parent',
+                    endOnly: true
+                })
+            ],
+        });
+
+        function dragMoveListener(event) {
+            var target = event.target,
+                // keep the dragged position in the data-x/data-y attributes
+                x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
+                y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
+
+            // translate the element
+            target.style.webkitTransform =
+            target.style.transform =
+              'translate(' + x + 'px, ' + y + 'px)';
+
+            // update the position attributes
+            target.setAttribute('data-x', x);
+            target.setAttribute('data-y', y);
         }
-    });
+    }
 });
+
+    
+    
 
     images.forEach(src => {
         const img = document.createElement('img');
@@ -619,6 +633,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+
     const images = document.querySelectorAll('#collage-container img');
 
 
