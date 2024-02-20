@@ -24,7 +24,7 @@
             align-items: center;
             height: 100vh;
             background-color: #ffffff;
-            font-family: Arial, sans-serif; 
+            font-family: Arial, sans-serif; /* Cambia la fuente según tus preferencias */
         }
        
         header {
@@ -40,44 +40,45 @@
         }
 
         .navbar-brand {
-            font-size: 1.2rem; 
+            font-size: 1.2rem; /* Tamaño de la fuente del nombre del sitio */
+        }
 
         .navbar-nav .nav-link {
-            font-size: 1rem; 
-            color: #3bc0ac; 
-            transition: color 0.3s; 
-            margin: 0 15px; 
+            font-size: 1rem; /* Tamaño de la fuente de los enlaces del menú */
+            color: #3bc0ac; /* Color del texto de los enlaces */
+            transition: color 0.3s; /* Transición suave del color del texto */
+            margin: 0 15px; /* Espacio entre los enlaces */
         }
 
         .navbar-nav .nav-link:hover {
-            color: #55d1ba; 
+            color: #55d1ba; /* Color del texto al pasar el mouse sobre los enlaces */
         }
        
 
         .navbar-toggler {
-            border: none; 
+            border: none; /* Quita el borde del botón del menú desplegable */
         }
 
         .navbar-toggler-icon {
-            background-color: #cdcdcd; 
+            background-color: #cdcdcd; /* Color del icono del menú desplegable */
         }
 
         .navbar-toggler:focus {
-            outline: none; 
+            outline: none; /* Quita el contorno al enfocar el botón del menú desplegable */
         }
 
         .navbar-collapse {
-            background-color: #ffffff; 
+            background-color: #ffffff; /* Color de fondo del menú desplegable */
 
         }
 
         .navbar-collapse .navbar-nav .nav-link {
-            padding: 15px 0; 
-            border-bottom: 1px solid #ffffff; 
+            padding: 15px 0; /* Espaciado entre los enlaces del menú desplegable */
+            border-bottom: 1px solid #ffffff; /* Borde inferior entre los enlaces */
         }
 
         .navbar-collapse .navbar-nav .nav-link:last-child {
-            border-bottom: none; 
+            border-bottom: none; /* Quita el borde inferior del último enlace */
         }
 
     
@@ -88,7 +89,7 @@
             max-width: 100%;
             height: auto;
             overflow: hidden;
-            margin-top: 80px;
+            margin-top: 10px;
         }
 
         #video-container video {
@@ -96,14 +97,7 @@
             height: 100%;
             object-fit: cover;
         }
-        #logo {
-            position: absolute;
-            top: -20px; /* Ajusta la posición vertical */
-            padding-top: 20px;           
-            right: 20px; /* Ajusta la posición horizontal */
-            width: 70px; /* Ajusta el ancho de la imagen */
-            height: auto; /* Permite ajustar automáticamente la altura */
-        }
+      
         #register-button {
             position: absolute;
             top: 50%;
@@ -138,32 +132,43 @@
             object-fit: cover;
             }
         }
+    /* Estilos generales aquí */
 
+/* Estilos específicos para iPad Air (por ejemplo, 9.7" y 10.5") */
 @media only screen 
   and (min-device-width: 768px) 
   and (max-device-width: 1024px) 
   and (-webkit-min-device-pixel-ratio: 2) {
+    /* Tus estilos específicos para iPad Air aquí */
     #video-container video {
+        /* Asegura que el video cubra toda la pantalla */
         min-height: 100vh;
     }
 
+    /* Otros estilos específicos para iPad Air */
 }
 
+/* Estilos específicos para iPad Pro (11" y 12.9") */
 @media only screen 
   and (min-device-width: 1024px) 
   and (max-device-width: 1366px) 
   and (-webkit-min-device-pixel-ratio: 2) {
+    /* Tus estilos específicos para iPad Pro aquí */
     #video-container video {
+        /* Asegura que el video cubra toda la pantalla */
         min-height: 100vh;
     }
 
+    /* Otros estilos específicos para iPad Pro */
 }
 
+/* Considera añadir estilos para orientaciones específicas si es necesario */
 @media only screen 
   and (min-device-width: 768px) 
   and (max-device-width: 1024px) 
   and (orientation: landscape) 
   and (-webkit-min-device-pixel-ratio: 2) {
+    /* Estilos para iPad Air en orientación horizontal */
 }
 
 @media only screen 
@@ -171,6 +176,7 @@
   and (max-device-width: 1366px) 
   and (orientation: landscape) 
   and (-webkit-min-device-pixel-ratio: 2) {
+    /* Estilos para iPad Pro en orientación horizontal */
 }
 
          
@@ -199,6 +205,7 @@
         </nav>
     </header>
 
+    <!-- Contenedor del video -->
     <div id="video-container">
         <video autoplay muted loop id="background-video">
             Tu navegador no soporta la etiqueta de video.
@@ -209,8 +216,10 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
+        // Array de los nombres de los videos disponibles
         var videos = ['vid3.mp4', 'collagetarot.mp4', 'vid2.mp4',"vid1.mp4", "vid4.mp4"]
 
+        // Función para seleccionar un video aleatorio y establecerlo como fuente del video de fondo
         function changeBackgroundVideo() {
             var randomIndex = Math.floor(Math.random() * videos.length);
             var video = document.getElementById('background-video');
@@ -218,6 +227,7 @@
             video.load();
         }
 
+        // Llamar a la función cuando se carga la página
         window.onload = function () {
             changeBackgroundVideo();
         };
@@ -225,6 +235,5 @@
 </body>
 
 </html>
-
 
 
