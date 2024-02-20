@@ -17,11 +17,18 @@
             e.preventDefault();
         });
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/interactjs@1.10.11/dist/interact.min.js"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.min.js"></script>
-
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+$(document).ready(function() {
+    $('.navbar-toggler').click(function() {
+        $('.navbar-collapse').collapse('toggle');
+    });
+});
+</script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         /* Estilos personalizados */
@@ -290,11 +297,6 @@
     </div>
 
     <!-- Primero, jQuery -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<!-- Luego, Popper.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<!-- Finalmente, Bootstrap JS -->
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <script>
 document.addEventListener('DOMContentLoaded', function() {
@@ -475,25 +477,26 @@ document.addEventListener('DOMContentLoaded', function() {
   ];
 
 
-
   document.addEventListener('DOMContentLoaded', function() {
-    $('.navbar-nav .nav-link').click(function() {
-        $('.navbar-collapse').collapse('hide');
-    });
-
     interact('.draggable').draggable({
-        // Opciones de arrastre
+        listeners: {
+            move(event) {
+                var target = event.target,
+                    // keep the dragged position in the data-x/data-y attributes
+                    x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
+                    y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
+
+                // translate the element
+                target.style.transform = 'translate(' + x + 'px, ' + y + 'px)';
+
+                // update the posiion attributes
+                target.setAttribute('data-x', x);
+                target.setAttribute('data-y', y);
+            }
+        },
+        inertia: true
     });
 
-    let lastTouchEnd = 0;
-    document.addEventListener('touchend', function(event) {
-        const now = (new Date()).getTime();
-        if (now - lastTouchEnd <= 300) {
-            // Aquí manejas el doble toque
-            event.preventDefault();
-        }
-        lastTouchEnd = now;
-    }, false);
 
     
     // Referencia al control deslizante
@@ -620,11 +623,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
     
-    
-
-    </script>
-</body>
-</html>
     
 
     </script>
