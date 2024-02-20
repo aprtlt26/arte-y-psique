@@ -26,37 +26,65 @@
             margin: 0;
             font-family: Arial, sans-serif;
         }
-
         header {
-            background-color: #fff;
+            width: 100%;
+            background-color: #ffffff;
             padding: 20px;
-            color: #333;
+            color: #000000;
             text-align: left;
-            margin-top: 0; /* Elimina el espacio superior */
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1;
         }
 
-  
-
-    
-
-        #menu-links {
-            display: flex;
-            justify-content: space-between; /* Espacio uniforme entre elementos */
-            align-items: center; /* Alinear verticalmente al centro */
-            width: 100%; /* Ancho del contenedor de enlaces */
-            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-            font-size: 15px; /* Tamaño del texto */
-
+        .navbar-brand {
+            font-size: 1.2rem; /* Tamaño de la fuente del nombre del sitio */
         }
 
-        #menu-links a {
-            color: #767676; /* Color del texto */
-            text-decoration: none;
-        
+        .navbar-nav .nav-link {
+            font-size: 1rem; /* Tamaño de la fuente de los enlaces del menú */
+            color: #3bc0ac; /* Color del texto de los enlaces */
+            transition: color 0.3s; /* Transición suave del color del texto */
+            margin: 0 15px; /* Espacio entre los enlaces */
         }
 
-     
+        .navbar-nav .nav-link:hover {
+            color: #55d1ba; /* Color del texto al pasar el mouse sobre los enlaces */
+        }
+       
 
+        .navbar-toggler {
+            border: none; /* Quita el borde del botón del menú desplegable */
+        }
+
+        .navbar-toggler-icon {
+            background-color: #cdcdcd; /* Color del icono del menú desplegable */
+        }
+
+        .navbar-toggler:focus {
+            outline: none; /* Quita el contorno al enfocar el botón del menú desplegable */
+        }
+
+        .navbar-collapse {
+            background-color: #ffffff; /* Color de fondo del menú desplegable */
+        }
+
+        .navbar-collapse .navbar-nav .nav-link {
+            padding: 15px 0; /* Espaciado entre los enlaces del menú desplegable */
+            border-bottom: 1px solid #ffffff; /* Borde inferior entre los enlaces */
+        }
+
+        .navbar-collapse .navbar-nav .nav-link:last-child {
+            border-bottom: none; /* Quita el borde inferior del último enlace */
+        }
+
+        @media screen and (max-width: 576px) {
+            .navbar-nav .nav-link {
+                font-size: 0.9rem; /* Tamaño de la fuente de los enlaces en dispositivos móviles */
+                margin: 10px 15px; /* Espacio entre los enlaces en dispositivos móviles */
+            }
+        }
         form {
             display: flex;
             flex-direction: column;
@@ -114,14 +142,20 @@
 <body>
     <header class="container">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div id="menu-links">
-                <a href="Aprendizaje.html">Virtual Learn</a>
-                <a href="https://soundtarot.com/">Listen</a>
-                <a href="index.html">ARTE & PSIQUE</a>
-                <a href="collage.html">Collage</a>
-                <a href="contact.html">Contact</a>
-            </div>
-        </nav>
+            <a class="navbar-brand" href="index.html">ARTE & PSIQUE</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <div id="menu-links" class="navbar-nav">
+                    <a class="nav-link" href="Aprendizaje.html">Virtual Learn</a>
+                    <a class="nav-link" href="https://soundtarot.com/">Listen</a>
+                    <a class="nav-link" href="collage.html">Collage</a>
+                    <a class="nav-link" href="contact.html">Contact</a>
+                    <a class="nav-link" href="Register.html">Register</a>
+                </div>
+            </nav>
     </header>
 
     <div style="text-align: center;">
@@ -159,3 +193,4 @@
 </body>
 
 </html>
+
