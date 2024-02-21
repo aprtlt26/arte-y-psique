@@ -485,6 +485,40 @@ document.addEventListener('DOMContentLoaded', function() {
             // Evitar el comportamiento predeterminado
             e.preventDefault();
 
+            images.forEach(src => {
+        const img = document.createElement('img');
+        img.src = src;
+        img.draggable = true;
+        img.addEventListener('dragstart', function(event) {
+            event.dataTransfer.setData('text', src);
+        });
+        galleryContainer.appendChild(img);
+    });
+
+    collageContainer.addEventListener('touchmove', function(event) {
+        if (event.target.classList.contains('draggable')) {
+            event.preventDefault();
+        }
+    }, { passive: false });
+
+    interact('.draggable')
+        .draggable({
+            inertia: true,
+            modifiers: [
+                interact.modifiers.restrictRect({
+                    restriction: 'parent',
+                    endOnly: true
+                })
+            ],
+            listeners: {
+                move: dragMoveListener
+            },
+            touchAction: 'none'
+        })
+        .on('tap', function(event) {
+            event.preventDefault();
+            // Aquí puedes añadir cualquier acción deseada al tocar una imagen
+        });
 
             // Crear una nueva imagen y configurar sus propiedades
             const newImg = new Image();
@@ -515,6 +549,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     })
                 ],
                 listeners: {
+        
                     move(event) {
                         let target = event.target,
                             x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
@@ -657,6 +692,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     });
 
                     Object.assign(event.target.dataset, { x, y });
+
+                    
                 }
             }
         });
@@ -664,6 +701,43 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const images = document.querySelectorAll('#collage-container img');
 
+
+    function dragMoveListener(event) {
+        let target = event.target;
+        let x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx;
+        let y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
+
+        target.style.transform = `translate(${x}px, ${y}px)`;
+        target.setAttribute('data-x', x);
+        target.setAttribute('data-y', y);
+    }
+
+    // Configuración para manejar la imagen soltada en el contenedor de collage
+    collageContainer.addEventListener('drop', function(event) {
+        event.preventDefault();
+        const src = event.dataTransfer.getData('text');
+        const img = document.createElement('img');
+        img.src = src;
+        img.classList.add('draggable');
+        img.style.position = 'absolute';
+        img.style.left = `${event.offsetX}px`;
+        img.style.top = `${event.offsetY}px`;
+        collageContainer.appendChild(img);
+
+        // Aplicar interactividad a la nueva imagen
+        interact(img).draggable({
+            inertia: true,
+            modifiers: [interact.modifiers.restrictRect({ restriction: 'parent' })],
+            listeners: { move: dragMoveListener },
+            touchAction: 'none'
+        });
+    });
+
+    collageContainer.addEventListener('dragover', function(event) {
+        event.preventDefault();
+    });
+
+    
 
     
     
