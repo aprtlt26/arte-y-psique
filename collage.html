@@ -485,6 +485,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // Evitar el comportamiento predeterminado
             e.preventDefault();
 
+
             // Crear una nueva imagen y configurar sus propiedades
             const newImg = new Image();
             newImg.src = this.src; // Usar la misma fuente de la imagen original
@@ -505,6 +506,32 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+    interact('.draggable').draggable({
+                inertia: true, // Activa la inercia para un movimiento más fluido
+                modifiers: [
+                    interact.modifiers.restrictRect({
+                        restriction: 'parent', // Restringe el movimiento dentro del elemento padre
+                        endOnly: true
+                    })
+                ],
+                listeners: {
+                    move(event) {
+                        let target = event.target,
+                            x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
+                            y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
+
+                        target.style.transform = `translate(${x}px, ${y}px) rotate(${target.getAttribute('data-angle') || 0}deg)`;
+
+                        target.setAttribute('data-x', x);
+                        target.setAttribute('data-y', y);
+                    }
+                },
+                // Mejora la sensibilidad y suavidad del arrastre en dispositivos táctiles
+                touchAction: 'none' // Desactiva las acciones táctiles predeterminadas para permitir el arrastre
+            }).resizable({
+                // Configuración para redimensionar
+                // Omitido para brevedad
+            });
     // Función para hacer arrastrables las imágenes
     function makeDraggable(img) {
         // Inicializar interact.js para la nueva imagen
