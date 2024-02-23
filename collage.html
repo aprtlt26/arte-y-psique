@@ -11,37 +11,21 @@
     <meta name="robots" content="collage,">
     <meta name="google" content="translate">
     <meta property="og:image" content="log.png">
-
     <title>ART & PSYCHE</title>
-    <script>
-        document.addEventListener('contextmenu', function (e) {
-            e.preventDefault();
-        });
-    </script>
     <script src="https://cdn.jsdelivr.net/npm/interactjs@1.10.11/dist/interact.min.js"></script>
-
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script>
-$(document).ready(function() {
-    $('.navbar-toggler').click(function() {
-        $('.navbar-collapse').collapse('toggle');
-    });
-});
-</script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
+    
         /* Estilos personalizados */
         body {
             background-color: #fffffff6;
             margin-top: 20px;
             margin-left: 10px;
             margin-right: 10px;
-            margin-bottom: 100px; 
-    
-                
-  
+            margin-bottom: 100px; /* Agregado: Espacio entre el collage y el pie de página */
         }
 
         /* Estilos para el header */
@@ -181,7 +165,6 @@ $(document).ready(function() {
     max-height: 200px;
     cursor: move;
     transition: transform 0.1s ease; /* Anima la transformación suavemente */
-             overflow: hidden; /* Desactiva el desplazamiento vertical y horizontal */
 
 
 
@@ -207,13 +190,11 @@ $(document).ready(function() {
         /* Estilos adicionales para dispositivos móviles */
         @media (max-width: 100%) {
             #collage-container {
-                margin-top: 280px; /* Eliminar el margen superior en dispositivos móviles */
+                margin-top: 150px; /* Eliminar el margen superior en dispositivos móviles */
                 width: 100%; /* Cambiar el ancho para que ocupe toda la pantalla */
                 height: calc(500vh - 20px); /* Altura ajustada para dispositivos móviles */
                 margin: 1;
                 float: none; /* Eliminar el flotante en dispositivos móviles */
-                             overflow: hidden; /* Desactiva el desplazamiento vertical y horizontal */
-
             }
         }
 
@@ -225,7 +206,6 @@ $(document).ready(function() {
     cursor: move;
     box-shadow: 0 0 5px rgba(0,0,0,0.5);
     transition: transform 0.1s ease; /* Anima la transformación suavemente */
-             overflow: hidden; /* Desactiva el desplazamiento vertical y horizontal */
 
 
 
@@ -264,7 +244,7 @@ $(document).ready(function() {
 
     <header id="header">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="index.html">ART & PSYCH</a>
+            <a class="navbar-brand" href="index.html">ARTE & PSIQUE</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -279,7 +259,7 @@ $(document).ready(function() {
                 </div>
             </nav>
         </header>
-    </header>
+
 
     <!-- Galería de imágenes -->
     <div id="gallery-container">
@@ -304,249 +284,185 @@ $(document).ready(function() {
     </div>
 
     <!-- Primero, jQuery -->
+    <button id="play-button">Play</button>
 
+    
     <script>
-document.addEventListener('DOMContentLoaded', function() {
-    
-    
-
-    let selectedImage = null;
-    const galleryContainer = document.getElementById('gallery-container');
-    
-    const images = ['brazomago.png',
-'cancer.jpg',
-'Capa 1 (2).png',
-'Capa 1 (3).png',
-'Capa 1.png',
-'Capa 1@2x.png',
-'Capa 1@3x (1).png',
-'Capa 1@3x.png',
-'Capa 1@4x.png',
-'Capa 1@4x@2x.png',
-'Capa 2@3x.png',
-'Capa 4@3x.png',
-'Capa 5.png',
-'Capa 5@2x.png',
-'Capa 5@3x@3x (1).png',
-'Capa 5@3x@3x.png',
-'Capa 6.png',
-'Capa 6@3x (2).png',
-'Capa 6@3x (3).png',
-'Capa 6@3x (4).png',
-'Capa 6@3x (5).png',
-'Capa 6@3x.png',
-'Capa 7.png',
-'Capa 7@3x (1).png',
-'Capa 7@3x (2).png',
-'Capa 7@3x (3).png',
-'Capa 7@3x (4).png',
-'Capa 7@3x (5).png',
-'Capa 7@3x (6).png',
-'Capa 7@3x (7).png',
-'Capa 7@3x (8).png',
-'Capa 7@3x.png',
-'Capa 8 (1).png',
-'Capa 8 (2).png',
-'Capa 8 (3).png',
-'Capa 8.png',
-'Capa 8@3x (1).png',
-'Capa 8@3x (2).png',
-'Capa 8@3x (3).png',
-'Capa 8@3x (4).png',
-'Capa 8@3x (5).png',
-'Capa 8@3x (6).png',
-'Capa 8@3x (7).png',
-'Capa 8@3x (8).png',
-'Capa 8@3x (9).png',
-'Capa 8@3x (10).png',
-'Capa 8@3x (11).png',
-'Capa 8@3x (12).png',
-'Capa 8@3x (13).png',
-'Capa 8@3x.png',
-'Capa 9.png',
-'Capa 9@3x (1).png',
-'Capa 9@3x (2).png',
-'Capa 9@3x (3).png',
-'Capa 9@3x (6).png',
-'Capa 9@3x (7).png',
-'Capa 9@3x (8).png',
-'Capa 9@3x (9).png',
-'Capa 9@3x (10).png',
-'Capa 9@3x (11).png',
-'Capa 9@3x (12).png',
-'Capa 9@3x (13).png',
-'Capa 9@3x (14).png',
-'Capa 9@3x (15).png',
-'Capa 9@3x (16).png',
-'Capa 9@3x (17).png',
-'Capa 9@3x (20).png',
-'Capa 9@3x (21).png',
-'Capa 9@3x (22).png',
-'Capa 9@3x (23).png',
-'Capa 9@3x (24).png',
-'Capa 9@3x.png',
-'Capa 10 (1).png',
-'Capa 10 (3).png',
-'Capa 10.png',
-'Capa 10@3x (1).png',
-'Capa 10@3x (3).png',
-'Capa 10@3x (4).png',
-'Capa 10@3x (5).png',
-'Capa 10@3x (6).png',
-'Capa 10@3x (7).png',
-'Capa 10@3x (8).png',
-'Capa 10@3x (9).png',
-'Capa 10@3x (10).png',
-'Capa 10@3x.png',
-'Capa 11.png',
-'Capa 11@3x (1).png',
-'Capa 11@3x (2).png',
-'Capa 11@3x (3).png',
-'Capa 11@3x (4).png',
-'Capa 11@3x (6).png',
-'Capa 11@3x (7).png',
-'Capa 11@3x (8).png',
-'Capa 11@3x (9).png',
-'Capa 11@3x (10).png',
-'Capa 11@3x (11).png',
-'Capa 11@3x (12).png',
-'Capa 11@3x (13).png',
-'Capa 11@3x.png',
-'Capa 12 (1).png',
-'Capa 12.png',
-'Capa 12@3x (1).png',
-'Capa 12@3x (2).png',
-'Capa 12@3x (3).png',
-'Capa 12@3x (4).png',
-'Capa 12@3x (5).png',
-'Capa 12@3x (6).png',
-'Capa 12@3x (7).png',
-'Capa 12@3x (8).png',
-'Capa 12@3x (9).png',
-'Capa 12@3x.png',
-'Capa 13@2x.png',
-'Capa 13@3x (1).png',
-'Capa 13@3x (2).png',
-'Capa 13@3x.png',
-'Capa 14 (1).png',
-'Capa 14.png',
-'Capa 14@3x (1).png',
-'Capa 14@3x (2).png',
-'Capa 14@3x (3).png',
-'Capa 14@3x.png',
-'Capa 15.png',
-'Capa 15@3x (1).png',
-'Capa 15@3x (2).png',
-'Capa 15@3x.png',
-'Capa 16@3x (1).png',
-'Capa 16@3x (2).png',
-'Capa 16@3x.png',
-'Capa 17.png',
-'Capa 17@3x (1).png',
-'Capa 17@3x (2).png',
-'Capa 17@3x (3).png',
-
-'Capa 17@3x (7).png',
-'Capa 17@3x.png',
-'Capa 18@3x (1).png',
-'Capa 18@3x.png',
-'Capa 19@3x (2).png',
-'Capa 19@3x.png',
-'Capa 20@3x (1).png',
-'Capa 20@3x (2).png',
-'Capa 20@3x (4).png',
-'Capa 20@3x.png',
-'Capa 21@3x (1).png',
-'Capa 22 copy 89@3x.png',
-
-'Capa 22@3x.png',
-'Capa 27@3x.png',
-'Capa 31@3x.png',
-'Capa 36@3x.png',
-'Copia de Capa 1@3x.png',
-'Copia de Capa 6.png',
-'Copia de Capa 9.png',
-'Copia de Capa 10.png',
-'Copia de Capa 11.png',
-'Copia de Capa 12.png',
-'cuchillo.png',
-'elementos.png',
-'espada.jpg',
-'hombrerasluna@3x.png',
-'mago.png',
-'manomago.png',
-'mesa mago.png',
-'pelomago.png',
-'perro.jpg',
-'perros.jpg',
-'sol.jpg',
-
-  ];
-
-
-  document.addEventListener('DOMContentLoaded', function() {
-    // Asignar el evento dblclick a todas las imágenes en la galería
-    document.querySelectorAll('#gallery-container img').forEach(img => {
-        img.addEventListener('dblclick', function(e) {
-            // Evitar el comportamiento predeterminado
-            e.preventDefault();
-
-            images.forEach(src => {
-        const img = document.createElement('img');
-        img.src = src;
-        img.draggable = true;
-        img.addEventListener('dragstart', function(event) {
-            event.dataTransfer.setData('text', src);
-        });
-        galleryContainer.appendChild(img);
-    });
-
-    collageContainer.addEventListener('touchmove', function(event) {
-        if (event.target.classList.contains('draggable')) {
-            event.preventDefault();
-        }
-    }, { passive: false });
-
-    interact('.draggable')
-        .draggable({
-            inertia: true,
-            modifiers: [
-                interact.modifiers.restrictRect({
-                    restriction: 'parent',
-                    endOnly: true
-                })
-            ],
-            listeners: {
-                move: dragMoveListener
-            },
-            touchAction: 'none'
-        })
-        .on('tap', function(event) {
-            event.preventDefault();
-            // Aquí puedes añadir cualquier acción deseada al tocar una imagen
-        });
-
-            // Crear una nueva imagen y configurar sus propiedades
-            const newImg = new Image();
-            newImg.src = this.src; // Usar la misma fuente de la imagen original
-            newImg.classList.add('draggable'); // Asegurarse de que la nueva imagen sea arrastrable
-            newImg.style.position = 'absolute';
+        document.addEventListener('DOMContentLoaded', function() {
+            const collageAudios = [];
             
-            // Opcionalmente, colocar la imagen en el centro del contenedor de collage
-            // o en una posición basada en el scroll actual o un valor predeterminado
-            const collageContainer = document.getElementById('collage-container');
-            newImg.style.left = '50px'; // Ejemplo, ajustar según sea necesario
-            newImg.style.top = '50px'; // Ejemplo, ajustar según sea necesario
+const images = ['0.png', '01.png', '02.png', '03.png', '04.png', '05.png', '06.png', '07.png', '08.png', 'c1.png', 'c2.png', 'c3.png', 'c4.png', 'c5.png', 'c6.png', 'c7.png', 'Capa%2031@3x.png .png', 'd1.png', 'd2.png', 'd3.png', 'd4.png', 'd5.png', 'd7.png', 'd8.png', 'd9.png', 'd10.png', 'd11.png', 'd12.png', 'd13.png', 'd14.png', 'd15.png', 'd16.png', 'e1.png', 'e2.png', 'e3.png', 'e4.png', 'e5.png', 'e6.png', 'f1.png', 'f2.png', 'f3.png', 'f4.png', 'f5.png', 'f6.png', 'h1.png', 'h2.png', 'h3.png', 'h4.png', 'iii.png', 'iii1.png', 'iii2.png', 'iii3.png', 'iii4.png', 'iii5.png', 'iii6.png', 'iii7.png', 'j1.png', 'j2.png', 'j3.png', 'j4.png', 'j5.png', 'j6.png', 'l1.png', 'l2.png', 'l3.png', 'l4.png', 'm1.png', 'm2.png', 'm3.png', 'm4.png', 'm5.png', 'm7.png', 'm8.png', 'm9.png', 'm10.png', 'm11.png', 'm12.png', 'ojos.png', 'p1.png', 'p2.png', 'p3.png', 'p4.png', 'p5.png', 'p6.png', 'r1.png', 'r2.png', 'r3.png', 'r4.png', 's1.png', 's2.png', 's3.png', 's4.png', 's5.png', 's6.png', 't1.png', 't2.png', 't3.png', 't4.png', 't5.png', 'vi.png', 'vi1.png', 'vi2.png', 'vi3.png', 'vi4.png', 'vii2.png', 'viii.png', 'viii1.png', 'viii2.png', 'viii3.png', 'viii4.png', 'viii6.png', 'vxii3.png', 'xii.png', 'XII1.png', 'xii2.png', 'xii4.png', 'xii5.png', 'xii6.png', 'xii7.png', 'xiii.png', 'xiii1.png', 'xiii2.png', 'xiii3.png', 'xiiii.png', 'xiiii1.png', 'xiiii3.png', 'xiiii4.png', 'xvii.png', 'xvii1.png', 'xvii2.png', 'xvii4.png', 'xvii5.png', 'xvii6.png', 'xvii7.png', 'xviiii.png', 'xviiii1.png', 'xviiii2.png', 'xviiii3.png', 'xx.png', 'xxi.png', 'xxi1.png', 'xxi2.png', 'xxi3.png', 'xxi4.png', 'xxi5.png'];
 
-            // Agregar la nueva imagen al contenedor de collage
-            collageContainer.appendChild(newImg);
+ 
+            const imageAudioMap = {
+                
+                '0.png': '0.mp3',
+    '01.png': '01.mp3',
+    '02.png': '02.mp3',
+    '03.png': '03.mp3',
+    '04.png': '04.mp3',
+    '05.png': '05.mp3',
+    '06.png': '06.mp3',
+    '07.png': '07.mp3',
+    '08.png': '08.mp3',
+    'c1.png': 'c1.mp3',
+    'c2.png': 'c2.mp3',
+    'c3.png': 'c3.mp3',
+    'c4.png': 'c4.mp3',
+    'c5.png': 'c5.mp3',
+    'c6.png': 'c6.mp3',
+    'c7.png': 'c7.mp3',
+    'Capa%2031@3x.png': 'Capa%2031@3x.mp3',
+    'd1.png': 'd1.mp3',
+    'd2.png': 'd2.mp3',
+    'd3.png': 'd3.mp3',
+    'd4.png': 'd4.mp3',
+    'd5.png': 'd5.mp3',
+    'd7.png': 'd7.mp3',
+    'd8.png': 'd8.mp3',
+    'd9.png': 'd9.mp3',
+    'd10.png': 'd10.mp3',
+    'd11.png': 'd11.mp3',
+    'd12.png': 'd12.mp3',
+    'd13.png': 'd13.mp3',
+    'd14.png': 'd14.mp3',
+    'd15.png': 'd15.mp3',
+    'd16.png': 'd16.mp3',
+    'e1.png': 'e1.mp3',
+    'e2.png': 'e2.mp3',
+    'e3.png': 'e3.mp3',
+    'e4.png': 'e4.mp3',
+    'e5.png': 'e5.mp3',
+    'e6.png': 'e6.mp3',
+    'f1.png': 'f1.mp3',
+    'f2.png': 'f2.mp3',
+    'f3.png': 'f3.mp3',
+    'f4.png': 'f4.mp3',
+    'f5.png': 'f5.mp3',
+    'f6.png': 'f6.mp3',
+    'h1.png': 'h1.mp3',
+    'h2.png': 'h2.mp3',
+    'h3.png': 'h3.mp3',
+    'h4.png': 'h4.mp3',
+    'iii.png': 'iii.mp3',
+    'iii1.png': 'iii1.mp3',
+    'iii2.png': 'iii2.mp3',
+    'iii3.png': 'iii3.mp3',
+    'iii4.png': 'iii4.mp3',
+    'iii5.png': 'iii5.mp3',
+    'iii6.png': 'iii6.mp3',
+    'iii7.png': 'iii7.mp3',
+    'j1.png': 'j1.mp3',
+    'j2.png': 'j2.mp3',
+    'j3.png': 'j3.mp3',
+    'j4.png': 'j4.mp3',
+    'j5.png': 'j5.mp3',
+    'j6.png': 'j6.mp3',
+    'l1.png': 'l1.mp3',
+    'l2.png': 'l2.mp3',
+    'l3.png': 'l3.mp3',
+    'l4.png': 'l4.mp3',
+    'm1.png': 'm1.mp3',
+    'm2.png': 'm2.mp3',
+    'm3.png': 'm3.mp3',
+    'm4.png': 'm4.mp3',
+    'm5.png': 'm5.mp3',
+    'm7.png': 'm7.mp3',
+    'm8.png': 'm8.mp3',
+    'm9.png': 'm9.mp3',
+    'm10.png': 'm10.mp3',
+    'm11.png': 'm11.mp3',
+    'm12.png': 'm12.mp3',
+    'ojos.png': 'ojos.mp3',
+    'p1.png': 'p1.mp3',
+    'p2.png': 'p2.mp3',
+    'p3.png': 'p3.mp3',
+    'p4.png': 'p4.mp3',
+    'p5.png': 'p5.mp3',
+    'p6.png': 'p6.mp3',
+    'r1.png': 'r1.mp3',
+    'r2.png': 'r2.mp3',
+    'r3.png': 'r3.mp3',
+    'r4.png': 'r4.mp3',
+    's1.png': 's1.mp3',
+    's2.png': 's2.mp3',
+    's3.png': 's3.mp3',
+    's4.png': 's4.mp3',
+    's5.png': 's5.mp3',
+    's6.png': 's6.mp3',
+    't1.png': 't1.mp3',
+    't2.png': 't2.mp3',
+    't3.png': 't3.mp3',
+    't4.png': 't4.mp3',
+    't5.png': 't5.mp3',
+    'vi.png': 'vi.mp3',
+    'vi1.png': 'vi1.mp3',
+    'vi2.png': 'vi2.mp3',
+    'vi3.png': 'vi3.mp3',
+    'vi4.png': 'vi4.mp3',
+    'vii2.png': 'vii2.mp3',
+    'viii.png': 'viii.mp3',
+    'viii1.png': 'viii1.mp3',
+    'viii2.png': 'viii2.mp3',
+    'viii3.png': 'viii3.mp3',
+    'viii4.png': 'viii4.mp3',
+    'viii6.png': 'viii6.mp3',
+    'vxii3.png': 'vxii3.mp3',
+    'xii.png': 'xii.mp3',
+    'XII1.png': 'XII1.mp3',
+    'xii2.png': 'xii2.mp3',
+    'xii4.png': 'xii4.mp3',
+    'xii5.png': 'xii5.mp3',
+    'xii6.png': 'xii6.mp3',
+    'xii7.png': 'xii7.mp3',
+    'xiii.png': 'xiii.mp3',
+    'xiii1.png': 'xiii1.mp3',
+    'xiii2.png': 'xiii2.mp3',
+    'xiii3.png': 'xiii3.mp3',
+    'xiiii.png': 'xiiii.mp3',
+    'xiiii1.png': 'xiiii1.mp3',
+    'xiiii3.png': 'xiiii3.mp3',
+    'xiiii4.png': 'xiiii4.mp3',
+    'xvii.png': 'xvii.mp3',
+    'xvii1.png': 'xvii1.mp3',
+    'xvii2.png': 'xvii2.mp3',
+    'xvii4.png': 'xvii4.mp3',
+    'xvii5.png': 'xvii5.mp3',
+    'xvii6.png': 'xvii6.mp3',
+    'xvii7.png': 'xvii7.mp3',
+    'xviiii.png': 'xviiii.mp3',
+    'xviiii1.png': 'xviiii1.mp3',
+    'xviiii2.png': 'xviiii2.mp3',
+    'xviiii3.png': 'xviiii3.mp3',
+    'xx.png': 'xx.mp3',
+    'xxi.png': 'xxi.mp3',
+    'xxi1.png': 'xxi1.mp3',
+    'xxi2.png': 'xxi2.mp3',
+    'xxi3.png': 'xxi3.mp3',
+    'xxi4.png': 'xxi4.mp3',
+    'xxi5.png': 'xxi5.mp3',
+    'iii7.png': 'iii7.mp3'
+};
+     
+         
+          
+    
+            // Prepara la galería
+            images.forEach(image => {
+                const img = document.createElement('img');
+                img.src = image;
+                img.style.width = '100px'; 
+                img.setAttribute('draggable', true);
+                img.addEventListener('dragstart', e => {
+                    e.dataTransfer.setData('text/plain', e.target.src);
+                });
+                document.querySelector('#gallery-container').appendChild(img);
+            });
+        
+            
 
-            // Agregar eventos a la nueva imagen si es necesario, por ejemplo, para hacerla arrastrable
-            makeDraggable(newImg);
-        });
-    });
-
-    interact('.draggable').draggable({
+            
+            interact('.draggable').draggable({
                 inertia: true, // Activa la inercia para un movimiento más fluido
                 modifiers: [
                     interact.modifiers.restrictRect({
@@ -555,7 +471,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     })
                 ],
                 listeners: {
-        
                     move(event) {
                         let target = event.target,
                             x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
@@ -570,191 +485,119 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Mejora la sensibilidad y suavidad del arrastre en dispositivos táctiles
                 touchAction: 'none' // Desactiva las acciones táctiles predeterminadas para permitir el arrastre
             }).resizable({
-                // Configuración para redimensionar
-                // Omitido para brevedad
-            });
-    // Función para hacer arrastrables las imágenes
-    function makeDraggable(img) {
-        // Inicializar interact.js para la nueva imagen
-        interact(img).draggable({
-            // Opciones y eventos para tu elemento draggable
-            onmove: dragMoveListener,
-            inertia: true,
-            modifiers: [
-                interact.modifiers.restrictRect({
-                    restriction: 'parent',
-                    endOnly: true
-                })
-            ],
-        });
+            })
 
-        function dragMoveListener(event) {
-            var target = event.target,
-                // keep the dragged position in the data-x/data-y attributes
-                x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
-                y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
+ 
+            const collageContainer = document.querySelector('#collage-container');
+            collageContainer.addEventListener('dragover', e => e.preventDefault());
+            collageContainer.addEventListener('drop', e => {
+                e.preventDefault();
+                const src = e.dataTransfer.getData('text');
+                const img = document.createElement('img');
+                img.src = src;
 
-            // translate the element
-            target.style.webkitTransform =
-            target.style.transform =
-              'translate(' + x + 'px, ' + y + 'px)';
+                const audio = new Audio(imageAudioMap[src.split('/').pop()]);
+    collageAudios.push(audio)
 
-            // update the position attributes
-            target.setAttribute('data-x', x);
-            target.setAttribute('data-y', y);
-        }
-    }
-});
-
-    
-    
-
-    images.forEach(src => {
-        const img = document.createElement('img');
-        img.src = src;
-        img.draggable = true;
-        img.addEventListener('dragstart', function(event) {
-            event.dataTransfer.setData('text', src);
-        });
-        galleryContainer.appendChild(img);
-    });
-
-    const collageContainer = document.getElementById('collage-container');
-    collageContainer.addEventListener('dragover', function(event) {
-        event.preventDefault();
-    });
-
-    collageContainer.addEventListener('drop', function(event) {
-        event.preventDefault();
-        const src = event.dataTransfer.getData('text');
-        const img = new Image();
-        img.src = src;
-        img.classList.add('draggable');
-        img.style.position = 'absolute';
-        img.style.left = `${event.offsetX}px`;
-        img.style.top = `${event.offsetY}px`;
-        collageContainer.appendChild(img);
-        selectImage(img);
-
-        // Asignar controlador de eventos de doble clic para rotar la imagen
-        img.addEventListener('dblclick', () => {
-            const currentRotation = img.style.transform.match(/rotate\((\d+)deg\)/);
-            const currentAngle = currentRotation ? parseInt(currentRotation[1]) : 0;
-            const newAngle = currentAngle + 180;
-            img.style.transform = `translate(${img.getAttribute('data-x')}px, ${img.getAttribute('data-y')}px) rotate(${newAngle}deg)`;
-            img.setAttribute('data-angle', newAngle); // Actualizar el ángulo en los atributos de datos
-        });
-    });
-
-    function selectImage(img) {
-        if (selectedImage) {
-            selectedImage.classList.remove('selected');
-        }
-        selectedImage = img;
-        img.classList.add('selected');
-    }
-    
-
-
-
-            
-                
+                img.src = src;
+                img.style.position = 'absolute';
+                img.style.left = `${e.offsetX}px`;
+                img.style.top = `${e.offsetY}px`;
+                collageContainer.appendChild(img);
+                makeImageInteractive(img);
+        
            
-            
-            interact('.draggable').draggable({
-            listeners: {
-                move(event) {
-                    const target = event.target;
-                    // Keep the dragged position in the data-x/data-y attributes
-                    const x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx;
-                    const y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
 
-                    // Translate the element
-                    target.style.webkitTransform =
-                    target.style.transform =
-                        'translate(' + x + 'px, ' + y + 'px) rotate(' + (target.getAttribute('data-angle') || 0) + 'deg)';
-
-                    // Update the posiion attributes
-                    target.setAttribute('data-x', x);
-                    target.setAttribute('data-y', y);
+                // Reproduce el audio si existe un mapeo para la imagen
+                if (imageAudioMap[src.split('/').pop()]) {
+                    const audio = new Audio(imageAudioMap[src.split('/').pop()]);
+                    audio.play();
                 }
-            },
-            inertia: true
-        }).resizable({
-            // Resize from all edges and corners
-            edges: { left: true, right: true, bottom: true, top: true },
             
-            listeners: {
-                move(event) {
-                    let { x, y } = event.target.dataset;
+                if (audioSrc && !collageAudios.some(audio => audio.src === audioSrc)) {
+        const audio = new Audio(audioSrc);
+        collageAudios.push(audio);
+    }
 
+                if (imageAudioMap[src.split('/').pop()]) {
+            const audio = new Audio(imageAudioMap[src.split('/').pop()]);
+            collageAudios.push(audio); // Almacenar el audio en el arreglo collageAudios
+        }
+    });
+            
+
+        
+            function makeImageInteractive(img) {
+                interact(img).draggable({
+                    onmove: window.dragMoveListener
+                }).resizable({
+                    edges: { left: true, right: true, bottom: true, top: true }
+                }).on('resizemove', function (event) {
+                    let { x, y } = event.target.dataset;
+        
                     x = (parseFloat(x) || 0) + event.deltaRect.left;
                     y = (parseFloat(y) || 0) + event.deltaRect.top;
-
+        
                     Object.assign(event.target.style, {
                         width: `${event.rect.width}px`,
                         height: `${event.rect.height}px`,
-                        transform: `translate(${x}px, ${y}px) rotate(${event.target.getAttribute('data-angle') || 0}deg)`
+                        transform: `translate(${x}px, ${y}px)`
                     });
-
+        
                     Object.assign(event.target.dataset, { x, y });
+                });
+        
+                img.addEventListener('click', function() {
+        audio.play();
+    });
 
-                    
-                }
+                // Función para rotar la imagen 180 grados al hacer doble clic
+                img.addEventListener('dblclick', function() {
+            let angle = parseInt(this.getAttribute('data-angle') || '0');
+            angle = (angle + 180) % 360;
+            this.style.transform = `translate(${this.getAttribute('data-x') || 0}px, ${this.getAttribute('data-y') || 0}px) rotate(${angle}deg)`;
+            this.setAttribute('data-angle', angle.toString());
+            
+        });
+            }
+        
+            document.getElementById('play-button').addEventListener('click', function() {
+                let delay = 0;
+
+        // Recorre todas las instancias de audio asociadas a las imágenes en el collage
+        collageAudios.forEach((audio, index) => {
+            setTimeout(() => {
+                setTimeout(() => {
+                    audio.play();
+        }, delay);
+
+        delay += audio.duration * 1000; // Multiplica la duración del audio por 1000 para obtener el tiempo en milisegundos
+
+            if (index > 0) {
+                collageAudios[index - 1].pause();
             }
         });
     });
-
-    const images = document.querySelectorAll('#collage-container img');
-
-
-    function dragMoveListener(event) {
-        let target = event.target;
-        let x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx;
-        let y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
-
-        target.style.transform = `translate(${x}px, ${y}px)`;
-        target.setAttribute('data-x', x);
-        target.setAttribute('data-y', y);
-    }
-
-    // Configuración para manejar la imagen soltada en el contenedor de collage
-    collageContainer.addEventListener('drop', function(event) {
-        event.preventDefault();
-        const src = event.dataTransfer.getData('text');
-        const img = document.createElement('img');
-        img.src = src;
-        img.classList.add('draggable');
-        img.style.position = 'absolute';
-        img.style.left = `${event.offsetX}px`;
-        img.style.top = `${event.offsetY}px`;
-        collageContainer.appendChild(img);
-
-        // Aplicar interactividad a la nueva imagen
-        interact(img).draggable({
-            inertia: true,
-            modifiers: [interact.modifiers.restrictRect({ restriction: 'parent' })],
-            listeners: { move: dragMoveListener },
-            touchAction: 'none'
+            window.dragMoveListener = function(event) {
+                var target = event.target,
+                    x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
+                    y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
+        
+                target.style.webkitTransform =
+                target.style.transform =
+                `translate(${x}px, ${y}px) rotate(${target.getAttribute('data-angle') || 0}deg)`;
+        
+                target.setAttribute('data-x', x);
+                target.setAttribute('data-y', y);
+            };
         });
-    });
 
-    collageContainer.addEventListener('dragover', function(event) {
-        event.preventDefault();
-    });
+   });
 
-    
 
-    
-    
 
-    </script>
-</body>
-</html>
 
-    
-    
-
-    </script>
-</body>
-</html>
+        
+        </script>
+        </body>
+</html
