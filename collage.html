@@ -1,9 +1,9 @@
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="description" content="Alfonso Pretelt Artista">
     <meta name="keywords" content="collage, alfonsopretelt,tarot,erosion,">
@@ -17,6 +17,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Aquí tus estilos -->
     <style>
     
         /* Estilos personalizados */
@@ -446,216 +447,156 @@ const images = ['0.png', '01.png', '02.png', '03.png', '04.png', '05.png', '06.p
 };
      
          
-function allowDrop(event) {
-    event.preventDefault();
-}
+
 
     
-            // Prepara la galería
-            images.forEach(image => {
-                const img = document.createElement('img');
-                img.src = image;
-                img.style.width = '100px'; 
-                img.setAttribute('draggable', true);
-                img.addEventListener('dragstart', e => {
-                    e.dataTransfer.setData('text/plain', e.target.src);
-                });
-                document.querySelector('#gallery-container').appendChild(img);
-            });
-        
-            
 
-            
-         
+    
+    // Prepara la galería
+    images.forEach(image => {
+        const img = document.createElement('img');
+        img.src = image;
+        img.style.width = '100px';
+        img.setAttribute('draggable', true);
+        img.addEventListener('dragstart', e => {
+            e.dataTransfer.setData('text/plain', e.target.src);
+        });
+        document.querySelector('#gallery-container').appendChild(img);
+    });
 
-interact('.draggable').resizable({
-    edges: { top: true, left: true, bottom: true, right: true },
-    listeners: {
-        move(event) {
-            var target = event.target;
-            var x = (parseFloat(target.getAttribute('data-x')) || 0) + event.deltaRect.left;
-            var y = (parseFloat(target.getAttribute('data-y')) || 0) + event.deltaRect.top;
+    
+ 
 
-            target.style.width = event.rect.width + 'px';
-            target.style.height = event.rect.height + 'px';
-            
-            target.style.transform = 'translate(' + x + 'px,' + y + 'px)';
 
-            target.setAttribute('data-x', x);
-            target.setAttribute('data-y', y);
+    const collageContainer = document.querySelector('#collage-container');
+    collageContainer.addEventListener('dragover', e => e.preventDefault());
+    collageContainer.addEventListener('drop', e => {
+        e.preventDefault();
+        const src = e.dataTransfer.getData('text');
+        const img = document.createElement('img');
+        img.src = src;
+
+        const audioSrc = imageAudioMap[src.split('/').pop()];
+        let audio;
+        if (audioSrc) {
+    audio = new Audio(audioSrc);
+    collageAudios.push(audio);
+
+
         }
-    }
-}).draggable({
-                // Mejora la sensibilidad y suavidad del arrastre en dispositivos táctiles
-                touchAction: 'none' // Desactiva las acciones táctiles predeterminadas para permitir el arrastre
-            }).resizable({
-                edges: { left: true, right: true, bottom: true, top: true },
+        img.src = src;
+        img.style.position = 'absolute';
+        img.style.left = `${e.offsetX}px`;
+        img.style.top = `${e.offsetY}px`;
+        collageContainer.appendChild(img);
+    
+        makeImageInteractive(img);
+
+   
+
+        // Reproduce el audio si existe un mapeo para la imagen
+        if (imageAudioMap[src.split('/').pop()]) {
+const audioSrc = imageAudioMap[src.split('/').pop()];
+const audio = new Audio(audioSrc);
+audio.play();
+    
+if (!collageAudios.some(audio => audio.src === audioSrc)) {
+collageAudios.push(audio);
+}
+}
+       
+});
+    
+function makeImageInteractive(img) {
+        // Hace la imagen arrastrable
+        interact(img).draggable({
+            onmove: dragMoveListener
+        });
+
+        // Hace la imagen redimensionable
+        interact(img).resizable({
+            edges: { top: true, left: true, bottom: true, right: true },
             listeners: {
                 move(event) {
                     let target = event.target;
                     let x = (parseFloat(target.getAttribute('data-x')) || 0);
                     let y = (parseFloat(target.getAttribute('data-y')) || 0);
 
-                    // Actualizar la posición durante el redimensionamiento
+                    // Actualiza el tamaño y la posición de la imagen
                     target.style.width = event.rect.width + 'px';
                     target.style.height = event.rect.height + 'px';
                     x += event.deltaRect.left;
                     y += event.deltaRect.top;
+                    target.style.transform = `translate(${x}px, ${y}px)`;
 
-                    // Actualizar la posición de la imagen
-                    target.style.transform = `translate(${x}px, ${y}px) rotate(${target.getAttribute('data-angle') || 0}deg)`;
-
-                    // Guardar la posición actual
+                    // Guarda la nueva posición
                     target.setAttribute('data-x', x);
                     target.setAttribute('data-y', y);
                 }
             }
         });
-
-        
-
- 
-            const collageContainer = document.querySelector('#collage-container');
-            collageContainer.addEventListener('dragover', e => e.preventDefault());
-            collageContainer.addEventListener('drop', e => {
-                e.preventDefault();
-                const src = e.dataTransfer.getData('text');
-                const img = document.createElement('img');
-                img.src = src;
-
-                const audioSrc = imageAudioMap[src.split('/').pop()];
-                let audio;
-                if (audioSrc) {
-            audio = new Audio(audioSrc);
-            collageAudios.push(audio);
-        
     
-                }
-                img.src = src;
-                img.style.position = 'absolute';
-                img.style.left = `${e.offsetX}px`;
-                img.style.top = `${e.offsetY}px`;
-                collageContainer.appendChild(img);
-            
-                makeImageInteractive(img);
-        
-           
 
-                // Reproduce el audio si existe un mapeo para la imagen
-                if (imageAudioMap[src.split('/').pop()]) {
-    const audioSrc = imageAudioMap[src.split('/').pop()];
-    const audio = new Audio(audioSrc);
-    audio.play();
-            
-    if (!collageAudios.some(audio => audio.src === audioSrc)) {
-        collageAudios.push(audio);
+
+
+
+        // Función para rotar la imagen 180 grados al hacer doble clic
+        img.addEventListener('dblclick', function() {
+    let angle = parseInt(this.getAttribute('data-angle') || '0');
+    angle = (angle + 180) % 360;
+    this.style.transform = `translate(${this.getAttribute('data-x') || 0}px, ${this.getAttribute('data-y') || 0}px) rotate(${angle}deg)`;
+    this.setAttribute('data-angle', angle.toString());
+    
+});
     }
+
+    document.getElementById('play-button').addEventListener('click', function() {
+const collageImages = document.querySelectorAll('#collage-container img');
+
+// Creamos una promesa inicial resuelta para encadenar las promesas de reproducción de audio
+let promiseChain = Promise.resolve();
+
+// Recorremos cada imagen en el collage
+collageImages.forEach(image => {
+const audioSrc = imageAudioMap[image.src.split('/').pop()];
+
+// Si hay un audio asociado a la imagen, creamos una promesa para reproducir ese audio
+if (audioSrc) {
+    promiseChain = promiseChain.then(() => {
+        return new Promise(resolve => {
+            const audio = new Audio(audioSrc);
+            audio.play();
+            
+            // Esperamos a que el audio termine de reproducirse antes de resolver la promesa
+            audio.onended = resolve;
+        });
+    });
 }
-
-
-
-                if (imageAudioMap[src.split('/').pop()]) {
-            const audio = new Audio(imageAudioMap[src.split('/').pop()]);
-            collageAudios.push(audio); // Almacenar el audio en el arreglo collageAudios
-        }
-    });
-            
-    function makeImageInteractive(img) {
-        interact(img)
-            .draggable({
-                listeners: {
-                    start(event) {
-                        let target = event.target;
-                        target.style.zIndex = 1000;
-                    },
-                    move(event) {
-                        let target = event.target,
-                            x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
-                            y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
-
-                        target.style.transform = `translate(${x}px, ${y}px) rotate(${target.getAttribute('data-angle') || 0}deg)`;
-
-                        target.setAttribute('data-x', x);
-                        target.setAttribute('data-y', y);
-                    }
-                },
-                inertia: true,
-                modifiers: [
-                    interact.modifiers.restrictRect({
-                        restriction: 'parent',
-                        endOnly: true
-                    })
-                ],
-                autoScroll: true,
-                onmove: window.dragMoveListener
-                
-            });
-
-       
-    
-
-                // Función para rotar la imagen 180 grados al hacer doble clic
-                img.addEventListener('dblclick', function() {
-            let angle = parseInt(this.getAttribute('data-angle') || '0');
-            angle = (angle + 180) % 360;
-            this.style.transform = `translate(${this.getAttribute('data-x') || 0}px, ${this.getAttribute('data-y') || 0}px) rotate(${angle}deg)`;
-            this.setAttribute('data-angle', angle.toString());
-            
-        });
-            }
-        
-            document.getElementById('play-button').addEventListener('click', function() {
-    const collageImages = document.querySelectorAll('#collage-container img');
-    
-    // Creamos una promesa inicial resuelta para encadenar las promesas de reproducción de audio
-    let promiseChain = Promise.resolve();
-    
-    // Recorremos cada imagen en el collage
-    collageImages.forEach(image => {
-        const audioSrc = imageAudioMap[image.src.split('/').pop()];
-        
-        // Si hay un audio asociado a la imagen, creamos una promesa para reproducir ese audio
-        if (audioSrc) {
-            promiseChain = promiseChain.then(() => {
-                return new Promise(resolve => {
-                    const audio = new Audio(audioSrc);
-                    audio.play();
-                    
-                    // Esperamos a que el audio termine de reproducirse antes de resolver la promesa
-                    audio.onended = resolve;
-                });
-            });
-        }
-    });
-
-
-
-        
-            window.dragMoveListener = function(event) {
-                var target = event.target,
-                    x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
-                    y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
-        
-                target.style.webkitTransform =
-                target.style.transform =
-                `translate(${x}px, ${y}px) rotate(${target.getAttribute('data-angle') || 0}deg)`;
-        
-                target.setAttribute('data-x', x);
-                target.setAttribute('data-y', y);
-            };
-        });
-
-   });
+});
 
 
 
 
-        
-        </script>
-        </body>
-</html
-        
-        </script>
-        </body>
-</html
+    window.dragMoveListener = function(event) {
+        var target = event.target,
+            x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
+            y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
 
+        target.style.webkitTransform =
+        target.style.transform =
+        `translate(${x}px, ${y}px) rotate(${target.getAttribute('data-angle') || 0}deg)`;
+
+        target.setAttribute('data-x', x);
+        target.setAttribute('data-y', y);
+    };
+});
+
+});
+
+
+
+
+
+</script>
+</body>
+</html>
