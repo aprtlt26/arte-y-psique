@@ -12,23 +12,23 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
+$name = $conn->real_escape_string($_POST['name']);
 $email = $conn->real_escape_string($_POST['email']);
-$password = $_POST['password'];
+$password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
-// Verificar si el email existe y obtener la contraseña hash
-$sql = "SELECT password FROM users WHERE email = '$email'";
+// Verificar si el email ya existe
+$sql = "SELECT id FROM users WHERE email = '$email'";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
-    $row = $result->fetch_assoc();
-    if (password_verify($password, $row['password'])) {
-        // Login exitoso
-        header('Location: welcome.html'); // Redirige al usuario a una página de bienvenida
-    } else {
-        echo "Contraseña incorrecta.";
-    }
+    echo "Este correo electrónico ya está registrado.";
 } else {
-    echo "Usuario no encontrado.";
+    $sql = "INSERT INTO users (name, email, password) VALUES ('$name', '$email', '$password')";
+    if ($conn->query($sql) === TRUE) {
+        header('Location: success.html'); // Redirige a una página de éxito.
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
 }
 
 $conn->close();
