@@ -496,28 +496,36 @@ const images = ['0.png', '01.png', '02.png', '03.png', '04.png', '05.png', '06.p
                 const img = document.createElement('img');
                 img.src = src;
 
-                const audio = new Audio(imageAudioMap[src.split('/').pop()]);
-    collageAudios.push(audio)
-
+                const audioSrc = imageAudioMap[src.split('/').pop()];
+                let audio;
+                if (audioSrc) {
+            audio = new Audio(audioSrc);
+            collageAudios.push(audio);
+        
+    
+                }
                 img.src = src;
                 img.style.position = 'absolute';
                 img.style.left = `${e.offsetX}px`;
                 img.style.top = `${e.offsetY}px`;
                 collageContainer.appendChild(img);
+            
                 makeImageInteractive(img);
         
            
 
                 // Reproduce el audio si existe un mapeo para la imagen
                 if (imageAudioMap[src.split('/').pop()]) {
-                    const audio = new Audio(imageAudioMap[src.split('/').pop()]);
-                    audio.play();
-                }
+    const audioSrc = imageAudioMap[src.split('/').pop()];
+    const audio = new Audio(audioSrc);
+    audio.play();
             
-                if (audioSrc && !collageAudios.some(audio => audio.src === audioSrc)) {
-        const audio = new Audio(audioSrc);
+    if (!collageAudios.some(audio => audio.src === audioSrc)) {
         collageAudios.push(audio);
     }
+}
+
+
 
                 if (imageAudioMap[src.split('/').pop()]) {
             const audio = new Audio(imageAudioMap[src.split('/').pop()]);
@@ -547,9 +555,8 @@ const images = ['0.png', '01.png', '02.png', '03.png', '04.png', '05.png', '06.p
                     Object.assign(event.target.dataset, { x, y });
                 });
         
-                img.addEventListener('click', function() {
-        audio.play();
-    });
+       
+    
 
                 // Función para rotar la imagen 180 grados al hacer doble clic
                 img.addEventListener('dblclick', function() {
@@ -562,22 +569,32 @@ const images = ['0.png', '01.png', '02.png', '03.png', '04.png', '05.png', '06.p
             }
         
             document.getElementById('play-button').addEventListener('click', function() {
-                let delay = 0;
-
-        // Recorre todas las instancias de audio asociadas a las imágenes en el collage
-        collageAudios.forEach((audio, index) => {
-            setTimeout(() => {
-                setTimeout(() => {
+    const collageImages = document.querySelectorAll('#collage-container img');
+    
+    // Creamos una promesa inicial resuelta para encadenar las promesas de reproducción de audio
+    let promiseChain = Promise.resolve();
+    
+    // Recorremos cada imagen en el collage
+    collageImages.forEach(image => {
+        const audioSrc = imageAudioMap[image.src.split('/').pop()];
+        
+        // Si hay un audio asociado a la imagen, creamos una promesa para reproducir ese audio
+        if (audioSrc) {
+            promiseChain = promiseChain.then(() => {
+                return new Promise(resolve => {
+                    const audio = new Audio(audioSrc);
                     audio.play();
-        }, delay);
-
-        delay += audio.duration * 1000; // Multiplica la duración del audio por 1000 para obtener el tiempo en milisegundos
-
-            if (index > 0) {
-                collageAudios[index - 1].pause();
-            }
-        });
+                    
+                    // Esperamos a que el audio termine de reproducirse antes de resolver la promesa
+                    audio.onended = resolve;
+                });
+            });
+        }
     });
+
+
+
+        
             window.dragMoveListener = function(event) {
                 var target = event.target,
                     x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
@@ -594,10 +611,3 @@ const images = ['0.png', '01.png', '02.png', '03.png', '04.png', '05.png', '06.p
 
    });
 
-
-
-
-        
-        </script>
-        </body>
-</html
