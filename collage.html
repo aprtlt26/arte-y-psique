@@ -508,34 +508,37 @@ collageAudios.push(audio);
 });
     
 function makeImageInteractive(img) {
-        // Hace la imagen arrastrable
-        interact(img).draggable({
-            onmove: dragMoveListener
-        });
+interact(img)
+    .draggable({
+        listeners: {
+            start(event) {
+                let target = event.target;
+                target.style.zIndex = 1000;
+            },
+            move(event) {
+                let target = event.target,
+                    x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
+                    y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
 
-        // Hace la imagen redimensionable
-        interact(img).resizable({
-            edges: { top: true, left: true, bottom: true, right: true },
-            listeners: {
-                move(event) {
-                    let target = event.target;
-                    let x = (parseFloat(target.getAttribute('data-x')) || 0);
-                    let y = (parseFloat(target.getAttribute('data-y')) || 0);
+                target.style.transform = `translate(${x}px, ${y}px) rotate(${target.getAttribute('data-angle') || 0}deg)`;
 
-                    // Actualiza el tamaño y la posición de la imagen
-                    target.style.width = event.rect.width + 'px';
-                    target.style.height = event.rect.height + 'px';
-                    x += event.deltaRect.left;
-                    y += event.deltaRect.top;
-                    target.style.transform = `translate(${x}px, ${y}px)`;
-
-                    // Guarda la nueva posición
-                    target.setAttribute('data-x', x);
-                    target.setAttribute('data-y', y);
-                }
+                target.setAttribute('data-x', x);
+                target.setAttribute('data-y', y);
             }
-        });
-    
+        },
+
+        
+        inertia: true,
+        modifiers: [
+            interact.modifiers.restrictRect({
+                restriction: 'parent',
+                endOnly: true
+            })
+        ],
+        autoScroll: true,
+        onmove: window.dragMoveListener
+        
+    });
 
 
 
