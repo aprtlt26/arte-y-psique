@@ -16,6 +16,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
     <script>
   // Desactivar el clic derecho en toda la página
@@ -24,8 +25,6 @@
     alert('El clic derecho está desactivado en esta página.');
   }, false);
 </script>
-    
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <!-- Aquí tus estilos -->
     <style>
     
@@ -241,7 +240,6 @@
     cursor: move;
     box-shadow: 0 0 5px rgba(0,0,0,0.5);
     transition: transform 0.1s ease; /* Anima la transformación suavemente */
-                float: none; /* Eliminar el flotante en dispositivos móviles */
 
 
 
@@ -499,6 +497,13 @@ images.forEach(image => {
         collageImg.style.top = '0px';
         collageContainer.appendChild(collageImg);
         makeImageInteractive(collageImg);
+
+        const audioSrc = imageAudioMap[image];
+        if (audioSrc) {
+            const audio = new Audio(audioSrc);
+            audio.play();
+        }
+    
     });
     document.querySelector('#gallery-container').appendChild(img);
 });
