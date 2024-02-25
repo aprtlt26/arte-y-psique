@@ -686,7 +686,7 @@ document.querySelectorAll('.draggable').forEach(img => {
     }, {passive: false});
 });});
 
-document.addEventListener('touchmove', function(e) {
+document.addEventListener('touchmove [0].clientX', function(e) {
     e.preventDefault();
 }, { passive: false });
 
