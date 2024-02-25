@@ -1,9 +1,8 @@
 <?php
-$servername = "localhost";
-$username = "users"; // Asegúrate de que este sea el nombre de usuario correcto de tu DB.
-$password = "tu_contraseña"; // La contraseña de tu base de datos.
-$dbname = "tu_nombre_de_base_de_datos"; // El nombre de tu base de datos.
-
+$servername = "localhost"; 
+$username = "root"; 
+$password = ""; 
+$dbname = "usuarios_arte_y_psique";
 // Crear conexión
 $conn = new mysqli($servername, $username, $password, $dbname);
 
