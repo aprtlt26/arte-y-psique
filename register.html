@@ -10,6 +10,9 @@
     <meta name="author" content="alfonsopretelt">
     <meta name="robots" content="Learning">
     <meta name="google" content="translate">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anta&family=Kode+Mono:wght@400..700&display=swap" rel="stylesheet">
 
     <script>
         document.addEventListener('contextmenu', function (e) {
@@ -21,28 +24,39 @@
     <style>
         body {
             margin: 0;
-            font-family: Arial, sans-serif;
+            font-family:"Anta", sans-serif;
+            background-color: #ffffff;
+            height: 100vh;
         }
 
+        .anta-regular {
+  font-family: "Anta", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
         .section {
-            padding: 20px; /* Reducido el padding para móviles */
+            padding: 70px; /* Reducido el padding para móviles */
             text-align: center;
+
         }
 
         header {
             width: 100%;
             background-color: #ffffff;
             padding: 20px;
-            color: #000000;
+            color: #ffffff;
             text-align: left;
             position: fixed;
             top: 0;
             left: 0;
             z-index: 1;
+    
         }
 
         .navbar-brand {
             font-size: 1.2rem; /* Tamaño de la fuente del nombre del sitio */
+            border: 2px dashed #5d626b;
+
         }
 
         .navbar-nav .nav-link {
@@ -54,15 +68,19 @@
 
         .navbar-nav .nav-link:hover {
             color: #55d1ba; /* Color del texto al pasar el mouse sobre los enlaces */
+            border: 2px dashed #5ac6cc;
+
         }
        
 
         .navbar-toggler {
-            border: none; /* Quita el borde del botón del menú desplegable */
+            border: 2px dashed #5d626b;
         }
 
         .navbar-toggler-icon {
-            background-color: #cdcdcd; /* Color del icono del menú desplegable */
+            background-color: #ffffff; /* Color del icono del menú desplegable */
+            border: 2px dashed #5d626b;
+
         }
 
         .navbar-toggler:focus {
@@ -71,11 +89,13 @@
 
         .navbar-collapse {
             background-color: #ffffff; /* Color de fondo del menú desplegable */
+            border: 2px dashed #5d626b;
+
         }
 
         .navbar-collapse .navbar-nav .nav-link {
             padding: 15px 0; /* Espaciado entre los enlaces del menú desplegable */
-            border-bottom: 1px solid #ffffff; /* Borde inferior entre los enlaces */
+            border-bottom: none; /* Borde inferior entre los enlaces */
         }
 
         .navbar-collapse .navbar-nav .nav-link:last-child {
@@ -102,41 +122,11 @@
             }
         }
 
-        .slideshow-container {
-            position: relative;
-            max-width: 100%;
-            margin: auto;
-        }
-
-        .mySlides {
-            display: none;
-            max-width: 100%;
-        }
 
         /* Estilo para la flecha lateral */
-        .prev, .next {
-            cursor: pointer;
-            position: absolute;
-            top: 50%;
-            width: auto;
-            margin-top: -22px;
-            padding: 16px;
-            color: white;
-            font-weight: bold;
-            font-size: 20px;
-            transition: 0.6s ease;
-            border-radius: 0 3px 3px 0;
-            background-color: rgba(0, 0, 0, 0.5);
-        }
 
-        .next {
-            right: 0;
-            border-radius: 3px 0 0 3px;
-        }
 
-        .prev:hover, .next:hover {
-            background-color: rgba(0, 0, 0, 0.8);
-        }
+
 
         /* Estilos para el formulario */
         #login-form, #register-form {
@@ -145,7 +135,11 @@
             padding: 20px;
             border: 1px solid #ccc;
             border-radius: 5px;
-            background-color: #f9f9f9;
+            border: 2px dashed #5d626b;
+            background-color: #000000;
+            justify-content: center;
+            align-items: center;
+
         }
 
         #login-form input[type="email"],
@@ -156,28 +150,41 @@
             width: 100%;
             padding: 10px;
             margin: 8px 0;
-            display: inline-block;
+            display: flex;
             border: 1px solid #ccc;
             border-radius: 4px;
             box-sizing: border-box;
+            border: 2px dashed #5d626b;
+            justify-content: center;
+            align-items: center;
+
         }
 
         #login-form input[type="submit"],
         #register-form input[type="submit"] {
+            display: flex;
             width: 100%;
-            background-color: #4c95af;
-            color: rgb(6, 171, 226);
+            background-color: #a1f2f2;
+            color: rgb(0, 0, 0);
             padding: 14px 20px;
             margin: 8px 0;
             border: none;
             border-radius: 4px;
+            border: 2px dashed #5d626b;
+            justify-content: center;
+            align-items: center;
             cursor: pointer;
+
         }
 
         #login-form input[type="submit"]:hover,
         #register-form input[type="submit"]:hover {
-            background-color: #5badc8;
+            background-color: #e3e3e3;
+            border: 2px dashed #5d626b;
+
         }
+
+     
     </style>
 </head>
 
@@ -202,9 +209,10 @@
             </nav>
     </header>
 </header>
-
 <div class="section">
-    <h2>Welcome to ARTE & PSIQUE Platform</h2>
+ </div>
+<div class="section">
+    <h2> ARTE & PSIQUE</h2>
     <div id="login-section">
         <h3>Login</h3>
         <form id="login-form" action="process_login.php" method="post">
@@ -222,7 +230,9 @@
             <input type="submit" value="Register">
         </form>
     </div>
-    <button onclick="toggleForm()">To Register</button>
+    <button onclick="toggleForm()" style="background-color: #6868c4;border-radius: 2%;
+
+    ">To Register</button>
 </div>
 
 <script>
@@ -252,3 +262,4 @@
 </body>
 
 </html>
+
