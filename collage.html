@@ -665,9 +665,31 @@ if (audioSrc) {
     });
 }
 
-}); }); });
+}); 
 
 
+document.querySelectorAll('.draggable').forEach(img => {
+    let startY; // Variable para almacenar la posición inicial del toque en Y
+
+    img.addEventListener('touchstart', e => {
+        startY = e.touches[0].clientY; // Almacenar la posición inicial en Y cuando comienza el toque
+    }, {passive: true});
+
+    img.addEventListener('touchmove', e => {
+        const moveY = e.touches[0].clientY; // Posición actual del toque en Y
+        const diffY = moveY - startY; // Diferencia entre la posición actual y la inicial en Y
+
+        // Si el movimiento en Y (vertical) es mayor que el movimiento en X (horizontal), prevenir el desplazamiento
+        if (Math.abs(diffY) > Math.abs(e.touches[0].clientX - e.touches[0].screenX)) {
+            e.preventDefault(); // Prevenir el desplazamiento vertical de la página
+        }
+        // Aquí puedes añadir lógica adicional para manejar el movimiento del elemento
+    }, {passive: false});
+});});
+
+
+
+});
 
 
    
