@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -204,16 +205,53 @@
     border: none;
     cursor: pointer;
                 border: 2px dashed #ffffff;
-
-   
-    width: 100px; /* Ajusta según necesites */
+    width: 100px; 
     font-size: 12px;
         
-    position: absolute; /* Cambia a posición absoluta para ubicarlo dentro de un contenedor relativo */
-    top: 10px; /* Ajusta la distancia desde la parte superior del contenedor */
-    right:  10px; /* Ajusta la distancia desde el lado izquierdo del contenedor */
-    z-index: 100; /* Asegura que el botón esté sobre otros elementos */
+    position: absolute;
+    top: 10px; 
+
+    right:  10px; 
+    z-index: 100;
 }
+
+ #volume-control, #volume-slider {
+    display: inline-block;
+    padding: 5px 7px;
+    background-color: #000000;
+  color: rgb(255, 255, 255);    font-weight: bold;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+                border: 2px dashed #ffffff;
+    width: 100px; 
+    font-size: 12px;
+        
+    position: absolute;
+    top: 50px; 
+    right:  10px; 
+    z-index: 100;
+}
+#bg-color-picker {
+    display: inline-block;
+    padding: 5px 7px;
+    background-color: #000000;
+  color: rgb(255, 255, 255);    font-weight: bold;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+                border: 2px dashed #ffffff;
+    width: 100px; 
+    font-size: 12px;
+        
+    position: absolute;
+    top: 90px; 
+    right:  10px; 
+    z-index: 100;
+
+    margin-top: 20px; /* Espaciado desde el botón Play o según tu diseño */
+}
+
 
 #play-button:hover {
     background-color: #c4d49c
@@ -339,10 +377,12 @@
     </div>
 
     <button id="play-button">Play</button>
-    <button id="change-bg-color">Cambiar Color de Fondo</button>
-    <button id="volume-control">Control de Volumen</button>
+   
+    <button id="volume-control">Volumen</button>
     <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="1" style="display: none;">
     
+    <input type="color" id="bg-color-picker" value="#ffffff">
+       
     
     <script>
       document.addEventListener('DOMContentLoaded', function() {
@@ -683,6 +723,13 @@ document.addEventListener('touchmove [0].clientY', function(e) {
 }, { passive: false });
 
 });
+
+document.getElementById('bg-color-picker').addEventListener('change', function() {
+    const collageContainer = document.getElementById('collage-container');
+    collageContainer.style.backgroundColor = this.value; // 
+});
+
+
 
 
 
