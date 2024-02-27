@@ -24,6 +24,8 @@
 
 
     <script>
+
+        
   // Desactivar el clic derecho en toda la página
   document.addEventListener('contextmenu', function(e) {
     e.preventDefault();
@@ -43,6 +45,8 @@
             margin-left: 10px;
             margin-right: 10px;
             margin-bottom: 100px; 
+            background-image: url('papr.jpg');
+
 
             
         }
@@ -98,13 +102,13 @@
         }
 
         .navbar-toggler-icon {
-            background-color: #ffffff; 
+            background-color: #ffffff; /* Color del icono del menú desplegable */
             border: 2px dashed  #c4d49c
 
         }
 
         .navbar-toggler:focus {
-            outline: none; 
+            outline: none; /* Quita el contorno al enfocar el botón del menú desplegable */
         }
 
           .navbar-collapse {
@@ -114,7 +118,7 @@
         }
 
         .navbar-collapse .navbar-nav .nav-link {
-            padding: 15px 0; 
+            padding: 15px 0; /* Espaciado entre los enlaces del menú desplegable */
         }
 
         .navbar-collapse .navbar-nav .nav-link:last-child {
@@ -133,11 +137,12 @@
         #menu-links a {
             color: #767676; /* Color del texto */
             text-decoration: none;
-            margin: 0 20px; 
+            margin: 0 20px; /* Espaciado horizontal entre enlaces */
         }
 
         #menu-links a:hover {
- border: 2px dashed  #c4d49c        }
+         border: 2px dashed  #c4d49c      
+          }
 
         #header img {
             width: 75px;
@@ -167,6 +172,7 @@
             display: flex;
             align-items: center;
             justify-content: flex-start;
+            
 
         }
 
@@ -176,6 +182,9 @@
             margin-right: 5px;
             margin-bottom: 5px;
             cursor: pointer;
+            background-image: url('papel.jpeg');
+    background-size: cover; /* Cubre todo el área disponible sin perder las proporciones */
+    background-position: center;
             }
         
 
@@ -189,12 +198,14 @@
             position: relative;
             float: left;
             display: flex;
+            background-color: #000;
             flex-direction: row;
-            background-color: rgb(8, 8, 8);
             position: relative;
             overflow-y: hidden;
          border: 2px dashed  #c4d49c;
-        
+         background-image: url('ppp.jpg');
+    background-size: cover; 
+
         }
 
 
@@ -220,15 +231,23 @@ button:focus, input:focus {
     border: 2px dashed #ffffff;
     font-size: 12px;
     position: absolute;
-    top: 45px; 
-    right:  10px; 
     z-index: 100;
-    margin-top: 10px;
     -webkit-appearance: none;  /* Remueve el estilo predeterminado para WebKit/Blink */
   appearance: none;          /* Remueve el estilo predeterminado para Firefox */
   outline: none;        
-  transition:   background-color 0.3 ease;
-  box-shadow: #767676;
+    padding: 10px 20px;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+                border: 2px dashed #ffffff;
+    width:150px; 
+    font-size: 12px;
+        
+    position: absolute;
+    top: 10px; 
+
+    right:  110px; 
+    z-index: 100;
 }
 
 #volume-slider::-webkit-slider-thumb {
@@ -238,10 +257,12 @@ button:focus, input:focus {
   height: 10px;             /* Altura del thumb */
   background: #c5c2c2;      /* Color de fondo del thumb */
   cursor: pointer;          /* Cambia el cursor a tipo puntero */
-  border-radius: 50%;       /* Hace el thumb circular */
+  border-radius: 50%;
+       /* Hace el thumb circular */
 }
 #imput-slider :hover{
-    background-color: rgb(174, 174, 174)
+    background-color: rgb(174, 174, 174);
+    border: 2px dashed #ffffff;
 
 }
 
@@ -254,7 +275,7 @@ button:focus, input:focus {
     cursor: pointer;
     border: 2px dashed #ffffff;
 
-    width: 100px; 
+    width: 50px; 
     font-size: 12px;
     position: absolute;
     top: 170px; 
@@ -278,7 +299,7 @@ background-color: rgb(211, 199, 199)
     border: none;
     cursor: pointer;
                 border: 2px dashed #ffffff;
-    width: 100px; 
+    width:50px; 
     font-size: 12px;
         
     position: absolute;
@@ -288,10 +309,7 @@ background-color: rgb(211, 199, 199)
     z-index: 100;
 }
 
-#tapiz-button:hover{
 
-    background-color:rgb(211, 199, 199)
-}
 
 #play-button:hover {
 
@@ -299,7 +317,47 @@ background-color: rgb(211, 199, 199)
 
 }
 
+#change-background-button{
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #000000;
+    color: rgb(255, 255, 255);    font-weight: bold;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+    border: 2px dashed #ffffff;
+    width:50px; 
+    font-size: 12px;
+    position: absolute;
+    top: 45px; 
+    right:  10px; 
+    z-index: 100;
+}
 
+#delete-button{
+
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #000000;
+    color: rgb(255, 255, 255);    font-weight: bold;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+    border: 2px dashed #ffffff;
+    width:50px; 
+    font-size: 12px;
+    position: absolute;
+    top: 85px; 
+    right:  10px; 
+    z-index: 100;
+}
+
+
+#change-background-button:hover{
+    background-color: rgb(211, 199, 199)
+
+
+}
 
 #print-button{
 
@@ -309,7 +367,7 @@ background-color: rgb(211, 199, 199)
     color: rgb(255, 255, 255);    font-weight: bold;
     text-align: center;
     cursor: pointer;
-    width: 100px; 
+    width: 50px; 
     font-size: 12px;
     border: 2px dashed #ffffff;
     position: absolute;
@@ -335,6 +393,7 @@ background-color: rgb(211, 199, 199)
     transition: transform 0.1s ease; /* Anima la transformación suavemente */
     transform-origin: center center; /* Establece el punto de origen en el centro de la imagen */
 }
+
 
 
 .draggable {
@@ -393,10 +452,6 @@ background-color: rgb(211, 199, 199)
             pointer-events: none;
         }
 
-     
-      
-        
-       
 
         @media print {
   body, html {
@@ -407,6 +462,9 @@ background-color: rgb(211, 199, 199)
     display: none; /* Oculta los controles durante la impresión */
   }
   /* Ajustes adicionales para mejorar la impresión */
+}
+.draggable.selected {
+    border: 2px dashed #ffffff;
 }
 
 
@@ -438,12 +496,7 @@ background-color: rgb(211, 199, 199)
     <div id="gallery-container">
     </div>
 
-
     <i class='bx bxs-navigation'></i>
-
-
-
-
 
     <div id="collage-container" ondrop="drop(event)" ondragover="allowDrop(event)" ondragenter="return false"
     ondragleave="return false">
@@ -470,9 +523,11 @@ background-color: rgb(211, 199, 199)
 
 
     <button id="print-button" i class='bx bx-save' style='color:rgba(188,186,186,0.98)' 
-        i class='bx bx-printer' style='color:rgba(188,186,186,0.98)' ></i>
+        i class='bx bx-printer' style='color:rgba(188,186,186,0.98)' ></i> </button>
 
-    </button>
+    <button id="change-background-button" i class='bx bx-image-alt' style='color:rgba(188,186,186,0.98)'></i> </button>
+
+    <button id="delete-button" i class='bx bx-eraser' style='color:rgba(233,233,233,0.98)' ></i></button>
 
 </div>
 
@@ -483,10 +538,14 @@ background-color: rgb(211, 199, 199)
     
     <script>
       
+
       document.addEventListener('DOMContentLoaded', function() {
     const container = document.querySelector('#collage-container');
-    
-    
+    let history = [];
+
+    document.getElementById('change-background-button').addEventListener('click', function() {
+        changeBackground();
+    });
     function printCollage() {
   window.print();
 }
@@ -645,9 +704,7 @@ const images = ['bo.gif','bcc.gif','boc.gif','b.gif','boca.gif','0.png', '01.png
 
 };
      
-         
-
-
+        
     
 
     
@@ -687,9 +744,6 @@ document.getElementById('volume-slider').addEventListener('input', function() {
 
 
 
-
-
-    // Ejemplo de creación de un nuevo elemento de audio
 const newAudio = new Audio('ruta/a/tu/archivo/audio.mp3');
 const currentVolume = document.getElementById('volume-slider').value;
 newAudio.volume = currentVolume; // Ajusta el volumen del nuevo audio
@@ -715,6 +769,18 @@ newAudio.play(); // Reproduce el audio
         }
     })
    
+    document.addEventListener('click', function(e) {
+    // Verifica si el clic fue sobre una imagen draggable dentro del contenedor de collage
+    if (e.target.classList.contains('draggable')) {
+        // Elimina la clase 'selected' de cualquier imagen previamente seleccionada
+        document.querySelectorAll('.draggable.selected').forEach(selectedImg => {
+            selectedImg.classList.remove('selected');
+        });
+        // Añade la clase 'selected' a la imagen clickeada
+        e.target.classList.add('selected');
+    }
+});
+
 
 
 function allowDrop(event) {
@@ -730,7 +796,6 @@ event.preventDefault();
         img.src = src;
 
 
-        // Reproduce el audio si existe un mapeo para la imagen
         if (imageAudioMap[src.split('/').pop()]) {
 const audioSrc = imageAudioMap[src.split('/').pop()];
 const audio = new Audio(audioSrc);
@@ -852,6 +917,36 @@ document.getElementById('bg-color-picker').addEventListener('change', function()
 document.getElementById('print-button').addEventListener('click', function() {
         window.print();
     });
+
+    document.getElementById('change-background-button').addEventListener('click', function() {
+    changeBackground();
+});
+
+    // Array con las rutas de las imágenes de fondo
+const backgroundImages = [
+     'color',
+    'pap.jpg',
+    'ppp.jpg',
+    'papr.jpg'
+    // Añade tantas rutas como tengas
+];
+
+function changeBackground() {
+    // Seleccionar una imagen de fondo aleatoriamente
+    const selectedImage = backgroundImages[Math.floor(Math.random() * backgroundImages.length)];
+    // Cambiar el fondo del contenedor de collage
+    const collageContainer = document.getElementById('collage-container');
+    collageContainer.style.backgroundImage = `url('${selectedImage}')`;
+    collageContainer.style.backgroundSize = 'cover'; // Asegura que la imagen de fondo cubra todo el contenedor
+}
+
+document.getElementById('delete-button').addEventListener('click', function() {
+    const selectedImage = document.querySelector('.draggable.selected');
+    if (selectedImage) {
+        selectedImage.remove(); // Elimina la imagen seleccionada del DOM
+    }
+});
+
 
 </script>
 </body>
