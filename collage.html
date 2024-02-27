@@ -20,6 +20,7 @@
        <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anta&family=Kode+Mono:wght@400..700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet">
 
 
     <script>
@@ -36,8 +37,8 @@
     
        
         body {
-            background-color: #fffffff6;
                         background-color: #ffffff;
+                        font-family: "Anta", sans-serif;
 
             margin-top: 20px;
             margin-left: 10px;
@@ -191,17 +192,85 @@
             flex-direction: row; /* Cambio a flex-direction: row; */
             background-color: rgb(8, 8, 8);
             position: relative;
-                        overflow-y: hidden;
-
-
-                            border: 2px dashed  #c4d49c
-
-
+            overflow-y: hidden;
+         border: 2px dashed  #c4d49c;
+        
         }
 
-        #play-button {
+
+
+
+.icons i{
+    transition:   background-color 0.3 ease;
+  box-shadow: #515151;
+  
+
+}
+
+button:focus, input:focus {
+    outline: none;
+}
+  #volume-slider {
     display: inline-block;
-    padding: 5px 7px;
+    padding: 12px 10px;
+    background-color: #000000;
+    text-align: center;
+    cursor: pointer;
+    width: 100px; 
+    border: 2px dashed #ffffff;
+    font-size: 12px;
+    position: absolute;
+    top: 45px; 
+    right:  10px; 
+    z-index: 100;
+    margin-top: 10px;
+    -webkit-appearance: none;  /* Remueve el estilo predeterminado para WebKit/Blink */
+  appearance: none;          /* Remueve el estilo predeterminado para Firefox */
+  outline: none;        
+  transition:   background-color 0.3 ease;
+  box-shadow: #767676;
+}
+
+#volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Remueve el estilo predeterminado para WebKit/Blink */
+  appearance: none;
+  width: 10px;              /* Ancho del thumb */
+  height: 10px;             /* Altura del thumb */
+  background: #c5c2c2;      /* Color de fondo del thumb */
+  cursor: pointer;          /* Cambia el cursor a tipo puntero */
+  border-radius: 50%;       /* Hace el thumb circular */
+}
+#imput-slider :hover{
+    background-color: rgb(174, 174, 174)
+
+}
+
+#bg-color-picker {
+    display: inline-block;
+    padding: 12px 10px;
+    background-color: #000000;
+    color: rgb(255, 255, 255);    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    border: 2px dashed #ffffff;
+
+    width: 100px; 
+    font-size: 12px;
+    position: absolute;
+    top: 170px; 
+    right:  10px; 
+    z-index: 100;
+
+    margin-top: 20px; 
+}
+#bg-color-picker :hover {
+background-color: rgb(211, 199, 199)
+
+}
+ 
+#play-button {
+    display: inline-block;
+    padding: 10px 20px;
     background-color: #000000;
   color: rgb(255, 255, 255);    font-weight: bold;
     text-align: center;
@@ -218,50 +287,38 @@
     z-index: 100;
 }
 
- #volume-control, #volume-slider {
-    display: inline-block;
-    padding: 5px 7px;
-    background-color: #000000;
-  color: rgb(255, 255, 255);    font-weight: bold;
-    text-align: center;
-    border: none;
-    cursor: pointer;
-                border: 2px dashed #ffffff;
-    width: 100px; 
-    font-size: 12px;
-        
-    position: absolute;
-    top: 50px; 
-    right:  10px; 
-    z-index: 100;
+#tapiz-button:hover{
+    background-color:rgb(211, 199, 199)
+
 }
-#bg-color-picker {
-    display: inline-block;
-    padding: 5px 7px;
-    background-color: #000000;
-  color: rgb(255, 255, 255);    font-weight: bold;
-    text-align: center;
-    border: none;
-    cursor: pointer;
-                border: 2px dashed #ffffff;
-    width: 100px; 
-    font-size: 12px;
-        
-    position: absolute;
-    top: 90px; 
-    right:  10px; 
-    z-index: 100;
-
-    margin-top: 20px; /* Espaciado desde el botón Play o según tu diseño */
-}
-
-
 #play-button:hover {
-    background-color: #c4d49c
+background-color: rgb(211, 199, 199)
 
 }
 
 
+
+#print-button{
+
+    display: inline-block;
+    padding: 5px 7px;
+    background-color: #000000;
+  color: rgb(255, 255, 255);    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    width: 100px; 
+    font-size: 12px;
+    border: 2px dashed #ffffff;
+    position: absolute;
+    top: 150px; 
+    right:  10px; 
+    z-index: 100;
+}
+
+#print-button:hover {
+background-color: rgb(211, 199, 199)
+
+}
 
 
         #collage-container img {
@@ -333,12 +390,23 @@
         }
 
         /* Estilos para el botón de guardar */
-        #save-button {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            z-index: 1000;
-        }
+     
+       
+
+        @media print {
+  body, html {
+    background: #FFF;
+    color: #000;
+  }
+  #print-button, #volume-control, #volume-slider, #bg-color-picker, #gallery-container img{
+    display: none; /* Oculta los controles durante la impresión */
+  }
+  /* Ajustes adicionales para mejorar la impresión */
+}
+
+
+</style>
+
     </style>
 </head>
 
@@ -367,36 +435,52 @@
     </div>
 
 
+
     <div id="collage-container" ondrop="drop(event)" ondragover="allowDrop(event)" ondragenter="return false"
     ondragleave="return false">
 
 
-<input type="range" id="rotation-control" min="0" max="360" value="0" style="position: fixed; top: 100px; left: 50%; transform: translateX(-50%); ">
    
+    <div class="=icons" > 
 
+        <button id="play-button" i class='bx bx-play-circle' style='color:rgba(188,186,186,0.98)' ></i>
+        </button>
+
+    <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="0.5" 
+     i class='bx bx-volume-mute' style='color:rgba(188,186,186,0.98)' ></i> 
+     <div class="input-container">
+    
+    <input type="color" id="bg-color-picker" value="#ffffff"
+    i class='bx bx-palette' style='color:rgba(188,186,186,0.98)'></i>
+
+
+    <button id="print-button" i class='bx bx-save' style='color:rgba(188,186,186,0.98)' 
+        i class='bx bx-printer' style='color:rgba(188,186,186,0.98)' ></i>
+
+    </button>
+
+</div>
 
     <div id="collage-footer">
         <p>®Alfonso Pretelt All Rights Reserved</p>
     </div>
-
-    <button id="play-button">Play</button>
-   
-    <button id="volume-control">Volumen</button>
-    <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="0.5">
     
-    <input type="color" id="bg-color-picker" value="#ffffff">
-       
     
     <script>
       
       document.addEventListener('DOMContentLoaded', function() {
     const container = document.querySelector('#collage-container');
     
-
+    
+    function printCollage() {
+  window.print();
+}
 const images = ['0.png', '01.png', '02.png', '03.png', '04.png', '05.png', '06.png', '07.png', '08.png', 'c1.png', 'c2.png', 'c3.png', 'c4.png', 'c5.png', 'c6.png', 'c7.png', 'd1.png', 'd2.png', 'd3.png', 'd4.png', 'd5.png', 'd7.png', 'd8.png', 'd9.png', 'd10.png', 'd11.png', 'd12.png', 'd13.png', 'd14.png', 'd15.png', 'd16.png', 'e1.png', 'e2.png', 'e3.png', 'e4.png', 'e5.png', 'e6.png', 'f1.png', 'f2.png', 'f3.png', 'f4.png', 'f5.png', 'f6.png', 'h1.png', 'h2.png', 'h3.png', 'h4.png', 'iii.png', 'iii1.png', 'iii2.png', 'iii3.png', 'iii4.png', 'iii5.png', 'iii6.png', 'iii7.png', 'j1.png', 'j2.png', 'j3.png', 'j4.png', 'j5.png', 'j6.png', 'l1.png', 'l2.png', 'l3.png', 'l4.png', 'm1.png', 'm2.png', 'm3.png', 'm4.png', 'm5.png', 'm7.png', 'm8.png', 'm9.png', 'm10.png', 'm11.png', 'm12.png', 'ojos.png', 'p1.png', 'p2.png', 'p3.png', 'p4.png', 'p5.png', 'p6.png', 'r1.png', 'r2.png', 'r3.png', 'r4.png', 's1.png', 's2.png', 's3.png', 's4.png', 's5.png', 's6.png', 't1.png', 't2.png', 't3.png', 't4.png', 't5.png', 'vi.png', 'vi1.png', 'vi2.png', 'vi3.png', 'vi4.png', 'vii2.png', 'viii.png', 'viii1.png', 'viii2.png', 'viii3.png', 'viii4.png', 'viii6.png', 'vxii3.png', 'xii.png', 'XII1.png', 'xii2.png', 'xii4.png', 'xii5.png', 'xii6.png', 'xii7.png', 'xiii.png', 'xiii1.png', 'xiii2.png', 'xiii3.png', 'xiiii.png', 'xiiii1.png', 'xiiii3.png', 'xiiii4.png', 'xvii.png', 'xvii1.png', 'xvii2.png', 'xvii4.png', 'xvii5.png', 'xvii6.png', 'xvii7.png', 'xviiii.png', 'xviiii1.png', 'xviiii2.png', 'xviiii3.png', 'xx.png', 'xxi.png', 'xxi1.png', 'xxi2.png', 'xxi3.png', 'xxi4.png', 'xxi5.png'];
 
  
             const imageAudioMap = {
+                
+                
                 
                 '0.png': '0.mp3',
     '01.png': '01.mp3',
@@ -629,12 +713,6 @@ event.preventDefault();
         const img = document.createElement('img');
         img.src = src;
 
-      
-
-        
-      
-
-   
 
         // Reproduce el audio si existe un mapeo para la imagen
         if (imageAudioMap[src.split('/').pop()]) {
@@ -751,6 +829,17 @@ document.getElementById('bg-color-picker').addEventListener('change', function()
     const collageContainer = document.getElementById('collage-container');
     collageContainer.style.backgroundColor = this.value; // 
 });
+
+
+
+
+document.getElementById('print-button').addEventListener('click', function() {
+        window.print();
+    });
+
+</script>
+</body>
+</html>
 
 
 
