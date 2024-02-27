@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -278,7 +279,7 @@ button:focus, input:focus {
     width: 50px; 
     font-size: 12px;
     position: absolute;
-    top: 170px; 
+    top: 220px; 
     right:  10px; 
     z-index: 100;
 
@@ -309,6 +310,41 @@ background-color: rgb(211, 199, 199)
     z-index: 100;
 }
 
+#move-down{
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #000000;
+    color: rgb(255, 255, 255);    font-weight: bold;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+    border: 2px dashed #ffffff;
+    width:50px; 
+    font-size: 12px;
+    position: absolute;
+    top: 120px; 
+    right:  10px; 
+    z-index: 100;
+}
+
+
+#move-up{
+
+    display: inline-block;
+    padding: 10px 10px;
+    background-color: #000000;
+    color: rgb(255, 255, 255);    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    width: 50px; 
+    font-size: 12px;
+    border: 2px dashed #ffffff;
+    position: absolute;
+    top: 155px; 
+    right:  10px; 
+    z-index: 100;
+    
+}
 
 
 #play-button:hover {
@@ -329,7 +365,7 @@ background-color: rgb(211, 199, 199)
     width:50px; 
     font-size: 12px;
     position: absolute;
-    top: 45px; 
+    top: 49px; 
     right:  10px; 
     z-index: 100;
 }
@@ -371,7 +407,7 @@ background-color: rgb(211, 199, 199)
     font-size: 12px;
     border: 2px dashed #ffffff;
     position: absolute;
-    top: 150px; 
+    top: 212px; 
     right:  10px; 
     z-index: 100;
 }
@@ -528,6 +564,10 @@ background-color: rgb(211, 199, 199)
     <button id="change-background-button" i class='bx bx-image-alt' style='color:rgba(188,186,186,0.98)'></i> </button>
 
     <button id="delete-button" i class='bx bx-eraser' style='color:rgba(233,233,233,0.98)' ></i></button>
+
+    <button id="move-up" i class='bx bx-layer-plus' style='color:rgba(233,233,233,0.98)' ></i></button>
+    <button id="move-down" i class='bx bxs-layer-minus' style='color:rgba(233,233,233,0.98)' ></i></button>
+    
 
 </div>
 
@@ -782,6 +822,27 @@ newAudio.play(); // Reproduce el audio
 });
 
 
+document.getElementById('move-up').addEventListener('click', function() {
+    const selectedImage = document.querySelector('.draggable.selected');
+    if (selectedImage) {
+        // Incrementa el z-index
+        let zIndex = parseInt(window.getComputedStyle(selectedImage).zIndex, 10);
+        zIndex = isNaN(zIndex) ? 1 : zIndex + 1;
+        selectedImage.style.zIndex = zIndex;
+    }
+});
+
+document.getElementById('move-down').addEventListener('click', function() {
+    const selectedImage = document.querySelector('.draggable.selected');
+    if (selectedImage) {
+        // Decrementa el z-index
+        let zIndex = parseInt(window.getComputedStyle(selectedImage).zIndex, 10);
+        zIndex = isNaN(zIndex) ? 0 : zIndex - 1;
+        selectedImage.style.zIndex = zIndex;
+    }
+});
+
+
 
 function allowDrop(event) {
 event.preventDefault();
@@ -946,6 +1007,7 @@ document.getElementById('delete-button').addEventListener('click', function() {
         selectedImage.remove(); // Elimina la imagen seleccionada del DOM
     }
 });
+
 
 
 </script>
