@@ -15,6 +15,8 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/RecordRTC/5.6.1/RecordRTC.min.js"></script>
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
        <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -57,6 +59,7 @@
 }
 
      
+
         header {
             width: 100%;
             background-color: #ffffff;
@@ -161,17 +164,35 @@
         /* Estilos para el contenedor de la galería */
         #gallery-container {
             position: fixed;
-            top: 10px;
+            top: 15%;
             left: 0;
             width: 100%;
-            height: 40vh; /* Ajuste del alto vertical de la galería */
+            height: 150px; /* Ajusta la altura para contener dos filas de imágenes */
+            overflow-x: auto;
+            white-space: nowrap;
+            padding: 5px;
+            display: flex;
+            flex-wrap: wrap; /* Permite el envoltorio de elementos */
+            gap: 10px;
+            align-items: center;
+            justify-content: flex-start;
+            
+
+        }
+        #gallery-container-2 {
+            position: fixed;
+            top: 35%;
+            left: 0;
+            width: 100%;
+            height: 120px; /* Ajuste del alto vertical de la galería */
             overflow-x: auto;
             white-space: nowrap;
             padding: 5px;
             display: flex;
             align-items: center;
             justify-content: flex-start;
-            
+            gap: 10px;
+
 
         }
 
@@ -182,15 +203,28 @@
             margin-bottom: 5px;
             cursor: pointer;
             background-image: url('papel.jpeg');
+            display: inline-block;
+    vertical-align: middle;
     background-size: cover; /* Cubre todo el área disponible sin perder las proporciones */
     background-position: center;
             }
         
+            #gallery-container-2 img {
+            width: 60px;
+            height: 60px;
+            margin-right: 5px;
+            margin-bottom: 5px;
+            cursor: pointer;
+            background-image: url('papel.jpeg');
+    background-size: cover; /* Cubre todo el área disponible sin perder las proporciones */
+    background-position: center;
+            }
 
         #collage-container {
             margin-top: 300px;
-            color: #5f5c5c;
-            font-size: small;
+            color: #818181;
+            font-size: 50%;
+            
             width: 100%;
             height: calc(200vh - 80px);
             overflow-y: hidden;
@@ -448,6 +482,7 @@ background-color: rgb(211, 199, 199)
                 margin: 1;
                 float: none; /* Eliminar el flotante en dispositivos móviles */
                  position: fixed;
+            }
 
 
             }
@@ -540,17 +575,17 @@ background-color: rgb(211, 199, 199)
 
     <div id="gallery-container">
     </div>
+    <div id="gallery-container-2">
+    </div>
 
-    <i class='bx bxs-navigation'></i>
 
     <div id="collage-container" ondrop="drop(event)" ondragover="allowDrop(event)" ondragenter="return false"
     ondragleave="return false">
 
     <div>
-        <P>  - Clic en la Imagen -  </P>
+        <P>  - Clic en la Imagen -   </P>
         <P>  - Arma tu collage -  </P>
         <P>  - Play -  </P>
-        <P>  - Escucha tu collage -  </P>
     
     </div>
    
@@ -558,6 +593,8 @@ background-color: rgb(211, 199, 199)
 
         <button id="play-button" i class='bx bx-play-circle' style='color:rgba(188,186,186,0.98)' ></i>
         </button>
+
+
 
     <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="0.5" 
      i class='bx bx-volume-mute' style='color:rgba(188,186,186,0.98)' ></i> 
@@ -577,6 +614,8 @@ background-color: rgb(211, 199, 199)
     <button id="move-up" i class='bx bx-layer-plus' style='color:rgba(233,233,233,0.98)' ></i></button>
     <button id="move-down" i class='bx bxs-layer-minus' style='color:rgba(233,233,233,0.98)' ></i></button>
     
+    
+    
 
 </div>
 
@@ -585,21 +624,40 @@ background-color: rgb(211, 199, 199)
     
     
     <script>
-      
+    
 
       document.addEventListener('DOMContentLoaded', function() {
+
     const container = document.querySelector('#collage-container');
+
+
     let history = [];
 
-    document.getElementById('change-background-button').addEventListener('click', function() {
-        changeBackground();
+    
     });
     function printCollage() {
   window.print();
 }
-const images = ['bo.gif','bcc.gif','boc.gif','b.gif','boca.gif','0.png', '01.png', '02.png', '03.png', '04.png', '05.png', '06.png', '07.png', '08.png', 'c1.png', 'c2.png', 'c3.png', 'c4.png', 'c5.png', 'c6.png', 'c7.png', 'd1.png', 'd2.png', 'd3.png', 'd4.png', 'd5.png', 'd7.png', 'd8.png', 'd9.png', 'd10.png', 'd11.png', 'd12.png', 'd13.png', 'd14.png', 'd15.png', 'd16.png', 'e1.png', 'e2.png', 'e3.png', 'e4.png', 'e5.png', 'e6.png', 'f1.png', 'f2.png', 'f3.png', 'f4.png', 'f5.png', 'f6.png', 'h1.png', 'h2.png', 'h3.png', 'h4.png', 'iii.png', 'iii1.png', 'iii2.png', 'iii3.png', 'iii4.png', 'iii5.png', 'iii6.png', 'iii7.png', 'j1.png', 'j2.png', 'j3.png', 'j4.png', 'j5.png', 'j6.png', 'l1.png', 'l2.png', 'l3.png', 'l4.png', 'm1.png', 'm2.png', 'm3.png', 'm4.png', 'm5.png', 'm7.png', 'm8.png', 'm9.png', 'm10.png', 'm11.png', 'm12.png', 'ojos.png', 'p1.png', 'p2.png', 'p3.png', 'p4.png', 'p5.png', 'p6.png', 'r1.png', 'r2.png', 'r3.png', 'r4.png', 's1.png', 's2.png', 's3.png', 's4.png', 's5.png', 's6.png', 't1.png', 't2.png', 't3.png', 't4.png', 't5.png', 'vi.png', 'vi1.png', 'vi2.png', 'vi3.png', 'vi4.png', 'vii2.png', 'viii.png', 'viii1.png', 'viii2.png', 'viii3.png', 'viii4.png', 'viii6.png', 'vxii3.png', 'xii.png', 'XII1.png', 'xii2.png', 'xii4.png', 'xii5.png', 'xii6.png', 'xii7.png', 'xiii.png', 'xiii1.png', 'xiii2.png', 'xiii3.png', 'xiiii.png', 'xiiii1.png', 'xiiii3.png', 'xiiii4.png', 'xvii.png', 'xvii1.png', 'xvii2.png', 'xvii4.png', 'xvii5.png', 'xvii6.png', 'xvii7.png', 'xviiii.png', 'xviiii1.png', 'xviiii2.png', 'xviiii3.png', 'xx.png', 'xxi.png', 'xxi1.png', 'xxi2.png', 'xxi3.png', 'xxi4.png', 'xxi5.png'];
+const images = ['0.png', '01.png', '02.png', '03.png', '04.png', '05.png', '06.png', '07.png', '08.png', 'c1.png', 'c2.png', 'c3.png', 'c4.png', 'c5.png', 'c6.png', 'c7.png', 'd1.png', 'd2.png', 'd3.png', 'd4.png', 'd5.png', 'd7.png', 'd8.png', 'd9.png', 'd10.png', 'd11.png', 'd12.png', 'd13.png', 'd14.png', 'd15.png', 'd16.png', 'e1.png', 'e2.png', 'e3.png', 'e4.png', 'e5.png', 'e6.png', 'f1.png', 'f2.png', 'f3.png', 'f4.png', 'f5.png', 'f6.png', 'h1.png', 'h2.png', 'h3.png', 'h4.png', 'iii.png', 'iii1.png', 'iii2.png', 'iii3.png', 'iii4.png', 'iii5.png', 'iii6.png', 'iii7.png', 'j1.png', 'j2.png', 'j3.png', 'j4.png', 'j5.png', 'j6.png', 'l1.png', 'l2.png', 'l3.png', 'l4.png', 'm1.png', 'm2.png', 'm3.png', 'm4.png', 'm5.png', 'm7.png', 'm8.png', 'm9.png', 'm10.png', 'm11.png', 'm12.png', 'ojos.png', 'p1.png', 'p2.png', 'p3.png', 'p4.png', 'p5.png', 'p6.png', 'r1.png', 'r2.png', 'r3.png', 'r4.png', 's1.png', 's2.png', 's3.png', 's4.png', 's5.png', 's6.png', 't1.png', 't2.png', 't3.png', 't4.png', 't5.png', 'vi.png', 'vi1.png', 'vi2.png', 'vi3.png', 'vi4.png', 'vii2.png', 'viii.png', 'viii1.png', 'viii2.png', 'viii3.png', 'viii4.png', 'viii6.png', 'vxii3.png', 'xii.png', 'XII1.png', 'xii2.png', 'xii4.png', 'xii5.png', 'xii6.png', 'xii7.png', 'xiii.png', 'xiii1.png', 'xiii2.png', 'xiii3.png', 'xiiii.png', 'xiiii1.png', 'xiiii3.png', 'xiiii4.png', 'xvii.png', 'xvii1.png', 'xvii2.png', 'xvii4.png', 'xvii5.png', 'xvii6.png', 'xvii7.png', 'xviiii.png', 'xviiii1.png', 'xviiii2.png', 'xviiii3.png', 'xx.png', 'xxi.png', 'xxi1.png', 'xxi2.png', 'xxi3.png', 'xxi4.png', 'xxi5.png'];
 
- 
+const images2 = [ '29A2.gif',
+  '6SSp.gif',
+  '6p3E.gif',
+  '6OV5-unscreen.gif',
+  '4A5-unscreen.gif',
+  '3Whh.gif',
+  '2vDc.gif',
+  '2iiB.gif',
+  "VhkF.gif",
+  '2ii5.gif',
+  'bo.gif','bcc.gif','boc.gif','b.gif','boca.gif',  'cLV.gif','Nt6v.gif', 'TRkX.gif',
+  'VfL.gif',
+  'WG8U.gif',
+  'WMk.gif',
+  'WS2k.gif',
+  'WUUT.gif',
+  'YX4S.gif' ];
+
             const imageAudioMap = {
                 
                 
@@ -753,7 +811,7 @@ const images = ['bo.gif','bcc.gif','boc.gif','b.gif','boca.gif','0.png', '01.png
 };
      
         
-    
+
 
     
     // Prepara la galería
@@ -765,8 +823,8 @@ images.forEach(image => {
         const collageImg = img.cloneNode();
         collageImg.classList.add('draggable');
         collageImg.style.position = 'absolute';
-        collageImg.style.left = '0px';
-        collageImg.style.top = '0px';
+        collageImg.style.left = '500px';
+        collageImg.style.top = '10px';
         collageContainer.appendChild(collageImg);
         makeImageInteractive(collageImg);
 
@@ -781,6 +839,38 @@ images.forEach(image => {
     document.querySelector('#gallery-container').appendChild(img);
 
 
+    
+    const imageAudioMap2 = {
+    '2ii5.gif': 'white.mp3',
+    '2ii5.gif': 'white.mp3',
+  // Mapea el resto de tus imágenes a sus archivos de audio
+};
+    images2.forEach(image => {
+  const img = document.createElement('img');
+  img.src = image;
+  img.style.width = '100px'; // Ajusta esto según necesites
+  img.addEventListener('click', function(e) {
+    const collageImg = img.cloneNode();
+    collageImg.classList.add('draggable');
+    collageImg.style.position = 'absolute';
+    collageImg.style.left = '400px';
+    collageImg.style.top = '10px';
+    collageContainer.appendChild(collageImg);
+     makeImageInteractive(collageImg);
+    
+    const audioSrc = imageAudioMap2[image];
+    if (audioSrc) {
+        const audio = new Audio(audioSrc);
+        const volumeSlider = document.getElementById('volume-slider'); // Asegúrate de que este ID corresponda a tu input de rango
+        audio.volume = volumeSlider.value ; // Ajusta el volumen basado en el control deslizante
+        audio.play();
+    
+    }
+  });
+  document.querySelector('#gallery-container-2').appendChild(img);
+});
+
+
 let currentVolume = document.getElementById('volume-slider').value;
 
 document.getElementById('volume-slider').addEventListener('input', function() {
@@ -791,11 +881,6 @@ document.getElementById('volume-slider').addEventListener('input', function() {
 });});
 
 
-
-const newAudio = new Audio('ruta/a/tu/archivo/audio.mp3');
-const currentVolume = document.getElementById('volume-slider').value;
-newAudio.volume = currentVolume; // Ajusta el volumen del nuevo audio
-newAudio.play(); // Reproduce el audio
 
  
     interact('.draggable')
@@ -816,6 +901,7 @@ newAudio.play(); // Reproduce el audio
             }
         }
     })
+    
    
     document.addEventListener('click', function(e) {
     // Verifica si el clic fue sobre una imagen draggable dentro del contenedor de collage
@@ -870,12 +956,15 @@ const audioSrc = imageAudioMap[src.split('/').pop()];
 const audio = new Audio(audioSrc);
 audio.play();
     
+
+
 if (!collageAudios.some(audio => audio.src === audioSrc)) {
 collageAudios.push(audio);
 }
-}
-       
-});
+
+        } 
+}); 
+
     
 
 function makeImageInteractive(img) {
@@ -923,34 +1012,29 @@ interact(img)
     
 });
     }
-
     document.getElementById('play-button').addEventListener('click', function() {
-const collageImages = document.querySelectorAll('#collage-container img');
+    // Asumimos que tienes un array de imágenes como antes, y un imageAudioMap2 para la galería 2
+    const allImages = [...document.querySelectorAll('#collage-container img'), ];
 
-// Creamos una promesa inicial resuelta para encadenar las promesas de reproducción de audio
-let promiseChain = Promise.resolve();
+    let promiseChain = Promise.resolve();
 
-// Recorremos cada imagen en el collage
-collageImages.forEach(image => {
-const audioSrc = imageAudioMap[image.src.split('/').pop()];
+    allImages.forEach(img => {
+        const imageName = img.src.split('/').pop(); // Extrae el nombre de la imagen del src
+        const audioSrc = imageAudioMap[imageName] ; // Intenta obtener el src del audio del mapa 1, si no existe, del mapa 2
 
-// Si hay un audio asociado a la imagen, creamos una promesa para reproducir ese audio
-if (audioSrc) {
-    promiseChain = promiseChain.then(() => {
-        return new Promise(resolve => {
-            const audio = new Audio(audioSrc);
-            audio.play();
-            
-            // Esperamos a que el audio termine de reproducirse antes de resolver la promesa
-            audio.onended = resolve;
-        });
+        if (audioSrc) {
+            promiseChain = promiseChain.then(() => new Promise(resolve => {
+                const audio = new Audio(audioSrc);
+                audio.play();
+                audio.onended = resolve; // Espera a que el audio termine antes de continuar con el siguiente
+            }));
+        }
     });
-}
-
-}); 
 
 
-document.querySelectorAll('.draggable').forEach(img => {
+
+
+    document.querySelectorAll('.draggable').forEach(img => {
     let startY; // Variable para almacenar la posición inicial del toque en Y
 
     img.addEventListener('touchstart', e => {
@@ -973,7 +1057,6 @@ document.addEventListener('touchmove [0].clientY', function(e) {
     e.preventDefault();
 }, { passive: false });
 
-});
 
 document.getElementById('bg-color-picker').addEventListener('change', function() {
     const collageContainer = document.getElementById('collage-container');
@@ -990,6 +1073,18 @@ document.getElementById('print-button').addEventListener('click', function() {
     document.getElementById('change-background-button').addEventListener('click', function() {
     changeBackground();
 });
+
+document.getElementById('delete-button').addEventListener('click', function() {
+    // Buscar la imagen seleccionada dentro del contenedor del collage
+    const selectedImage = document.querySelector('.draggable.selected');
+    if (selectedImage) {
+        selectedImage.remove(); // Elimina la imagen seleccionada del DOM
+
+    }
+    this.classList.add('selected');
+
+});
+
 
     // Array con las rutas de las imágenes de fondo
 const backgroundImages = [
@@ -1008,16 +1103,16 @@ function changeBackground() {
     collageContainer.style.backgroundImage = `url('${selectedImage}')`;
     collageContainer.style.backgroundSize = 'cover'; // Asegura que la imagen de fondo cubra todo el contenedor
 }
-
+document.getElementById('change-background-button').addEventListener('click', function() {
+        changeBackground();
+        
 document.getElementById('delete-button').addEventListener('click', function() {
     const selectedImage = document.querySelector('.draggable.selected');
     if (selectedImage) {
         selectedImage.remove(); // Elimina la imagen seleccionada del DOM
     }
 });
-
-
-
+});
 </script>
 </body>
 </html>
