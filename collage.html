@@ -635,6 +635,8 @@ background-color: rgb(211, 199, 199)
 
         <button id="stop-audios-button" class='bx bx-stop' style='color:rgba(188,186,186,0.98)'></button>
 
+        <button id="loop-audios-button" class='bx bx-repeat' style='color:rgba(188,186,186,0.98)'>Loop</button>
+
         <div class="input-container">
 
    
@@ -1211,6 +1213,21 @@ document.querySelectorAll('.draggable').forEach(img => {
         // Código para finalizar el arrastre de la imagen
     });
 });
+
+let isLooping = false; // Variable para mantener el estado de si el loop está activado o no
+
+document.getElementById('loop-audios-button').addEventListener('click', function() {
+    // Cambiar el estado de loop para todos los audios
+    isLooping = !isLooping; // Invierte el estado actual de loop
+    
+    audiosImages2.forEach(audio => {
+        audio.loop = isLooping;
+    });
+    
+    // Cambia el texto del botón para reflejar el estado del loop
+    this.textContent = isLooping ? 'Loop is ON' : 'Loop is OFF';
+});
+
 
 </script>
 </body>
