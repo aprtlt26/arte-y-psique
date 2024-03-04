@@ -134,8 +134,45 @@
             }
         }
 
-     
+        #audio-player-container {
+  padding: 1px;
+  background-color: transparent; /* Fondo claro para el contenedor */
+  border-radius: 2px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  max-width: 200px; /* Ajusta esto según tus necesidades */
+  margin: auto; /* Centrar el contenedor */
+}
 
+#audio-player-container label {
+  font-size: 14px;
+  color: #3c3c3c;
+  margin-bottom: 2px;
+}
+     
+#audio-player-container #pitchRange {
+  width: 100%; /* Hace que el control deslizante ocupe todo el ancho del contenedor */
+  -webkit-appearance: none; /* Remueve la apariencia por defecto */
+  appearance: none;
+  height: 5px;
+  background: #ddd;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+#audio-player-container audio {
+  width: 100%; /* Hace que el reproductor de audio ocupe todo el ancho del contenedor */
+  margin-bottom: 5px; /* Espacio entre el reproductor de audio y el control deslizante */
+}
+
+#audio-player-container #pitchRange:hover::-webkit-slider-thumb,
+#audio-player-container #pitchRange:hover::-moz-range-thumb {
+  background: #fefffe;
+}
         #menu-links a {
             color: #767676; /* Color del texto */
             text-decoration: none;
@@ -708,7 +745,7 @@ background-color: rgb(211, 199, 199)
 }
 const images = ['0.png', '01.png', '02.png', '03.png', '04.png', '05.png', '06.png', '07.png', '08.png', 'c1.png', 'c2.png', 'c3.png', 'c4.png', 'c5.png', 'c6.png', 'c7.png', 'd1.png', 'd2.png', 'd3.png', 'd4.png', 'd5.png', 'd7.png', 'd8.png', 'd9.png', 'd10.png', 'd11.png', 'd12.png', 'd13.png', 'd14.png', 'd15.png', 'd16.png', 'e1.png', 'e2.png', 'e3.png', 'e4.png', 'e5.png', 'e6.png', 'f1.png', 'f2.png', 'f3.png', 'f4.png', 'f5.png', 'f6.png', 'h1.png', 'h2.png', 'h3.png', 'h4.png', 'iii.png', 'iii1.png', 'iii2.png', 'iii3.png', 'iii4.png', 'iii5.png', 'iii6.png', 'iii7.png', 'j1.png', 'j2.png', 'j3.png', 'j4.png', 'j5.png', 'j6.png', 'l1.png', 'l2.png', 'l3.png', 'l4.png', 'm1.png', 'm2.png', 'm3.png', 'm4.png', 'm5.png', 'm7.png', 'm8.png', 'm9.png', 'm10.png', 'm11.png', 'm12.png', 'ojos.png', 'p1.png', 'p2.png', 'p3.png', 'p4.png', 'p5.png', 'p6.png', 'r1.png', 'r2.png', 'r3.png', 'r4.png', 's1.png', 's2.png', 's3.png', 's4.png', 's5.png', 's6.png', 't1.png', 't2.png', 't3.png', 't4.png', 't5.png', 'vi.png', 'vi1.png', 'vi2.png', 'vi3.png', 'vi4.png', 'vii2.png', 'viii.png', 'viii1.png', 'viii2.png', 'viii3.png', 'viii4.png', 'viii6.png', 'vxii3.png', 'xii.png', 'XII1.png', 'xii2.png', 'xii4.png', 'xii5.png', 'xii6.png', 'xii7.png', 'xiii.png', 'xiii1.png', 'xiii2.png', 'xiii3.png', 'xiiii.png', 'xiiii1.png', 'xiiii3.png', 'xiiii4.png', 'xvii.png', 'xvii1.png', 'xvii2.png', 'xvii4.png', 'xvii5.png', 'xvii6.png', 'xvii7.png', 'xviiii.png', 'xviiii1.png', 'xviiii2.png', 'xviiii3.png', 'xx.png', 'xxi.png', 'xxi1.png', 'xxi2.png', 'xxi3.png', 'xxi4.png', 'xxi5.png'];
 
-const images2 = [ '29A2.gif',
+const images2 = [ 'Nt63v.gif', 'Nt61.gif','Nt6v.gif', 'Nt6.gif','Nt6cv.gif','29A2.gif',
   '6SSp.gif',
   '6p3E.gif',
   '6OV5-unscreen.gif',
@@ -725,7 +762,7 @@ const images2 = [ '29A2.gif',
   'WS2k.gif',
   'WUUT.gif',
   'YX4S.gif',
-  'Nt63v.gif', 'Nt61.gif','Nt6v.gif', 'Nt6.gif','Nt6cv.gif'];
+  ];
 
             const imageAudioMap = {
                 
@@ -1169,7 +1206,17 @@ interact(img)
         }
     });
 
-
+    document.querySelector('#gallery-container-2').addEventListener('click', function(e) {
+    if (e.target.tagName === 'IMG') {
+        const audioSrc = imageAudioMap2[e.target.src.split('/').pop()];
+        if (audioSrc) {
+            const audio = new Audio(audioSrc);
+            const pitchValue = document.getElementById('pitchRange').value;
+            audio.playbackRate = pitchValue; // Ajusta el playbackRate basado en el pitch
+            audio.play();
+        }
+    }
+});
 
 
 
@@ -1251,21 +1298,6 @@ document.getElementById('change-background-button').addEventListener('click', fu
         changeBackground();
         
 
-
-document.getElementById('stop-audios-button').addEventListener('click', function() {
-    // Detiene todos los audios de audiosImages2
-    audiosImages2.forEach(audio => {
-        audio.pause();
-        audio.currentTime = 0; // Opcional: rebobina el audio
-    });
-    // También deberías detener y rebobinar cualquier audio que haya sido iniciado desde imageAudioMap
-    collageImageAudioMap.forEach(audio => {
-        audio.pause();
-        audio.currentTime = 0; // Opcional: rebobina el audio
-    });
-});
-
-
 document.querySelectorAll('.draggable').forEach(img => {
     img.addEventListener('touchstart', function(e) {
         e.preventDefault(); // Prevenir acciones predeterminadas
@@ -1280,7 +1312,7 @@ document.querySelectorAll('.draggable').forEach(img => {
     img.addEventListener('touchend', function(e) {
         // Código para finalizar el arrastre de la imagen
     });
-});
+});});
 
 let isLooping = false; // Variable para mantener el estado de si el loop está activado o no
 
@@ -1294,9 +1326,36 @@ document.getElementById('loop-audios-button').addEventListener('click', function
     
     // Cambia el texto del botón para reflejar el estado del loop
     this.textContent = isLooping ? 'Loop is ON' : 'Loop is OFF';
-});});
+});
 
 
+document.getElementById('stop-audios-button').addEventListener('click', function() {
+    // Detiene todos los audios en el array audiosImages
+    audiosImages.forEach(audio => {
+        audio.pause();
+        audio.currentTime = 0; // Reinicia el tiempo de reproducción del audio
+    });
+
+    // Detiene todos los audios en el array audiosImages2
+    audiosImages2.forEach(audio => {
+        audio.pause();
+        audio.currentTime = 0; // Reinicia el tiempo de reproducción del audio
+    });
+
+    // Detiene todos los audios asociados a las imágenes en el collage
+    collageImageAudioMap.forEach((audio, img) => {
+        if(audio && typeof audio.pause === 'function') {
+            audio.pause();
+            audio.currentTime = 0; // Reinicia el tiempo de reproducción del audio
+        }
+    });
+});
+
+
+// Define un nuevo AudioContext.
+    
 </script>
+
+
 </body>
 </html>
