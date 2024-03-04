@@ -27,7 +27,6 @@
     <script>
 
         
-  // Desactivar el clic derecho en toda la página
   document.addEventListener('contextmenu', function(e) {
     e.preventDefault();
     alert('El clic derecho está desactivado en esta página.');
@@ -73,27 +72,27 @@
         }
 
      .navbar-brand {
-            font-size: 1.2rem; /* Tamaño de la fuente del nombre del sitio */
+            font-size: 1.2rem; 
             border: 2px dashed #c4d49c
 
         }
 
         .navbar.navbar-expand-lg.navbar-light.bg-light {
-    background-color: #ffffff !important; /* Cambia el color de fondo a azul */
-    color: #fbfbfb !important; /* Cambia el color del texto a blanco */
+    background-color: #ffffff !important; 
+    color: #fbfbfb !important; 
     border: 2px dashed #c4d49c;
     margin-left: 20%;
     margin-right: 20%;
 }
         .navbar-nav .nav-link {
-            font-size: 1rem; /* Tamaño de la fuente de los enlaces del menú */
-            color: #3bc0ac; /* Color del texto de los enlaces */
-            transition: color 0.3s; /* Transición suave del color del texto */
-            margin: 0 15px; /* Espacio entre los enlaces */
+            font-size: 1rem; 
+            color: #3bc0ac; 
+            transition: color 0.3s; 
+            margin: 0 15px; 
         }
 
         .navbar-nav .nav-link:hover {
-            color: #55d1ba; /* Color del texto al pasar el mouse sobre los enlaces */
+            color: #55d1ba; 
             border: 2px dashed  #c4d49c
 
         }
@@ -104,46 +103,46 @@
         }
 
         .navbar-toggler-icon {
-            background-color: #ffffff; /* Color del icono del menú desplegable */
+            background-color: #ffffff; 
             border: 2px dashed  #c4d49c
 
         }
 
         .navbar-toggler:focus {
-            outline: none; /* Quita el contorno al enfocar el botón del menú desplegable */
+            outline: none; 
         }
 
           .navbar-collapse {
-            background-color: #ffffff; /* Color de fondo del menú desplegable */
+            background-color: #ffffff; 
             border: 2px dashed  #c4d49c
 
         }
 
         .navbar-collapse .navbar-nav .nav-link {
-            padding: 15px 0; /* Espaciado entre los enlaces del menú desplegable */
+            padding: 15px 0; 
         }
 
         .navbar-collapse .navbar-nav .nav-link:last-child {
-            border-bottom: none; /* Quita el borde inferior del último enlace */
+            border-bottom: none; 
         }
 
         @media screen and (max-width: 576px) {
             .navbar-nav .nav-link {
-                font-size: 0.9rem; /* Tamaño de la fuente de los enlaces en dispositivos móviles */
-                margin: 10px 15px; /* Espacio entre los enlaces en dispositivos móviles */
+                font-size: 0.9rem; 
+                margin: 10px 15px; 
             }
         }
 
         #audio-player-container {
   padding: 1px;
-  background-color: transparent; /* Fondo claro para el contenedor */
+  background-color: transparent; 
   border-radius: 2px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  max-width: 200px; /* Ajusta esto según tus necesidades */
-  margin: auto; /* Centrar el contenedor */
+  max-width: 200px; 
+  margin: auto; 
 }
 
 #audio-player-container label {
@@ -153,8 +152,8 @@
 }
      
 #audio-player-container #pitchRange {
-  width: 100%; /* Hace que el control deslizante ocupe todo el ancho del contenedor */
-  -webkit-appearance: none; /* Remueve la apariencia por defecto */
+  width: 100%; 
+  -webkit-appearance: none;
   appearance: none;
   height: 5px;
   background: #ddd;
@@ -165,8 +164,8 @@
 }
 
 #audio-player-container audio {
-  width: 100%; /* Hace que el reproductor de audio ocupe todo el ancho del contenedor */
-  margin-bottom: 5px; /* Espacio entre el reproductor de audio y el control deslizante */
+  width: 100%; 
+  margin-bottom: 5px; 
 }
 
 #audio-player-container #pitchRange:hover::-webkit-slider-thumb,
@@ -174,9 +173,9 @@
   background: #fefffe;
 }
         #menu-links a {
-            color: #767676; /* Color del texto */
+            color: #767676; 
             text-decoration: none;
-            margin: 0 20px; /* Espaciado horizontal entre enlaces */
+            margin: 0 20px; 
         }
 
         #menu-links a:hover {
@@ -194,22 +193,21 @@
         }
 
         .section {
-            padding: 20px; /* Reducido el padding para móviles */
+            padding: 20px; 
             text-align: center;
         }
 
-        /* Estilos para el contenedor de la galería */
         #gallery-container {
             position: fixed;
             top: 15%;
             left: 0;
             width: 100%;
-            height: 150px; /* Ajusta la altura para contener dos filas de imágenes */
+            height: 150px; 
             overflow-x: auto;
             white-space: nowrap;
             padding: 5px;
             display: flex;
-            flex-wrap: wrap; /* Permite el envoltorio de elementos */
+            flex-wrap: wrap; 
             gap: 10px;
             align-items: center;
             justify-content: flex-start;
@@ -221,7 +219,7 @@
             top: 33%;
             left: 0;
             width: 100%;
-            height: 110px; /* Ajuste del alto vertical de la galería */
+            height: 110px; 
             overflow-x: auto;
             white-space: nowrap;
             padding: 5px;
@@ -242,7 +240,7 @@
             background-image: url('papel.jpeg');
             display: inline-block;
     vertical-align: middle;
-    background-size: cover; /* Cubre todo el área disponible sin perder las proporciones */
+    background-size: cover; 
     background-position: center;
             }
         
@@ -253,7 +251,7 @@
             margin-bottom: 5px;
             cursor: pointer;
             background-image: url('papel.jpeg');
-    background-size: cover; /* Cubre todo el área disponible sin perder las proporciones */
+    background-size: cover; 
     background-position: center;
             }
 
@@ -304,8 +302,8 @@ button:focus, input:focus {
     font-size: 12px;
     position: absolute;
     z-index: 100;
-    -webkit-appearance: none;  /* Remueve el estilo predeterminado para WebKit/Blink */
-  appearance: none;          /* Remueve el estilo predeterminado para Firefox */
+    -webkit-appearance: none; 
+  appearance: none;          
   outline: none;        
     padding: 10px 20px;
     text-align: center;
@@ -323,14 +321,13 @@ button:focus, input:focus {
 }
 
 #volume-slider-images2 ::-webkit-slider-thumb {
-  -webkit-appearance: none; /* Remueve el estilo predeterminado para WebKit/Blink */
+  -webkit-appearance: none; 
   appearance: none;
-  width: 10px;              /* Ancho del thumb */
-  height: 10px;             /* Altura del thumb */
-  background: #c5c2c2;      /* Color de fondo del thumb */
-  cursor: pointer;          /* Cambia el cursor a tipo puntero */
+  width: 10px;              
+  height: 10px;             
+  background: #c5c2c2;     
   border-radius: 50%;
-       /* Hace el thumb circular */
+    
 }
 #imput-slider :hover{
     background-color: rgb(174, 174, 174);
@@ -553,8 +550,8 @@ background-color: rgb(211, 199, 199)
     max-width: none;
     max-height: none;
     cursor: move;
-    transition: transform 0.1s ease; /* Anima la transformación suavemente */
-    transform-origin: center center; /* Establece el punto de origen en el centro de la imagen */
+    transition: transform 0.1s ease; 
+    transform-origin: center center; 
 }
 
 
@@ -571,24 +568,23 @@ background-color: rgb(211, 199, 199)
    
         @media (max-width: 100%) {
             #gallery-container img {
-                margin-top: 80px; /* Eliminar el margen superior en dispositivos móviles */
-                width: 100%; /* Cambiar el ancho para que ocupe toda la pantalla */
-                height: calc(500vh - 20px); /* Altura ajustada para dispositivos móviles */
+                margin-top: 80px; 
+                width: 100%;
+                height: calc(500vh - 20px); 
                 margin: 1;
-                float: none; /* Eliminar el flotante en dispositivos móviles */
+                float: none; 
                  position: fixed;
             }
 
 
             }
-        /* Estilos adicionales para dispositivos móviles */
         @media (max-width: 100%) {
             #collage-container {
-                margin-top: 80px; /* Eliminar el margen superior en dispositivos móviles */
-                width: 100%; /* Cambiar el ancho para que ocupe toda la pantalla */
-                height: calc(200vh - 10px); /* Altura ajustada para dispositivos móviles */
+                margin-top: 80px; 
+                width: 100%; 
+                height: calc(200vh - 10px); 
                 margin: 1;
-                float: none; /* Eliminar el flotante en dispositivos móviles */
+                float: none; 
                  position: fixed;
 
 
@@ -602,7 +598,7 @@ background-color: rgb(211, 199, 199)
     max-height: 250px;
     cursor: move;
     box-shadow: 0 0 5px rgba(0,0,0,0.5);
-    transition: transform 0.1s ease; /* Anima la transformación suavemente */
+    transition: transform 0.1s ease; 
   float: none;
 
 
@@ -619,7 +615,6 @@ background-color: rgb(211, 199, 199)
             right: 0;
         }
 
-        /* Estilos para el recuadro de selección */
         #selection-box {
             border: 1px solid #000000;
             position: absolute;
@@ -634,10 +629,10 @@ background-color: rgb(211, 199, 199)
     color: #000;
   }
   #print-button, #volume-control, #volume-slider, #bg-color-picker, #gallery-container img{
-    display: none; /* Oculta los controles durante la impresión */
+    display: none; 
   }
-  /* Ajustes adicionales para mejorar la impresión */
-}
+
+        }
 .draggable.selected {
     border: 2px dashed #ffffff;
 }
@@ -720,7 +715,6 @@ background-color: rgb(211, 199, 199)
     <button id="move-up" i class='bx bx-layer-plus' style='color:rgba(233,233,233,0.98)' ></i></button>
     <button id="move-down" i class='bx bxs-layer-minus' style='color:rgba(233,233,233,0.98)' ></i></button>
     
-    <!-- Botón de Reproducción y Control Deslizante para el segundo conjunto de imágenes -->
 <button id="play-audios-images2" i class='bx bx-play-circle' style='color:rgba(188,186,186,0.98)' ></i>
 </button>
 
@@ -931,7 +925,6 @@ let collageImageAudioMap = new Map();
 
 
     
-    // Prepara la galería
 images.forEach(image => {
     const img = document.createElement('img');
     img.src = image;
@@ -963,7 +956,6 @@ images.forEach(image => {
     'Nt61.gif': 'audio5.mp3',
     'Nt6.gif':'gaitaexp.mp3',
     'Nt6cv.gif':'canto.mp3',
-  // Mapea el resto de tus imágenes a sus archivos de audio
 };
 
 
@@ -1034,11 +1026,9 @@ interact('.draggable')
     var x = (parseFloat(target.getAttribute('data-x')) || 0);
     var y = (parseFloat(target.getAttribute('data-y')) || 0);
 
-    // Actualiza el estilo del elemento
     target.style.width = event.rect.width + 'px';
     target.style.height = event.rect.height + 'px';
 
-    // Translada cuando se redimensiona desde la izquierda o desde arriba
     x += event.deltaRect.left;
     y += event.deltaRect.top;
 
@@ -1053,7 +1043,6 @@ interact('.draggable').draggable({
         listeners: {
             move(event) {
                 if (event.target.classList.contains('selected')) {
-                    // Mueve todas las imágenes seleccionadas.
                     document.querySelectorAll('.draggable.selected').forEach(selectedImg => {
                         let x = (parseFloat(selectedImg.getAttribute('data-x')) || 0) + event.dx;
                         let y = (parseFloat(selectedImg.getAttribute('data-y')) || 0) + event.dy;
@@ -1062,7 +1051,6 @@ interact('.draggable').draggable({
                         selectedImg.setAttribute('data-y', y);
                     });
                 } else {
-                    // Mueve solo la imagen actual si no está seleccionada.
                     let x = (parseFloat(event.target.getAttribute('data-x')) || 0) + event.dx;
                     let y = (parseFloat(event.target.getAttribute('data-y')) || 0) + event.dy;
                     event.target.style.transform = `translate(${x}px, ${y}px)`;
@@ -1075,23 +1063,18 @@ interact('.draggable').draggable({
     
    
     document.addEventListener('click', function(e) {
-    // Verifica si el elemento clickeado es una imagen draggable
     if (e.target.classList.contains('draggable')) {
-        // Si se presionó Ctrl o Cmd, alternar la clase 'selected'
         if (e.ctrlKey || e.metaKey) {
             e.target.classList.toggle('selected');
         } else {
-            // Si no se presionó Ctrl o Cmd, primero deselecciona todas las imágenes
             document.querySelectorAll('.draggable.selected').forEach(selectedImg => {
                 if (selectedImg !== e.target) {
                     selectedImg.classList.remove('selected');
                 }
             });
-            // Luego, alterna la clase 'selected' para la imagen clickeada
             e.target.classList.add('selected');
         }
     } else {
-        // Si se hizo clic fuera de una imagen y no se usó Ctrl o Cmd, deseleccionar todo
         if (!e.ctrlKey && !e.metaKey) {
             document.querySelectorAll('.draggable.selected').forEach(selectedImg => {
                 selectedImg.classList.remove('selected');
@@ -1105,7 +1088,6 @@ interact('.draggable').draggable({
 document.getElementById('move-up').addEventListener('click', function() {
     const selectedImage = document.querySelector('.draggable.selected');
     if (selectedImage) {
-        // Incrementa el z-index
         let zIndex = parseInt(window.getComputedStyle(selectedImage).zIndex, 10);
         zIndex = isNaN(zIndex) ? 1 : zIndex + 1;
         selectedImage.style.zIndex = zIndex;
@@ -1115,7 +1097,6 @@ document.getElementById('move-up').addEventListener('click', function() {
 document.getElementById('move-down').addEventListener('click', function() {
     const selectedImage = document.querySelector('.draggable.selected');
     if (selectedImage) {
-        // Decrementa el z-index
         let zIndex = parseInt(window.getComputedStyle(selectedImage).zIndex, 10);
         zIndex = isNaN(zIndex) ? 0 : zIndex - 1;
         selectedImage.style.zIndex = zIndex;
@@ -1186,7 +1167,6 @@ interact(img)
         
     });
 
-        // Función para rotar la imagen 180 grados al hacer doble clic
         img.addEventListener('dblclick', function() {
     let angle = parseInt(this.getAttribute('data-angle') || '0');
     angle = (angle + 180) % 360;
@@ -1197,20 +1177,19 @@ interact(img)
     }
     
     document.getElementById('play-button').addEventListener('click', function() {
-    // Asumimos que tienes un array de imágenes como antes, y un imageAudioMap2 para la galería 2
     const allImages = [...document.querySelectorAll('#collage-container img'), ];
 
     let promiseChain = Promise.resolve();
 
     allImages.forEach(img => {
-        const imageName = img.src.split('/').pop(); // Extrae el nombre de la imagen del src
-        const audioSrc = imageAudioMap[imageName] ; // Intenta obtener el src del audio del mapa 1, si no existe, del mapa 2
+        const imageName = img.src.split('/').pop(); 
+        const audioSrc = imageAudioMap[imageName] ; 
 
         if (audioSrc) {
             promiseChain = promiseChain.then(() => new Promise(resolve => {
                 const audio = new Audio(audioSrc);
                 audio.play();
-                audio.onended = resolve; // Espera a que el audio termine antes de continuar con el siguiente
+                audio.onended = resolve; 
             }));
         }
     });
@@ -1221,7 +1200,7 @@ interact(img)
         if (audioSrc) {
             const audio = new Audio(audioSrc);
             const pitchValue = document.getElementById('pitchRange').value;
-            audio.playbackRate = pitchValue; // Ajusta el playbackRate basado en el pitch
+            audio.playbackRate = pitchValue; 
             audio.play();
         }
     }
@@ -1231,21 +1210,19 @@ interact(img)
 
 
     document.querySelectorAll('.draggable').forEach(img => {
-    let startY; // Variable para almacenar la posición inicial del toque en Y
+    let startY; 
 
     img.addEventListener('touchstart', e => {
-        startY = e.touches[0].clientY; // Almacenar la posición inicial en Y cuando comienza el toque
+        startY = e.touches[0].clientY; 
     }, {passive: true});
 
     img.addEventListener('touchmove', e => {
-        const moveY = e.touches[0].clientY; // Posición actual del toque en Y
-        const diffY = moveY - startY; // Diferencia entre la posición actual y la inicial en Y
+        const moveY = e.touches[0].clientY; 
+        const diffY = moveY - startY; 
 
-        // Si el movimiento en Y (vertical) es mayor que el movimiento en X (horizontal), prevenir el desplazamiento
         if (Math.abs(diffY) > Math.abs(e.touches[0].clientX - e.touches[0].screenX)) {
-            e.preventDefault(); // Prevenir el desplazamiento vertical de la página
+            e.preventDefault(); 
         }
-        // Aquí puedes añadir lógica adicional para manejar el movimiento del elemento
     }, {passive: false});
 });});
 
@@ -1274,31 +1251,25 @@ document.getElementById('delete-button').addEventListener('click', function() {
     const selectedImages = document.querySelectorAll('.draggable.selected');
     selectedImages.forEach(img => {
         img.remove();
-        // Detener y eliminar el audio asociado si existe.
         const audio = collageImageAudioMap.get(img);
         if (audio) {
             audio.pause();
             collageImageAudioMap.delete(img);
         }
-        // Eliminar la imagen del DOM.
         img.remove();
     });
 });
 
 
-    // Array con las rutas de las imágenes de fondo
 const backgroundImages = [
      'color',
     'pap.jpg',
     'ppp.jpg',
     'papr.jpg'
-    // Añade tantas rutas como tengas
 ];
 
 function changeBackground() {
-    // Seleccionar una imagen de fondo aleatoriamente
     const selectedImage = backgroundImages[Math.floor(Math.random() * backgroundImages.length)];
-    // Cambiar el fondo del contenedor de collage
     const collageContainer = document.getElementById('collage-container');
     collageContainer.style.backgroundImage = `url('${selectedImage}')`;
     collageContainer.style.backgroundSize = 'cover'; // Asegura que la imagen de fondo cubra todo el contenedor
@@ -1309,59 +1280,50 @@ document.getElementById('change-background-button').addEventListener('click', fu
 
 document.querySelectorAll('.draggable').forEach(img => {
     img.addEventListener('touchstart', function(e) {
-        e.preventDefault(); // Prevenir acciones predeterminadas
-        // Código para iniciar el arrastre de la imagen
+        e.preventDefault(); 
     });
 
     img.addEventListener('touchmove', function(e) {
-        e.preventDefault(); // Mover la imagen según las coordenadas del toque
-        // Código para actualizar la posición de la imagen basado en el movimiento del toque
+        e.preventDefault(); 
     });
 
     img.addEventListener('touchend', function(e) {
-        // Código para finalizar el arrastre de la imagen
     });
 });});
 
-let isLooping = false; // Variable para mantener el estado de si el loop está activado o no
+let isLooping = false; 
 
 document.getElementById('loop-audios-button').addEventListener('click', function() {
-    // Cambiar el estado de loop para todos los audios
-    isLooping = !isLooping; // Invierte el estado actual de loop
+    isLooping = !isLooping; 
     
     audiosImages2.forEach(audio => {
         audio.loop = isLooping;
     });
     
-    // Cambia el texto del botón para reflejar el estado del loop
     this.textContent = isLooping ? 'Loop is ON' : 'Loop is OFF';
 });
 
 
 document.getElementById('stop-audios-button').addEventListener('click', function() {
-    // Detiene todos los audios en el array audiosImages
     audiosImages.forEach(audio => {
         audio.pause();
-        audio.currentTime = 0; // Reinicia el tiempo de reproducción del audio
+        audio.currentTime = 0; 
     });
 
-    // Detiene todos los audios en el array audiosImages2
     audiosImages2.forEach(audio => {
         audio.pause();
-        audio.currentTime = 0; // Reinicia el tiempo de reproducción del audio
+        audio.currentTime = 0; 
     });
 
-    // Detiene todos los audios asociados a las imágenes en el collage
     collageImageAudioMap.forEach((audio, img) => {
         if(audio && typeof audio.pause === 'function') {
             audio.pause();
-            audio.currentTime = 0; // Reinicia el tiempo de reproducción del audio
+            audio.currentTime = 0; 
         }
     });
 });
 
 
-// Define un nuevo AudioContext.
     
 </script>
 
