@@ -127,11 +127,40 @@
         }
 
         @media screen and (max-width: 576px) {
-            .navbar-nav .nav-link {
-                font-size: 0.9rem; 
-                margin: 10px 15px; 
-            }
-        }
+    .navbar-nav {
+        font-size: 0.9rem;
+        margin: 10px 15px;
+        width: 80%; /* Hace que la barra de menú use todo el ancho disponible */
+        text-align: center; /* Centra el texto de los enlaces */
+align-items: center;
+    }
+
+    .navbar {
+        width: 80%; /* Asegura que el elemento navbar también ocupe todo el ancho */
+        text-align: center; /* Centra el texto de los enlaces */
+
+        
+    }
+
+    .navbar-collapse {
+        width: 80%; /* Hace que el contenido colapsable de la navbar ocupe todo el ancho */
+        text-align: center; /* Centra el texto de los enlaces */
+
+    }
+
+    .navbar-toggler {
+        margin-right: 0; /* Elimina el margen derecho para alinear el toggler a la derecha */
+        text-align: center; /* Centra el texto de los enlaces */
+;
+
+    }
+
+    .navbar-nav .nav-link {
+        text-align: center; /* Centra el texto de los enlaces */
+    }
+}
+
+
 
         #audio-player-container {
   padding: 1px;
@@ -205,10 +234,10 @@
             height: 25%; 
             overflow-x: auto;
             white-space: nowrap;
-            padding: 5px;
+            padding: 30px;
             display: flex;
             flex-wrap: wrap; 
-            gap: 10px;
+            gap: 5px;
             align-items: center;
             justify-content: flex-start;
             
@@ -284,7 +313,8 @@
                 margin-top: 0;
                width: 20px;
             height: 20px;
-            
+            gap: 5px;
+
                 height: auto; /* Ajusta para mantener la proporción */
                 margin: 0 auto; /* Centra la imagen si es necesario */
                 position: relative;
@@ -362,12 +392,15 @@
   and (max-device-width: 844px) {
 
     #gallery-container img {
+
                width:10%;
             height: 30%;}
+
 
     #gallery-container {
         position: fixed;
         top: 15%; /* Ajusta esta distancia según lo que se vea mejor */
+        gap: 2px;
     }
     #gallery-container-2 {
         position: fixed;
@@ -397,6 +430,7 @@
         margin-right: 4px; /* Espaciado reducido entre imágenes */
         margin-bottom: 4px;
         top: 24%; /* Posición ajustada para la visualización */
+        
     }
    
     #gallery-container{
@@ -866,6 +900,12 @@ background-color: rgb(218, 212, 252)
     <div>
         <P>  - Escúchalo -  </P>
     </div>
+
+    <div></div>
+    <div>............................................................................................</div>
+
+    <div><p>Arte & Psique® All rights reserved. Alfonso Pretelt </p>
+    </div>
    
     <div class="=icons" > 
 
@@ -909,10 +949,7 @@ background-color: rgb(218, 212, 252)
 
     
 
-</div>
 
-    <div id="collage-footer">
-    </div>
     
     
     <script>
@@ -1154,8 +1191,8 @@ images2.forEach(image => {
         const collageImg = img.cloneNode();
         collageImg.classList.add('draggable');
         collageImg.style.position = 'absolute';
-        collageImg.style.left = '1180px';
-        collageImg.style.top = '70px';
+        collageImg.style.left = '10px';
+        collageImg.style.top = '100px';
         document.querySelector('#collage-container').appendChild(collageImg);
         makeImageInteractive(collageImg);
     
@@ -1516,4 +1553,6 @@ document.getElementById('stop-audios-button').addEventListener('click', function
 
 
 </body>
+
 </html>
+
