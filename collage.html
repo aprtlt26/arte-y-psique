@@ -202,7 +202,7 @@
             top: 15%;
             left: 0;
             width: 100%;
-            height: 150px; 
+            height: 25%; 
             overflow-x: auto;
             white-space: nowrap;
             padding: 5px;
@@ -226,16 +226,15 @@
             display: flex;
             align-items: center;
             justify-content: flex-start;
-            gap: 10px;
 
 
         }
 
         #gallery-container img {
-            width: 60px;
-            height: 60px;
-            margin-right: 5px;
-            margin-bottom: 5px;
+            width: 40px;
+            height: 50px;
+            margin-right: 1px;
+            margin-bottom: 1px;
             cursor: pointer;
             background-image: url('papel.jpeg');
             display: inline-block;
@@ -245,14 +244,16 @@
             }
         
             #gallery-container-2 img {
-            width: 60px;
-            height: 60px;
+            width: 50px;
+            height: 50px;
             margin-right: 5px;
             margin-bottom: 5px;
             cursor: pointer;
             background-image: url('papel.jpeg');
     background-size: cover; 
     background-position: center;
+    margin-top: 35px;
+
             }
 
         #collage-container {
@@ -277,18 +278,142 @@
         }
 
 
-
-
-.icons i{
-    transition:   background-color 0.3 ease;
-  box-shadow: #515151;
-  
-
+        @media (max-width: 390px) {
+            
+            #gallery-container img {
+                margin-top: 0;
+               width: 20px;
+            height: 20px;
+            
+                height: auto; /* Ajusta para mantener la proporción */
+                margin: 0 auto; /* Centra la imagen si es necesario */
+                position: relative;
+                display: inline;
+                z-index :100px;
+                margin-right: 0px;
+            margin-bottom: 0px;
+        
+            }
+          
+        
+            #collage-container {
+                margin-top: 50vh; /* Ajusta según la altura de tu galería */
+                width: 100%;
+                height: 500px;
+                position: relative;
+                display: block;
+            }
+        
+            #collage-container img {
+                max-width: 100%; /* Asegúrate de que no excedan el ancho del contenedor */
+                max-height: auto; /* Ajusta para mantener la proporción */
+                cursor: move;
+                box-shadow: 0 0 5px rgba(0,0,0,0.5);
+                transition: transform 0.1s ease;
+                display: block;
+                margin: 0 auto; /* Centra la imagen si es necesario */
+            }
+        }
+        
+/* iPads en modo paisaje */
+@media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (orientation: landscape) {
+    #gallery-container-2 {
+        /* Ajustes para mejorar la visibilidad */
+        position: fixed;
+        top: 10%; /* Ajusta este valor según sea necesario */
+    }
+    #collage-container {
+        margin-top: 10vh; /* Espacio para la galería */
+    }
 }
 
-button:focus, input:focus {
-    outline: none;
+/* iPads en modo retrato */
+@media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (orientation: portrait) {
+
+    #gallery-container {
+        height: 20%;
+        
+        position: fixed;
+        top: 5%; /* Ajuste según necesidad */
+ }    
+    #gallery-container-2 {
+        height: 10%;
+
+        position: fixed;
+        top: 30%; /* Ajuste basado en tu diseño específico */
+    }
+    #collage-container {
+        top: 5vh; /* Ajuste según el contenido de tu galería */
+    }
 }
+
+
+
+
+/* Estilos específicos para iPhone 12 */
+@media only screen 
+  and (min-device-width: 390px) 
+  and (max-device-width: 844px) {
+
+    #gallery-container img {
+               width:10%;
+            height: 30%;}
+
+    #gallery-container {
+        position: fixed;
+        top: 15%; /* Ajusta esta distancia según lo que se vea mejor */
+    }
+    #gallery-container-2 {
+        position: fixed;
+        top: 30%; /* Ajusta esta distancia según lo que se vea mejor */
+    }
+    #collage-container {
+        margin-top: 35vh; /* Ajusta según el espacio requerido por la galería */
+    }
+}
+/* Estilos específicos para iPhone SE */
+@media only screen 
+  and (min-device-width: 375px) /* Ancho mínimo */
+  and (max-device-width: 667px) /* Ancho máximo */
+  and (-webkit-min-device-pixel-ratio: 2), /* Densidad de píxeles para Retina Display */
+  only screen 
+  and (min-device-width: 320px) /* Ancho mínimo para SE de 1ª generación */
+  and (max-device-width: 568px) /* Ancho máximo para SE de 1ª generación */
+  and (-webkit-min-device-pixel-ratio: 2) { /* Densidad de píxeles para Retina Display */
+    
+    #gallery-container img,  {
+        width:5%;
+            height: 5%; /* Mantiene la proporción */
+       rtical para la segunda galería */
+    }
+    #gallery-container-2 img {width: 20px; /* Reduce el tamaño para ajustarse a la pantalla más pequeña */
+        height: auto; /* Mantiene la proporción */
+        margin-right: 4px; /* Espaciado reducido entre imágenes */
+        margin-bottom: 4px;
+        top: 24%; /* Posición ajustada para la visualización */
+    }
+   
+    #gallery-container{
+        position: fixed;
+        top: 10%; /* Posición ajustada para la visualización */
+        overflow-x: auto; /* Permite desplazamiento horizontal */
+        white-space: nowrap; /* Alinea las imágenes horizontalmente */
+        padding: 5px; /* Añade un poco de relleno alrededor */
+    }
+    }
+    
+    #collage-container {
+        margin-top: 45vh; /* Ajuste para asegurar visibilidad de la galería */
+        height: calc(100vh - 100px); /* Altura ajustada para permitir interacción */
+    }
+
+
 
 
   #volume-slider-images2 {
@@ -329,10 +454,33 @@ button:focus, input:focus {
   border-radius: 50%;
     
 }
-#imput-slider :hover{
-    background-color: rgb(174, 174, 174);
+#imput-slider:hover{
+    background-color: rgb(218, 212, 255);
     border: 2px dashed #c2f700;
 
+}
+
+.volume-slider:hover  .hover-text {
+ 
+    display: block; /* Oculta el texto por defecto */
+    position: absolute; /* Posicionamiento relativo al botón */
+    bottom: -10px; /* Ajusta según necesites */
+    padding: 1px 4px; 
+    top: 10px; 
+    z-index: 100;
+    right:  150px;
+    transform: translateX(-50%); /* Centra el texto bajo el botón */
+    background-color: #fff; /* Fondo del texto */
+    color: #000; /* Color del texto */
+    /* Espaciado interno */
+    border-radius: 5px; /* Bordes redondeados */
+    font-size: 10px; /* Tamaño del texto */
+    white-space: nowrap; /* Evita que el texto se divida en líneas */
+    height: 20px;
+
+}
+input:hover .hover-text {
+    display: block; /* Muestra el texto en hover */
 }
 
 #bg-color-picker {
@@ -349,13 +497,32 @@ button:focus, input:focus {
     position: absolute;
     top: 220px; 
     right:  10px; 
-    z-index: 100;
+    z-index: 1000;
 
     margin-top: 20px; 
 }
-#bg-color-picker :hover {
-background-color: rgb(211, 199, 199)
+#bg-color-picker:hover {
+    background-color: rgb(218, 212, 252)
 
+}
+
+
+.color-picker:hover .hover-text {
+    display: block; /* Oculta el texto por defecto */
+    position: absolute; /* Posicionamiento relativo al botón */
+    bottom: -10px; /* Ajusta según necesites */
+    padding: 1px 4px; 
+    top: 220px; 
+    z-index: 15;
+    right:  10px;
+    transform: translateX(-50%); /* Centra el texto bajo el botón */
+    background-color: #fff; /* Fondo del texto */
+    color: #000; /* Color del texto */
+    /* Espaciado interno */
+    border-radius: 5px; /* Bordes redondeados */
+    font-size: 10px; /* Tamaño del texto */
+    white-space: nowrap; /* Evita que el texto se divida en líneas */
+    height: 20px;
 }
  
 #play-button {
@@ -375,8 +542,42 @@ background-color: rgb(211, 199, 199)
     top: 10px; 
 
     right:  10px; 
-    z-index: 100;
+    z-index: 1000;
 }
+
+.hover-text {
+    display: none; /* Oculta el texto por defecto */
+    position: absolute; /* Posicionamiento relativo al botón */
+    bottom: -10px; /* Ajusta según necesites */
+    padding: 1px 4px; 
+    top: 10px; 
+    z-index: 1000;
+    right:  10px;
+    height: 20px;
+                        font-family: "Anta", sans-serif;
+
+    transform: translateX(-50%); /* Centra el texto bajo el botón */
+    background-color: #fff; /* Fondo del texto */
+    color: #000; /* Color del texto */
+    /* Espaciado interno */
+    border-radius: 5px; /* Bordes redondeados */
+    font-size: 10px; /* Tamaño del texto */
+    white-space: nowrap; /* Evita que el texto se divida en líneas */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2); /* Sombra opcional para resaltar */
+}
+#play-button:hover {
+
+    background-color: rgb(218, 212, 252)
+
+}
+
+
+button:hover .hover-text {
+    display: block; /* Muestra el texto en hover */
+}
+
+
+
 
 #play-audios-images2{
     display: inline-block;
@@ -396,7 +597,9 @@ background-color: rgb(211, 199, 199)
     right:  60px; 
     z-index: 100;
 }
-
+#play-audios-images2:hover{ 
+background-color: rgb(218, 212, 252)
+}
 #stop-audios-button{
 
     display: inline-block;
@@ -412,7 +615,12 @@ background-color: rgb(211, 199, 199)
     position: absolute;
     top: 85px; 
     right:  60px; 
-    z-index: 100;
+    z-index: 1000;
+}
+#stop-audios-button:hover{
+
+    background-color: rgb(218, 212, 252)
+
 }
 
 #loop-audios-button{
@@ -429,7 +637,11 @@ background-color: rgb(211, 199, 199)
     position: absolute;
     top: 120px; 
     right:  60px; 
-    z-index: 100;
+    z-index: 1000;
+}
+#loop-audios-button:hover {
+    background-color: rgb(218, 212, 252)
+
 }
 
 #move-down{
@@ -446,8 +658,11 @@ background-color: rgb(211, 199, 199)
     position: absolute;
     top: 120px; 
     right:  10px; 
-    z-index: 100;
+    z-index: 1000;
 }
+#move-down:hover{
+background-color: rgb(218, 212, 252)
+ }
 
 
 #move-up{
@@ -464,16 +679,15 @@ background-color: rgb(211, 199, 199)
     position: absolute;
     top: 155px; 
     right:  10px; 
-    z-index: 100;
+    z-index: 1000;
     
 }
 
 
-#play-button:hover {
+#move-up:hover{
+background-color: rgb(218, 212, 252)
+ }
 
-    background-color: rgb(211, 199, 199)
-
-}
 
 #change-background-button{
     display: inline-block;
@@ -489,8 +703,12 @@ background-color: rgb(211, 199, 199)
     position: absolute;
     top: 49px; 
     right:  10px; 
-    z-index: 100;
+    z-index: 1000;
 }
+
+#change-background-button:hover{
+background-color: rgb(218, 212, 252)
+ }
 
 #delete-button{
 
@@ -507,15 +725,12 @@ background-color: rgb(211, 199, 199)
     position: absolute;
     top: 85px; 
     right:  10px; 
-    z-index: 100;
+    z-index: 1000;
 }
 
-
-#change-background-button:hover{
-    background-color: rgb(211, 199, 199)
-
-
-}
+#delete-button:hover{
+background-color: rgb(218, 212, 252)
+ }
 
 #print-button{
 
@@ -531,7 +746,7 @@ background-color: rgb(211, 199, 199)
     position: absolute;
     top: 212px; 
     right:  10px; 
-    z-index: 100;
+    z-index: 1000;
 }
 
 #print-button:hover {
@@ -565,44 +780,7 @@ background-color: rgb(211, 199, 199)
 
         }
 
-   
-        @media (max-width: 100%) {
-            #gallery-container img {
-                margin-top: 80px; 
-                width: 100%;
-                height: calc(500vh - 20px); 
-                margin: 1;
-                float: none; 
-                 position: fixed;
-            }
-
-
-            }
-        @media (max-width: 100%) {
-            #collage-container {
-                margin-top: 80px; 
-                width: 100%; 
-                height: calc(200vh - 10px); 
-                margin: 1;
-                float: none; 
-                 position: fixed;
-
-
-            }
-        }
-
-        @media (max-width: 100%) {
-
-        #collage-container img {
-    max-width: 300px;
-    max-height: 250px;
-    cursor: move;
-    box-shadow: 0 0 5px rgba(0,0,0,0.5);
-    transition: transform 0.1s ease; 
-  float: none;
-
-
-} }
+       
 
         #collage-footer {
             text-align: center;
@@ -634,7 +812,7 @@ background-color: rgb(211, 199, 199)
 
         }
 .draggable.selected {
-    border: 2px dashed #ffffff;
+    border: 2px dashed #90ff00;
 }
 
 
@@ -673,52 +851,61 @@ background-color: rgb(211, 199, 199)
     ondragleave="return false">
 
     <div>
-        <P>  - Clic en la Imagen -   </P>
-        <P>  - Arma tu collage -  </P>
-        <P>  - Play -  </P>
+        <P>  - Clic en la Imagen - Arrastralas - Redimensionalas  </P>
     
     </div>
 
    <div>
-        <P>  - Clic en el SoundTrack -   </P>
-        <P>  - Play -  </P>
-        <P>  - loop/stop  </P>
-
-    
+        <P>  - Clic en el SoundTrack [opcional]-   </P>
     </div>
         
+    <div>
+        <P>  - Arma tu collage -  </P>
+    </div>
+
+    <div>
+        <P>  - Escúchalo -  </P>
+    </div>
    
     <div class="=icons" > 
 
         <button id="play-button" i class='bx bx-play-circle' style='color:rgba(188,186,186,0.98)' ></i>
+         <span class="hover-text">Play al poema collage final</span>
+    </button>
+
+        <button id="stop-audios-button" class='bx bx-stop' style='color:rgba(188,186,186,0.98)'><span class="hover-text">Stop</span></button>
+
+        <button id="loop-audios-button" class='bx bx-repeat' style='color:rgba(188,186,186,0.98)'>         <span class="hover-text">Loop</span>
         </button>
-
-        <button id="stop-audios-button" class='bx bx-stop' style='color:rgba(188,186,186,0.98)'></button>
-
-        <button id="loop-audios-button" class='bx bx-repeat' style='color:rgba(188,186,186,0.98)'></button>
 
         <div class="input-container">
 
    
     
-    <input type="color" id="bg-color-picker" value="#ffffff"
-    i class='bx bx-palette' style='color:rgba(188,186,186,0.98)'></i>
-
+            <div class="color-picker" style=" display: inline-block;">
+                <input type="color" id="bg-color-picker" value="#ffffff" class='bx bx-palette' style='color:rgba(188,186,186,0.98)'>
+                <span class="hover-text">Cambia el color de Fondo</span>
+            </div>
+            
 
     <button id="print-button" i class='bx bx-save' style='color:rgba(188,186,186,0.98)' 
-        i class='bx bx-printer' style='color:rgba(188,186,186,0.98)' ></i> </button>
+        i class='bx bx-printer' style='color:rgba(188,186,186,0.98)' ></i>  <span class="hover-text">guarda-imprime</span></button>
 
-    <button id="change-background-button" i class='bx bx-image-alt' style='color:rgba(188,186,186,0.98)'></i> </button>
+    <button id="change-background-button" i class='bx bx-image-alt' style='color:rgba(188,186,186,0.98)'></i>  <span class="hover-text">Cambia el tapiz</span> </button>
 
-    <button id="delete-button" i class='bx bx-eraser' style='color:rgba(233,233,233,0.98)' ></i></button>
+    <button id="delete-button" i class='bx bx-eraser' style='color:rgba(233,233,233,0.98)' ></i><span class="hover-text">Borrar</span></button></button>
 
-    <button id="move-up" i class='bx bx-layer-plus' style='color:rgba(233,233,233,0.98)' ></i></button>
-    <button id="move-down" i class='bx bxs-layer-minus' style='color:rgba(233,233,233,0.98)' ></i></button>
+    <button id="move-up" i class='bx bx-layer-plus' style='color:rgba(233,233,233,0.98)' ></i> <span class="hover-text">Abajo</span></button>
+    <button id="move-down" i class='bx bxs-layer-minus' style='color:rgba(233,233,233,0.98)' ></i> <span class="hover-text">Arriba</span></button>
     
 <button id="play-audios-images2" i class='bx bx-play-circle' style='color:rgba(188,186,186,0.98)' ></i>
+    <span class="hover-text">Play al soltar un audio</span>
 </button>
 
-<input type="range" id="volume-slider-images2" min="0" max="1" step="0.01" value="0.5"  i class='bx bx-volume-mute' style='color:rgba(188,186,186,0.98)'>
+<div class="volume-slider" style=" display: inline-block;">
+    <input type="range" id="volume-slider-images2" min="0" max="1" step="0.01" value="0.5" class='bx bx-volume-mute' style='color:rgba(188,186,186,0.98)'>
+    <span class="hover-text">Sountracks</span>
+</div>
 
     
 
@@ -962,13 +1149,13 @@ images.forEach(image => {
 images2.forEach(image => {
     const img = document.createElement('img');
     img.src = image;
-    img.style.width = '100px';
+    img.style.width = '60px';
     img.addEventListener('click', function(e) {
         const collageImg = img.cloneNode();
         collageImg.classList.add('draggable');
         collageImg.style.position = 'absolute';
-        collageImg.style.left = '0px';
-        collageImg.style.top = '200px';
+        collageImg.style.left = '1180px';
+        collageImg.style.top = '70px';
         document.querySelector('#collage-container').appendChild(collageImg);
         makeImageInteractive(collageImg);
     
