@@ -42,7 +42,7 @@
   firebase.auth().onAuthStateChanged((user) => {
     if (!user) {
       // Si el usuario no está autenticado, redirigir a la página de registro/inicio de sesión
-      window.location.href = '/ruta-hacia-registro-o-login'; // Ajusta esta URL
+      window.location.href = '/register.html'; // Ajusta esta URL
     }
     // Si el usuario está autenticado, no hacer nada o redirigir a otra página si es necesario
   });
