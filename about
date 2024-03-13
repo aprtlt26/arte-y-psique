@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="Alfonso Pretelt Artista">
+    <meta name="keywords" content="arquetipos, arcanos, tarot, alfonsopretelt,">
+    <meta name="author" content="alfonsopretelt">
+    <meta name="robots" content="index,">
+    <meta name="google" content="translate">
+    <meta property="og:image" content="rostro.jpg">
+
+    <title>ART & PSYCH</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            background-color: #ffffff;
+            font-family: Arial, sans-serif; /* Cambia la fuente según tus preferencias */
+        }
+       
+        header {
+            width: 100%;
+            background-color: #ffffff;
+            padding: 20px;
+            color: #000000;
+            text-align: left;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+
+        .navbar-brand {
+            font-size: 1.2rem; /* Tamaño de la fuente del nombre del sitio */
+        }
+
+        .navbar-nav .nav-link {
+            font-size: 1rem; /* Tamaño de la fuente de los enlaces del menú */
+            color: #3bc0ac; /* Color del texto de los enlaces */
+            transition: color 0.3s; /* Transición suave del color del texto */
+            margin: 0 15px; /* Espacio entre los enlaces */
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #55d1ba; /* Color del texto al pasar el mouse sobre los enlaces */
+        }
+       
+
+        .navbar-toggler {
+            border: none; /* Quita el borde del botón del menú desplegable */
+        }
+
+        .navbar-toggler-icon {
+            background-color: #cdcdcd; /* Color del icono del menú desplegable */
+        }
+
+        .navbar-toggler:focus {
+            outline: none; /* Quita el contorno al enfocar el botón del menú desplegable */
+        }
+
+        .navbar-collapse {
+            background-color: #ffffff; /* Color de fondo del menú desplegable */
+
+        }
+
+        .navbar-collapse .navbar-nav .nav-link {
+            padding: 15px 0; /* Espaciado entre los enlaces del menú desplegable */
+            border-bottom: 1px solid #ffffff; /* Borde inferior entre los enlaces */
+        }
+
+        .navbar-collapse .navbar-nav .nav-link:last-child {
+            border-bottom: none; /* Quita el borde inferior del último enlace */
+        }
+
+    
+
+        #video-container {
+            position: relative;
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            overflow: hidden;
+            margin-top: 20px;
+        }
+
+        #video-container video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+      
+        #register-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+            background-color: transparent rgb(62, 12, 132);
+            border: none;
+            color: rgb(117, 219, 188);
+            font-size: 15px;
+            padding: 8px 15px;
+            cursor: pointer;
+            outline: none;
+        }
+
+ 
+
+        @media screen and (max-width: 768px) {
+            #video-container {
+                margin-top: 100px;
+                width: 100%;
+            height: 100%;
+            object-fit: cover;
+            }
+        }
+
+        @media screen and (max-width: 576px) {
+            #video-container {
+                margin-top: 100px;
+                width: 100%;
+            height: 100%;
+            object-fit: cover;
+            }
+        }
+    /* Estilos generales aquí */
+
+/* Estilos específicos para iPad Air (por ejemplo, 9.7" y 10.5") */
+@media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (-webkit-min-device-pixel-ratio: 2) {
+    /* Tus estilos específicos para iPad Air aquí */
+    #video-container video {
+        /* Asegura que el video cubra toda la pantalla */
+        min-height: 100vh;
+    }
+
+    /* Otros estilos específicos para iPad Air */
+}
+
+/* Estilos específicos para iPad Pro (11" y 12.9") */
+@media only screen 
+  and (min-device-width: 1024px) 
+  and (max-device-width: 1366px) 
+  and (-webkit-min-device-pixel-ratio: 2) {
+    /* Tus estilos específicos para iPad Pro aquí */
+    #video-container video {
+        /* Asegura que el video cubra toda la pantalla */
+        min-height: 100vh;
+    }
+
+    /* Otros estilos específicos para iPad Pro */
+}
+
+/* Considera añadir estilos para orientaciones específicas si es necesario */
+@media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (orientation: landscape) 
+  and (-webkit-min-device-pixel-ratio: 2) {
+    /* Estilos para iPad Air en orientación horizontal */
+}
+
+@media only screen 
+  and (min-device-width: 1024px) 
+  and (max-device-width: 1366px) 
+  and (orientation: landscape) 
+  and (-webkit-min-device-pixel-ratio: 2) {
+    /* Estilos para iPad Pro en orientación horizontal */
+}
+
+         
+    </style>
+</head>
+
+<body>
+
+    <header>
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="index.html">ART & PSYCHE</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <div id="menu-links" class="navbar-nav">
+                    <a class="nav-link" href="Virtual Learning.html">Virtual Learn</a>
+                    <a class="nav-link" href="https://soundtarot.com/">Listen</a>
+                    <a class="nav-link" href="collage.html">Collage</a>
+                    <a class="nav-link" href="contact.html">Contact</a>
+                    <a class="nav-link" href="Register.html">Register</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Contenedor del video -->
+    <div id="video-container">
+        <video autoplay muted loop id="background-video">
+            Tu navegador no soporta la etiqueta de video.
+        </video>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        // Array de los nombres de los videos disponibles
+        var videos = ['vid3.mp4', 'collagetarot.mp4', 'vid2.mp4','vid1.mp4', 'vid4.mp4']
+
+        // Función para seleccionar un video aleatorio y establecerlo como fuente del video de fondo
+        function changeBackgroundVideo() {
+            var randomIndex = Math.floor(Math.random() * videos.length);
+            var video = document.getElementById('background-video');
+            video.src = videos[randomIndex];
+            video.load();
+        }
+
+        // Llamar a la función cuando se carga la página
+        window.onload = function () {
+            changeBackgroundVideo();
+        };
+    </script>
+
+
+</script>
+
+</body>
+
+</html>
