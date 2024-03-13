@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="About">
+    <meta name="keywords" content="Cursoonline, tarot, alfonsopretelt, collage, eorsión">
+    <meta name="author" content="alfonsopretelt">
+    <meta name="robots" content="Learning">
+    <meta name="google" content="translate">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anta&family=Kode+Mono:wght@400..700&display=swap" rel="stylesheet">
+
+
+    <script>
+        document.addEventListener('contextmenu', function (e) {
+            e.preventDefault();
+        });
+    </script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            margin: 0;
+            font-family:"Anta", sans-serif;
+            background-color: #070707;
+            height: 100vh;
+        }
+
+        .anta-regular {
+  font-family: "Anta", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+        .section {
+            padding: 70px; /* Reducido el padding para móviles */
+            text-align: center;
+
+        }
+
+        header {
+            width: 100%;
+            background-color: #000000;
+            padding: 20px;
+            text-align: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1;
+    
+        }
+
+        .navbar-brand {
+            font-size: 1.1rem; /* Tamaño de la fuente del nombre del sitio */
+            border: 2px dashed #5d626b;
+            color: #fbfbfb;
+            
+        }
+
+
+
+        .navbar.navbar-expand-lg.navbar-light.bg-light {
+    background-color: #000000 !important; /* Cambia el color de fondo a azul */
+    color: #fbfbfb !important; /* Cambia el color del texto a blanco */
+    border: 2px dashed #5d626b;
+    margin-left: 20%;
+}
+
+     
+
+        .navbar-nav .nav-link {
+            font-size: 1rem; /* Tamaño de la fuente de los enlaces del menú */
+            color: #3bc0ac; /* Color del texto de los enlaces */
+            transition: color 0.3s; /* Transición suave del color del texto */
+            margin: 0 15px; /* Espacio entre los enlaces */
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #55d1ba; /* Color del texto al pasar el mouse sobre los enlaces */
+            border: 2px dashed #5ac6cc;
+
+        }
+       
+
+        .navbar-toggler {
+            border: 2px dashed #5d626b;
+            color: #fbfbfb
+
+        }
+
+        .navbar-toggler-icon {
+            background-color: #ffffff; /* Color del icono del menú desplegable */
+            border: 2px dashed #5d626b;
+
+
+        }
+
+        .navbar-toggler:focus {
+            outline: none; /* Quita el contorno al enfocar el botón del menú desplegable */
+        }
+
+        .navbar-collapse {
+            background-color: #000000; /* Color de fondo del menú desplegable */
+            border: 2px dashed #5d626b;
+
+        }
+
+        .navbar-collapse .navbar-nav .nav-link {
+            padding: 15px 0; /* Espaciado entre los enlaces del menú desplegable */
+            border-bottom: none; /* Borde inferior entre los enlaces */
+            color: #fbfbfb
+        }
+
+        .navbar-collapse .navbar-nav .nav-link:last-child {
+            border-bottom: none; /* Quita el borde inferior del último enlace */
+            
+        }
+
+        @media screen and (max-width: 576px) {
+            .navbar-nav .nav-link {
+                font-size: 0.9rem; /* Tamaño de la fuente de los enlaces en dispositivos móviles */
+                margin: 10px 15px; /* Espacio entre los enlaces en dispositivos móviles */
+            }
+        }
+
+        .section img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        /* Ajustes de estilos para dispositivos móviles */
+        @media (max-width: 576px) {
+            .section {
+                padding: 10px; /* Reducido aún más el padding para móviles pequeños */
+            }
+        }
+
+
+        /* Estilo para la flecha lateral */
+
+
+
+
+        /* Estilos para el formulario */
+        #login-form, #register-form {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 2px dashed #dedede;
+            border-radius: 5px;
+            background-color: #000000;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+        #login-form input[type="email"],
+        #login-form input[type="password"],
+        #register-form input[type="text"],
+        #register-form input[type="email"],
+        #register-form input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            display: flex;
+            border-radius: 4px;
+            box-sizing: border-box;
+            border: 2px dashed #dedede;
+            background-color: #343333;
+font: color #dedede;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+        #login-form input[type="submit"],
+        #register-form input[type="submit"] {
+            display: flex;
+            width: 100%;
+            background-color: #a1f2f2;
+            color: rgb(0, 0, 0);
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            border: 2px dashed #595858;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+
+        }
+
+        input[type="text"],
+input[type="email"],
+input[type="password"] {color: #cfcfcf;}
+
+        #login-form input[type="submit"]:hover,
+        #register-form input[type="submit"]:hover {
+            background-color: #181818;
+            border: 2px dashed #cfcfcf;
+
+        }
+h2{
+    color: rgb(230, 226, 189);
+
+}
+h3{
+    color: rgb(230, 226, 189);
+
+}
+     
+    </style>
+</head>
+<body>
+
+<header id="header">
+    <header class="container">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="index.html" style="color: rgb(189, 230, 219);">ARTE & PSIQUE</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <div id="menu-links" class="navbar-nav">
+                    <a class="nav-link" href="Aprendizaje.html">Aprendizaje</a>
+                    <a class="nav-link" href="https://soundtarot.com/">Escucha</a>
+                    <a class="nav-link" href="collage.html">Collage</a>
+                    <a class="nav-link" href="Register.html">Registro</a>
+                </div>
+            </nav>
+    </header>
+
+    <div class="section">
+        <h2>ARTE & PSIQUE</h2>
+        <div id="login-section" style="display:block;">
+          <h3>Login</h3>
+          <!-- Quita action y method, maneja el submit con JS -->
+          <form id="login-form">
+            <input type="email" id="login-email" placeholder="Your Email" required><br>
+            <input type="password" id="login-password" placeholder="Your Password" required><br>
+            <!-- Cambia el tipo a button para prevenir el submit por defecto -->
+            <button type="button" id="login-btn">Entrar</button>
+          </form>
+        </div>
+      <section> 
+        <div id="register-section" style="display: none;">
+          <h3>Register</h3>
+          <!-- Quita action y method, maneja el submit con JS -->
+          <form id="register-form">
+            <input type="text" id="nombre" placeholder="Your Name" required><br>
+            <input type="email" id="correo" placeholder="Your Email" required><br>
+            <input type="password" id="clave" placeholder="Your Password" required><br>
+            <!-- Cambia el tipo a button para prevenir el submit por defecto -->
+            <button type="button" id="register-btn">Registrar</button>
+          </form>
+        </div>
+        <button onclick="toggleForm()" style="background-color: #9f5ed0;">To Register</button>
+      </div>
+      
+<script>
+
+function toggleForm() {
+        var loginSection = document.getElementById("login-section");
+        var registerSection = document.getElementById("register-section");
+        var button = document.querySelector("button");
+
+        if (loginSection.style.display === "none") {
+            loginSection.style.display = "block";
+            registerSection.style.display = "none";
+            button.textContent = "Switch to Register";
+        } else {
+            loginSection.style.display = "none";
+            registerSection.style.display = "block";
+            button.textContent = "To Login";
+
+            
+        }
+        
+    }
+</script>
+
+
+<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js"></script>
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
+  import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
+  import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyARA9tqBfkiFK80XcaWtS1ar6yglfmEh3g",
+    authDomain: "artepsique-9ced7.firebaseapp.com",
+    projectId: "artepsique-9ced7",
+    storageBucket: "artepsique-9ced7.appspot.com",
+    messagingSenderId: "269569252943",
+    appId: "1:269569252943:web:b185a96dee1ff30ab2d43a"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const db = getFirestore(app);
+
+ 
+
+  document.getElementById('register-btn').addEventListener('click', async () => {
+    const nombre = document.getElementById('nombre').value;
+    const correo = document.getElementById('correo').value;
+    const clave = document.getElementById('clave').value;
+    try {
+      const userCredential = await createUserWithEmailAndPassword(auth, correo, clave);
+      console.log("Usuario registrado:", userCredential.user);
+      await setDoc(doc(db, "usuarios", userCredential.user.uid), { nombre, correo });
+      alert("Usuario registrado exitosamente.");
+      window.location.href = 'https://www.arteypsique.com'; // Ajusta esta URL si es necesario
+
+    } catch (error) {
+      console.error("Error al registrar el usuario:", error);
+      alert(error.message);
+    }
+  });
+
+  document.getElementById('login-btn').addEventListener('click', async () => {
+    const correo = document.getElementById('login-email').value;
+    const clave = document.getElementById('login-password').value;
+    try {
+      const userCredential = await signInWithEmailAndPassword(auth, correo, clave);
+      console.log("Usuario logueado:", userCredential.user);
+      alert("Inicio de sesión exitoso.");
+          window.location.href = 'https://www.arteypsique.com'; // Ajusta esta URL si es necesario
+
+    } catch (error) {
+      console.error("Error al iniciar sesión:", error);
+      alert(error.message);
+    }
+  });
+</script>
+
+
+</body>
+</html>
