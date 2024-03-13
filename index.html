@@ -34,17 +34,20 @@
   };
 
 
-    
-  const app = firebase.initializeApp(firebaseConfig);
-</script>
+  // Inicializar Firebase
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
 
-    <script>
-  firebase.auth().onAuthStateChanged((user) => {
-    if (!user) {
-      // Si el usuario no está autenticado, redirigir a la página de registro/inicio de sesión
-      window.location.href = '/register.html'; // Ajusta esta URL
+  // Verificar el estado de autenticación
+  onAuthStateChanged(auth, user => {
+    if (user) {
+      console.log("Usuario está logueado:", user);
+      // Usuario está logueado, puedes redirigir o mostrar contenido protegido aquí
+    } else {
+      console.log("Usuario no está logueado");
+      // Usuario no está logueado, redirigir a la página de login o mostrar mensaje
+      window.location.href = '/login.html'; // Redirige al usuario a la página de login
     }
-    // Si el usuario está autenticado, no hacer nada o redirigir a otra página si es necesario
   });
 </script>
 
