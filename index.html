@@ -250,7 +250,7 @@ section{ padding: 30px;}
             <button type="button" id="register-btn">Registrar</button>
           </form>
         </div>
-        <button onclick="toggleForm()" style="background-color: #9f5ed0;">To Register</button>
+        <button onclick="toggleForm()" style="background-color: #9f5ed0;">Reg-log</button>
       </div>
       
 <script>
@@ -308,7 +308,7 @@ function toggleForm() {
       console.log("Usuario registrado:", userCredential.user);
       await setDoc(doc(db, "usuarios", userCredential.user.uid), { nombre, correo });
       alert("Usuario registrado exitosamente.");
-      window.location.href = 'https://www.arteypsique.com/about'; // Ajusta esta URL si es necesario
+      window.location.href = 'https://www.arteypsique.com/about.html'; // Ajusta esta URL si es necesario
 
     } catch (error) {
       console.error("Error al registrar el usuario:", error);
@@ -323,7 +323,7 @@ function toggleForm() {
       const userCredential = await signInWithEmailAndPassword(auth, correo, clave);
       console.log("Usuario logueado:", userCredential.user);
       alert("Inicio de sesión exitoso.");
-          window.location.href = 'https://www.arteypsique.com/about'; // Ajusta esta URL si es necesario
+          window.location.href = 'https://www.arteypsique.com/about.html'; // Ajusta esta URL si es necesario
 
     } catch (error) {
       console.error("Error al iniciar sesión:", error);
