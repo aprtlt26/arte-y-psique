@@ -10,9 +10,11 @@
     <meta name="author" content="alfonsopretelt">
     <meta name="robots" content="Learning">
     <meta name="google" content="translate">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anta&family=Kode+Mono:wght@400..700&display=swap" rel="stylesheet">
+
 
     <script>
         document.addEventListener('contextmenu', function (e) {
@@ -35,7 +37,7 @@
   font-style: normal;
 }
         .section {
-            padding: 70px; /* Reducido el padding para móviles */
+            padding: 150px; /* Reducido el padding para móviles */
             text-align: center;
 
         }
@@ -65,7 +67,7 @@
     background-color: #000000 !important; /* Cambia el color de fondo a azul */
     color: #fbfbfb !important; /* Cambia el color del texto a blanco */
     border: 2px dashed #5d626b;
-    margin-left: 10%;
+    margin-left: 20%;
 }
 
      
@@ -214,7 +216,6 @@ h3{
      
     </style>
 </head>
-
 <body>
 
 <header id="header">
@@ -233,41 +234,40 @@ h3{
                     <a class="nav-link" href="Register.html">Registro</a>
                 </div>
             </nav>
+
     </header>
-</header>
-<div class="section">
- </div>
-<div class="section">
-    <h2> ARTE & PSIQUE</h2>
-    <div id="login-section">
-        <h3>Login</h3>
-        <form id="login-form" action="process_login.php" method="post">
-            <input type="email" name="email" placeholder="Your Email" required><br>
-            <input type="password" name="clave" placeholder="Your Password" required><br>
-            <input type="submit" value="Login">
-        </form>
-    </div>
 
-    <div id="register-section" style="display: none;">
-        <h3>Register</h3>
-        <form id="login-form" action="process_registration.php" method="post">
-            <input type="text" name="nombre" placeholder="Your Name" required><br>
-            <input type="email" name="email" placeholder="Your Email" required><br>
-            <input type="password" name="clave" placeholder="Your Password" required><br>
-            <input type="submit" value="Register">
-        </form>
-
-       
-    </div>
-    <button onclick="toggleForm()" style="background-color: #9f5ed0;border-radius: 2%;border: 2px dashed #ffffff;
-    ;
-
-    ">To Register</button>
-</div>
-
+    <div class="section">
+        <h2>ARTE & PSIQUE</h2>
+        <div id="login-section" style="display:block;">
+          <h3>Login</h3>
+          <!-- Quita action y method, maneja el submit con JS -->
+          <form id="login-form">
+            <input type="email" id="login-email" placeholder="Your Email" required><br>
+            <input type="password" id="login-password" placeholder="Your Password" required><br>
+            <!-- Cambia el tipo a button para prevenir el submit por defecto -->
+            <button type="button" id="login-btn">Entrar</button>
+          </form>
+        </div>
+      
+        <div id="register-section" style="display: none;">
+          <h3>Register</h3>
+          <!-- Quita action y method, maneja el submit con JS -->
+          <form id="register-form">
+            <input type="text" id="nombre" placeholder="Your Name" required><br>
+            <input type="email" id="correo" placeholder="Your Email" required><br>
+            <input type="password" id="clave" placeholder="Your Password" required><br>
+            <!-- Cambia el tipo a button para prevenir el submit por defecto -->
+            <button type="button" id="register-btn">Registrar</button>
+          </form>
+        </div>
+        <button onclick="toggleForm()" style="background-color: #9f5ed0;">Regist</button>
+      </div>
+      
+      
 <script>
-    
-    function toggleForm() {
+
+function toggleForm() {
         var loginSection = document.getElementById("login-section");
         var registerSection = document.getElementById("register-section");
         var button = document.querySelector("button");
@@ -285,12 +285,82 @@ h3{
         }
         
     }
+    
 
     
 </script>
 
-</body>
 
+<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js"></script>
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
+  import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
+  import { getFirestore } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyARA9tqBfkiFK80XcaWtS1ar6yglfmEh3g",
+    authDomain: "artepsique-9ced7.firebaseapp.com",
+    projectId: "artepsique-9ced7",
+    storageBucket: "artepsique-9ced7.appspot.com",
+    messagingSenderId: "269569252943",
+    appId: "1:269569252943:web:b185a96dee1ff30ab2d43a"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const db = getFirestore(app);
+
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      // Usuario está logueado, oculta los formularios
+      document.getElementById('login-section').style.display = 'none';
+      document.getElementById('register-section').style.display = 'none';
+    } else {
+      // Usuario no está logueado, muestra los formularios
+      document.getElementById('login-section').style.display = 'block';
+      document.getElementById('register-section').style.display = 'block';
+    }
+  });
+
+  document.getElementById('register-btn').addEventListener('click', async () => {
+    const nombre = document.getElementById('nombre').value;
+    const correo = document.getElementById('correo').value;
+    const clave = document.getElementById('clave').value;
+    try {
+      const userCredential = await createUserWithEmailAndPassword(auth, correo, clave);
+      console.log("Usuario registrado:", userCredential.user);
+      await setDoc(doc(db, "usuarios", userCredential.user.uid), { nombre, correo });
+      alert("Usuario registrado exitosamente.");
+      window.location.href = 'https://arteypsique.com'; // Ajusta esta URL si es necesario
+
+    } catch (error) {
+      console.error("Error al registrar el usuario:", error);
+      alert(error.message);
+    }
+  });
+
+  document.getElementById('login-btn').addEventListener('click', async () => {
+    const correo = document.getElementById('login-email').value;
+    const clave = document.getElementById('login-password').value;
+    try {
+      const userCredential = await signInWithEmailAndPassword(auth, correo, clave);
+      console.log("Usuario logueado:", userCredential.user);
+      alert("Inicio de sesión exitoso.");
+          window.location.href = 'https://arteypsique.com'; // Ajusta esta URL si es necesario
+
+    } catch (error) {
+      console.error("Error al iniciar sesión:", error);
+      alert(error.message);
+    }
+  });
+
+  
+</script>
+
+
+</body>
 </html>
 
 
