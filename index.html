@@ -171,29 +171,13 @@
             border-radius: 4px;
             box-sizing: border-box;
             border: 2px dashed #dedede;
-            background-color: #343333;
+            background-color: #ceeeed;
 font: color #dedede;
             justify-content: center;
             align-items: center;
 
         }
 
-        #login-form input[type="submit"],
-        #register-form input[type="submit"] {
-            display: flex;
-            width: 100%;
-            background-color: #a1f2f2;
-            color: rgb(0, 0, 0);
-            padding: 14px 20px;
-            margin: 8px 0;
-            border: none;
-            border-radius: 4px;
-            border: 2px dashed #595858;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-
-        }
 
         input[type="text"],
 input[type="email"],
@@ -213,6 +197,8 @@ h3{
     color: rgb(230, 226, 189);
 
 }
+
+section{ padding: 30px;}
      
     </style>
 </head>
@@ -236,8 +222,11 @@ h3{
             </nav>
     </header>
 
+    <section></section>
+    <div>
+
+    </div>
     <div class="section">
-        <h2>ARTE & PSIQUE</h2>
         <div id="login-section" style="display:block;">
           <h3>Login</h3>
           <!-- Quita action y method, maneja el submit con JS -->
@@ -318,7 +307,7 @@ function toggleForm() {
       console.log("Usuario registrado:", userCredential.user);
       await setDoc(doc(db, "usuarios", userCredential.user.uid), { nombre, correo });
       alert("Usuario registrado exitosamente.");
-      window.location.href = 'https://www.arteypsique.com'; // Ajusta esta URL si es necesario
+      window.location.href = 'https://www.arteypsique.com/about'; // Ajusta esta URL si es necesario
 
     } catch (error) {
       console.error("Error al registrar el usuario:", error);
@@ -333,7 +322,7 @@ function toggleForm() {
       const userCredential = await signInWithEmailAndPassword(auth, correo, clave);
       console.log("Usuario logueado:", userCredential.user);
       alert("Inicio de sesión exitoso.");
-          window.location.href = 'https://www.arteypsique.com'; // Ajusta esta URL si es necesario
+          window.location.href = 'https://www.arteypsique.com/about'; // Ajusta esta URL si es necesario
 
     } catch (error) {
       console.error("Error al iniciar sesión:", error);
