@@ -12,6 +12,43 @@
     <meta name="google" content="translate">
     <meta property="og:image" content="rostro.jpg">
 
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js"></script>
+<script>
+
+      <script>
+        document.addEventListener('contextmenu', function (e) {
+            e.preventDefault();
+        });
+    </script>
+<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js"></script>
+     const firebaseConfig = {
+    apiKey: "AIzaSyARA9tqBfkiFK80XcaWtS1ar6yglfmEh3g",
+    authDomain: "artepsique-9ced7.firebaseapp.com",
+    projectId: "artepsique-9ced7",
+    storageBucket: "artepsique-9ced7.appspot.com",
+    messagingSenderId: "269569252943",
+    appId: "1:269569252943:web:b185a96dee1ff30ab2d43a"
+  };
+
+
+    
+  const app = firebase.initializeApp(firebaseConfig);
+</script>
+
+    <script>
+  firebase.auth().onAuthStateChanged((user) => {
+    if (!user) {
+      // Si el usuario no está autenticado, redirigir a la página de registro/inicio de sesión
+      window.location.href = '/ruta-hacia-registro-o-login'; // Ajusta esta URL
+    }
+    // Si el usuario está autenticado, no hacer nada o redirigir a otra página si es necesario
+  });
+</script>
+
+
     <title>ART & PSYCH</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
