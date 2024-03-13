@@ -14,6 +14,31 @@
 
     <title>ART & PSYCH</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js"></script>
+
+<script>
+  // Configuración de Firebase
+  const firebaseConfig = {
+    // Tu configuración de Firebase
+  };
+
+  // Inicializa Firebase
+  const app = firebase.initializeApp(firebaseConfig);
+  const auth = firebase.auth();
+
+  // Comprobar el estado de autenticación
+  firebase.auth().onAuthStateChanged((user) => {
+    if (!user) {
+      // Si no hay usuario logueado, redirigir a la página de registro/inicio de sesión
+      window.location.href = 'https://arteypsique.com/';
+    }
+    // Si hay usuario logueado, puedes agregar lógica adicional aquí si es necesario
+  });
+</script>
+
+    
     <style>
         body {
             margin: 0;
