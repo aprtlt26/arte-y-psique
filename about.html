@@ -100,7 +100,7 @@ window.location.href = 'index.html';
     <style>
     
        
-      /* Estilos base para móviles */
+       /* Estilos base para móviles */
 body {
     font-family: "Anta", sans-serif;
     margin: 20px;
@@ -137,6 +137,16 @@ body {
         max-width: 90%; /* Ajusta el ancho máximo para aprovechar mejor el espacio */
     }
 }
+
+/* Estilos adicionales para mejorar la accesibilidad y la interacción */
+.nav-link, .navbar-brand, footer a {
+    touch-action: manipulation; /* Mejora la respuesta táctil en dispositivos móviles */
+}
+
+.hover-word:hover, .word-hover:hover, #menu-links a:hover, #logout-btn:hover, footer a:hover {
+    color: #3bc0ac; /* Cambia el color al hacer hover para mejorar la interactividad */
+}
+
 
              .anta-regular {
   font-family: "Anta", sans-serif;
@@ -535,3 +545,4 @@ Puedes componer piezas sonoras con los tracks de audio, y estos servirán como m
 </body>
 
 </html>
+
