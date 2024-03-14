@@ -100,19 +100,43 @@ window.location.href = 'index.html';
     <style>
     
        
-        body {
-                        background-color: #ffffff;
-                        font-family: "Anta", sans-serif;
-            margin-top: 10px;
-            margin-left: 10px;
-            margin-right: 10px;
-            margin-bottom: 100px; 
-            background-image: url('collagetarot.gif' );
+      /* Estilos base para móviles */
+body {
+    font-family: "Anta", sans-serif;
+    margin: 20px;
+    background-color: #ffffff;
+    background-image: url('collagetarot.gif');
+    background-size: 40%;
+    background-position: center;
+}
 
-          
+/* Ajustes para dispositivos pequeños (menos de 768px) */
+@media (max-width: 768px) {
+    #text-container {
+        padding: 20px;
+        font-size: 14px; /* Aumenta la legibilidad */
+    }
+    
+    .navbar-toggler {
+        margin: 0 auto; /* Centra el botón del menú */
+    }
 
-            
-        }
+    .navbar-nav {
+        text-align: center;
+    }
+
+    footer {
+        padding: 10px 20px; /* Ajuste de padding para el footer */
+        font-size: 14px; /* Tamaño de texto adecuado para lectura */
+    }
+}
+
+/* Ajustes para tabletas (entre 768px y 1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+    #text-container {
+        max-width: 90%; /* Ajusta el ancho máximo para aprovechar mejor el espacio */
+    }
+}
 
              .anta-regular {
   font-family: "Anta", sans-serif;
