@@ -345,20 +345,27 @@ align-items: center;
 
         
 
-#text-container {
-
-    max-width: 800px; /* O el ancho que prefieras */
-    margin: auto; /* Esto centra el contenedor horizontalmente */
+        #text-container {
+    max-width: 800px; /* Ancho máximo para pantallas grandes */
+    margin: auto; /* Centra el contenedor */
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%); /* Esto centra el contenedor verticalmente */
+    transform: translate(-50%, -50%);
     padding: 30px;
-    background-color:rgb(249, 249, 249); /* Fondo blanco o el que prefieras */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave (opcional) */
-    border-radius: 10px; /* Bordes redondeados (opcional) */
+    background-color: rgb(249, 249, 249);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
     font-size: 80%;
-   
+}
+
+/* Ajustes para dispositivos móviles */
+@media (max-width: 768px) {
+    #text-container {
+        max-width: 90%; /* Ajusta el ancho máximo para pantallas pequeñas */
+        padding: 15px; /* Reduce el padding para más espacio */
+        font-size: 16px; /* Ajusta el tamaño de la fuente para mejor legibilidad */
+    }
 }
 #text-container:hover{
     color: #3bc0ac;
