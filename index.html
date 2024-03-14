@@ -13,9 +13,9 @@
     
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anta&family=Kode+Mono:wght@400..700&display=swap" rel="stylesheet">
-<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anta&family=Kode+Mono:wght@400..700&display=swap" rel="stylesheet">
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js"></script>
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
@@ -32,15 +32,7 @@
         };
 
         // Inicializa Firebase
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-
-        onAuthStateChanged(auth, user => {
-            if (!user) {
-                // Si el usuario no está autenticado, redirigir a la página de login
-                window.location.href = 'https://www.tupagina.com/login';
-            }
-        });
+        
     </script>
 
     <script>
@@ -222,7 +214,7 @@ section{ padding: 50px;}
 <header id="header">
     <header class="container">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="index.html" style="color: rgb(189, 230, 219);">ARTE & PSIQUE</a>
+            <a class="navbar-brand" href="about.html" style="color: rgb(189, 230, 219);">ARTE & PSIQUE</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             </button>
@@ -314,7 +306,7 @@ function toggleForm() {
       console.log("Usuario registrado:", userCredential.user);
       await setDoc(doc(db, "usuarios", userCredential.user.uid), { nombre, correo });
       alert("Usuario registrado exitosamente.");
-      window.location.href = 'https://www.arteypsique.com/about'; // Ajusta esta URL si es necesario
+      window.location.href = 'https://arteypsique.com/about'; // Ajusta esta URL si es necesario
 
     } catch (error) {
       console.error("Error al registrar el usuario:", error);
@@ -329,7 +321,7 @@ function toggleForm() {
       const userCredential = await signInWithEmailAndPassword(auth, correo, clave);
       console.log("Usuario logueado:", userCredential.user);
       alert("Inicio de sesión exitoso.");
-          window.location.href = 'https://www.arteypsique.com/about'; // Ajusta esta URL si es necesario
+          window.location.href = 'https://arteypsique.com/collage'; // Ajusta esta URL si es necesario
 
     } catch (error) {
       console.error("Error al iniciar sesión:", error);
