@@ -8,13 +8,40 @@
     <meta name="description" content="About">
     <meta name="keywords" content="Cursoonline, tarot, alfonsopretelt, collage, eorsión">
     <meta name="author" content="alfonsopretelt">
-    <meta name="robots" content="arteypsique">
+    <meta name="robots" content="Learning">
     <meta name="google" content="translate">
     
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anta&family=Kode+Mono:wght@400..700&display=swap" rel="stylesheet">
+<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js"></script>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
 
+        // Configuración de Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyARA9tqBfkiFK80XcaWtS1ar6yglfmEh3g",
+    authDomain: "artepsique-9ced7.firebaseapp.com",
+    projectId: "artepsique-9ced7",
+    storageBucket: "artepsique-9ced7.appspot.com",
+    messagingSenderId: "269569252943",
+    appId: "1:269569252943:web:b185a96dee1ff30ab2d43a"
+        };
+
+        // Inicializa Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        onAuthStateChanged(auth, user => {
+            if (!user) {
+                // Si el usuario no está autenticado, redirigir a la página de login
+                window.location.href = 'https://www.tupagina.com/login';
+            }
+        });
+    </script>
 
     <script>
         document.addEventListener('contextmenu', function (e) {
@@ -37,94 +64,68 @@
   font-style: normal;
 }
         .section {
-            padding: 70px; /* Reducido el padding para móviles */
+            padding: 40px; /* Reducido el padding para móviles */
             text-align: center;
 
         }
 
-        header {
-            width: 100%;
-            background-color: #000000;
-            padding: 20px;
-            text-align: center;
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 1;
-    
-        }
-
-        .navbar-brand {
-            font-size: 1.1rem; /* Tamaño de la fuente del nombre del sitio */
-            border: 2px dashed #5d626b;
-            color: #fbfbfb;
-            
-        }
-
-
-
-        .navbar.navbar-expand-lg.navbar-light.bg-light {
-    background-color: #000000 !important; /* Cambia el color de fondo a azul */
-    color: #fbfbfb !important; /* Cambia el color del texto a blanco */
-    border: 2px dashed #5d626b;
-    margin-left: 20%;
+        .header .container {
+    display: flex; /* Utiliza Flexbox */
+    justify-content: center; /* Centra los contenidos horizontalmente */
+    align-items: center; /* Centra los contenidos verticalmente */
+    width: 100%; /* Asegura que el contenedor ocupe todo el ancho */
 }
 
-     
+        .navbar {
+    display: flex; /* Usa Flexbox para el diseño */
+    justify-content: center; /* Centra los elementos horizontalmente */
+    align-items: center; /* Centra los elementos verticalmente */
+    background-color: #000 !important; /* Color de fondo negro */
+    color: #fbfbfb !important; /* Color de texto blanco */
+    border: 2px dashed #5d626b; /* Borde personalizado */
+}
 
-        .navbar-nav .nav-link {
-            font-size: 1rem; /* Tamaño de la fuente de los enlaces del menú */
-            color: #3bc0ac; /* Color del texto de los enlaces */
-            transition: color 0.3s; /* Transición suave del color del texto */
-            margin: 0 15px; /* Espacio entre los enlaces */
-        }
+/* Estilos específicos para el .navbar-brand */
+.navbar-brand {
+    display: flex; /* Usa Flexbox para el diseño */
+    justify-content: center; /* Centra los elementos horizontalmente */
+    align-items: center; /
+    font-size: 1.1rem; /* Tamaño de la fuente */
+    color: #fbfbfb; /* Color de texto */
+    border: 2px dashed #5d626b; /* Borde personalizado */
+   
+}
 
-        .navbar-nav .nav-link:hover {
-            color: #55d1ba; /* Color del texto al pasar el mouse sobre los enlaces */
-            border: 2px dashed #5ac6cc;
+@media (max-width: 768px) {
+    .navbar {
+        justify-content: center;
+        align-items: center;
+        text-align: center; /* Asegura que el texto también esté centrado */
+    }
 
-        }
-       
+    .navbar-brand {
+        width: 100%; /* Ocupa todo el ancho disponible para asegurar el centrado */
+        display: block; /* Trata el elemento como un bloque para mejor manejo del centrado */
+    }
+
+    /* Asegúrate de que todos los elementos del navbar estén centrados en dispositivos móviles */
+    .navbar-nav,
+    .navbar-toggler {
+        justify-content: center;
+        width: 100%; /* Ocupa todo el ancho para elementos internos también */
+    }
+}
+/* Para asegurar que el navbar se expanda adecuadamente en dispositivos grandes */
+@media (min-width: 992px) {
+    .navbar {
+        justify-content: center; /* Mantiene el contenido centrado en dispositivos grandes */
+    }
+}
 
         .navbar-toggler {
             border: 2px dashed #5d626b;
             color: #fbfbfb
 
-        }
-
-        .navbar-toggler-icon {
-            background-color: #ffffff; /* Color del icono del menú desplegable */
-            border: 2px dashed #5d626b;
-
-
-        }
-
-        .navbar-toggler:focus {
-            outline: none; /* Quita el contorno al enfocar el botón del menú desplegable */
-        }
-
-        .navbar-collapse {
-            background-color: #000000; /* Color de fondo del menú desplegable */
-            border: 2px dashed #5d626b;
-
-        }
-
-        .navbar-collapse .navbar-nav .nav-link {
-            padding: 15px 0; /* Espaciado entre los enlaces del menú desplegable */
-            border-bottom: none; /* Borde inferior entre los enlaces */
-            color: #fbfbfb
-        }
-
-        .navbar-collapse .navbar-nav .nav-link:last-child {
-            border-bottom: none; /* Quita el borde inferior del último enlace */
-            
-        }
-
-        @media screen and (max-width: 576px) {
-            .navbar-nav .nav-link {
-                font-size: 0.9rem; /* Tamaño de la fuente de los enlaces en dispositivos móviles */
-                margin: 10px 15px; /* Espacio entre los enlaces en dispositivos móviles */
-            }
         }
 
         .section img {
@@ -150,6 +151,7 @@
         #login-form, #register-form {
             max-width: 400px;
             margin: 0 auto;
+            margin-top: 40px;
             padding: 20px;
             border: 2px dashed #dedede;
             border-radius: 5px;
@@ -191,14 +193,14 @@ input[type="password"] {color: #cfcfcf;}
         }
 h2{
     color: rgb(230, 226, 189);
+   
 
 }
 h3{
     color: rgb(230, 226, 189);
-
 }
 
-section{ padding: 30px;}
+section{ padding: 50px;}
      
     </style>
 </head>
@@ -210,15 +212,8 @@ section{ padding: 30px;}
             <a class="navbar-brand" href="about.html" style="color: rgb(189, 230, 219);">ARTE & PSIQUE</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <div id="menu-links" class="navbar-nav">
-                    <a class="nav-link" href="Aprendizaje.html">Curso</a>
-                    <a class="nav-link" href="https://soundtarot.com/">Tarot FQ</a>
-
-                </div>
-            </nav>
+           
     </header>
 
     <section></section>
@@ -306,7 +301,7 @@ function toggleForm() {
       console.log("Usuario registrado:", userCredential.user);
       await setDoc(doc(db, "usuarios", userCredential.user.uid), { nombre, correo });
       alert("Usuario registrado exitosamente.");
-      window.location.href = 'https://www.arteypsique.com/about.html'; // Ajusta esta URL si es necesario
+      window.location.href = 'https://www.arteypsique.com/about'; // Ajusta esta URL si es necesario
 
     } catch (error) {
       console.error("Error al registrar el usuario:", error);
@@ -321,7 +316,7 @@ function toggleForm() {
       const userCredential = await signInWithEmailAndPassword(auth, correo, clave);
       console.log("Usuario logueado:", userCredential.user);
       alert("Inicio de sesión exitoso.");
-          window.location.href = 'https://www.arteypsique.com/about.html'; // Ajusta esta URL si es necesario
+          window.location.href = 'https://www.arteypsique.com/about'; // Ajusta esta URL si es necesario
 
     } catch (error) {
       console.error("Error al iniciar sesión:", error);
