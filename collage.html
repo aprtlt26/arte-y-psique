@@ -23,11 +23,11 @@
 <link href="https://fonts.googleapis.com/css2?family=Anta&family=Kode+Mono:wght@400..700&display=swap" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet">
 
-    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js"></script>
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
-    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
+    import { getAuth, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
 
     // Configuración de Firebase
     const firebaseConfig = {
@@ -50,18 +50,48 @@ if (user) {
     // Aquí puedes incluir más lógica, como cargar datos del usuario, etc.
 } else {
     // Si el usuario no está autenticado, redirige a la página de login
-    window.location.href = 'https://arteypsique.com/';
+    window.location.href = 'https://arteypsique.com';
 }
 });
-    </script>
-
-    <script>
+   
+  
 
         
   document.addEventListener('contextmenu', function(e) {
     e.preventDefault();
     alert('El clic derecho está desactivado en esta página.');
   }, false);
+
+ 
+
+
+
+onAuthStateChanged(auth, user => {
+document.getElementById('loading').style.display = 'none';
+if (user) {
+document.body.style.display = "block";
+} else {
+window.location.href = 'https://arteypsique.com/collage';
+}
+});
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const logoutButton = document.getElementById('logout-btn');
+
+    logoutButton.addEventListener('click', () => {
+        const auth = getAuth();
+        signOut(auth).then(() => {
+            // Cierre de sesión exitoso
+            console.log('Usuario ha cerrado sesión');
+            window.location.href = 'https://arteypsique.com'; // Redirecciona a la página de inicio de sesión o a donde prefieras
+        }).catch((error) => {
+            // Ha ocurrido un error
+            console.error('Error al cerrar sesión', error);
+        });
+    });
+});
 
   
 </script>
@@ -70,8 +100,6 @@ if (user) {
     
        
         body {
-                display: none;
-
                         background-color: #ffffff;
                         font-family: "Anta", sans-serif;
             margin-top: 20px;
@@ -443,21 +471,7 @@ align-items: center;
         margin-top: 35vh; /* Ajusta según el espacio requerido por la galería */
     }
 }
-/* Estilos específicos para iPhone SE */
-@media only screen 
-  and (min-device-width: 375px) /* Ancho mínimo */
-  and (max-device-width: 667px) /* Ancho máximo */
-  and (-webkit-min-device-pixel-ratio: 2), /* Densidad de píxeles para Retina Display */
-  only screen 
-  and (min-device-width: 320px) /* Ancho mínimo para SE de 1ª generación */
-  and (max-device-width: 568px) /* Ancho máximo para SE de 1ª generación */
-  and (-webkit-min-device-pixel-ratio: 2) { /* Densidad de píxeles para Retina Display */
-    
-    #gallery-container img,  {
-        width:5%;
-            height: 5%; /* Mantiene la proporción */
-       rtical para la segunda galería */
-    }
+
     #gallery-container-2 img {width: 20px; /* Reduce el tamaño para ajustarse a la pantalla más pequeña */
         height: auto; /* Mantiene la proporción */
         margin-right: 4px; /* Espaciado reducido entre imágenes */
@@ -473,13 +487,13 @@ align-items: center;
         white-space: nowrap; /* Alinea las imágenes horizontalmente */
         padding: 5px; /* Añade un poco de relleno alrededor */
     }
-    }
+    
     
     #collage-container {
         margin-top: 45vh; /* Ajuste para asegurar visibilidad de la galería */
         height: calc(100vh - 100px); /* Altura ajustada para permitir interacción */
     }
-
+ 
 
 
 
@@ -891,6 +905,8 @@ background-color: rgb(218, 212, 252)
 <body>
 
     <header id="header">
+        <button id="logout-btn">Cerrar Sesión</button>
+
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" href="index.html">ARTE & PSIQUE</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
@@ -905,11 +921,6 @@ background-color: rgb(218, 212, 252)
                 </div>
             </nav>
 
-  <div id="loading" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; background: rgb(255, 255, 255); color: rgb(0, 255, 21); z-index: 1000;">
-            Cargando...
-<img src="collagetarot.gif" alt="">        </div>
-        
-        <script>
 
         </header>
 
@@ -986,17 +997,16 @@ background-color: rgb(218, 212, 252)
     <span class="hover-text">Sountracks</span>
 </div>
 
-    <script>
+    
 
-onAuthStateChanged(auth, user => {
-    document.getElementById('loading').style.display = 'none';
-    if (user) {
-        document.body.style.display = "block";
-    } else {
-        window.location.href = 'https://arteypsique.com/about';
-    }
-});
-        </script>
+
+
+<div id="loading" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; background: rgb(255, 255, 255); color: rgb(0, 255, 21); z-index: 1000;">
+    Cargando...
+<img src="collagetarot.gif" alt="">        </div>
+
+
+
     
     
     <script>
@@ -1602,4 +1612,5 @@ document.getElementById('stop-audios-button').addEventListener('click', function
 </body>
 
 </html>
+
 
