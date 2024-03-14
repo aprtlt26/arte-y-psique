@@ -1,266 +1,511 @@
-<!DOCTYPE html>
-<html lang="es">
 
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="description" content="Alfonso Pretelt Artista">
-    <meta name="keywords" content="arquetipos, arcanos, tarot, alfonsopretelt,">
+    <meta name="keywords" content="collage, alfonsopretelt,tarot,erosion,">
     <meta name="author" content="alfonsopretelt">
-    <meta name="robots" content="index,">
+    <meta name="robots" content="collage">
     <meta name="google" content="translate">
-    <meta property="og:image" content="rostro.jpg">
+    <meta property="og:image" content="log.png">
+    <title>ART & PSYCHE</title>
+    <script src="https://cdn.jsdelivr.net/npm/interactjs@1.10.11/dist/interact.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/RecordRTC/5.6.1/RecordRTC.min.js"></script>
 
-    <title>ART & PSYCH</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+       <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anta&family=Kode+Mono:wght@400..700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet">
 
 <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js"></script>
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
+    import { getAuth, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
 
-<script>
-  // Configuración de Firebase
-  const firebaseConfig = {
-    apiKey: "AIzaSyARA9tqBfkiFK80XcaWtS1ar6yglfmEh3g",
-    authDomain: "artepsique-9ced7.firebaseapp.com",
-    projectId: "artepsique-9ced7",
-    storageBucket: "artepsique-9ced7.appspot.com",
-    messagingSenderId: "269569252943",
-    appId: "1:269569252943:web:b185a96dee1ff30ab2d43a"
-  };
+    // Configuración de Firebase
+    const firebaseConfig = {
+        apiKey: "AIzaSyARA9tqBfkiFK80XcaWtS1ar6yglfmEh3g",
+authDomain: "artepsique-9ced7.firebaseapp.com",
+projectId: "artepsique-9ced7",
+storageBucket: "artepsique-9ced7.appspot.com",
+messagingSenderId: "269569252943",
+appId: "1:269569252943:web:b185a96dee1ff30ab2d43a"
+    };
+    document.addEventListener('DOMContentLoaded', () => {
 
-  // Inicializa Firebase
-  const app = firebase.initializeApp(firebaseConfig);
-  const auth = firebase.auth();
+    // Inicializa Firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
 
-  // Comprobar el estado de autenticación
-  firebase.auth().onAuthStateChanged((user) => {
-    if (!user) {
-      // Si no hay usuario logueado, redirigir a la página de registro/inicio de sesión
-      window.location.href = 'https://arteypsique.com/';
-    }
-    // Si hay usuario logueado, puedes agregar lógica adicional aquí si es necesario
-  });
+        onAuthStateChanged(auth, user => {
+if (user) {
+    // Si el usuario está autenticado, muestra el contenido de la página
+    document.body.style.display = "block";
+    // Aquí puedes incluir más lógica, como cargar datos del usuario, etc.
+} else {
+    // Si el usuario no está autenticado, redirige a la página de login
+    window.location.href = 'index.html';
+}
+});
+   
+  
+
+        
+  document.addEventListener('contextmenu', function(e) {
+    e.preventDefault();
+    alert('El clic derecho está desactivado en esta página.');
+  }, false);
+
+ 
+
+
+
+onAuthStateChanged(auth, user => {
+document.getElementById('loading').style.display = 'none';
+if (user) {
+document.body.style.display = "block";
+} else {
+window.location.href = 'index.html';
+}
+});
+
+
+
+    const logoutButton = document.getElementById('logout-btn');
+
+    logoutButton.addEventListener('click', () => {
+        const auth = getAuth();
+        signOut(auth).then(() => {
+            // Cierre de sesión exitoso
+            console.log('Usuario ha cerrado sesión');
+            window.location.href = 'https://arteypsique.com'; // Redirecciona a la página de inicio de sesión o a donde prefieras
+        }).catch((error) => {
+            // Ha ocurrido un error
+            console.error('Error al cerrar sesión', error);
+        });
+    });
+});
+
+  
 </script>
 
-    
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            height: 100vh;
-            background-color: #ffffff;
-            font-family: Arial, sans-serif; /* Cambia la fuente según tus preferencias */
-        }
+    
        
-        header {
-            width: 100%;
-            background-color: #ffffff;
-            padding: 20px;
-            color: #000000;
-            text-align: left;
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 1;
+        body {
+                        background-color: #ffffff;
+                        font-family: "Anta", sans-serif;
+            margin-top: 10px;
+            margin-left: 10px;
+            margin-right: 10px;
+            margin-bottom: 100px; 
+            background-image: url('collagetarot.gif' );
+
+          
+
+            
         }
 
-        .navbar-brand {
-            font-size: 1.2rem; /* Tamaño de la fuente del nombre del sitio */
-        }
+             .anta-regular {
+  font-family: "Anta", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
 
+     
+
+#header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    left: 0;
+    z-index: 1050; /* Eleva el z-index para que esté sobre otros elementos */
+    position: fixed;
+
+
+}
+
+
+#navbar {
+    display: flex; /* Usa Flexbox para el diseño */
+    justify-content: center; /* Centra los elementos horizontalmente */
+    align-items: center; /* Centra los elementos verticalmente */
+    color: #fbfbfb !important; /* Color de texto blanco */
+    border: 2px dashed #5d626b; /* Borde personalizado */
+    margin-right: auto; /* Centra el navbar ajustando automáticamente el margen derecho */
+    margin-left: auto;
+    position: fixed
+
+
+}
+
+
+
+#navbar-brand {
+    display: flex; /* Usa Flexbox para el diseño */
+    justify-content: center; /* Centra los elementos horizontalmente */
+    align-items: center; 
+    font-size: 1.1rem; /* Tamaño de la fuente */
+    margin-top: 2px;
+    padding: 8px;
+    background-color:  transparent;
+
+
+}
+
+        
+        #navbar.navbar-expand-lg.navbar-light.bg-light {
+padding: 5px;
+            display: flex;
+            justify-content: center; /* Centra los elementos horizontalmente */
+    align-items: center; 
+    background-color: transparent; 
+    border: 2px dashed #c4d49c;
+    z-index: 1050; /* Eleva el z-index para que esté sobre otros elementos */
+
+}
         .navbar-nav .nav-link {
-            font-size: 1rem; /* Tamaño de la fuente de los enlaces del menú */
-            color: #3bc0ac; /* Color del texto de los enlaces */
-            transition: color 0.3s; /* Transición suave del color del texto */
-            margin: 0 15px; /* Espacio entre los enlaces */
+            font-size: 1rem; 
+            color: #3bc0ac; 
+            transition: color 0.3s; 
+            margin: 0 15px; 
         }
 
         .navbar-nav .nav-link:hover {
-            color: #55d1ba; /* Color del texto al pasar el mouse sobre los enlaces */
+            color: #55d1ba; 
+            border: 2px dashed  #c4d49c
+
         }
        
 
+@media (max-width: 768px) {
+    .navbar {
+        justify-content: center;
+        align-items: center;
+        text-align: center; /* Asegura que el texto también esté centrado */
+        background-color: transparent; 
+
+    }
+
+    .navbar-brand {
+        width: 100%; /* Ocupa todo el ancho disponible para asegurar el centrado */
+        display: block; /* Trata el elemento como un bloque para mejor manejo del centrado */
+        background-color: transparent; 
+
+    }
+
+    /* Asegúrate de que todos los elementos del navbar estén centrados en dispositivos móviles */
+    .navbar-nav,
+    .navbar-toggler {
+        justify-content: center;
+        width: 100%; /* Ocupa todo el ancho para elementos internos también */
+
+    }
+}
+/* Para asegurar que el navbar se expanda adecuadamente en dispositivos grandes */
+@media (min-width: 992px) {
+    .navbar {
+        justify-content: center; /* Mantiene el contenido centrado en dispositivos grandes */
+        z-index: 1;
+    }
+}
+
         .navbar-toggler {
-            border: none; /* Quita el borde del botón del menú desplegable */
+            border: 2px dashed  #c4d49c
         }
 
         .navbar-toggler-icon {
-            background-color: #cdcdcd; /* Color del icono del menú desplegable */
+            background-color: #ffffff; 
+            border: 2px dashed  #c4d49c
+
         }
 
         .navbar-toggler:focus {
-            outline: none; /* Quita el contorno al enfocar el botón del menú desplegable */
+            outline: none; 
         }
 
-        .navbar-collapse {
-            background-color: #ffffff; /* Color de fondo del menú desplegable */
+          .navbar-collapse {
+            background-color: #ffffff; 
+            border: 2px dashed  #c4d49c
 
         }
 
         .navbar-collapse .navbar-nav .nav-link {
-            padding: 15px 0; /* Espaciado entre los enlaces del menú desplegable */
-            border-bottom: 1px solid #ffffff; /* Borde inferior entre los enlaces */
+            padding: 15px 0; 
         }
 
         .navbar-collapse .navbar-nav .nav-link:last-child {
-            border-bottom: none; /* Quita el borde inferior del último enlace */
+            border-bottom: none; 
         }
 
-    
-
-        #video-container {
-            position: relative;
-            width: 100%;
-            max-width: 100%;
-            height: auto;
-            overflow: hidden;
-            margin-top: 20px;
-        }
-
-        #video-container video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-      
-        #register-button {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 2;
-            background-color: transparent rgb(62, 12, 132);
-            border: none;
-            color: rgb(117, 219, 188);
-            font-size: 15px;
-            padding: 8px 15px;
-            cursor: pointer;
-            outline: none;
-        }
-
- 
-
-        @media screen and (max-width: 768px) {
-            #video-container {
-                margin-top: 100px;
-                width: 100%;
-            height: 100%;
-            object-fit: cover;
-            }
-        }
-
+        
         @media screen and (max-width: 576px) {
-            #video-container {
-                margin-top: 100px;
-                width: 100%;
-            height: 100%;
-            object-fit: cover;
-            }
+    .navbar-nav {
+        font-size: 0.9rem;
+        margin: 10px 15px;
+        width: 80%; /* Hace que la barra de menú use todo el ancho disponible */
+        text-align: center; /* Centra el texto de los enlaces */
+align-items: center;
+    }
+
+    .navbar {
+        width: 80%; /* Asegura que el elemento navbar también ocupe todo el ancho */
+        text-align: center; /* Centra el texto de los enlaces */
+
+        
+    }
+
+    .navbar-collapse {
+        width: 80%; /* Hace que el contenido colapsable de la navbar ocupe todo el ancho */
+        text-align: center; /* Centra el texto de los enlaces */
+
+    }
+
+    .navbar-toggler {
+        margin-right: 0; /* Elimina el margen derecho para alinear el toggler a la derecha */
+        text-align: center; /* Centra el texto de los enlaces */
+;
+
+    }
+
+    .navbar-nav .nav-link {
+        text-align: center; /* Centra el texto de los enlaces */
+    }
+}
+
+
+
+        #menu-links a {
+            color: #767676; 
+            text-decoration: none;
+            margin: 0 20px; 
         }
-    /* Estilos generales aquí */
 
-/* Estilos específicos para iPad Air (por ejemplo, 9.7" y 10.5") */
-@media only screen 
-  and (min-device-width: 768px) 
-  and (max-device-width: 1024px) 
-  and (-webkit-min-device-pixel-ratio: 2) {
-    /* Tus estilos específicos para iPad Air aquí */
-    #video-container video {
-        /* Asegura que el video cubra toda la pantalla */
-        min-height: 100vh;
-    }
+        #menu-links a:hover {
+         border: 2px dashed  #c4d49c      
+          }
 
-    /* Otros estilos específicos para iPad Air */
+        #header img {
+            width: 75px;
+            height: auto;
+            margin-right: 10px;
+        }
+
+        img[src="Capa%2031@3x.png"] {
+            display: none;
+        }
+
+        .section {
+            padding: 20px; 
+            text-align: center;
+        }
+
+        
+
+#text-container {
+
+    max-width: 800px; /* O el ancho que prefieras */
+    margin: auto; /* Esto centra el contenedor horizontalmente */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Esto centra el contenedor verticalmente */
+    padding: 30px;
+    background-color:rgb(249, 249, 249); /* Fondo blanco o el que prefieras */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave (opcional) */
+    border-radius: 10px; /* Bordes redondeados (opcional) */
+    font-size: 80%;
+   
+}
+#text-container:hover{
+    color: #3bc0ac;
 }
 
-/* Estilos específicos para iPad Pro (11" y 12.9") */
-@media only screen 
-  and (min-device-width: 1024px) 
-  and (max-device-width: 1366px) 
-  and (-webkit-min-device-pixel-ratio: 2) {
-    /* Tus estilos específicos para iPad Pro aquí */
-    #video-container video {
-        /* Asegura que el video cubra toda la pantalla */
-        min-height: 100vh;
-    }
+#text-container span {
+            transition: color 0.3s ease; /* Suaviza la transición del color */
+            cursor: pointer; /* Cambia el cursor a tipo puntero para indicar interactividad */
+        }
 
-    /* Otros estilos específicos para iPad Pro */
+        #text-container span:hover {
+            color: #00ff9d; /* Cambia el color de la palabra al hacer hover (ajusta este color a tu preferencia) */
+        }
+
+
+#logout-btn{
+    color: gray;
+    background-color: #fff;
+    border: none;
+
+}
+#logout-btn:hover{
+    border: 2px dashed  #c4d49c
 }
 
-/* Considera añadir estilos para orientaciones específicas si es necesario */
-@media only screen 
-  and (min-device-width: 768px) 
-  and (max-device-width: 1024px) 
-  and (orientation: landscape) 
-  and (-webkit-min-device-pixel-ratio: 2) {
-    /* Estilos para iPad Air en orientación horizontal */
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: transparent; /* Color de fondo del footer */
+
+    box-shadow: 0 5px 6px rgba(0, 0, 0, 0.1); /* Sombra suave (opcional) */
+
+
+    color: rgb(103, 103, 103); /* Color del texto */
+    text-align: center; /* Centra el texto horizontalmente */
+    padding: 5px 0; /* Añade un poco de espacio dentro del footer */
 }
 
-@media only screen 
-  and (min-device-width: 1024px) 
-  and (max-device-width: 1366px) 
-  and (orientation: landscape) 
-  and (-webkit-min-device-pixel-ratio: 2) {
-    /* Estilos para iPad Pro en orientación horizontal */
+footer a {
+    color: #515151; /* Color de los enlaces */
+    text-decoration: none; /* Elimina el subrayado de los enlaces */
+    
 }
 
-         
+footer a:hover {
+color: #00f7b5;
+text-decoration: none; /* Elimina el subrayado de los enlaces */
+
+}
+
+#text-container{
+    color: rgb(121, 121, 121);
+}
+.word-hover:hover {
+    color: #75fa00; /* Cambia el color al pasar el mouse */
+    cursor: pointer;
+    /* Agrega aquí más estilos si necesitas */
+}
+
+</style>
+
     </style>
 </head>
 
 <body>
 
-    <header>
+    <header id="header">
 
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="index.html">ART & PSYCHE</a>
+            <a class="navbar-brand" href="about.html">ARTE & PSIQUE</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <div id="menu-links" class="navbar-nav">
-                    <a class="nav-link" href="Virtual Learning.html">Curso</a>
-                    <a class="nav-link" href="https://soundtarot.com/">Tarot FQ</a>
-                    <a class="nav-link" href="collage.html">Collage</a>
+                    <a class="nav-link" href="Aprendizaje.html">Curso</a>
+                    
+<a class="nav-link" href="opensoundt.html" target="_blank">Tarot FQ</a>
+<a class="nav-link" href="collage.html">Collage</a>
+
+<button id="logout-btn">Cerrar Sesión</button>
+
                 </div>
-            </div>
-        </nav>
-    </header>
+            </nav>
 
-    <!-- Contenedor del video -->
-    <div id="video-container">
-        <video autoplay muted loop id="background-video">
-            Tu navegador no soporta la etiqueta de video.
-        </video>
-    </div>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script>
-        // Array de los nombres de los videos disponibles
-        var videos = ['vid3.mp4', 'collagetarot.mp4', 'vid2.mp4','vid1.mp4', 'vid4.mp4']
 
-        // Función para seleccionar un video aleatorio y establecerlo como fuente del video de fondo
-        function changeBackgroundVideo() {
-            var randomIndex = Math.floor(Math.random() * videos.length);
-            var video = document.getElementById('background-video');
-            video.src = videos[randomIndex];
-            video.load();
-        }
+        </header>
 
-        // Llamar a la función cuando se carga la página
-        window.onload = function () {
-            changeBackgroundVideo();
-        };
+
+        <div id="loading" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; background: rgb(255, 255, 255); color: rgb(0, 255, 21); z-index: 1000;">
+            Cargando...
+        <img src="collagetarot.gif" alt="">        </div>
+       
+        <div>
+
+        </div>
+
+        <section>
+        </section>
+        
+
+       
+<p> 
+
+
+</p>
+
+
+<div id="text-container">
+</div>
+
+<script>
+function typeWriter(element, text, i, interval) {
+    // Divide el texto en palabras basado en espacios
+    const words = text.split(' ');
+
+    // Si el índice actual es menor que la longitud del arreglo de palabras, sigue añadiendo palabras
+    if (i < words.length) {
+        // Añade la palabra actual al contenedor, seguido de un espacio para separar las palabras
+        element.innerHTML += words[i] + ' ';
+        i++;
+
+        // Espera un poco antes de añadir la siguiente palabra
+        setTimeout(function() {
+            typeWriter(element, text, i, interval);
+        }, interval);
+    }
+}
+
+window.onload = function() {
+    const text = `Bienvenido a Arte & Pisque. ******................................................................................................................................................
+
+     Una plataforma de aprendizaje y creación para la erosión del inconsciente*****......................................................
+Soy Alfonso Pretelt y he creado este espacio [que sigo desarrollando y actualizando] especialmente para ti, que buscas herramientas no convencionales para la profundización de tus conocimientos generales en cualquier ámbito de creación o reflexión, inspiración para la composición poética o indagar en tu propio inconsciente por medio de la interacción. 
+............................................................................................................................................................................................................
+
+"Colllage": Funciona creando nuevos arcanos, mezclando partes de cada uno, cada pieza que sueltas en el contenedor, habla por el arcano al que pertenece. 
+Al final, obtienes un collage y un poema único que puedes escuchar. *****
+
+Puedes componer piezas sonoras con los tracks de audio, y estos servirán como música de fondo para la poesía, o dar rienda suelta a tu creatividad.****
+................................................................................................................................................................................................................
+"Tarot FQ {frecuencias}" 
+    Por medio de tu fecha de nacimiento o cualquier fecha, {Mes/Año/Día} obtendras una tirada de 3 cartas correspondientes a esta numerología, y 3 frecuencias sonoras correspondientes a estas cartas. Este sonido puede ser usado para la meditación, la danza, la performance, la escucha profunda, o la producción de audio. Y tus arcanos, desde luego te servirán para indagar en ti, toda tu vida.`;
+
+
+
+    const element = document.getElementById('text-container');
+    const interval = 75; // Ajusta este valor para cambiar la velocidad a la que se añaden las palabras
+    typeWriter(element, text, 0, interval);
+};
+</script>
+
+    
+ <script>
+ window.addEventListener('DOMContentLoaded', (event) => {
+    const container = document.getElementById('text-container');
+    const paragraphs = container.getElementsByTagName('p');
+    
+    Array.from(paragraphs).forEach(paragraph => {
+        let html = paragraph.innerHTML.split(' ').map(word => `<span>${word}</span>`).join(' ');
+        paragraph.innerHTML = html;
+    });
+});
+</script>
+
+</div>
+ <footer>
+    <p>
+        <small>Design and Develop by <a href="https://alfonsopretelt.com/" target="_blank">Alfonso Pretelt</a></small>
+    </p>
+</footer>
+
+
     </script>
-
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 
 </body>
