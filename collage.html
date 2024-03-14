@@ -38,8 +38,7 @@ storageBucket: "artepsique-9ced7.appspot.com",
 messagingSenderId: "269569252943",
 appId: "1:269569252943:web:b185a96dee1ff30ab2d43a"
     };
-
-        document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('DOMContentLoaded', () => {
 
     // Inicializa Firebase
     const app = initializeApp(firebaseConfig);
@@ -52,7 +51,7 @@ if (user) {
     // Aquí puedes incluir más lógica, como cargar datos del usuario, etc.
 } else {
     // Si el usuario no está autenticado, redirige a la página de login
-    window.location.href = 'https://arteypsique.com';
+    window.location.href = 'index.html';
 }
 });
    
@@ -73,7 +72,7 @@ document.getElementById('loading').style.display = 'none';
 if (user) {
 document.body.style.display = "block";
 } else {
-window.location.href = 'https://arteypsique.com/collage';
+window.location.href = 'index.html';
 }
 });
 
@@ -121,24 +120,49 @@ window.location.href = 'https://arteypsique.com/collage';
 
      
 
-        header {
-            width: 100%;
-            background-color: #ffffff;
-            padding: 20px;
-            color: #000000;
-            text-align: left;
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 1;
-        }
+.header .container {
+    display: flex; /* Utiliza Flexbox */
+    justify-content: center; /* Centra los contenidos horizontalmente */
+    align-items: center; /* Centra los contenidos verticalmente */
+    width: 100%; /* Asegura que el contenedor ocupe todo el ancho */
+}
 
-     .navbar-brand {
-            font-size: 1.2rem; 
-            border: 2px dashed #c4d49c
+.navbar {
+    display: flex; /* Usa Flexbox para el diseño */
+    justify-content: center; /* Centra los elementos horizontalmente */
+    align-items: center; /* Centra los elementos verticalmente */
+    background-color: #000 !important; /* Color de fondo negro */
+    color: #fbfbfb !important; /* Color de texto blanco */
+    border: 2px dashed #5d626b; /* Borde personalizado */
+    width: auto; /* Permite que la barra de navegación ajuste su tamaño automáticamente */
+    margin-top: 10px;
+    padding: 10px;  
+    margin-right: auto; /* Centra el navbar ajustando automáticamente el margen derecho */
+    margin-left: auto;
+ 
 
-        }
+}
 
+
+
+.navbar-brand {
+    display: flex; /* Usa Flexbox para el diseño */
+    justify-content: center; /* Centra los elementos horizontalmente */
+    align-items: center; 
+    font-size: 1.1rem; /* Tamaño de la fuente */
+    color: #fbfbfb; /* Color de texto */
+    border: 2px dashed #5d626b; /* Borde personalizado */
+    margin-top: 2px;
+    padding: 8px;
+    margin: 0
+    ;  margin-right: auto; /* Centra el navbar ajustando automáticamente el margen derecho */
+    margin-left: auto;
+  
+
+
+}
+
+        
         .navbar.navbar-expand-lg.navbar-light.bg-light {
     background-color: #ffffff !important; 
     color: #fbfbfb !important; 
@@ -159,6 +183,32 @@ window.location.href = 'https://arteypsique.com/collage';
 
         }
        
+
+@media (max-width: 768px) {
+    .navbar {
+        justify-content: center;
+        align-items: center;
+        text-align: center; /* Asegura que el texto también esté centrado */
+    }
+
+    .navbar-brand {
+        width: 100%; /* Ocupa todo el ancho disponible para asegurar el centrado */
+        display: block; /* Trata el elemento como un bloque para mejor manejo del centrado */
+    }
+
+    /* Asegúrate de que todos los elementos del navbar estén centrados en dispositivos móviles */
+    .navbar-nav,
+    .navbar-toggler {
+        justify-content: center;
+        width: 100%; /* Ocupa todo el ancho para elementos internos también */
+    }
+}
+/* Para asegurar que el navbar se expanda adecuadamente en dispositivos grandes */
+@media (min-width: 992px) {
+    .navbar {
+        justify-content: center; /* Mantiene el contenido centrado en dispositivos grandes */
+    }
+}
 
         .navbar-toggler {
             border: 2px dashed  #c4d49c
@@ -897,6 +947,15 @@ background-color: rgb(218, 212, 252)
     border: 2px dashed #90ff00;
 }
 
+#logout-btn{
+    color: gray;
+    background-color: #fff;
+    border: none;
+
+}
+#logout-btn:hover{
+    border: 2px dashed  #c4d49c
+}
 
 </style>
 
@@ -906,19 +965,19 @@ background-color: rgb(218, 212, 252)
 <body>
 
     <header id="header">
-        <button id="logout-btn">Cerrar Sesión</button>
 
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="index.html">ARTE & PSIQUE</a>
+            <a class="navbar-brand" href="about.html">ARTE & PSIQUE</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <div id="menu-links" class="navbar-nav">
-                    <a class="nav-link" href="Aprendizaje.html">Virtual Learn</a>
+                    <a class="nav-link" href="Aprendizaje.html">Curso</a>
 <a class="nav-link" href="opensoundt.html" target="_blank">Tarot FQ</a>
-                    <a class="nav-link" href="collage.html">Collage</a>
+<button id="logout-btn">Cerrar Sesión</button>
+
                 </div>
             </nav>
 
@@ -1613,5 +1672,6 @@ document.getElementById('stop-audios-button').addEventListener('click', function
 </body>
 
 </html>
+
 
 
