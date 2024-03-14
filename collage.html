@@ -39,6 +39,8 @@ messagingSenderId: "269569252943",
 appId: "1:269569252943:web:b185a96dee1ff30ab2d43a"
     };
 
+        document.addEventListener('DOMContentLoaded', () => {
+
     // Inicializa Firebase
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
@@ -50,7 +52,7 @@ if (user) {
     // Aquí puedes incluir más lógica, como cargar datos del usuario, etc.
 } else {
     // Si el usuario no está autenticado, redirige a la página de login
-    window.location.href = 'https://arteypsique.com/about';
+    window.location.href = 'https://arteypsique.com';
 }
 });
    
@@ -77,7 +79,6 @@ window.location.href = 'https://arteypsique.com/collage';
 
 
 
-document.addEventListener('DOMContentLoaded', () => {
     const logoutButton = document.getElementById('logout-btn');
 
     logoutButton.addEventListener('click', () => {
