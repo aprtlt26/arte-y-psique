@@ -1000,22 +1000,26 @@ background-color: rgb(218, 212, 252)
 
 
    <div>
-        <P>  - play cada vez que usas un soundtrack /// </P>
+        <P>  - Música[Dale play a cada audio - loop] /// </P>
     </div>
         
     <div>
-        <P>  - Arma tu collage -  </P>
+        <P>  - Img [Arma tu collage - Play al final]  </P>
     </div>
+
+
 
     <div>
-        <P>  - Escúchalo -  </P>
+        <P>  - Usa "<" para rotar la imagen-  </P>
     </div>
-
     <div></div>
-    <div>............................................................................................</div>
+    <div>..............</div>
 
     <div><p>Arte & Psique® All rights reserved. Alfonso Pretelt </p>
     </div>
+
+   
+
    
     <div class="=icons" > 
 
@@ -1664,6 +1668,44 @@ document.getElementById('stop-audios-button').addEventListener('click', function
     });
 });
 
+let isRotating = false; // Flag para controlar el estado de la rotación
+    let rotationInterval; // Variable para almacenar el intervalo de rotación
+
+    // Función para iniciar la rotación
+    function startRotation() {
+        const selectedImage = document.querySelector('.draggable.selected');
+        if (!selectedImage || isRotating) return;
+        
+        isRotating = true;
+        let angle = parseInt(selectedImage.getAttribute('data-angle') || '0');
+        
+        rotationInterval = setInterval(() => {
+            angle = (angle + 10) % 360; // Ajusta el ángulo de rotación
+            selectedImage.style.transform = `translate(${selectedImage.getAttribute('data-x') || 0}px, ${selectedImage.getAttribute('data-y') || 0}px) rotate(${angle}deg)`;
+            selectedImage.setAttribute('data-angle', angle.toString());
+        }, 20); // Ajusta la velocidad de rotación modificando el tiempo del intervalo
+    }
+
+    // Función para detener la rotación
+    function stopRotation() {
+        if (!isRotating) return;
+        
+        clearInterval(rotationInterval);
+        isRotating = false;
+    }
+
+    // Escuchar eventos de teclado para iniciar/detener la rotación
+    document.addEventListener('keydown', function(e) {
+        if (e.key === '<') { // Reemplaza '<' por la tecla específica que deseas usar
+            startRotation();
+        }
+    });
+
+    document.addEventListener('keyup', function(e) {
+        if (e.key === '<') { // Reemplaza '<' por la tecla específica que deseas usar
+            stopRotation();
+        }
+    });
 
     
 </script>
@@ -1672,6 +1714,7 @@ document.getElementById('stop-audios-button').addEventListener('click', function
 </body>
 
 </html>
+
 
 
 
