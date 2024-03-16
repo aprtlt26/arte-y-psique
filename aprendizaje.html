@@ -107,10 +107,8 @@ window.location.href = 'index.html';
        /* Estilos base para móviles */
 body {
     font-family: "Anta", sans-serif;
-    margin: 20px;
+    margin: 40px;
     background-color: #ffffff;
-    background-size: 40%;
-    background-position: center;
 }
 
 /* Ajustes para dispositivos pequeños (menos de 768px) */
@@ -159,7 +157,7 @@ body {
 
      
 
-#header {
+header{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -167,6 +165,7 @@ body {
     left: 0;
     z-index: 1050; /* Eleva el z-index para que esté sobre otros elementos */
     position: fixed;
+    background-color: transparent;
 
 
 }
@@ -213,6 +212,7 @@ padding: 5px;
     border: 2px dashed #c4d49c;
     z-index: 1050; /* Eleva el z-index para que esté sobre otros elementos */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: transparent;
 
 
 }
@@ -325,10 +325,7 @@ padding: 5px;
         }
 
         /* Estilos para la barra de menú */
-.navbar {
-    background-color: transparent !important; /* Hace la barra de menú transparente */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Agrega una sombra suave */
-}
+
 
 /* Estilos para el menú desplegable en versión móvil */
 
@@ -336,33 +333,6 @@ padding: 5px;
 /* Ajusta la transparencia del botón del menú desplegable para mejor coherencia visual */
 
 
-
-        #text-container {
-    max-width: 800px; /* Ancho máximo para pantallas grandes */
-    margin: auto; /* Centra el contenedor */
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 30px;
-    background-color: rgb(249, 249, 249);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    font-size: 80%;
-}
-
-/* Ajustes para dispositivos móviles */
-@media (max-width: 768px) {
-    #text-container {
-        max-width: 90%; /* Ajusta el ancho máximo para pantallas pequeñas */
-        padding: 15px; /* Reduce el padding para más espacio */
-        font-size: 16px; /* Ajusta el tamaño de la fuente para mejor legibilidad */
-    }
-}
-
-#text-container:hover{
-    color: #3bc0ac;
-}
 
 
 
@@ -398,24 +368,13 @@ footer a {
     
 }
 
-footer a:hover {
+#footer a:hover {
 color: #00f7b5;
 text-decoration: none; /* Elimina el subrayado de los enlaces */
 
 }
 
-#text-container{
-    color: rgb(121, 121, 121);
-}
-.word-hover:hover {
-    color: #75fa00; /* Cambia el color al pasar el mouse */
-    cursor: pointer;
-    /* Agrega aquí más estilos si necesitas */
-}
-        .section {
-            padding: 20px; /* Reducido el padding para móviles */
-            text-align: center;
-        }
+
 
 
   
@@ -475,6 +434,8 @@ text-decoration: none; /* Elimina el subrayado de los enlaces */
         .prev:hover, .next:hover {
             background-color: rgba(0, 0, 0, 0.8);
         }
+
+        
     </style>
 </head>
 <body>
@@ -503,7 +464,7 @@ text-decoration: none; /* Elimina el subrayado de los enlaces */
     <div class="row justify-content-center">
         <div class="col-6">
             <a href="index.html">
-                <img src="bgcat.gif" alt="Tu imagen" style="width: 300px; height: auto; margin: 0 auto 50px; margin-top:  30px; margin-left: 150px; padding-top: 50px;">
+                <img src="bgcat.gif" alt="Tu imagen" style="width: 300px; height: auto; margin-top:  30px; align-items: center; text-align: center; padding-top: 50px; display: flex;">
             </a>
         </div>
     </div>
@@ -514,14 +475,7 @@ text-decoration: none; /* Elimina el subrayado de los enlaces */
     </p>
 </footer>
 
-<div class="row">
-    <div class="col-10 offset-1 col-md-6 offset-md-3">
-        <audio controls style="padding-top: 30px;">
-            <source src="present.WAV" type="audio/mpeg">
-            Tu navegador no soporta el elemento de audio.
-        </audio>
-    </div>
-</div>
+
 
 <!-- Contenido de la sección "Aprendizaje Virtual" -->
 <div class="container-fluid section">
@@ -570,3 +524,4 @@ text-decoration: none; /* Elimina el subrayado de los enlaces */
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>
 </html>
+
