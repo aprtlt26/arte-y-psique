@@ -24,37 +24,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Anta&family=Kode+Mono:wght@400..700&display=swap" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet">
 
-<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js"></script>
-<script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
-    import { getAuth, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
-
-    // Configuración de Firebase
-    const firebaseConfig = {
-        apiKey: "AIzaSyARA9tqBfkiFK80XcaWtS1ar6yglfmEh3g",
-authDomain: "artepsique-9ced7.firebaseapp.com",
-projectId: "artepsique-9ced7",
-storageBucket: "artepsique-9ced7.appspot.com",
-messagingSenderId: "269569252943",
-appId: "1:269569252943:web:b185a96dee1ff30ab2d43a"
-    };
-    document.addEventListener('DOMContentLoaded', () => {
-
-    // Inicializa Firebase
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-
-        onAuthStateChanged(auth, user => {
-if (user) {
-    // Si el usuario está autenticado, muestra el contenido de la página
-    document.body.style.display = "block";
-    // Aquí puedes incluir más lógica, como cargar datos del usuario, etc.
-} else {
-    // Si el usuario no está autenticado, redirige a la página de login
-    window.location.href = 'index.html';
-}
-});
+<scrit> 
    
   
 
@@ -68,31 +38,11 @@ if (user) {
 
 
 
-onAuthStateChanged(auth, user => {
-document.getElementById('loading').style.display = 'none';
-if (user) {
-document.body.style.display = "block";
-} else {
-window.location.href = 'index.html';
-}
-});
 
 
 
-    const logoutButton = document.getElementById('logout-btn');
 
-    logoutButton.addEventListener('click', () => {
-        const auth = getAuth();
-        signOut(auth).then(() => {
-            // Cierre de sesión exitoso
-            console.log('Usuario ha cerrado sesión');
-            window.location.href = 'https://arteypsique.com'; // Redirecciona a la página de inicio de sesión o a donde prefieras
-        }).catch((error) => {
-            // Ha ocurrido un error
-            console.error('Error al cerrar sesión', error);
-        });
-    });
-});
+   
 
   
 </script>
@@ -468,13 +418,12 @@ text-decoration: none; /* Elimina el subrayado de los enlaces */
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <div id="menu-links" class="navbar-nav">
-                    <a class="nav-link" href="Aprendizaje.html">Curso</a>
 <a class="nav-link" href="www.soundtarot.com" >Tarot FQ</a>
-<a class="nav-link" href="collage.html">Collage</a>
+
                     <a class="nav-link" href="contact.html">Contact</a>
+                    <a class="nav-link" href="registro.html">Únete</a>
 
 
-<button id="logout-btn">Cerrar Sesión</button>
 
                 </div>
             </nav>
@@ -484,11 +433,7 @@ text-decoration: none; /* Elimina el subrayado de los enlaces */
         </header>
 
 
-        <div id="loading" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; background: rgb(255, 255, 255); color: rgb(0, 255, 21); z-index: 1000;">
-            Cargando...
-        <img src="collagetarot.gif" alt="">        </div>
-       
-        <div>
+     
 
         </div>
 
