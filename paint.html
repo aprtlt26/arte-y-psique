@@ -473,12 +473,14 @@ margin-top: 60px;}
 
 @media (max-width: 767px) {
     .main-content {
-        margin-left: 0; /* Remueve el margen izquierdo para pantallas pequeñas */
-        padding: 30px 10px; /* Añade algo de padding para no pegar el contenido a los bordes */
+        margin-left: 200px; /* Remueve el margen izquierdo para pantallas pequeñas */
+        padding: 30px 30px; /* Añade algo de padding para no pegar el contenido a los bordes */
         width: auto; /* Asegura que el contenido se expanda de manera apropiada */
-        max-width: 1000%; /* Previene que el contenido exceda el ancho de la pantalla */
+        max-width: 50%; /* Previene que el contenido exceda el ancho de la pantalla */
         box-sizing: border-box; /* Incluye el padding dentro del ancho definido */
-    padding-top: 70px;
+    padding-top: 90px;
+    margin-top: 60px;}
+
 
     }
     
@@ -597,11 +599,6 @@ text-decoration: none; /* Elimina el subrayado de los enlaces */
     padding: 10px; /* Aumenta el área táctil para dispositivos móviles */
 }
 
-@media (max-width: 768px) {
-    .image-controls-container {
-        flex-direction: column; /* Organiza los controles en una columna en pantallas pequeñas */
-    }
-}
 
 
 
@@ -611,6 +608,7 @@ text-decoration: none; /* Elimina el subrayado de los enlaces */
 
 button:focus, .button-class:focus {
     outline: none;
+    border: dashed #3c3c3c ;
 }
 
 button:focus, .button-class:focus {
@@ -622,6 +620,25 @@ button:focus, .button-class:focus {
     touch-action: none;
 }
 
+
+@media (max-width: 768px) {
+    .image-controls-container {
+        display: flex;
+        justify-content: center; /* Centra los controles horizontalmente */
+        align-items: center; /* Centra los controles verticalmente */
+        width: 100%; /* Asegura que ocupa todo el ancho disponible */
+        margin: 10px auto; /* Espacio arriba y abajo y centrado horizontal */
+       
+    }
+
+    .image-controls button, .image-controls #color-picker {
+        display: flex;
+        margin: 5px; /* Espaciado alrededor de cada control */
+        /* Asegúrate de que los botones y el selector de color ocupen un ancho significativo para facilitar la interacción */
+        width: 80%;
+        max-width: 300px; /* Evita que los controles sean demasiado anchos */
+    }
+}
 </style>
 
     </style>
@@ -991,6 +1008,56 @@ function printDocument() {
 
 
 
+function activatePainting() {
+    const svgContainer = document.getElementById("svgContainer");
+    svgContainer.addEventListener('mousemove', paint);
+    svgContainer.addEventListener('touchmove', paint, {passive: false});
+}
+
+function deactivatePainting() {
+    const svgContainer = document.getElementById("svgContainer");
+    svgContainer.removeEventListener('mousemove', paint);
+    svgContainer.removeEventListener('touchmove', paint);
+}
+
+function paint(event) {
+    event.preventDefault(); // Previene el desplazamiento de la página al pintar en dispositivos táctiles
+    if (!paintMode) return;
+
+    let clientX, clientY;
+    if (event.touches) {
+        // Evento táctil
+        clientX = event.touches[0].clientX;
+        clientY = event.touches[0].clientY;
+    } else {
+        // Evento del mouse
+        clientX = event.clientX;
+        clientY = event.clientY;
+    }
+
+    // Obtiene el elemento SVG y su punto en el espacio del viewport
+    const svg = document.querySelector("#svgContainer svg");
+    const pt = svg.createSVGPoint();
+
+    // Ajusta las coordenadas del punto al evento del mouse/touch
+    pt.x = clientX;
+    pt.y = clientY;
+
+    // Transforma las coordenadas del punto al espacio del SVG
+    const svgPoint = pt.matrixTransform(svg.getScreenCTM().inverse());
+    
+    const color = document.getElementById("color-picker").value;
+
+    // Crea un nuevo círculo en la posición transformada
+    let newElement = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+    newElement.setAttribute("cx", svgPoint.x);
+    newElement.setAttribute("cy", svgPoint.y);
+    newElement.setAttribute("r", 2); // Ajusta el radio según sea necesario
+    newElement.setAttribute("fill", color);
+
+    svg.appendChild(newElement);
+    // Aquí puedes decidir si agregar o no el nuevoElement a paintHistory para la funcionalidad de deshacer
+}
 
 
     </script>
