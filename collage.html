@@ -61,6 +61,12 @@ if (user) {
 });
    
   
+// Evitar el desplazamiento al interactuar con el contenedor de collages en dispositivos móviles
+const collageContainer = document.getElementById('collage-container');
+
+collageContainer.addEventListener('touchmove', function(e) {
+    e.preventDefault();
+}, { passive: false });
 
         
   document.addEventListener('contextmenu', function(e) {
@@ -994,6 +1000,11 @@ background-color: rgb(218, 212, 252)
     border: 2px dashed  #c4d49c
 }
 
+        .no-scroll {
+    overflow: hidden;
+    height: 100%;
+}
+        
 </style>
 
     </style>
@@ -1743,7 +1754,17 @@ let isRotating = false; // Flag para controlar el estado de la rotación
             stopRotation();
         }
     });
+document.addEventListener('touchstart', function() {
+    document.body.classList.add('no-scroll');
+});
 
+document.addEventListener('touchend', function() {
+    document.body.classList.remove('no-scroll');
+});
+
+document.addEventListener('touchcancel', function() {
+    document.body.classList.remove('no-scroll');
+});
     
 </script>
 
