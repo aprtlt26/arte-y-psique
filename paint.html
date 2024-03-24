@@ -153,7 +153,6 @@ body {
     color: #3bc0ac; /* Cambia el color al hacer hover para mejorar la interactividad */
 }
 
-
              .anta-regular {
   font-family: "Anta", sans-serif;
   font-weight: 400;
@@ -411,9 +410,6 @@ background-color:  transparent;
     }
 }
 
-#text-container:hover{
-    color: #3bc0ac;
-}
 
 
 
@@ -439,7 +435,7 @@ background-color:  transparent;
 
         svg { 
           display: flex; 
-          width: 300px; height: auto; 
+          width: 350px; height: auto; 
 align-items: center;
 justify-content: center;
 margin-top: 60px;}
@@ -469,7 +465,7 @@ margin-top: 60px;}
         
 
         .main-content {
-    margin-left: 350px; /* Ajusta según el ancho de tu galería */
+    margin-left: 500px; /* Ajusta según el ancho de tu galería */
     padding-top: 70px;
     padding-bottom: 100px; 
 }
@@ -567,6 +563,7 @@ text-decoration: none; /* Elimina el subrayado de los enlaces */
     border-radius: 5px;
     cursor: pointer;
     margin-top: 1px;
+
 }
 #color-picker{
   margin:  auto;
@@ -582,6 +579,7 @@ text-decoration: none; /* Elimina el subrayado de los enlaces */
 
 .image-controls button:hover {
     background-color: #b2eef3;
+    border: dashed #b2eef3;
 }
 
 
@@ -603,6 +601,25 @@ text-decoration: none; /* Elimina el subrayado de los enlaces */
     .image-controls-container {
         flex-direction: column; /* Organiza los controles en una columna en pantallas pequeñas */
     }
+}
+
+
+
+.button-active {
+    background-color: #bffa88; /* Color de fondo cuando está activo */
+}
+
+button:focus, .button-class:focus {
+    outline: none;
+}
+
+button:focus, .button-class:focus {
+    outline: none;
+    background-color: #ebebeb; /* Color de fondo más claro al enfocar */
+}
+
+.no-scroll {
+    touch-action: none;
 }
 
 </style>
@@ -708,9 +725,9 @@ text-decoration: none; /* Elimina el subrayado de los enlaces */
           <button onclick="resizeImage(1.1)"> - </button>
           <button onclick="resizeImage(0.9)">+</button>
           <input type="color" id="color-picker" value="#ff0000" ></i>
-          <button id="togglePaintMode"><i class='bx bx-paint'></i></button>
-          <button id="toggleDragMode"><i class='bx bx-move'></i></button>
-          <button onclick="printDocument()" class="print-button"><i class='bx bx-printer' ></i></button>
+          <button id="togglePaintMode"><i class='bx bx-paint button-hover-effect'></i></button>
+          <button id="toggleDragMode"><i class='bx bx-move button-hover-effect '></i></button>
+          <button onclick="printDocument()" class="print-button"><i class='bx bx-printer ' ></i></button>
 
       </div>
   </div>
@@ -726,7 +743,7 @@ text-decoration: none; /* Elimina el subrayado de los enlaces */
 </footer>
     <script>
 
-      
+
 let paintHistory = []; 
 
         function loadSVGAndAddInteractivity(svgFile) {
@@ -801,36 +818,40 @@ let paintHistory = [];
 }
 
 
-let isDraggable = false;
 
-// Función para alternar el modo de arrastre
+let isDraggable = false;
 function toggleDragMode() {
     isDraggable = !isDraggable; // Cambia el estado de isDraggable
+    const button = document.getElementById("toggleDragMode"); // Asume que este es el ID de tu botón
 
+    // Aquí, 'interact' es utilizado para habilitar o deshabilitar la funcionalidad arrastrable
     interact("#svgContainer svg").draggable({
-        // Permitir arrastrar solo si isDraggable es true
         enabled: isDraggable,
         listeners: {
             move(event) {
                 if (!isDraggable) return; // No hacer nada si el arrastre está desactivado
                 
                 let target = event.target,
-                    // Calcula la nueva posición basada en el movimiento
                     x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
                     y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
                 
-                // Aplica la transformación para mover el elemento
                 target.style.transform = `translate(${x}px, ${y}px)`;
-
-                // Guarda la nueva posición en los atributos
                 target.setAttribute('data-x', x);
                 target.setAttribute('data-y', y);
             }
         }
     });
 
-    // Actualiza el texto del botón según el estado
+    // Añade o quita la clase 'button-active' basado en el estado de 'isDraggable'
+    if (isDraggable) {
+        button.classList.add("button-active");
+    } else {
+        button.classList.remove("button-active");
+    }
 }
+
+
+
 
 // Agrega un listener al botón para cambiar los modos al hacer clic
 document.getElementById("toggleDragMode").addEventListener("click", toggleDragMode);
@@ -840,13 +861,22 @@ let paintMode = false;
 // Función para alternar el modo pincel
 function togglePaintMode() {
     paintMode = !paintMode;
+    const button = document.getElementById("togglePaintMode");
 
     if (paintMode) {
         activatePainting();
+        button.classList.add("button-active"); // Añade la clase cuando está activo
     } else {
         deactivatePainting();
+        button.classList.remove("button-active"); // Remueve la clase cuando no está activo
     }
 }
+
+
+
+
+
+
 
 // Función para activar la pintura
 function activatePainting() {
@@ -904,6 +934,7 @@ function paint(event) {
 
 }
 
+
 function undoPaint() {
     if (paintHistory.length > 0) {
         const lastAction = paintHistory.pop(); // Obtiene la última acción
@@ -940,9 +971,16 @@ document.addEventListener("keydown", function(event) {
 // Agrega el listener al botón de modo pincel
 
 
+document.getElementById("togglePaintMode").addEventListener("click", function(e) {
+    e.preventDefault(); // Previene la acción predeterminada para click
+    togglePaintMode(); // Llama a la función al hacer click
+});
 
-document.getElementById("togglePaintMode").addEventListener("click", togglePaintMode);
-
+// Listener para touchstart
+document.getElementById("togglePaintMode").addEventListener("touchstart", function(e) {
+    e.preventDefault(); // Previene la acción predeterminada para touch
+    togglePaintMode(); // Llama a la función al tocar
+});
 
 // Función para deshacer el último trazo de pintura
 
@@ -950,6 +988,8 @@ document.getElementById("togglePaintMode").addEventListener("click", togglePaint
 function printDocument() {
     window.print();
 }
+
+
 
 
 
