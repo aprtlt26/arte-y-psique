@@ -621,24 +621,42 @@ button:focus, .button-class:focus {
 }
 
 
-@media (max-width: 768px) {
-    .image-controls-container {
-        display: flex;
-        justify-content: center; /* Centra los controles horizontalmente */
-        align-items: center; /* Centra los controles verticalmente */
-        width: 100%; /* Asegura que ocupa todo el ancho disponible */
-        margin: 10px auto; /* Espacio arriba y abajo y centrado horizontal */
-       
+/* Ajustes generales para móviles */
+.image-controls-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; /* Cambia la dirección a columna para móviles */
+    margin-top: 20px; /* Asegura un margen superior para evitar solapamientos */
+}
+
+@media screen and (orientation: portrait) {
+    /* Estilos específicos para orientación vertical */
+    .main-content {
+        margin-top: 20px; /* Ajusta según necesidad */
+        text-align: center; /* Centra el contenido */
     }
 
-    .image-controls button, .image-controls #color-picker {
-        display: flex;
-        margin: 5px; /* Espaciado alrededor de cada control */
-        /* Asegúrate de que los botones y el selector de color ocupen un ancho significativo para facilitar la interacción */
-        width: 80%;
-        max-width: 300px; /* Evita que los controles sean demasiado anchos */
+    .image-controls-container {
+        flex-direction: column; /* Alinea los controles verticalmente */
+
     }
 }
+
+@media screen and (orientation: landscape) {
+    /* Estilos específicos para orientación horizontal */
+    .main-content {
+        padding: 10px; /* Proporciona suficiente espacio alrededor del contenido */
+
+    }
+
+    .image-controls-container {
+        flex-direction: row; /* Alinea los controles horizontalmente en paisaje */
+        justify-content: space-around; /* Distribuye el espacio uniformemente */
+
+    }
+}
+
 </style>
 
     </style>
