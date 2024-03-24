@@ -1077,6 +1077,11 @@ function paint(event) {
     // Aquí puedes decidir si agregar o no el nuevoElement a paintHistory para la funcionalidad de deshacer
 }
 
+if ('addEventListener' in document) {
+    document.addEventListener('DOMContentLoaded', function() {
+        FastClick.attach(document.body);
+    }, false);
+}
 
     </script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
