@@ -6,8 +6,34 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
     <script>
 
-        
-        
+
+        // Declarar el AudioContext globalmente
+let audioCtx;
+
+function reproducirSonido(frecuencia = 440) {
+    if (!audioCtx) {
+        return; // Asegúrate de que el AudioContext esté inicializado
+    }
+    let oscilador = audioCtx.createOscillator();
+    oscilador.frequency.value = frecuencia; // Frecuencia en hertz
+    oscilador.type = 'sine'; // Tipo de onda
+    oscilador.connect(audioCtx.destination);
+    oscilador.start();
+    oscilador.stop(audioCtx.currentTime + 0.5); // Detener el sonido después de 1 segundo
+}
+
+// Evento para activar AudioContext al primer toque
+document.addEventListener('touchstart', function initAudioContext() {
+    if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        // Reproducir un sonido de prueba o iniciar silenciosamente
+        reproducirSonido(); // Opcional, dependiendo de si quieres un sonido al activar
+
+        // Eliminar este manejador de eventos después de inicializar para no repetirlo
+        document.removeEventListener('touchstart', initAudioContext);
+    }
+});
+
         
   document.addEventListener('contextmenu', function(e) {
     e.preventDefault();
@@ -60,13 +86,18 @@ body {
     line-height: 1;
     z-index: 200;
     cursor: pointer;
+    padding-top: 5px;
+
+
+
+    
 
 
 }
 
 #ascii-cat{
     font-size: 4px;
-    padding-top: 50px;
+    padding-top: 5px;
     cursor: pointer;
 
 
@@ -91,7 +122,9 @@ body {
     position: relative;
     height: auto; /* Asegúrate de que pueda expandirse para ajustarse al nuevo tamaño del canvas */
     z-index: 200;
-    margin-left:290px
+    margin-left:290px;
+    padding-top: -15px;
+
 
 }
 #p5-canvas {
@@ -152,10 +185,9 @@ body {
 
    @media (max-width: 768px) {
     body { 
+        position: fixed;
         overflow-x: hidden;
-        overflow-y: hidden;
-                position: fixed;
-
+        overflow: hidden;
     }
 }
 
@@ -479,7 +511,6 @@ vv
 
 <script>
     
-    let audioCtx;
         let oscilador;
         let gainNode;
         let compressor;
@@ -1005,14 +1036,8 @@ new p5(function(p) {
   
     </script>
 
-<button id="start-button">Iniciar</button>
 
-<script>
-  document.getElementById('start-button').addEventListener('click', function() {
-    // Aquí llamarías a verificarPermisoMicrofono() para pedir permiso al usuario
-    verificarPermisoMicrofono();
-  });
-</script>
+
 
 </body>
 
