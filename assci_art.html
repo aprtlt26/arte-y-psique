@@ -120,6 +120,8 @@ body {
     position: relative;
     z-index: 100;
     margin-left:390px
+        padding-top: 50px;
+
 
 
 
@@ -950,33 +952,55 @@ new p5(sketch2, 'tree-sketch-container');
     </script>
     
     
-    <script>
-        new p5(function(p) {
-  const barHeight = 20; // La altura de cada barra será de 50
-  let lastBar = -1; // Cambiado para ser -1 para que coincida con el índice inicial de barra
-
-  p.setup = function() {
-    let canvas = p.createCanvas(220, 200); // Ajusta el tamaño si es necesario
-    canvas.parent('color-bar-sketch-container'); // Asigna el contenedor
-    canvas.style('opacity', '0.2'); // Establece la opacidad del canvas
-
-    p.colorMode(p.HSB, p.width, p.width, p.width); // Cambia a modo HSB basado en el ancho
-    p.noStroke();
-    p.background(0);
-  };
-
-  p.draw = function() {
-    let whichBar = p.int(p.mouseY / barHeight); // Calcula la barra horizontal en lugar de la vertical
-    if (whichBar !== lastBar) {
-      let barY = whichBar * barHeight;
-      p.fill(p.mouseX, p.width, p.width); // Usa mouseX para la saturación y brillo
-      p.rect(0, barY, p.width, barHeight); // Dibuja las barras horizontalmente
-      lastBar = whichBar;
+   <script>
+new p5(function(p) {
+    const barHeight = 20; // La altura de cada barra será de 20
+    let lastBar = -1; // Última barra actualizada
+  
+    p.setup = function() {
+      let canvas = p.createCanvas(220, 200);
+      canvas.parent('color-bar-sketch-container');
+      canvas.style('opacity', '0.5');
+  
+      p.colorMode(p.HSB, p.width, p.width, p.width);
+      p.noStroke();
+      p.background(0);
+    };
+  
+    p.draw = function() {
+      let whichBar = p.int(p.mouseY / barHeight);
+      if (whichBar !== lastBar) {
+        let barY = whichBar * barHeight;
+        p.fill(p.mouseX, p.width, p.width);
+        p.rect(0, barY, p.width, barHeight);
+        lastBar = whichBar;
+      }
+  
+      // Glitch effect
+      if (p.random() < 0.2) { // 10% chance of glitch effect
+        applyGlitch(p);
+      }
+    };
+  
+    function applyGlitch(p) {
+      // Escoge un número aleatorio de barras para aplicar el glitch
+      const glitchBars = p.int(p.random(1, 7));
+      for (let i = 0; i < glitchBars; i++) {
+        const glitchY = p.int(p.random(p.height / barHeight)) * barHeight;
+        const glitchHeight = p.random(barHeight / 4, barHeight * 5);
+        const glitchWidth = p.random(p.width * 0.1, p.width);
+        const glitchX = p.random(p.width - glitchWidth);
+        const r = p.random(255);
+        const g = p.random(255);
+        const b = p.random(255);
+  
+        p.fill(r, g, b);
+        p.rect(glitchX, glitchY, glitchWidth, glitchHeight);
+      }
     }
-  };
-
-}, 'color-bar-sketch-container'); // Asegúrate de que este ID coincida con el del contenedor
-
+  
+  }, 'color-bar-sketch-container');
+  
     </script>
 </body>
 
