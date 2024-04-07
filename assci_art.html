@@ -15,35 +15,33 @@
   }, false);
 
  
-</script>
 
-    <script>
-    document.addEventListener('DOMContentLoaded', (event) => {
-        solicitarPermisoAudio();
-    });
 
-    function solicitarPermisoMicrofono() {
-        // Verifica si el navegador soporta getUserMedia
-        if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-            alert("Tu navegador no soporta la API de Media Devices.");
-            return;
-        }
+  document.addEventListener('DOMContentLoaded', (event) => {
+    verificarPermisoMicrofono();
+});
 
-        navigator.mediaDevices.getUserMedia({ audio: true })
-            .then(function(stream) {
-                // El usuario aceptó el uso del micrófono
-                alert("Permiso concedido para el uso audio.");
+function verificarPermisoMicrofono() {
+    navigator.permissions.query({ name: 'microphone' })
+        .then((permissionStatus) => {
+            // 'prompt' significa que no se ha pedido el permiso todavía
+            if (permissionStatus.state === 'prompt') {
+                solicitarPermisoMicrofono();
+            } else if (permissionStatus.state === 'granted') {
+                alert("El permiso para el micrófono ya ha sido concedido.");
+                // Ya puedes empezar a usar el micrófono
+            } else {
+                alert("El permiso para el micrófono ha sido denegado.");
+                // Aquí puedes guiar al usuario sobre cómo cambiar los permisos del micrófono
+            }
+        })
+        .catch((error) => {
+            console.log('Error al verificar los permisos del micrófono:', error);
+        });
+}
 
-                // Aquí podrías inicializar tu funcionalidad que requiera el uso del micrófono
-                
-                // Es importante detener los tracks para evitar que el micrófono se quede encendido
-                stream.getTracks().forEach(track => track.stop());
-            })
-            .catch(function(err) {
-                // El usuario rechazó el uso del micrófono o ocurrió un error
-                alert("Permiso para el uso del audio fue rechazado o hubo un error: " + err);
-            });
-    }
+// Aquí iría la función solicitarPermisoMicrofono() que ya tienes
+
 </script>
     
     <style>
@@ -118,11 +116,8 @@ body {
 #color-bar-sketch-container{
     position: relative;
     z-index: 100;
-    margin-left:390px
+    margin-left:390px;
         padding-top: 50px;
-
-
-
 
 }
 
@@ -154,7 +149,9 @@ body {
 }
 
 @media (max-width: 768px) {
+    #body{ 
  overflow-y: hidden; }
+   }
 
 </style>
                   <div id="container" style="position: relative; width: 100%; height: 100%;">
@@ -832,7 +829,6 @@ document.getElementById('ascii-cat').addEventListener('click', function(event) {
 });
 
 
-new p5(sketch1, 'p5-canvas'); // Asegúrate de que 'p5-canvas' sea el ID del contenedor para este canvas
 
 function startAudioContext() {
     if (!audioCtx) {
