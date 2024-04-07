@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <body>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
@@ -56,9 +57,9 @@ body {
     margin: 0;
     overflow-y: hidden;
     overflow-x: hidden;
-
-
 }
+
+
 
 #ascii-art, #ascii-cat {
    display:flex;
@@ -174,7 +175,86 @@ margin-left: 100px; /* Centra horizontalmente */
 
         }
 
+       /* Reglas de media query para dispositivos con ancho máximo de 600px */
+@media (max-width: 600px) {
+    body {
+        overflow-y: hidden; /* Permite desplazamiento vertical si es necesario */
+    }
 
+    #ascii-art  {
+        display: flex;
+
+        font-size: 4px; /* Ajusta el tamaño de la fuente para visibilidad en pantallas pequeñas */
+        margin: 0 60px; /* Agrega márgenes laterales para no tocar los bordes de la pantalla */
+        margin-top: -140px;
+    }
+    #ascii-cat {
+        font-size: 3px;
+        margin-top: -100px;
+
+
+    }
+
+    #ascii-sol{
+        display: flex;
+        font-size: 2.3px; /* Ajusta el tamaño de la fuente para visibilidad en pantallas pequeñas */
+        margin-left: 0;
+       z-index: 2000;
+
+    }
+    #ascii-luna{
+        margin-left: 0;
+        margin-right:0;
+        font-size: 2.8px;
+        margin: 3px;
+
+    }
+
+    #tree-sketch-container  {
+        margin-left: 0;
+        margin-right:0;
+        width: 5%; /* Reduce el ancho para evitar desbordamiento horizontal */
+    z-index: -100;
+    }
+    #color-bar-sketch-container{
+display:flex;
+margin-left: 0px; /* Ajusta el margen izquierdo para centrar */
+        margin-right: 0px; /* Ajusta el margen derecho para centrar */
+
+    }
+
+    #ascii-container {
+        display: flex;
+        margin-top: 0; /* Elimina el margen superior excesivo en móviles */
+        margin-left: 0px; /* Ajusta el margen izquierdo para centrar */
+        margin-right: 0px; /* Ajusta el margen derecho para centrar */
+        flex-direction:row; /* Alinea los elementos verticalmente */
+        z-index:1000;
+    }
+
+    #rain-sketch-container {
+        height: 100vh; /* Asegura que el contenedor de lluvia ocupe todo el alto disponible */
+    }
+}
+
+/* Reglas adicionales para orientación horizontal (landscape) */
+@media (max-width: 600px) and (orientation: landscape) {
+    body {
+        flex-direction: row; /* Organiza los contenedores en fila en lugar de columna */
+        overflow-y: hidden;
+    }
+
+    #tree-sketch-container, #color-bar-sketch-container {
+        width: 48%; /* Asigna un ancho menor para cada contenedor */
+        height: auto; /* Ajusta la altura automáticamente */
+        margin-top: 5px; /* Ajusta el margen superior */
+        margin-bottom: 5px; /* Ajusta el margen inferior */
+    }
+
+
+}
+
+ 
 
 </style>
 
@@ -924,11 +1004,7 @@ document.addEventListener('keydown', function(e) {
     }
 });
 
-document.addEventListener('keyup', function(e) {
-    if (e.code === 'Space') {
-        generarRuidoBlanco(0); // Detener el ruido blanco y la lluvia
-    }
-});
+
 
 // Evento de clic en el elemento del gato para activar las mismas acciones
 document.getElementById('ascii-cat').addEventListener('click', function() {
@@ -1182,7 +1258,7 @@ function handleArrowKeys(arrowKey) {
     
             p.setup = function() {
                 p.createCanvas(p.windowWidth, p.windowHeight);
-                p.frameRate(60);
+                p.frameRate(100);
             };
     
             p.draw = function() {
@@ -1217,7 +1293,7 @@ function handleArrowKeys(arrowKey) {
                 }
     
                 display() {
-                    p.stroke(138, 43, 226);
+                    p.stroke(138, 43, 300);
                     p.line(this.x, this.y, this.x, this.y + this.len);
                 }
     
@@ -1231,6 +1307,5 @@ function handleArrowKeys(arrowKey) {
     </script>
 </body>
 </html>
-
 
 
