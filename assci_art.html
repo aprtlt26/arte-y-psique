@@ -74,6 +74,8 @@ body {
     
 #ascii-cat{
     display: flex;
+    white-space:pre-wrap;
+    word-wrap: break-word;
     font-size: 4px;
     cursor: pointer;
     margin: 20px;
@@ -84,7 +86,7 @@ body {
 display: flex;    
 height: auto; /* Asegúrate de que pueda expandirse para ajustarse al nuevo tamaño del canvas */
     z-index: -100;
-margin-top: -250px;
+margin-top: -200px;
 margin-left: 100px; /* Centra horizontalmente */
     margin-right: auto;
 }
@@ -110,8 +112,8 @@ margin-left: 100px; /* Centra horizontalmente */
     margin-left: 290px;
     z-index: 1000;
     padding-bottom: 200px;
-
 }
+
 
 #color-bar-sketch-container{
    display: flex;
@@ -120,14 +122,14 @@ margin-left: 100px; /* Centra horizontalmente */
     z-index: 100;
     margin-left:auto;
     margin-right: auto;
-        margin: auto;
-        margin-top: -500px;
-        width: 200px; /* Ancho fijo del contenedor */
+    margin: auto;
+    margin-top: -500px;
+    width: 200px; /* Ancho fijo del contenedor */
     height: 200px;
     position: relative; /* Habilita el posicionamiento relativo */
     overflow: hidden; 
-
 }
+
 
 #ascii-art-container{
   position: absolute;
@@ -161,10 +163,26 @@ margin-left: 100px; /* Centra horizontalmente */
 
 }
 
+#rain-sketch-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1000; /* Fondo */
+            pointer-events: none; /* Permite hacer clic a través del contenedor */
+
+        }
 
 
 
 </style>
+
+</head>
+<body>
+
+<div id="rain-sketch-container"></div>
+
                   <div id="container" style="position: relative; width: 100%; height: 100%;">
 
                        <pre id="ascii-luna">
@@ -253,6 +271,7 @@ margin-left: 100px; /* Centra horizontalmente */
                                 </pre>
                             </div>
 
+
                             <script>
                                 // Crear instancia de Audio para el sol
                                 let audioSol = new Audio('ambient.wav');
@@ -287,6 +306,7 @@ margin-left: 100px; /* Centra horizontalmente */
                                 });
                             </script>
                             
+
 
 <div id="tree-sketch-container"></div>    
 
@@ -832,81 +852,90 @@ function shuffleAscii(element) {
 
 
 
+function generarRuidoBlanco(duracion = 1) {
+    if (whiteNoiseSource) {
+        whiteNoiseSource.disconnect();
+        myp5.noLoop(); // Detener la lluvia visual
+        moverYMostrarGatoAscii(false); // Ocultar el gato ASCII
+    }
 
-    function generarRuidoBlanco(duracion = 1) {
-    const bufferSize = audioCtx.sampleRate * duracion; // Duración del buffer de 1 segundo
+    const bufferSize = audioCtx.sampleRate * duracion;
     const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
     const data = buffer.getChannelData(0);
 
-    // Llenar el buffer con datos de ruido blanco
     for (let i = 0; i < bufferSize; i++) {
-        data[i] = Math.random() * 2 - 1;
+        data[i] = Math.random() * 2 - 1; // Generate white noise
     }
 
-    const whiteNoiseSource = audioCtx.createBufferSource();
+    whiteNoiseSource = audioCtx.createBufferSource();
     whiteNoiseSource.buffer = buffer;
     whiteNoiseSource.connect(audioCtx.destination);
     whiteNoiseSource.start();
     whiteNoiseSource.stop(audioCtx.currentTime + duracion);
+
+    myp5.loop(); // Iniciar la lluvia visual
+    moverYMostrarGatoAscii(true); // Mostrar el gato ASCII en una posición aleatoria
 }
 
+function generarRuidoBlanco(duracion = 1) {
+    if (whiteNoiseSource) {
+        whiteNoiseSource.disconnect();
+        whiteNoiseSource = null;
+        myp5.noLoop(); // Detener la lluvia visual
+        moverYMostrarGatoAscii(false); // Ocultar el gato ASCII
+    } else {
+        const bufferSize = audioCtx.sampleRate * duracion;
+        const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+        const data = buffer.getChannelData(0);
 
-document.getElementById('ascii-cat').addEventListener('click', function(event) {
-    event.stopPropagation(); // Previene la propagación del evento al cuerpo del documento
-
-    // Mueve el gato ASCII a una nueva posición aleatoria
-    moverYMostrarGatoAscii();
-    const asciiCatElement = document.getElementById('ascii-cat');
-
-    // Genera ruido blanco
-    if (!audioCtx) {
-        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    }
-    generarRuidoBlanco(0.3); // Genera ruido blanco por 0.5 segundos
-});
-let contadorApariciones = 0;
-
-function cicloAparicionGato() {
-    const asciiCatElement = document.getElementById('ascii-cat');
-    if (contadorApariciones === 0) {
-        asciiCatElement.style.display = 'none';  // Asegurar que comienza oculto
-    }
-
-    // Función para generar un tiempo aleatorio basado en valores musicales típicos
-    function generarTiempoAleatorio() {
-        // Define tiempos basados en milisegundos para corcheas, negras, etc.
-        const tiempos = [ 146, 323, 1000, 90, 1987];  // Corchea, Negra y Blanca
-        const indiceAleatorio = Math.floor(Math.random() ** tiempos.length);
-        return tiempos[indiceAleatorio];
-    }
-
-    const intervalo = setInterval(() => {
-        if (asciiCatElement.style.display === 'none') {
-            const asciiContainer = document.getElementById('ascii-art');
-            const newX = Math.random() * (asciiContainer.offsetWidth - asciiCatElement.offsetWidth);
-            const newY = Math.random() * (asciiContainer.offsetHeight - asciiCatElement.offsetHeight);
-
-            asciiCatElement.style.left = `${newX}px`;
-            asciiCatElement.style.top = `${newY}px`;
-            asciiCatElement.style.display = 'block';
-
-            generarRuidoBlanco(0.3);  // Genera ruido blanco por 0.3 segundos
-
-            contadorApariciones++;
-        } else {
-            asciiCatElement.style.display = 'none';
+        for (let i = 0; i < bufferSize; i++) {
+            data[i] = Math.random() * 2 - 1; // Generate white noise
         }
 
-        if (contadorApariciones >= 4) {
-            clearInterval(intervalo);
-            contadorApariciones = 0;
-        }
-    }, generarTiempoAleatorio());  // Utiliza un tiempo aleatorio para cada intervalo
+        whiteNoiseSource = audioCtx.createBufferSource();
+        whiteNoiseSource.buffer = buffer;
+        whiteNoiseSource.connect(audioCtx.destination);
+        whiteNoiseSource.start();
+        whiteNoiseSource.stop(audioCtx.currentTime + duracion);
+
+        myp5.loop(); // Iniciar la lluvia visual
+        moverYMostrarGatoAscii(true); // Mostrar el gato ASCII en una posición aleatoria
+    }
 }
 
-document.getElementById('ascii-cat').addEventListener('click', function(event) {
-    cicloAparicionGato(); // Inicia el ciclo de aparición del gato con tiempos aleatorios
+// Función para manejar la visibilidad y posición del gato ASCII
+function moverYMostrarGatoAscii(mostrar) {
+    const asciiCatElement = document.getElementById('ascii-cat');
+    if (mostrar) {
+        const newX = Math.random() * (window.innerWidth - asciiCatElement.offsetWidth);
+        const newY = Math.random() * (window.innerHeight - asciiCatElement.offsetHeight);
+        asciiCatElement.style.left = `${newX}px`;
+        asciiCatElement.style.top = `${newY}px`;
+        asciiCatElement.style.display = 'block';
+    } else {
+        asciiCatElement.style.display = 'none';
+    }
+}
+
+// Eventos de teclado para activar/desactivar el ruido blanco y la lluvia visual
+document.addEventListener('keydown', function(e) {
+    if (e.code === 'Space') {
+        generarRuidoBlanco(0.5); // Genera ruido blanco por 0.5 segundos y activa la lluvia
+    }
 });
+
+document.addEventListener('keyup', function(e) {
+    if (e.code === 'Space') {
+        generarRuidoBlanco(0); // Detener el ruido blanco y la lluvia
+    }
+});
+
+// Evento de clic en el elemento del gato para activar las mismas acciones
+document.getElementById('ascii-cat').addEventListener('click', function() {
+    generarRuidoBlanco(0.5); // Usar la misma duración de ruido blanco
+});
+
+
 
 
 
@@ -956,7 +985,7 @@ function startAudioContext() {
   `;
 
   p.setup = function() {
-    p.createCanvas(510, 200);
+    p.createCanvas(710, 200);
     p.textSize(32);
     p.fill(255);
     x = p.random(p.width - 100); // Coordenada inicial x
@@ -990,7 +1019,7 @@ new p5(sketch2, 'tree-sketch-container');
   let lastBarIndex = -1; // Último índice de la barra dibujada
 
   p.setup = function() {
-    let canvas = p.createCanvas(220, 200); // Dimensiones del canvas
+    let canvas = p.createCanvas(90, 200); // Dimensiones del canvas
     canvas.parent('color-bar-sketch-container'); // Asigna el contenedor
     canvas.style('opacity', '0.2'); // Establece la opacidad del canvas
 
@@ -1077,6 +1106,129 @@ new p5(function(p) {
   }, 'color-bar-sketch-container');
   
 </script>
+
+<script>
+   document.addEventListener('keydown', function(event) {
+    if (!audioCtx) startAudioContext(); // Inicia el contexto de audio si aún no está activo
+
+    switch(event.key) {
+        case 's':
+        case 'S':
+            // Alternar audio del sol
+            togglePlay('ascii-sol', 'ambient.wav');
+            break;
+        case 'l':
+        case 'L':
+            // Alternar audio de la luna
+            togglePlay('ascii-luna', '1s.mp3');
+            break;
+        case ' ':
+            // Mostrar/ocultar el gato ASCII y gestionar ruido blanco
+            toggleAsciiCatAndWhiteNoise();
+            event.preventDefault(); // Evitar que la barra espaciadora haga scroll
+            break;
+        case 'ArrowUp':
+        case 'ArrowDown':
+        case 'ArrowLeft':
+        case 'ArrowRight':
+            // Manejar el movimiento del cursor con flechas
+            handleArrowKeys(event.key);
+            break;
+    }
+});
+
+function togglePlay(elementId, audioFile) {
+    let element = document.getElementById(elementId);
+    if (!element.audio) {
+        element.audio = new Audio(audioFile);
+        element.audio.loop = true;
+        element.audio.play();
+    } else {
+        if (element.audio.paused) {
+            element.audio.play();
+        } else {
+            element.audio.pause();
+            element.audio.currentTime = 0;
+        }
+    }
+}
+
+function toggleAsciiCatAndWhiteNoise() {
+    const asciiCatElement = document.getElementById('ascii-cat');
+    let display = asciiCatElement.style.display;
+    asciiCatElement.style.display = (display === 'none' || display === '') ? 'block' : 'none';
+
+
+}
+
+
+
+function handleArrowKeys(arrowKey) {
+    console.log(`Arrow key pressed: ${arrowKey}`);
+    // Aquí puedes agregar lógica para mover un cursor o cualquier otro elemento en pantalla
+}
+
+
+
+    
+    </script>
+    <script>
+        // Asegurándose de que el sketch de lluvia no se detenga al presionar la barra espaciadora
+      
+    
+        // Sketch de lluvia p5.js
+        let rainSketch = function(p) {
+            let raindrops = [];
+    
+            p.setup = function() {
+                p.createCanvas(p.windowWidth, p.windowHeight);
+                p.frameRate(60);
+            };
+    
+            p.draw = function() {
+                p.clear();
+                for (let i = raindrops.length - 1; i >= 0; i--) {
+                    raindrops[i].update();
+                    raindrops[i].display();
+                    if (raindrops[i].isOffScreen()) {
+                        raindrops.splice(i, 1);
+                    }
+                }
+    
+                if (p.frameCount % 2 === 0) {
+                    raindrops.push(new Raindrop(p));
+                }
+            };
+    
+            class Raindrop {
+                constructor(p) {
+                    this.p = p;
+                    this.x = p.random(p.width);
+                    this.y = 0;
+                    this.z = p.random(0, 20);
+                    this.len = p.map(this.z, 0, 20, 10, 20);
+                    this.yspeed = p.map(this.z, 0, 20, 4, 10);
+                }
+    
+                update() {
+                    this.y += this.yspeed;
+                    let grav = p.map(this.z, 0, 20, 0.01, 0.2);
+                    this.yspeed += grav;
+                }
+    
+                display() {
+                    p.stroke(138, 43, 226);
+                    p.line(this.x, this.y, this.x, this.y + this.len);
+                }
+    
+                isOffScreen() {
+                    return this.y > this.p.height;
+                }
+            }
+        };
+    
+        new p5(rainSketch, 'rain-sketch-container');
+    </script>
 </body>
 </html>
 
