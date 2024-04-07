@@ -44,6 +44,35 @@
  
 </script>
 
+    <script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        solicitarPermisoAudio();
+    });
+
+    function solicitarPermisoMicrofono() {
+        // Verifica si el navegador soporta getUserMedia
+        if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+            alert("Tu navegador no soporta la API de Media Devices.");
+            return;
+        }
+
+        navigator.mediaDevices.getUserMedia({ audio: true })
+            .then(function(stream) {
+                // El usuario aceptó el uso del micrófono
+                alert("Permiso concedido para el uso audio.");
+
+                // Aquí podrías inicializar tu funcionalidad que requiera el uso del micrófono
+                
+                // Es importante detener los tracks para evitar que el micrófono se quede encendido
+                stream.getTracks().forEach(track => track.stop());
+            })
+            .catch(function(err) {
+                // El usuario rechazó el uso del micrófono o ocurrió un error
+                alert("Permiso para el uso del audio fue rechazado o hubo un error: " + err);
+            });
+    }
+</script>
+
     <style>
     
        
