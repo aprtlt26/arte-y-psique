@@ -47,93 +47,99 @@ function verificarPermisoMicrofono() {
 // Aquí iría la función solicitarPermisoMicrofono() que ya tienes
 
 </script>
-    
-    <style>
+<style>
+
 body {
     background-color: black;
-    color: #cbcbcb;
+    color: #e6e6e6;
     font-family: 'Courier New', Courier, monospace;
+    margin: 0;
+    overflow-y: hidden;
+    overflow-x: hidden;
+
+
 }
 
-
-
 #ascii-art, #ascii-cat {
-    white-space: pre-wrap;
+   display:flex;
     word-wrap: break-word;
     font-size: 5px;
     line-height: 1;
-    z-index: 200;
+    z-index: 2000;
     cursor: pointer;
+    margin: auto;
+
  }
 
-    #ascii-art{
-        top: -50px;
-
-    }
     
-
-
-
-
 #ascii-cat{
+    display: flex;
     font-size: 4px;
-    padding-top: 5px;
     cursor: pointer;
-
+    margin: 20px;
+   
 
 }
-
-
-
-
     #ascii-container {
-    position: relative;
-    height: auto; /* Asegúrate de que pueda expandirse para ajustarse al nuevo tamaño del canvas */
-    z-index: 200;
-    margin-left:450px;
-    padding-top: -50px;
-
-
-
+display: flex;    
+height: auto; /* Asegúrate de que pueda expandirse para ajustarse al nuevo tamaño del canvas */
+    z-index: -100;
+margin-top: -250px;
+margin-left: 100px; /* Centra horizontalmente */
+    margin-right: auto;
 }
+
+
 #p5-canvas {
     position: relative;
     top: 0;
     left: 0;
     z-index: 10; /* Ajustar según sea necesario */
     cursor: pointer;
+   
 
 }
+
 #tree-sketch-container {
     width: 900px; /* Ancho del canvas */
-    height: 400px; /* Altura del canvas */
+    height: 500px; /* Altura del canvas */
     position: relative;
     top: 0;
     left: 0;
     font-size: 3px;
     margin-left: 290px;
-    padding-top: -50px;
+    z-index: 1000;
+    padding-bottom: 200px;
 
 }
 
 #color-bar-sketch-container{
-    position: relative;
+   display: flex;
+   justify-content: center; /* Centra los elementos horizontalmente dentro del contenedor */
+    align-items: center;
     z-index: 100;
-    margin-left:390px;
-        padding-top: -50px;
+    margin-left:auto;
+    margin-right: auto;
+        margin: auto;
+        margin-top: -500px;
+        width: 200px; /* Ancho fijo del contenedor */
+    height: 200px;
+    position: relative; /* Habilita el posicionamiento relativo */
+    overflow: hidden; 
 
 }
 
-#ascii-art-container, #color-bar-sketch-container {
+#ascii-art-container{
   position: absolute;
   top: -10;
   left: 0;
   width: 100%;
   height: 100%;
   margin:10px;
-  margin-left: 50px;
-
+  margin-left: 150px;
 }
+
+
 
 #ascii-sol {
     font-size: 3px;
@@ -141,7 +147,7 @@ body {
     position: absolute; /* Posicionamiento absoluto dentro de su contenedor */
     top: 0;             /* Alinea la parte superior del elemento con la parte superior del contenedor */
     right: 0;           /* Alinea el lado derecho del elemento con el lado derecho del contenedor */
-    margin-right: 15px; /* Agrega un pequeño margen derecho, si es necesario */
+    margin-right: 10px; /* Agrega un pequeño margen derecho, si es necesario */
     z-index: 1000;      /* Asegura que el elemento sea visible sobre otros posibles elementos */
 }
 
@@ -152,17 +158,10 @@ body {
     position: absolute; /* Posicionamiento absoluto dentro de su contenedor */
     top: 0;             /* Alinea la parte superior del elemento con la parte superior del contenedor */
     left: 0;
+
 }
 
 
-
-   @media (max-width: 768px) {
-    body { 
-        position: fixed;
-        overflow-x: hidden;
-        overflow: hidden;
-    }
-}
 
 
 </style>
@@ -292,12 +291,12 @@ body {
 <div id="tree-sketch-container"></div>    
 
     
-    <div id="ascii-container" class="container">
+ 
 
         
         <div id="color-bar-sketch-container"></div>
 
-        
+        <div id="ascii-container" class="container">
 
         <pre id="ascii-art">
                 ./##/,((/****,,,,,,,*(.,,/*,*,,*(##((*(///*****..,,.,,..,..,......         
@@ -418,11 +417,111 @@ vvvv
 vvv
 vv
 
-    </div>
-                                                              
-    
+</div>
+
+<pre id="ascii-cat">
+ 
+    @(,                                                 
+    %(,*/%&                                               
+@r         **.##/.,,                                              
+/,/       /**#.*%*,                                              
+/**%./(     //.#../#....                                           
+(*/#%(.((/(/../#&&&&%%(*.,,,                                       
+/*,%*,%#*./%&&&&&&&@&&@&&/.,                                       
+(,*%/..,(%*/&&&&&&&&@&&&(,.,,                                     
+,/(,(%#,.#%,(&&&&&&&@&%,(&%*....                                             
+/,##(*,*,*%&&&&@&&&#,.*&&&&&&*..                                 
+(*.%&&(%&&&&&&&&&&&&%&&&&&&&&&%..                 (#(..,,,        
+(,/%&//%%%&&&&&&&&&&&&&&&&&&&%,..               ,#,/%%%/,..,,     
+(,/%&(*#*(%*%&%&&&&&&&&&%(*. ,.,              .#**%%&**%%%(*,...  
+(*.%&%.%#*%/(#*&&&&&%&%%%%/,.*               &#.#&&&&&%%,/%%%*,,.,
+/*(&&&&&&&&&&&&&&%*.,*/##,.,              @%*,&&&&&%&/,&%#.%&&%.*
+//,,,(&&@&&&&&&&%@&&&&&&&&&,,,           .%%,*%&&&&%,*#%&&&&%%*,*(.
+/(*,(%&&/#@&#*%&&%(/&&#%&%&&&%#.,   .,.#%#(/.*&&&&&&(.#&&&&&&#,,*(/   
+//,*%&&&&&&&&&&#,#*(#(*%(,%(,,//,/(///(#%%%&&&&&&&&%**%%&@&%*,/,%       
+//./&&&&&&&&&&&&&&&%#(*,/./%/,*,%%&&&&&&&&&&&&&&&%(.*%%&&&%,*#,*          
+**.(&&&&&&&&&&&&&&&&&&&&&&&&%%%%%/,#%&&&&&&&&%/,*(%&&&&&&%,*.(             
+./*,#.#%/#&&&&&&&&&&&&&&&&&&&&&&&&&&&&&%/,,,,,/#&&&&&&&&&&%/,#/               
+...%%&% #(*%&((&&#&&&&&@&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&%*,%&                 
+,.,&&&&&&(,..##,%&*/%*%&&&&&&&&&&&&%%&&&&&&&&&&&&&%(*,.,,/%&@                   
+,.,&&&&&&@&%%%,..%#,((*%#,%%#,&&%,&%#,%%&%&&&&&@&@&%%,,%                        
+,.,&&&&&&&&&&&&&&(,,,,(.##.(%%,(%&(.#%%,(%(,(%&&&%/.(&%                         
+../%,%&&&&&&&&&&&&&%%%**,.*.,#%*,#%%/....***(.(#%/                             
+.,(**/((&#&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&%%%./%                                 
+,.,%&(,/,##*%&&&&&&&&&&&&&&&&&&&&&&&&@@&&(.(%#                                  
+,.,&&&&#,.*#*/%%,%&//&&%%%&&&&&%&&&@&&&(./%                                     
+.,*%&&&&&&#(*,/%.(%(,#%(,%%/*&%/,%&%# (%,                                      
+,//%&&&&&&&&&&%/*/,,,.*#(,,*,*/(#*,#%,                                        
+.,%,(%.%%&%/%&&&&%&&%&&&&&&%%%(*.#%%                                           
+.,&&%.//,%%(,%(/%,##,*%%%/,,*(/*                                               
+.,&&&&&%%#/,*,,#,/#,.,,/(/.                                                    
+,.,&&&&&%&&&&&&(.*                                                              
+,.,&&&&&*/%&(,*//                                                               
+,.,&&&&&,/,*/*                                                                  
+.,&&&%,AA/                                                                      
+.,&#,*(,A                                                                       
+vvvvvv
+vvvvvv
+vvvvvv
+vvvvv
+vvvv
+vvv
+vv
+
+</div>
+
+<pre id="ascii-cat">
+ 
+    @(,                                                 
+    %(,*/%&                                               
+@r         **.##/.,,                                              
+/,/       /**#.*%*,                                              
+/**%./(     //.#../#....                                           
+(*/#%(.((/(/../#&&&&%%(*.,,,                                       
+/*,%*,%#*./%&&&&&&&@&&@&&/.,                                       
+(,*%/..,(%*/&&&&&&&&@&&&(,.,,                                     
+,/(,(%#,.#%,(&&&&&&&@&%,(&%*....                                             
+/,##(*,*,*%&&&&@&&&#,.*&&&&&&*..                                 
+(*.%&&(%&&&&&&&&&&&&%&&&&&&&&&%..                 (#(..,,,        
+(,/%&//%%%&&&&&&&&&&&&&&&&&&&%,..               ,#,/%%%/,..,,     
+(,/%&(*#*(%*%&%&&&&&&&&&%(*. ,.,              .#**%%&**%%%(*,...  
+(*.%&%.%#*%/(#*&&&&&%&%%%%/,.*               &#.#&&&&&%%,/%%%*,,.,
+/*(&&&&&&&&&&&&&&%*.,*/##,.,              @%*,&&&&&%&/,&%#.%&&%.*
+//,,,(&&@&&&&&&&%@&&&&&&&&&,,,           .%%,*%&&&&%,*#%&&&&%%*,*(.
+/(*,(%&&/#@&#*%&&%(/&&#%&%&&&%#.,   .,.#%#(/.*&&&&&&(.#&&&&&&#,,*(/   
+//,*%&&&&&&&&&&#,#*(#(*%(,%(,,//,/(///(#%%%&&&&&&&&%**%%&@&%*,/,%       
+//./&&&&&&&&&&&&&&&%#(*,/./%/,*,%%&&&&&&&&&&&&&&&%(.*%%&&&%,*#,*          
+**.(&&&&&&&&&&&&&&&&&&&&&&&&%%%%%/,#%&&&&&&&&%/,*(%&&&&&&%,*.(             
+./*,#.#%/#&&&&&&&&&&&&&&&&&&&&&&&&&&&&&%/,,,,,/#&&&&&&&&&&%/,#/               
+...%%&% #(*%&((&&#&&&&&@&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&%*,%&                 
+,.,&&&&&&(,..##,%&*/%*%&&&&&&&&&&&&%%&&&&&&&&&&&&&%(*,.,,/%&@                   
+,.,&&&&&&@&%%%,..%#,((*%#,%%#,&&%,&%#,%%&%&&&&&@&@&%%,,%                        
+,.,&&&&&&&&&&&&&&(,,,,(.##.(%%,(%&(.#%%,(%(,(%&&&%/.(&%                         
+../%,%&&&&&&&&&&&&&%%%**,.*.,#%*,#%%/....***(.(#%/                             
+.,(**/((&#&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&%%%./%                                 
+,.,%&(,/,##*%&&&&&&&&&&&&&&&&&&&&&&&&@@&&(.(%#                                  
+,.,&&&&#,.*#*/%%,%&//&&%%%&&&&&%&&&@&&&(./%                                     
+.,*%&&&&&&#(*,/%.(%(,#%(,%%/*&%/,%&%# (%,                                      
+,//%&&&&&&&&&&%/*/,,,.*#(,,*,*/(#*,#%,                                        
+.,%,(%.%%&%/%&&&&%&&%&&&&&&%%%(*.#%%                                           
+.,&&%.//,%%(,%(/%,##,*%%%/,,*(/*                                               
+.,&&&&&%%#/,*,,#,/#,.,,/(/.                                                    
+,.,&&&&&%&&&&&&(.*                                                              
+,.,&&&&&*/%&(,*//                                                               
+,.,&&&&&,/,*/*                                                                  
+.,&&&%,AA/                                                                      
+.,&#,*(,A                                                                       
+vvvvvv
+vvvvvv
+vvvvvv
+vvvvv
+vvvv
+vvv
+vv
 
 
+hbggvh
+v
 <script>
     
         let oscilador;
@@ -566,7 +665,7 @@ let osciladoresActivos = [];
         
         function setup() {
             let asciiArtContainer = document.getElementById('ascii-container'); 
-            let desiredHeight = 400; // Establecer el largo deseado aquí
+            let desiredHeight = 350; // Establecer el largo deseado aquí
             let canvas = createCanvas(asciiArtContainer.offsetWidth, desiredHeight);
 
   
@@ -578,7 +677,7 @@ let osciladoresActivos = [];
  }
  function windowResized() {
     let asciiArtContainer = document.getElementById('ascii-container');
-    let desiredHeight = 400; // Asegúrate de usar el mismo largo deseado que antes
+    let desiredHeight = 350; // Asegúrate de usar el mismo largo deseado que antes
     resizeCanvas(asciiArtContainer.offsetWidth, desiredHeight);
     canvas.position(asciiArtContainer.offsetLeft, asciiArtContainer.offsetTop);
 }
@@ -776,8 +875,8 @@ function cicloAparicionGato() {
     // Función para generar un tiempo aleatorio basado en valores musicales típicos
     function generarTiempoAleatorio() {
         // Define tiempos basados en milisegundos para corcheas, negras, etc.
-        const tiempos = [ 146, 323, 1000, 90, 2000];  // Corchea, Negra y Blanca
-        const indiceAleatorio = Math.floor(Math.random() * tiempos.length);
+        const tiempos = [ 146, 323, 1000, 90, 1987];  // Corchea, Negra y Blanca
+        const indiceAleatorio = Math.floor(Math.random() ** tiempos.length);
         return tiempos[indiceAleatorio];
     }
 
@@ -857,7 +956,7 @@ function startAudioContext() {
   `;
 
   p.setup = function() {
-    p.createCanvas(710, 400);
+    p.createCanvas(510, 200);
     p.textSize(32);
     p.fill(255);
     x = p.random(p.width - 100); // Coordenada inicial x
@@ -868,7 +967,7 @@ function startAudioContext() {
     p.background(0);
 
     let x = p.random(p.width - 100); // Asegura espacio para el gato
-    let y = p.random(p.height - 250); // Asegura espacio para el gato
+    let y = p.random(p.height - 350); // Asegura espacio para el gato
 
     // Dibuja el gato en el canvas en la posición aleatoria
     p.text(asciiCat, x, y,x);
@@ -980,7 +1079,6 @@ new p5(function(p) {
 </script>
 </body>
 </html>
-
 
 
 
