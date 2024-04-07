@@ -10,29 +10,7 @@
         // Declarar el AudioContext globalmente
 let audioCtx;
 
-function reproducirSonido(frecuencia = 440) {
-    if (!audioCtx) {
-        return; // Asegúrate de que el AudioContext esté inicializado
-    }
-    let oscilador = audioCtx.createOscillator();
-    oscilador.frequency.value = frecuencia; // Frecuencia en hertz
-    oscilador.type = 'sine'; // Tipo de onda
-    oscilador.connect(audioCtx.destination);
-    oscilador.start();
-    oscilador.stop(audioCtx.currentTime + 0.5); // Detener el sonido después de 1 segundo
-}
 
-// Evento para activar AudioContext al primer toque
-document.addEventListener('touchstart', function initAudioContext() {
-    if (!audioCtx) {
-        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        // Reproducir un sonido de prueba o iniciar silenciosamente
-        reproducirSonido(); // Opcional, dependiendo de si quieres un sonido al activar
-
-        // Eliminar este manejador de eventos después de inicializar para no repetirlo
-        document.removeEventListener('touchstart', initAudioContext);
-    }
-});
 
         
   document.addEventListener('contextmenu', function(e) {
@@ -86,14 +64,16 @@ body {
     line-height: 1;
     z-index: 200;
     cursor: pointer;
-    padding-top: 5px;
+ }
 
+    #ascii-art{
+        top: -50px;
 
-
+    }
     
 
 
-}
+
 
 #ascii-cat{
     font-size: 4px;
@@ -103,18 +83,6 @@ body {
 
 }
 
-#ascii-mata{
-    position: absolute;
-    font-size: 4px;
-    cursor: pointer;
-    margin-left:790px;
-    
-    white-space: pre-wrap;
-    word-wrap: break-word;
-
-
-
-}
 
 
 
@@ -122,8 +90,9 @@ body {
     position: relative;
     height: auto; /* Asegúrate de que pueda expandirse para ajustarse al nuevo tamaño del canvas */
     z-index: 200;
-    margin-left:290px;
-    padding-top: -15px;
+    margin-left:450px;
+    padding-top: -50px;
+
 
 
 }
@@ -143,6 +112,7 @@ body {
     left: 0;
     font-size: 3px;
     margin-left: 290px;
+    padding-top: -50px;
 
 }
 
@@ -150,16 +120,19 @@ body {
     position: relative;
     z-index: 100;
     margin-left:390px;
-        padding-top: 50px;
+        padding-top: -50px;
 
 }
 
 #ascii-art-container, #color-bar-sketch-container {
   position: absolute;
-  top: 0;
+  top: -10;
   left: 0;
   width: 100%;
   height: 100%;
+  margin:10px;
+  margin-left: 50px;
+
 }
 
 #ascii-sol {
@@ -447,66 +420,7 @@ vv
 
     </div>
                                                               
-    <pre id="ascii-mata">  
-          
-         
-
-                                                                            
-                                   ,********                                    
-                             *** *****////************                          
-                 *********//*/*////*******///////********                       
-             *******//*******((////****//****//(/////***                        
-         ******///**///////***(((/////////***(((((*******,****   ******.        
-          **/////////((((((*/*(((*/**(((((**(((******/*********////******       
-          *//**///*(((******.,****/***(*********////////////****/(/////**.      
-      ..******////(((/***/////////////////////***///////(//******((////*/***    
-      *****/*///((((((*******////////****//////*(((//(((//****(((/((//****,     
-    ***////*/*/***/***/*/**///////***///****//********////****(((*************  
-    ,***/(((******////////***/*//(/*///////****/////*********(((*////////******.
-      **(/(***////////////***///((////(/((////*////*****////*****////(###//*****
-    **(((((((((////////////(**((/((((((((((((((((////**///////*/*/(#%#####******
-  *******/((((((((/(((//*###(#((((((##((#((((((******((//(/(/***(#%######*****  
-  ***((((*(%((((((((((#########((((((((((((((((((((((((((*****%#%##%%*/*****    
- *****((((((%%%%%%%%&&&(((((#%#(&(((%%%&#%%%&#((((%%(%%**#%&#%%%%%%%%%%%***     
-   *******(((*(((*%%%&#(%%%%&#&#%%(**%%%&#%#(%&#%%%%*((&&##%((%%%%%%%** *       
-    ,     *,***(((((%(%##((%%#(((**%%%%%&##((%&#%%(*###(((((((((****            
-            ,*******(((((&#&&&#((#((%%%%##(#/%&&(#&#*(***(***(/**               
-                    **    &&&####((&((#(((&##((*/æææææ                         
-                            &&##(&##*#(# &((#ddddd                              
-                                &&#(#(#((.##((#                               
-                                  /&####(#(#(##(                                
-                                  &&(##&#((##                                   
-                                  &&##((#(((                                    
-                                  &###(((*(#                                    
-                                  &#&##((*(# 
-                                  &&(##&#((##                                   
-                                  &&##((#(((                                    
-                                  &###(((*(#                                    
-                                  &#&##((*(# 
-                                  &&(##&#((##                                   
-                                  &&##((#(((                                    
-                                  &###(((*(#                                    
-                                  &#&##((*(# 
-                                  &&(##&#((##                                   
-                                  &&##((#(((                                    
-                                  &###(((*(#                                    
-                                  &#&##((*(#                                    
-                                 *&%&###((*(   
-                                   &&(##&#((##                                   
-                                  &&##((#(((                                    
-                                  &###(((*(#                                    
-                                  &#&##((*(#                                    
-                                 *&%&###((*(                                    
-                                &&#&#(##(#*((                                   
-                               &&#&#&##(#((*/*                                  
-                              &&##&&(#%(#(####/                                 
-                         ,/&&&&&&&&%&(&##*&(((#*(*                              
-                               /&##&##/%&##&&#(*&%&&//(                       
-
-
-        
-
-                    </div>
+    
 
 
 <script>
@@ -534,6 +448,33 @@ function startAudioContext() {
             }
         }
 
+        function solicitarPermisoMicrofono() {
+            // Solicitar acceso al micrófono
+            navigator.mediaDevices.getUserMedia({ audio: true }).then(function(stream) {
+                // Permiso concedido
+                // ...
+            }).catch(function(error) {
+                // Permiso denegado o error
+                // ...
+            });
+        }
+
+        // Esta función inicia el AudioContext y solicita permisos después de la interacción del usuario
+        function iniciarInteraccionUsuario() {
+            iniciarAudio();
+            solicitarPermisoMicrofono();
+            // Eliminar el listener para no volver a solicitar permisos
+            document.removeEventListener('touchend', iniciarInteraccionUsuario);
+        }
+
+        // Muestra un alerta y luego espera una interacción del usuario para iniciar todo
+        window.onload = function() {
+            alert('Toca la pantalla para activar el sonido y los permisos.');
+            // Añade un listener al documento que esperará que el usuario toque la pantalla
+            document.addEventListener('touchend', iniciarInteraccionUsuario);
+        };
+
+
         function toggleIntervalSpeed() {
     if (currentIntervalId !== null) {
         clearInterval(currentIntervalId); // Detiene el intervalo actual
@@ -545,6 +486,8 @@ function startAudioContext() {
     // Reinicia el intervalo con la nueva velocidad
     currentIntervalId = setInterval(shuffleAsciiArtAndSound, currentIntervalSpeed);
 }
+
+
 
 
     function shuffleAsciiArtAndSound() {
@@ -1034,13 +977,8 @@ new p5(function(p) {
   
   }, 'color-bar-sketch-container');
   
-    </script>
-
-
-
-
+</script>
 </body>
-
 </html>
 
 
