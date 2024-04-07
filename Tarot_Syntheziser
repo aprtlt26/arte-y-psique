@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="Alfonso Pretelt Artista">
+    <meta name="keywords" content="collage, alfonsopretelt,tarot,erosion,">
+    <meta name="author" content="alfonsopretelt">
+    <meta name="robots" content="collage">
+    <meta name="google" content="translate">
+    <meta property="og:type" content="www.arteypsique.com">
+    <meta property="og:url" content="https://www.arteypsique.com">
+    <meta property="og:title" content="Arte & Psique">
+    <meta property="og:description" content="Plataforma de aprendizaje y creación">
+    <meta property="og:image" content="log.png">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+
+    <title>ART & PSYCHE</title>
+    <script src="https://cdn.jsdelivr.net/npm/interactjs@1.10.11/dist/interact.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/RecordRTC/5.6.1/RecordRTC.min.js"></script>
+
+  
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+       <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anta&family=Kode+Mono:wght@400..700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet">
+
+
+   
+<script>
+        
+        
+  document.addEventListener('contextmenu', function(e) {
+    e.preventDefault();
+    alert('El clic derecho está desactivado en esta página.');
+  }, false);
+
+ 
+</script>
+
+    <style>
+    
+       
+       /* Estilos base para móviles */
+  
+
+        header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    position: fixed;
+    background-color: transparent;
+    top: 0; /* Establece en 0 para mover el header hacia arriba */
+    z-index: 2; /* Asegúrate de que el z-index sea suficiente para mantenerlo por encima de otros elementos */
+
+    padding-top: 5px; /* Reduce el padding superior para acercar el contenido al borde superior */
+    padding-bottom: 5px; /* Ajusta según sea necesario */
+
+}
+
+
+
+        .navbar-nav .nav-link {
+            font-size: 1rem; 
+            color: #3bc0ac; 
+            transition: color 0.3s; 
+            margin: 0 15px; 
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #55d1ba; 
+            border: 2px dashed  #c4d49c
+
+        }
+       
+
+@media (max-width: 768px) {
+    .navbar {
+        justify-content: center;
+        align-items: center;
+        text-align: center; /* Asegura que el texto también esté centrado */
+        background-color: transparent; 
+
+    }
+
+    .navbar-brand {
+        width: 100%; /* Ocupa todo el ancho disponible para asegurar el centrado */
+        display: block; /* Trata el elemento como un bloque para mejor manejo del centrado */
+        background-color: transparent; 
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+
+    }
+
+    /* Asegúrate de que todos los elementos del navbar estén centrados en dispositivos móviles */
+    .navbar-nav,
+    .navbar-toggler {
+        justify-content: center;
+        width: 100%; /* Ocupa todo el ancho para elementos internos también */
+
+    }
+}
+/* Para asegurar que el navbar se expanda adecuadamente en dispositivos grandes */
+@media (min-width: 992px) {
+    .navbar {
+        justify-content: center; /* Mantiene el contenido centrado en dispositivos grandes */
+        z-index: 1;
+    }
+}
+
+        .navbar-toggler {
+            border: 2px dashed  #c4d49c
+        }
+
+        .navbar-toggler-icon {
+            background-color: transparent; 
+            border: 2px dashed  #c4d49c
+
+        }
+
+        .navbar-toggler:focus {
+            outline: none; 
+        }
+
+          .navbar-collapse {
+            background-color: transparent;
+
+            border: 2px dashed  #c4d49c
+
+        }
+
+        .navbar-collapse .navbar-nav .nav-link {
+            padding: 15px 0; 
+        }
+
+        .navbar-collapse .navbar-nav .nav-link:last-child {
+            border-bottom: none; 
+        }
+
+        
+        @media screen and (max-width: 576px) {
+    .navbar-nav {
+        font-size: 0.9rem;
+        margin: 10px 15px;
+        width: 80%; /* Hace que la barra de menú use todo el ancho disponible */
+        text-align: center; /* Centra el texto de los enlaces */
+align-items: center;
+background-color:  transparent;
+
+    }
+
+    .navbar {
+        width: 80%; /* Asegura que el elemento navbar también ocupe todo el ancho */
+        text-align: center; /* Centra el texto de los enlaces */
+        background-color:  transparent;
+
+        
+    }
+
+    .navbar-collapse {
+        width: 80%; /* Hace que el contenido colapsable de la navbar ocupe todo el ancho */
+        text-align: center; /* Centra el texto de los enlaces */
+        background-color:  transparent;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+
+    }
+
+    .navbar-toggler {
+        margin-right: 0; /* Elimina el margen derecho para alinear el toggler a la derecha */
+        text-align: center; /* Centra el texto de los enlaces */
+;
+
+    }
+
+    .navbar-nav .nav-link {
+        text-align: center; /* Centra el texto de los enlaces */
+    }
+}
+
+
+
+        #menu-links a {
+            color: #97f955; 
+            text-decoration: none;
+            margin: 0 10px; 
+            background-color:  transparent;
+
+        }
+
+        #menu-links a:hover {
+         border: 2px dashed  #c4d49c      
+          }
+
+        #header img {
+            width: 75px;
+            height: auto;
+            margin-right: 10px;
+
+        }
+
+    
+
+        /* Estilos para la barra de menú */
+.navbar {
+    background-color: transparent !important; /* Hace la barra de menú transparente */
+    box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1); /* Agrega una sombra suave */
+    color: #f8f8f8;
+}
+
+/* Estilos para el menú desplegable en versión móvil */
+.navbar-collapse {
+    background-color:   transparent; /* Semi-transparente con sombra */
+    box-shadow: 0 8px 10px rgba(255, 255, 255, 0.2); /* Sombra más notoria */
+    
+}
+
+/* Ajusta la transparencia del botón del menú desplegable para mejor coherencia visual */
+.navbar-toggler {
+    background-color: rgba(255, 255, 255, 0.5); /* Semi-transparente */
+    border-color: rgba(255, 255, 255, 0.5); /* Ajusta el color del borde del botón */
+    color: #f8f8f8;
+}
+
+
+#logout-btn{
+    color: gray;
+    background-color: #fff;
+    border: none;
+
+}
+#logout-btn:hover{
+    border: 2px dashed  #c4d49c
+}
+
+footer a {
+    color: #515151; /* Color de los enlaces */
+    text-decoration: none; /* Elimina el subrayado de los enlaces */
+    
+}
+
+footer a:hover {
+color: #00f7b5;
+text-decoration: none; /* Elimina el subrayado de los enlaces */
+
+}
+
+    
+    .gallery-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 450px; /* Ajusta este valor según necesites para subir la galería */
+        margin-left: 300px;
+    /* Otros estilos de tu galería */
+    z-index: 2000; /* Más alto que el lienzo de p5.js */
+    position: absolute; /* Necesario para que z-index funcione */
+
+}
+@media (max-width: 768px) {
+    .gallery-container {
+        flex-direction: wrap;
+        margin-top: 350px;
+margin-left: 0px;        
+    }
+}
+
+    .gallery-container img {
+        justify-content: center;
+    align-items: center;
+        width: 100px; /* Tamaño reducido de las imágenes de la galería */
+        height: auto;
+        margin: -38px; /* Espacio alrededor de cada imagen */
+        cursor: pointer;
+        border: 2px solid transparent;
+        border-radius: 5px;
+        transition: transform 0.3s ease; /* Suaviza la transición al hacer hover */
+    }
+
+    .gallery-container img:hover {
+        transform: scale(1.1); /* Efecto de zoom al pasar el mouse */
+        border-color: #91ff3d;
+    }
+    /* Contenedor para la galería y el botón */
+.gallery-wrapper {
+    display: flex;
+    align-items: center; /* Centra los items verticalmente */
+    justify-content: center; /* Centra los items horizontalmente */
+    position: relative; /* Para posicionamiento absoluto de elementos internos si es necesario */
+    z-index: 100; /* Asegúrate de que esté por encima del lienzo */
+    margin-top: 100px; /* Espacio desde la parte superior o según necesites */
+}
+
+/* Estilo específico para el botón para asegurar su posicionamiento */
+
+
+
+    /* Estilo para el contenedor de imágenes seleccionadas */
+    #imageContainer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 3;
+        width: auto; /* Cambiado a auto para contener correctamente las imágenes */
+        flex-wrap: wrap;
+        padding-top: 1600px;
+    }
+    
+
+    #imageContainer img {
+        max-width: 100%; /* Tamaño de las imágenes seleccionadas */
+        margin-right: 5px; /* Espaciado entre imágenes seleccionadas */
+        height: 100%;
+        padding-top: 600px;
+
+    }
+  
+
+
+    #imageContainer img:hover {
+        transform: scale(0.0,5); /* Efecto de zoom al pasar el mouse */
+    }
+        
+
+
+
+.anta-regular {
+  font-family: "Anta", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+
+
+.box {
+  width: 50px; /* O el tamaño deseado */
+  height: 80px; /* O el tamaño deseado */
+  background-color: #787878 transparent; /* Color inicial de la caja */
+  margin: 2px;
+  display: inline-block; /* Alinea las cajas horizontalmente */
+  cursor: pointer; /* Cambia el cursor a una mano para indicar que es clickeable */
+  z-index: 2;
+  box-shadow: 0 2px 4px rgba(255, 255, 255, 0.652);
+  
+}
+
+
+
+
+#shuffleButton:hover {
+  background-color: #99ff99;
+  border: none;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: black;
+    font-family: "Anta", sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 100vh;
+}
+
+
+ 
+    
+
+
+.boxes {
+    display: block;
+    z-index: 1;
+    position: absolute; /* Cambiado de 'absolute' para que fluya con el documento */
+    margin: 50px 0; /* Ajusta según necesites */
+    padding-top: 700px;
+    z-index: 200;
+
+}
+
+
+@media (max-width: 768px) {
+    .boxes, #boxes-container {
+        margin-top: 10px; /* Reduce significativamente el espacio superior en dispositivos móviles */
+    }
+    .box {
+        width: 40px; /* Tamaño ajustado para pantallas más pequeñas */
+        height: 60px;
+    }
+}
+
+footer {
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+    position: relative; /* Cambiado de 'fixed' a 'relative' */
+    bottom: 0; /* Ajusta según necesites */
+    background-color: transparent;
+    color: rgb(103, 103, 103);
+    margin-top: 20px; /* Espacio antes del footer */
+}
+
+#p5-container {
+  position: absolute;
+  top: 50%; /* Mueve el canvas al centro vertical */
+  left: 50%; /* Mueve el canvas al centro horizontal */
+  transform: translate(-50%, -50%); /* Centra el canvas */
+  width: 100%;
+  height: 60vh; /* Ocupa el 60% de la altura de la ventana */
+  z-index: -1;
+  margin-top: 1000px; /* Ajusta este valor según necesites */
+}
+@media (max-width: 768px) {
+    #p5-container {
+        height: 40vh;  /* Menor altura en dispositivos móviles */
+    }
+}
+#shuffleButton {
+    bottom: 20px; /* Posicionar hacia la parte inferior de la pantalla */
+    transform: translateX(-50%); 
+    margin-left: 500px; /* Espacio entre la galería y el botón */
+    cursor: pointer; /* Indica que es clickeable */
+    align-self: start; /* Alinea el botón al principio de la columna */
+margin: 300px;}
+
+
+@media (max-width: 768px) {
+    #shuffleButton {
+        bottom: 10px; /* Menor espacio desde el borde inferior para evitar recorte */
+        padding: 5px 10px; /* Ligeramente más pequeño para adaptarse a pantallas menores */
+        font-size: 0.8rem; /* Tamaño de fuente reducido */
+        margin: 500px;
+        margin-left:40px ;
+    }
+}
+
+    </style>
+</head>
+
+<body>
+
+    <header id="header">
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" style="color: #fff;"  href="about.html">ARTE & PSIQUE</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+<div class="collapse navbar-collapse" id="navbarNav">
+<div id="menu-links" class="navbar-nav">                 
+<a class="nav-link" href="opensoundt.html" target="_blank">Tarot FQ</a>
+<a class="nav-link" href="collage.html">Collage</a>
+<a class="nav-link" href="paint.html">Paint</a>
+
+                </div>
+            </nav>
+        </header>
+
+        </div>
+
+   
+
+
+        
+
+<div class="container">
+  <div class="row">
+      <!-- Galería vertical en la columna izquierda -->
+    
+      <div id="p5-container">
+        <div id="p5-canvas"></div>
+   
+        </div>
+
+
+            <div class="gallery-container">
+
+    <img src="port.png" alt="Mandala Mago" data-img="negro.jpeg"   data-frecuencia="100">
+    <img src="port.png" alt="Mandala Dol" data-img="negro.jpeg" data-frecuencia="200">
+    <img src="port.png" alt="Mandala Emperatriz" data-img="negro.jpeg" data-frecuencia="300">
+    <img src="port.png" alt="Mandala Emperador" data-img="negro.jpeg"data-frecuencia="400">
+    <img src="port.png" alt="Mandala Papa" data-img="negro.jpeg"data-frecuencia="500">
+    <img src="port.png" alt="Mandala Enamorados" data-img="negro.jpeg" data-frecuencia="600">
+    <img src="port.png" alt="Mandala 7" data-img= "negro.jpeg" data-frecuencia="700">
+    <img src="port.png" alt="Mandala Justicia" data-img="negro.jpeg" data-frecuencia="800">
+    <img src="port.png" alt="Mandala Justicia" data-img="negro.jpeg" data-frecuencia="900">
+    <img src="port.png" alt="Mandala Templanza" data-img="negro.jpeg" data-frecuencia="1000">
+    <img src="port.png" alt="Mandala Fuerza" data-img="negro.jpeg" data-frecuencia="1100">
+    <img src="port.png" alt="Mandala Colg" data-img="negro.jpeg"data-frecuencia="1200">
+    <img src="port.png" alt="Mandala 13" data-img="negro.jpeg"data-frecuencia="1300">
+    <img src="port.png" alt="Mandala Templanza" data-img="negro.jpeg"data-frecuencia="1400">
+    <img src="port.png" alt="Mandala Diablo" data-img="negro.jpeg"data-frecuencia="1500">
+    <img src="port.png" alt="Mandala Torre" data-img="negro.jpeg"data-frecuencia="1600">
+    <img src="port.png" alt="Mandala Estrella" data-img="negro.jpeg"data-frecuencia="1700">
+    <img src="port.png" alt="Mandala Templanza" data-img="negro.jpeg"data-frecuencia="1800">
+    <img src="port.png" alt="Mandala Dol" data-img="negro.jpeg"data-frecuencia="1900">
+    <img src="port.png" alt="Mandala Estrella" data-img="negro.jpeg" data-frecuencia="2000">
+    <img src="port.png" alt="Mandala Mundo" data-img="negro.jpeg"data-frecuencia="2100">
+    <img src="port.png" alt="Mandala Mundo" data-img="negro.jpeg"data-frecuencia="2200">
+
+    ];
+
+
+<section>
+
+</section>
+</div>
+
+
+                    
+        </div>
+        </div>
+    </div>
+</div>
+<button id="shuffleButton"><i class='bx bx-shuffle' ></i></button>
+
+</div>
+    
+  
+
+   
+        <div class="boxes"> 
+            <div style=" margin-left: 178px;" class="box"  data-frecuencia="2200" data-url="assci_art.html"></div>
+
+            <div id="boxes-container">
+        <div class="box" data-frecuencia="100"></div>
+        <div class="box" data-frecuencia="200"></div>
+        <div class="box" data-frecuencia="300"></div>
+        <div class="box" data-frecuencia="400"></div>
+        <div class="box" data-frecuencia="500"></div>
+        <div class="box" data-frecuencia="600"></div>
+        <div class="box" data-frecuencia="700"></div>
+
+
+
+      </div>
+      <div id="boxes-container">
+
+        <div class="box" data-frecuencia="800"></div>
+        <div class="box" data-frecuencia="900"></div>
+        <div class="box" data-frecuencia="1000"></div>
+        <div class="box" data-frecuencia="1100"></div>
+        <div class="box" data-frecuencia="1200"></div>
+        <div class="box" data-frecuencia="1300"></div>
+        <div class="box" data-frecuencia="1400"></div>
+
+                                       
+
+      </div>
+      <div id="boxes-container">
+        <div class="box" data-frecuencia="1500"></div>
+        <div class="box" data-frecuencia="1600"></div>
+        <div class="box" data-frecuencia="1700"></div>
+        <div class="box" data-frecuencia="1800"></div>
+        <div class="box" data-frecuencia="1900"></div>
+        <div class="box" data-frecuencia="2000"></div>
+        <div class="box" data-frecuencia="2100"></div>
+
+      </div>
+      
+      
+    </div>
+    <!-- Nuevo contenedor para la imagen asociada -->
+    <div id="imagenSeleccionadaContainer">
+        <!-- La imagen seleccionada se mostrará aquí -->
+    </div>
+
+<div>
+
+</div>
+
+
+    <div id="imageContainer" >
+        <!-- Las imágenes seleccionadas se mostrarán aquí -->
+    </div>
+
+    <script>
+
+
+        let angle = 1;
+        let circleSize = 500;
+        let spinning = false;
+        let isMoving = false;
+        
+
+
+        function setup() {
+            let cnv = createCanvas(windowWidth, windowHeight - 100); // Resta el espacio que ocupará el resto del contenido por encima
+  cnv.parent('p5-container');            stroke(255);
+            noFill();
+            strokeWeight(1);
+        }
+
+        function draw() {
+            background(0);
+            translate(width / 2, height / 2);
+
+            if (isMoving) {
+        // Usa frecuenciaActual para ajustar el movimiento
+        let velocidad = map(frecuenciaActual, 100, 2200, 0.3, 50); // Ejemplo de mapeo
+        angle += velocidad;
+    }
+
+    let circleSize = map(mouseX, 0, width, 10, 800);
+    for (let i = 0; i < 800; i++) {
+        let offset = TWO_PI / 200 * i;
+        let x = cos(angle + offset) * 1000;
+        let y = sin(angle + offset) * 100;
+
+        ellipse(x, y, x, circleSize, circleSize);
+    }
+}
+
+        function mousePressed() {
+            spinning = !spinning;
+        }
+
+
+        
+    </script>
+
+
+    <script>function shuffleImages() {
+  const container = document.querySelector('.gallery-container');
+  let images = Array.from(container.querySelectorAll('img'));
+  
+  // Función para aplicar el efecto de zoom a cada imagen
+  function zoomEffect(image, index, callback) {
+    image.style.transform = "scale(1.1)";
+    setTimeout(() => {
+      image.style.transform = "";
+      if (index < images.length - 1) {
+        zoomEffect(images[index + 1], index + 1, callback);
+      } else if (callback) {
+        callback();
+      }
+    }, 10); // Tiempo reducido a 10 ms para un efecto de zoom muy rápido
+  }
+  
+  // Comenzar el efecto de zoom desde la primera imagen
+  if (images.length > 0) {
+    zoomEffect(images[0], 0, () => {
+      // Mezclar aleatoriamente y reinsertar las imágenes después del efecto
+      images = images.sort(() => Math.random() - 0.5);
+      container.innerHTML = '';
+      images.forEach(img => container.appendChild(img));
+    });
+  }
+}
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('shuffleButton').addEventListener('click', shuffleImages);
+});
+
+
+
+
+let audioCtx;
+let gainNode;
+let compressor;
+
+
+// Esta función inicializa el AudioContext y el GainNode la primera vez que se utiliza.
+
+document.addEventListener('DOMContentLoaded', () => {
+    inicializarAudio();
+    document.querySelectorAll('.gallery-container img').forEach(img => {
+        img.addEventListener('click', function() {
+            let frecuencia = parseInt(this.getAttribute('data-frecuencia'));
+            frecuenciaActual = frecuencia; // Update the current frequency
+            isMoving = true; // Activate movement
+            reproducirSonido(frecuencia);
+            agregarImagenSeleccionada(this.dataset.img); // Ensure correct data-img path
+            activarCaja(frecuencia); // Activate the corresponding box color
+        });
+    });
+});
+
+
+
+function inicializarAudio() {
+    if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        gainNode = audioCtx.createGain();
+        compressor = audioCtx.createDynamicsCompressor();
+
+        compressor.threshold.setValueAtTime(-50, audioCtx.currentTime);
+        compressor.knee.setValueAtTime(40, audioCtx.currentTime); // Hace la transición más suave
+        compressor.ratio.setValueAtTime(12, audioCtx.currentTime);
+        compressor.attack.setValueAtTime(0, audioCtx.currentTime);
+        compressor.release.setValueAtTime(0.25, audioCtx.currentTime);
+        gainNode.gain.value = 0.1;
+ // Volumen inicial ajustable.
+ gainNode.connect(compressor);
+        compressor.connect(audioCtx.destination);    }
+}
+
+
+let frecuenciaActual = 0; // Nueva variable para almacenar la frecuencia actual del sonido
+
+let osciladoresActivos = [];
+
+function activarCaja(frecuencia) {
+    document.querySelectorAll('.box').forEach(box => {
+        if (box.dataset.frecuencia === frecuencia.toString()) {
+            box.style.backgroundColor = "#FF0000"; // Cambia el color a rojo
+            box.setAttribute('data-active', 'true'); // Marca la caja como activa
+      // Remueve el atributo activo
+        }
+    });
+
+ }
+ 
+    function reproducirSonido(frecuencia) {
+    if (!audioCtx) return;
+
+    let oscilador = audioCtx.createOscillator();
+    oscilador.frequency.value = frecuencia;
+    oscilador.type = 'sine';
+    oscilador.connect(gainNode);
+    oscilador.start();
+
+    
+
+    // Asegurar que el sonido y la animación se detengan después de un período específico
+    oscilador.stop(audioCtx.currentTime + 11); // Ajusta este tiempo según la duración del sonido
+
+
+}
+
+
+
+function agregarImagenSeleccionada(srcImagen) {
+    let img = document.createElement('img');
+    img.src = srcImagen; // Asegúrate de que el src es correcto
+    img.style.width = '100px';
+    img.style.height = 'auto';
+    document.getElementById('imageContainer').appendChild(img);
+}
+
+
+// Supongamos que cada caja tiene un data-url atributo con la URL a la que debe dirigir
+document.querySelectorAll('.box').forEach(box => {
+    box.addEventListener('click', function() {
+        // Verifica si la caja está activa antes de redirigir
+        if (this.getAttribute('data-active') === 'true') {
+            const url = this.getAttribute('data-url'); // Asegúrate de que cada caja tenga este atributo
+            if (url) { // Asegúrate de que la URL existe
+                window.open(url, '_blank'); // Abre la URL en una nueva pestaña
+            }
+        } else {
+            console.log("Esta caja no está activa y no redirigirá.");
+        }
+    });
+});
+
+
+document.querySelectorAll('.box').forEach(box => {
+    box.addEventListener('click', function() {
+        const frecuencia = this.dataset.frecuencia;
+        mostrarImagenPorFrecuencia(frecuencia);
+    });
+});
+
+// Función modificada para mostrar imagen y reproducir sonido
+
+
+    </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+    
+    
+    </script>
+
+    
+      
+    </body>
+</html>
