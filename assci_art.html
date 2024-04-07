@@ -2,9 +2,50 @@
 <html>
 <body>
 
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
-    
+    <script>
+
+        
+        
+        
+  document.addEventListener('contextmenu', function(e) {
+    e.preventDefault();
+    alert('El clic derecho está desactivado en esta página.');
+  }, false);
+
+ 
+</script>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        solicitarPermisoAudio();
+    });
+
+    function solicitarPermisoMicrofono() {
+        // Verifica si el navegador soporta getUserMedia
+        if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+            alert("Tu navegador no soporta la API de Media Devices.");
+            return;
+        }
+
+        navigator.mediaDevices.getUserMedia({ audio: true })
+            .then(function(stream) {
+                // El usuario aceptó el uso del micrófono
+                alert("Permiso concedido para el uso audio.");
+
+                // Aquí podrías inicializar tu funcionalidad que requiera el uso del micrófono
+                
+                // Es importante detener los tracks para evitar que el micrófono se quede encendido
+                stream.getTracks().forEach(track => track.stop());
+            })
+            .catch(function(err) {
+                // El usuario rechazó el uso del micrófono o ocurrió un error
+                alert("Permiso para el uso del audio fue rechazado o hubo un error: " + err);
+            });
+    }
+</script>
     
     <style>
 body {
@@ -111,7 +152,8 @@ body {
     left: 0;
 }
 
-
+@media (max-width: 768px) {
+ overflow-y: hidden; }
 
 </style>
                   <div id="container" style="position: relative; width: 100%; height: 100%;">
