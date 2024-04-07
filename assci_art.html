@@ -148,10 +148,15 @@ body {
     left: 0;
 }
 
-@media (max-width: 768px) {
-    #body{ 
- overflow-y: hidden; }
-   }
+
+
+   @media (max-width: 768px) {
+    body { 
+        overflow-x: hidden;
+        overflow-y: hidden;
+    }
+}
+
 
 </style>
                   <div id="container" style="position: relative; width: 100%; height: 100%;">
@@ -997,6 +1002,16 @@ new p5(function(p) {
   }, 'color-bar-sketch-container');
   
     </script>
+
+<button id="start-button">Iniciar</button>
+
+<script>
+  document.getElementById('start-button').addEventListener('click', function() {
+    // Aquí llamarías a verificarPermisoMicrofono() para pedir permiso al usuario
+    verificarPermisoMicrofono();
+  });
+</script>
+
 </body>
 
 </html>
