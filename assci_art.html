@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    
+    
+    <style>
+body {
+    background-color: black;
+    color: #cbcbcb;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+
+
+#ascii-art, #ascii-cat {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-size: 5px;
+    line-height: 1;
+    z-index: 200;
+    cursor: pointer;
+
+
+}
+
+#ascii-cat{
+    font-size: 4px;
+    padding-top: 50px;
+    cursor: pointer;
+
+
+}
+
+#ascii-mata{
+    position: absolute;
+    font-size: 4px;
+    cursor: pointer;
+    margin-left:790px;
+    
+    white-space: pre-wrap;
+    word-wrap: break-word;
+
+
+
+}
+
+
+
+    #ascii-container {
+    position: relative;
+    height: auto; /* Asegúrate de que pueda expandirse para ajustarse al nuevo tamaño del canvas */
+    z-index: 200;
+    margin-left:290px
+
+}
+#p5-canvas {
+    position: relative;
+    top: 0;
+    left: 0;
+    z-index: 10; /* Ajustar según sea necesario */
+    cursor: pointer;
+
+}
+#tree-sketch-container {
+    width: 900px; /* Ancho del canvas */
+    height: 400px; /* Altura del canvas */
+    position: relative;
+    top: 0;
+    left: 0;
+    font-size: 3px;
+    margin-left: 290px;
+
+}
+
+#color-bar-sketch-container{
+    position: relative;
+    z-index: 100;
+    margin-left:390px
+
+
+
+}
+
+#ascii-art-container, #color-bar-sketch-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#ascii-sol {
+    font-size: 3px;
+    cursor: pointer;
+    position: absolute; /* Posicionamiento absoluto dentro de su contenedor */
+    top: 0;             /* Alinea la parte superior del elemento con la parte superior del contenedor */
+    right: 0;           /* Alinea el lado derecho del elemento con el lado derecho del contenedor */
+    margin-right: 15px; /* Agrega un pequeño margen derecho, si es necesario */
+    z-index: 1000;      /* Asegura que el elemento sea visible sobre otros posibles elementos */
+}
+
+#ascii-luna {
+    font-size: 4px;
+    z-index: 1000; 
+    cursor: pointer;
+    position: absolute; /* Posicionamiento absoluto dentro de su contenedor */
+    top: 0;             /* Alinea la parte superior del elemento con la parte superior del contenedor */
+    left: 0;
+}
+
+
+
+</style>
+                  <div id="container" style="position: relative; width: 100%; height: 100%;">
+
+                       <pre id="ascii-luna">
+                                                                                                           
+                  *****, *##%###%/ .****************************. ,%#%, ,,        /*.  ,/           
+                  (#*,   .  ,**,*, ###/ ***********************************,  **..#,  ./%%%%#.              
+                   /  #%%%%##%%#/.   .,***********,,,************************,. %###%##%#  ,,*,,*. *@    #  
+                  ,,,,,.  %###%#%#..******.  .(#%%%%#%%%#,   ,**,***************. %#/          .*/##%%%%%(  
+                  /*  ,***,. .%## *,*,. .(,   ..,**,   ./%%%%%(  ,***************, *#%#%%##%#%%%##%(. ,(    
+            ,#%#%%%%%%%%%%%%%%%(.,,,   * %# &% & %/   ,#%%(  (%%%%  ,*************,..%##%#%%%(.     .,*     
+               %   /%%#%%##%#%(.**  *.///*/& &% & &% & &, *%#%, #%#%. ,************* ,%#. .,**,*****,       
+             .  &(*      .(%#% ,, &/.&&&(...*&&%&#&&.&& &,(* *%%( %%%% ,*************      ..,,  /@         
+               ,,*,,,**,*,,,   ,.&&& /&%&#.  /&&&&&&%%& &//&.( /#% ,%%% .,***********,,#%#%%#%%%###%%##(/,. 
+                 &    ./###%#., &&&%&, &@.   @ %&&&&%(%%&/%%*#&  ##.*##% ,,********,*, %#%###%##%%(*.  ./@  
+         ,  .*(%%####%%#%####.. &&&&&&%/ &,*& &&&&&,%%&&&&&&,&#.# #% ###/.***********, #(,   .,,**,..   (   
+                     ..,,*/((/ ,&&&&&&&& &&* (%#,.&&&&&&&&%&&& &,* #*,%## ***********.*#%/.  .*,***,        
+                  @. *******.  .&%&%&&&% &&&&&%&&&&&&&&&&&&&#*&(.& (/.%## ,********,* ####%%%%%%#.  .(      
+                 .*,*,,.. #%%#( #&&&&%&.&&&&%#.*&&&&%&&&&&&&&%/#&  #,/%%,.,********* *##%%%%%%%%%%#%####/   
+                   # .##%#%%###( &&&&&(/%&&  ./%&&&#%%&&&&&&&&&% & % %%# ,*********.*%* .*******,  &@@&&&,  
+              // .%%#%#%%%%%%%#(* %&&&&*,%&& (%   ,(&&&&&&&&&#.&&   #%# ,********* (#%##%(  ,*******. ,*    
+              &%(*     , .*,*,,..#, &&%&&&%&&%&&*  .&%&&&&&&%&%#.  ##* ,********..%%%%%%%###%      ..,,*.   
+                     @ .*,**,. %%##%  &&&%&&&&&&& &%&&&&&&&&&&&.  %( ,,******,.  ..   /%%##%%#%%. ,         
+                     .*,.    %##%%%#%#/ ,%&%&&&&& (&&&&&%&%&, * /. *,*****,, (#%%% .,,***,   ,(%%#%/  /     
+                         ( %%#%#%#%, ,*..(  #&&%&%# .,  .,*    .,******,.   ,%#%%##%  *****, *  @,  .//     
+                       # %%%%%%/  ****.,%#%%%%.    .,*.   .,*,***,,. ,%%##..*,  #####%. *   .,              
+                     &.##%%(  @,.,*** /%%##%( *, %#%%%#* . *(#%%%(   %###%% ,*,**  *%###. /                 
+                   & ##%  %    .,,** (##%%( .,*, %#%### ,*, %###%*.*, *%%%%%  ,*,*. % .%%%.                 
+                   #* //      ,*, , #%%%( & ***, %%%%%  *** /#%%%..***, #%%%# %  ,*.   *  (%. @             
+                             . /%@ ##%( @ / *,,,.%%%% # ,*,, %#%%   *,*.  %%#,   *         * ,*             
+                                % %## @   .,**. /##%,. /.*, .*#%% @/ **. # /#%..                            
+                               ( %( @      *. @.##%*.    , /& %#%   % ,,   / %% /                           
+                                % (         #   #%(           *## .          . %.                           
+                                              @ %#           @ %#                                           
+                                              . % @           .*(                                           
+                                                              @ /                                         
+
+                       </pre>
+  
+   </div>
+
+
+
+    <pre id="ascii-sol">
+                                                                                                   
+                                 *&&&% (#%.#%/(     @.%%(,&%*..../                                  
+                                 (#/%%((%%.#%#*@    @.%%*#%%.%%%.@      @#                          
+                        @#..&#    @//%%.%%#/%%.@    &,%%.%&((%%.@     @.#**./@@                     
+                    %.*%//%%//@%,./&/#%#,%&.%%,@   @(/%#*%%.%%,# ( & %.%%(,%%% %@(                  
+                 @ ,#% %%%.#%# /#.&.@.#%*#%*/%*%*.,,,(%*%%,(%((@ %,& /%%.%%%,(%%#.@                 
+                 &@,#%%#.%&#,%%.,%.&,%.%% && %#,.,,..%%.&%,%(,(*%.& #%#*%%//%%#.@*                  
+                    @//%%(,%&,(%( #%.#&.##,%*#% .,,, %(*%,##.%#,&, %%.%%(,%%(,@.     @/ @           
+          @/(# &@     @(,%%(*%%.%#..#&.&#**%%,% ,,,* %,%#*//&,%/#.%#,%%.#%(,@     @( %%%./@%        
+       .@(* (%%%(.&@  ..,%.%%**%//%.,%&/&,#.&,# **,*.#.%.%.&#*&.*%.%%.#%/,%    @%.(%%%,*%%%.@       
+       & (%%&%*.#%%(.&/,.,,  #%,(%.#((&.&%,(*#* **.**./#/((&(/&*(,&*/%/ .* *.%.(%%#.(&%%/.#(,@.     
+     @**%%%(.*%%%%./%%#.(.* **.*%.#(.(&#*&#*,%..**.** %.(,&&.&&*%(*%*.*,.*. /%%*.%%%(.(%%%%*.#@     
+      @@%.,#%%%%.,%&%/.#%#  *..**,. #.%&%,&&,.****.**,* #&&.&&(* *.**.**.*%%,*&%( (%%%( /@@         
+           @@&,.#%%%,.%%%.*%(.** **** ,(&%  (,#%(%/&(%%*( .#&* .**, ****#.#%# (%%#,.#&&%%#/         
+   @@&/  ,/.%#( ,.    .(/.#%(./.**,.**./*%.,./(.((,((,//...%,( *.,*** .%%./%%*.#.#&.#&,  %@&*.,(#*/ 
+  & %%#(..,./&&%%%%%#..%&#.((.*%,.*,.#/..#*###############*(../#*,*...%&&&&&&&&&%.#/*. /##%%%%%%/ /@
+ @,/,..*#%%%%%##* ,(/.%&%.%&&&%(*,. **.####*..,(#####/...,(###,*/,.%&&*.(%&&&&&&%,,%%%(,.,(#%&&%%& @
+ &*#%&&%&%%%%%(*..*/%%%,(&&&(,.**.& ,*(#*.,*/.,#.##/*#.,**../#((. &.(&&%,,(%(,../#%&&%&%#/*...*(##.@
+@&*%%%%%%%##(/*,..,*(%&&%#*.*%&#,( ,(#, *%*  &* ,##// ##  %%  ###, (, *#%&(/,..,/(#%%%%%%%%%%#(/**, 
+ #((/*,......,,,***/(/*,...,,**.#//((#(,*(*,*/..*(#*/ **../(,.###(*/#.*****,,,...  .*/(&@@@..       
+         ..,,,,,............... ,,.*########(###/(#*(##((#((#####*.., ,,,,,************,            
+    ....@@@@@@&%/.      ..,****.%(,*(########/*#######*/########(*,(%.*,.  .,/(#%###((//*,... ...,,*
+ ./(#%%%%%%%%%%%%#/,. .*(%&%(, , , (#############* *#############(.*./ *..,/%%&%%%#/,. .,*(##%%%%%*#
+ @*(*...*(%%%%&%%%(,.,/##(,.(&&&/,&.,(#######.,.     ...########,.&*.%&&&#*...,/##(*..,(%%&%%%%%%%//
+ @*%%%&&#*../(%%%%(.#&&&&&#*.,#&&&.,#.,#(##/(###,   .###*###(#*.%, &&&&#*..,,,*#&&/ ,/%%%%%%#(/..,,@
+  ( #%%%%%%#*.*#//%.(&&&&&&&&#*.(.**.*#.,(//####*###*(###(//, %,.**, , *#&&%(**(&%,(% %@@%* ,(%%% @ 
+  @*/*.,%@%   .%/*&,//.(%#,*%(. ***.,*,,,&*. *( ((,((,(*..*%,,,**,.**,,*,%%*,#%(,,.#%,,##     &@@%  
+             /%%* /%%#,*&%,*%.*** *** ,.&&(.../%/&,&*#/,. #&*.#,.***.,*,*%#./%%/.(%%#,  .,          
+         /@&.,#%%%,,%&%./%%.,*,,** (.% &&*(&% (.**,*** %&#/&& # %.* *** *, *%%/.%&%( /%%%#,,&@@     
+      @(./%%%%*.#&%# #%%, ,* ,* (%.%# %&/#&*(.% **,**...&&(,&&.#,(% %# ,*.,,,,*%%#.(%%%#./%%%.#(    
+       @(.*.%%%%,,%%%,*(.,.*. (%,#%.#*(%,&((/#//,*,,*.*(*(&&**&&.( %%.%%.,.*.,.@**%%%( #&%%(/@      
+        @*(%%.(%%%*,@@   ,&.#%(*%(*%,.%#/&,#.&.#.*,,*.%.%.(.(&&.&%*(,%%.%%**&    @@*,%%%#,./@       
+          @&.#%(.%@     @.#%#.%&.#%./#&.%#*,%%,%.*,,*.%*%%,%.*#& &.%%.%%(,%%(*@@    @@**/(@         
+            @,%@     #&.#%%.%%#*%( (%,/%.##*&*## ,,,..%#,%,(% .&.%/*(%#,%%(*%%#.@@                  
+                   @&.%%%,#%&.#%/.&.%**,#%.%%.##. *, ((%.%%.%% % &.@%,%%,(%%//%%#.#@                
+                  @ #%%(,%&#,%%,#*(%/%#(%#*&%*%#,/../%*%(*%#/%( &.%.,& %%# %&%,(*./@                
+                    /@.(&%.#%%.@@./#.%.%% &%*#%#/%   @,%%.%%,#%/#.    @,#%%/*#.%@                   
+                       &@#(.#,@     &,%%/(&& %%*#    @.%%/#%% %%,#@    @%. @@                       
+                                   @,#%%.%&(*%% &    #*#%%.%&#/%%,&                                 
+                                   &##(,*(#,,(% @    /(/#* *,, %&@#    
+                                   
+                                   
+                                </pre>
+                            </div>
+
+                            <script>
+                                // Crear instancia de Audio para el sol
+                                let audioSol = new Audio('ambient.wav');
+                                audioSol.loop = true;  // Habilitar reproducción en bucle
+                                audioSol.volume = 1.0;  // Establecer el volumen al máximo
+                            
+                                document.getElementById('ascii-sol').addEventListener('click', function() {
+                                    // Comprueba si el audio está reproduciéndose y alterna su reproducción
+                                    if (audioSol.paused) {
+                                        audioSol.play();  // Comienza a reproducir el audio
+                                    } else {
+                                        audioSol.pause();
+                                        audioSol.currentTime = 0;  // Reinicia el audio si ya estaba reproduciendo
+                                    }
+                                });
+                            </script>
+                            
+                            <script>
+                                // Crear instancia de Audio para la luna
+                                let audioLuna = new Audio('1s.mp3');
+                                audioLuna.loop = true;  // Habilitar reproducción en bucle
+                                audioLuna.volume = 1.0;  // Establecer el volumen al máximo
+                            
+                                document.getElementById('ascii-luna').addEventListener('click', function() {
+                                    // Comprueba si el audio está reproduciéndose y alterna su reproducción
+                                    if (audioLuna.paused) {
+                                        audioLuna.play();  // Comienza a reproducir el audio
+                                    } else {
+                                        audioLuna.pause();
+                                        audioLuna.currentTime = 0;  // Reinicia el audio si ya estaba reproduciendo
+                                    }
+                                });
+                            </script>
+                            
+
+<div id="tree-sketch-container"></div>    
+
+    
+    <div id="ascii-container" class="container">
+
+        
+        <div id="color-bar-sketch-container"></div>
+
+        
+
+        <pre id="ascii-art">
+                ./##/,((/****,,,,,,,*(.,,/*,*,,*(##((*(///*****..,,.,,..,..,......         
+                *                                                                         /   
+              ,    ,%%%#((((((///////*******////////**,,,..                                 , 
+                   ,@                                                                  *&    /
+                   ,&                                                                  *&     
+                   *&,..,,,,,****/////(((((###%%#&&#&%&&&&%@%@&&@@&&@@@@@@@@@@@@@@@@@@@@%     
+                   *&                #%%(      /#,/.((,*(.(,#../(/                     /%     
+                   *&                &%&&x xxc .%.,#*#.%,(#(%.,%(%%                      /%     
+                   *&                 #,(/**....,,,*//**,#(#%,/*/#,                    /%     
+                   *&                   (&//*,*/.*/*#,(.%&.#.**,#/#                    /%     
+                   /&         (&//,*#%,     (&%(,/%/*(((((/#%,&#/,.(                   (%     
+                   /&        %#(//**/*,/*     #.&..,(,(*(#/..,..../%                   (%     
+                   /&   .(.../%(*.#,,#*.       .(.(*#%,#&#//.....*..(                  (%     
+                   (&   @*.,,*((&(##/.%###/%%&#/ **(,,(/*%(%*//(/.*,,.*                #%     
+                   (%    #,..*(&(/%##(,/((/*&%#....,*(#(/*,%(#(,#.,,,.     (#%,,&/     #%     
+                   #&       #&(*##*(./.   ,###(*&#*%%,#&#%(*,**.%,*(#%#((.#&%#,*#/,,   #%     
+                   #%      &##/.#%.*&.*..&(/,*/,%(((%,##*#*##%.#**,(( **%,&,#(.#,*/(#* #%     
+                   #%    */##*,.(&.,,#,/,((****(,##%,&#*&#*#(,/*******#,,*,&.*,        %%     
+                   #%    %.(/.,//#,*,/.,%*******%./###*##(.*/***(..../(**/.,#          %%     
+                   #%    #.(,*.%.,(,*,/,%&*%******,*((#(/**(/,***,.,,,.*,.#            %#     
+                   %%     **.,(.,,(./,,(%&/#**/#(#****%#***#&/##,((*#,.,,..,#          &#     
+                   %%        #/..,../#,/%%/(&(####(,###%&%%%@///%*,&.,,,,,,.,**        &#    ,
+                   &%          ,.&/((.*/#&%%&&(##&//(#&#&%###**,**,,,.,,,,,,,,.#       &#    .
+                   &%          ,##/.   #(%%%####%(&##&#%###%#*,*,,.,,,.,,/,/##(#&#     &#    .
+                   &%                 ,#&&%(#%##%&##&#%#%###%(/,,,,,*(./*.,.,,,&,/*    @#     
+                   &#                /&%##%%#(#%###%&####%&#&#*&%/*(%#((.,.,,,**,#     @(    .
+                   &#               %(###*%#&&&#(&#%#%%#&#&%(##%(/*%(/(%.,.#&@,.*      @(    .
+                   &#             &#((&(%&#.*((@&%#%#&&#@%%%&&%%   *(/%#%.*.,,.(       @(    .
+                   &#           &&&%%#%######(#&/(,,(*&@%%###%.       .(**/.,..#       @(    .
+                   &(         %##(#%#%#%#####%#%##&%&(.(./(/            ##.,,,.#       @(    .
+                   &(       #%%%%&##&#%######%#%#%%&##@#%(#,            ,&.&,.,#       @(    .
+                   &(     .%%#%#&(#%########%##%(%%%#&%%%%%%@            #,#,,,*   &(/ @(    .
+                   @(    %%##&%(%####%#&#(##%##%(%%##%##%&#%&%.           %&..*@%/(#(  @(    .
+                   @(  .&%(##&@@&@@%((//(#%&&&&&%%%#(#####%%%(%           . #/,*#,,#// @(    ,
+                   @( ./**/%%&(#%%(/*****#&@#%%&&%(/,......,*#&*              &*,*#.#/ @(    .
+                   @(   /*(.@&%#&&&(,.,,,#%#&%#%(%#%#%...#.,..(,             ,#(((.%#  @(    ,
+                   @/   .*@*/,,./&&#(*.,.&%%%(#%(&(&##...,*.,,,,            %(#/#/     @(    .
+                   @/   *,..,,*..,/.%.,,,.%@#####%(&(#,.,*@,,.,#          .&#%         @/    ,
+                   @/   /.,/*%(..*%%*..,**(.%,&###(&##,,/,%(,,..(        ,##%          @/    ,
+                   @/   (((,,,..,/%#,,,%,(,.,& ,&##%#&.,**,(.,..(       (((/           @/    ,
+                   @/ /*..,.,##(/..,,,/#..#..*  @%###/.(%*%..,.#./     #(#.            &/    *
+                   @&/%#.*#,,,..,...,..,%...#   /,.#%.,,,,./&./,.%    &(&              &*    *
+                   @/*,*%%*,,&/.(#,..#..,..#    %(.(.*((,,&(..,(.(  .#(%               &*    ,
+                   @&@**,,.,......#,....#**      **.......,*(..,.,,*(#/                &*    ,
+                   @/.*%&##(#&(/%./&/...,,(            #**(/,...,.&##,                 &*    ,
+                   @(//#(//,((%(*#,/...,.*,           .(*#//...,,%(&                   &*    ,
+                   @/*.//    %*///,..,./*.,.  .#/* ,,  %/#/*,,.(((%                    &*    ,
+                   @/%.*  @. &%,(,..,.# .//*#,/#%*/(%&( @%(,.,%#%.(                    &*    *
+                   @* @.##%( @*(.,.,.#   .*/(%,(#*##/(.  %(*(#(%..(   .,.   .@/        &*    ,
+                   @* /*&#*#,*(.,,.,&,./(*..,(#*%/..,*//,.*&##*...,*      %.% /,(/*(*  @*    ,
+                   @%,(,,*/(#%.,,,/,.(,*#//(##.(.//..,*,.(##&&#(...&  ./#,#.%,#//*(%/%*&,    ,
+                   @*./,,,*(#,,,,/,.,,,///%.,,,.(.(/,...%##*,,%/*,,,**//&*/*((/*(#,%,  &,    ,
+                   &*,./,%%#**/,(.,,(**#,,......,,*,,.,##%....*%(,..&,.(*.*%#*(%/.,,,,*&,    ,
+                 ,,&*,.%##(#&%##%,,*#%&#.,./((.*/.(/.%(#/.....,#(*.,.%..,..,,,/#(/(#.,/&,    ,
+                 .,&*,.,.,/#######&/,..,,,((,#,*/%*(%#%......,.(%#%&&##%*.,,,,,*&/ *((*&.    ,
+                 .,&*....,...,.%#&###(%,,,,.(%/(%,%##*,,.,,.,,.&#############&.,,(,&*&*&.    ,
+                 ,,&,.........,.,,,,,,,,,,,*,,,***,**********************************/#&.    ,
+                 *,&,                       %/ %   (  % ,**  &  (                     .&.    ,
+                  .&,                                                                 .&.    ,
+                                                           .......,,,,****************//.   ,.
+              .(                                                                          ,*  
+                 ,(%#/,                  ,                                           ,*##,   
+               
+          
+           
+             
+    </div>
+
+
+        <pre id="ascii-cat">
+ 
+            @(,                                                 
+            %(,*/%&                                               
+ @r         **.##/.,,                                              
+/,/       /**#.*%*,                                              
+/**%./(     //.#../#....                                           
+(*/#%(.((/(/../#&&&&%%(*.,,,                                       
+/*,%*,%#*./%&&&&&&&@&&@&&/.,                                       
+(,*%/..,(%*/&&&&&&&&@&&&(,.,,                                     
+,/(,(%#,.#%,(&&&&&&&@&%,(&%*....                                             
+ /,##(*,*,*%&&&&@&&&#,.*&&&&&&*..                                 
+(*.%&&(%&&&&&&&&&&&&%&&&&&&&&&%..                 (#(..,,,        
+(,/%&//%%%&&&&&&&&&&&&&&&&&&&%,..               ,#,/%%%/,..,,     
+(,/%&(*#*(%*%&%&&&&&&&&&%(*. ,.,              .#**%%&**%%%(*,...  
+(*.%&%.%#*%/(#*&&&&&%&%%%%/,.*               &#.#&&&&&%%,/%%%*,,.,
+ /*(&&&&&&&&&&&&&&%*.,*/##,.,              @%*,&&&&&%&/,&%#.%&&%.*
+//,,,(&&@&&&&&&&%@&&&&&&&&&,,,           .%%,*%&&&&%,*#%&&&&%%*,*(.
+/(*,(%&&/#@&#*%&&%(/&&#%&%&&&%#.,   .,.#%#(/.*&&&&&&(.#&&&&&&#,,*(/   
+//,*%&&&&&&&&&&#,#*(#(*%(,%(,,//,/(///(#%%%&&&&&&&&%**%%&@&%*,/,%       
+//./&&&&&&&&&&&&&&&%#(*,/./%/,*,%%&&&&&&&&&&&&&&&%(.*%%&&&%,*#,*          
+**.(&&&&&&&&&&&&&&&&&&&&&&&&%%%%%/,#%&&&&&&&&%/,*(%&&&&&&%,*.(             
+./*,#.#%/#&&&&&&&&&&&&&&&&&&&&&&&&&&&&&%/,,,,,/#&&&&&&&&&&%/,#/               
+...%%&% #(*%&((&&#&&&&&@&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&%*,%&                 
+,.,&&&&&&(,..##,%&*/%*%&&&&&&&&&&&&%%&&&&&&&&&&&&&%(*,.,,/%&@                   
+,.,&&&&&&@&%%%,..%#,((*%#,%%#,&&%,&%#,%%&%&&&&&@&@&%%,,%                        
+,.,&&&&&&&&&&&&&&(,,,,(.##.(%%,(%&(.#%%,(%(,(%&&&%/.(&%                         
+../%,%&&&&&&&&&&&&&%%%**,.*.,#%*,#%%/....***(.(#%/                             
+.,(**/((&#&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&%%%./%                                 
+,.,%&(,/,##*%&&&&&&&&&&&&&&&&&&&&&&&&@@&&(.(%#                                  
+,.,&&&&#,.*#*/%%,%&//&&%%%&&&&&%&&&@&&&(./%                                     
+.,*%&&&&&&#(*,/%.(%(,#%(,%%/*&%/,%&%# (%,                                      
+,//%&&&&&&&&&&%/*/,,,.*#(,,*,*/(#*,#%,                                        
+.,%,(%.%%&%/%&&&&%&&%&&&&&&%%%(*.#%%                                           
+.,&&%.//,%%(,%(/%,##,*%%%/,,*(/*                                               
+.,&&&&&%%#/,*,,#,/#,.,,/(/.                                                    
+,.,&&&&&%&&&&&&(.*                                                              
+,.,&&&&&*/%&(,*//                                                               
+,.,&&&&&,/,*/*                                                                  
+.,&&&%,AA/                                                                      
+.,&#,*(,A                                                                       
+vvvvvv
+vvvvvv
+vvvvvv
+vvvvv
+vvvv
+vvv
+vv
+
+    </div>
+                                                              
+    <pre id="ascii-mata">  
+          
+         
+
+                                                                            
+                                   ,********                                    
+                             *** *****////************                          
+                 *********//*/*////*******///////********                       
+             *******//*******((////****//****//(/////***                        
+         ******///**///////***(((/////////***(((((*******,****   ******.        
+          **/////////((((((*/*(((*/**(((((**(((******/*********////******       
+          *//**///*(((******.,****/***(*********////////////****/(/////**.      
+      ..******////(((/***/////////////////////***///////(//******((////*/***    
+      *****/*///((((((*******////////****//////*(((//(((//****(((/((//****,     
+    ***////*/*/***/***/*/**///////***///****//********////****(((*************  
+    ,***/(((******////////***/*//(/*///////****/////*********(((*////////******.
+      **(/(***////////////***///((////(/((////*////*****////*****////(###//*****
+    **(((((((((////////////(**((/((((((((((((((((////**///////*/*/(#%#####******
+  *******/((((((((/(((//*###(#((((((##((#((((((******((//(/(/***(#%######*****  
+  ***((((*(%((((((((((#########((((((((((((((((((((((((((*****%#%##%%*/*****    
+ *****((((((%%%%%%%%&&&(((((#%#(&(((%%%&#%%%&#((((%%(%%**#%&#%%%%%%%%%%%***     
+   *******(((*(((*%%%&#(%%%%&#&#%%(**%%%&#%#(%&#%%%%*((&&##%((%%%%%%%** *       
+    ,     *,***(((((%(%##((%%#(((**%%%%%&##((%&#%%(*###(((((((((****            
+            ,*******(((((&#&&&#((#((%%%%##(#/%&&(#&#*(***(***(/**               
+                    **    &&&####((&((#(((&##((*/æææææ                         
+                            &&##(&##*#(# &((#ddddd                              
+                                &&#(#(#((.##((#                               
+                                  /&####(#(#(##(                                
+                                  &&(##&#((##                                   
+                                  &&##((#(((                                    
+                                  &###(((*(#                                    
+                                  &#&##((*(# 
+                                  &&(##&#((##                                   
+                                  &&##((#(((                                    
+                                  &###(((*(#                                    
+                                  &#&##((*(# 
+                                  &&(##&#((##                                   
+                                  &&##((#(((                                    
+                                  &###(((*(#                                    
+                                  &#&##((*(# 
+                                  &&(##&#((##                                   
+                                  &&##((#(((                                    
+                                  &###(((*(#                                    
+                                  &#&##((*(#                                    
+                                 *&%&###((*(   
+                                   &&(##&#((##                                   
+                                  &&##((#(((                                    
+                                  &###(((*(#                                    
+                                  &#&##((*(#                                    
+                                 *&%&###((*(                                    
+                                &&#&#(##(#*((                                   
+                               &&#&#&##(#((*/*                                  
+                              &&##&&(#%(#(####/                                 
+                         ,/&&&&&&&&%&(&##*&(((#*(*                              
+                               /&##&##/%&##&&#(*&%&&//(                       
+
+
+        
+
+                    </div>
+
+
+<script>
+    
+    let audioCtx;
+        let oscilador;
+        let gainNode;
+        let compressor;
+
+        let whiteNoiseSource;
+        let whiteNoiseGain;
+        let shuffleInterval = null;
+        let currentIntervalId = null;
+let currentIntervalSpeed = 50; // Velocidad inicial del intervalo en milisegundos
+
+
+function startAudioContext() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                oscilador = audioCtx.createOscillator();
+                gainNode = audioCtx.createGain();
+
+                gainNode.connect(audioCtx.destination);
+                oscilador.connect(gainNode);
+                oscilador.start();
+            }
+        }
+
+        function toggleIntervalSpeed() {
+    if (currentIntervalId !== null) {
+        clearInterval(currentIntervalId); // Detiene el intervalo actual
+    }
+
+    // Cambia la velocidad del intervalo
+    currentIntervalSpeed = currentIntervalSpeed === 50 ? 550 : 50;
+
+    // Reinicia el intervalo con la nueva velocidad
+    currentIntervalId = setInterval(shuffleAsciiArtAndSound, currentIntervalSpeed);
+}
+
+
+    function shuffleAsciiArtAndSound() {
+        
+        
+        let newText = '';
+        const characters = ['@', '#', '$', '%', '&', '*', '-', '+', '=', '?', ';', ':', ',', '.'];
+
+
+        
+        for (let char of asciiArtElement.innerText) {
+            if (characters.includes(char)) {
+                let randomChar = characters[Math.floor(Math.random() * characters.length)];
+                newText += randomChar;
+            } else {
+                newText += char;
+
+                
+            }
+        }
+
+
+        
+        asciiArtElement.innerText = newText;
+        oscilador.frequency.value = Math.random() * (100 - 2200) + 100;
+    }
+
+   
+
+
+
+    document.body.addEventListener('click', function() {
+    if (!audioCtx) {
+        startAudioContext();
+        // Establece el intervalo para mezclar los caracteres del arte ASCII principal
+        if (currentIntervalId === null) {
+            currentIntervalId = setInterval(shuffleAsciiArtAndSound, currentIntervalSpeed);
+        shuffleAsciiCat(); // Cambia los caracteres del gato ASCII inmediatamente
+        setInterval(shuffleAsciiCat, 10); // Continúa cambiando los caracteres del gato ASCII
+    }}
+});
+
+
+
+document.body.addEventListener('dblclick', function() {
+    toggleIntervalSpeed();
+    // Aquí puedes agregar cualquier otra lógica que necesites ejecutar en un doble clic
+});
+
+const asciiArtElement = document.getElementById('ascii-art' );
+
+// Nuevo manejador de eventos para el movimiento del mouse
+document.getElementById('ascii-art').addEventListener('mousemove', function(event) {
+    if (!audioCtx) return; // Asegúrate de que el contexto de audio esté inicializado
+
+    const frequency = (event.offsetX / this.offsetWidth) * (2200 - 100) + 100;
+    oscilador.frequency.value = frequency; // Ajusta la frecuencia según la posición del mouse
+
+
+ const gainValue = 0.3 - (event.offsetY / this.offsetHeight);
+ gainNode.gain.value = gainValue;
+});
+
+
+
+
+
+
+
+let osciladoresActivos = [];
+
+ 
+        let prevMouseX = 0;
+        let prevMouseY = 0;
+        let mouseMoving = false;
+        
+        function setup() {
+            let asciiArtContainer = document.getElementById('ascii-container'); 
+            let desiredHeight = 400; // Establecer el largo deseado aquí
+            let canvas = createCanvas(asciiArtContainer.offsetWidth, desiredHeight);
+
+  
+         canvas.position(asciiArtContainer.offsetLeft, asciiArtContainer.offsetTop);
+         textSize(22);
+            fill(255);
+            noStroke();
+    background(0); 
+ }
+ function windowResized() {
+    let asciiArtContainer = document.getElementById('ascii-container');
+    let desiredHeight = 400; // Asegúrate de usar el mismo largo deseado que antes
+    resizeCanvas(asciiArtContainer.offsetWidth, desiredHeight);
+    canvas.position(asciiArtContainer.offsetLeft, asciiArtContainer.offsetTop);
+}
+
+
+        function draw() {
+            // Verificar si el mouse se ha movido
+            if (mouseX !== prevMouseX || mouseY !== prevMouseY) {
+                mouseMoving = true;
+                // Generar y mostrar un carácter aleatorio en la posición del mouse
+                let char = generarCaracterAleatorio();
+                text(char, mouseX, mouseY);
+        
+                // Aquí iría el código para reproducir el sonido
+                // reproducirSonido();
+                
+                prevMouseX = mouseX;
+                prevMouseY = mouseY;
+            } else {
+                if (mouseMoving) {
+                    // El mouse se detuvo; limpiar el canvas y detener el sonido
+                    background(0);
+                    // detenerSonido();
+                    mouseMoving = false;
+                }
+            }
+        }
+        
+        function generarCaracterAleatorio() {
+            // Generar un número aleatorio y convertirlo a un carácter ASCII
+            return String.fromCharCode(int(random(65, 190))); // Letras mayúsculas A-Z
+        }
+        
+        // Funciones para manejar el audio
+        // Deberás reemplazar estas funciones con tu propia lógica de audio
+        function reproducirSonido() {
+            // Inicia el sonido
+        }
+        
+        function detenerSonido() {
+            // Detiene el sonido
+        }
+
+
+
+function reproducirSonido(frecuencia) {
+    if (!audioCtx) return;
+
+
+
+    let oscilador = audioCtx.createOscillator();
+    oscilador.frequency.value = frecuencia;
+    oscilador.type = 'sine';
+    oscilador.connect(gainNode);
+    oscilador.start();
+}
+
+
+function inicializarAudio() {
+    if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        gainNode = audioCtx.createGain();
+        compressor = audioCtx.createDynamicsCompressor();
+
+        compressor.threshold.setValueAtTime(-50, audioCtx.currentTime);
+        compressor.knee.setValueAtTime(40, audioCtx.currentTime); // Hace la transición más suave
+        compressor.ratio.setValueAtTime(12, audioCtx.currentTime);
+        compressor.attack.setValueAtTime(0, audioCtx.currentTime);
+        compressor.release.setValueAtTime(0.25, audioCtx.currentTime);
+        gainNode.gain.value = 0.3;
+ // Volumen inicial ajustable.
+ gainNode.connect(compressor);
+        compressor.connect(audioCtx.destination);    }
+}
+
+document.body.addEventListener('mousemove', function(e) {
+    if (!audioCtx) return; // Asegúrate de que el contexto de audio está inicializado
+
+    // Mapea la posición X del mouse a una frecuencia (por ejemplo, de 20 a 2000 Hz)
+    let frecuencia = map(e.clientX, 0, window.innerWidth, 20, 100);
+
+    // Mapea la posición Y del mouse a una duración de nota (por ejemplo, de 0.1 a 1 segundo)
+    let duracionNota = map(e.clientY, 0, window.innerHeight, 0.1, 1);
+
+    // Ajusta la frecuencia del oscilador
+    if (osciladoresActivos.length > 0) {
+        osciladoresActivos.forEach(osc => {
+            osc.frequency.setValueAtTime(frecuencia, audioCtx.currentTime);
+
+            
+        });
+    }
+
+    // Detener los osciladores anteriores para evitar superposición y crear uno nuevo
+    osciladoresActivos.forEach(osc => osc.stop());
+    osciladoresActivos = [];
+
+    // Crea un nuevo oscilador para la nueva frecuencia
+    let oscilador = audioCtx.createOscillator();
+    oscilador.frequency.value = frecuencia;
+    oscilador.type = 'sine';
+    oscilador.connect(gainNode);
+    oscilador.start();
+    oscilador.stop(audioCtx.currentTime + duracionNota);
+
+    osciladoresActivos.push(oscilador);
+});
+
+
+
+function map(value, in_min, in_max, out_min, out_max) {
+    return (value - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+} 
+
+// Supongamos que tienes un elemento con id 'ascii-sol' como este:
+// <pre id="ascii-sol">Aquí va tu arte ASCII del sol</pre>
+
+// Variable para almacenar el ID del intervalo para poder detenerlo más tarde si es necesario
+let shuffleIntervalId = null;
+
+document.body.addEventListener('click', function() {
+    // Comprueba si el intervalo ya está establecido
+    if (!shuffleIntervalId) {
+        shuffleIntervalId = setInterval(function() {
+            shuffleAscii(document.getElementById('ascii-sol'));
+            shuffleAscii(document.getElementById('ascii-luna'));
+            shuffleAscii(document.getElementById('ascii-cat'));
+
+        }, 30); // Cambia los caracteres cada 100 milisegundos
+    }
+});
+
+
+
+
+
+function shuffleAscii(element) {
+    let newText = '';
+    const characters = ['@', '#', '$', '%', '&', '*', '-', '+', '=', '?', ';', ':', ',', '.'];
+
+    for (let char of element.innerText) {
+        if (characters.includes(char)) {
+            let randomChar = characters[Math.floor(Math.random() * characters.length)];
+            newText += randomChar;
+        } else {
+            newText += char;
+        }
+    }
+
+    element.innerText = newText;
+}
+
+
+
+
+    function generarRuidoBlanco(duracion = 1) {
+    const bufferSize = audioCtx.sampleRate * duracion; // Duración del buffer de 1 segundo
+    const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+    const data = buffer.getChannelData(0);
+
+    // Llenar el buffer con datos de ruido blanco
+    for (let i = 0; i < bufferSize; i++) {
+        data[i] = Math.random() * 2 - 1;
+    }
+
+    const whiteNoiseSource = audioCtx.createBufferSource();
+    whiteNoiseSource.buffer = buffer;
+    whiteNoiseSource.connect(audioCtx.destination);
+    whiteNoiseSource.start();
+    whiteNoiseSource.stop(audioCtx.currentTime + duracion);
+}
+
+
+document.getElementById('ascii-cat').addEventListener('click', function(event) {
+    event.stopPropagation(); // Previene la propagación del evento al cuerpo del documento
+
+    // Mueve el gato ASCII a una nueva posición aleatoria
+    moverYMostrarGatoAscii();
+    const asciiCatElement = document.getElementById('ascii-cat');
+
+    // Genera ruido blanco
+    if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    }
+    generarRuidoBlanco(0.3); // Genera ruido blanco por 0.5 segundos
+});
+let contadorApariciones = 0;
+
+function cicloAparicionGato() {
+    const asciiCatElement = document.getElementById('ascii-cat');
+    if (contadorApariciones === 0) {
+        asciiCatElement.style.display = 'none';  // Asegurar que comienza oculto
+    }
+
+    // Función para generar un tiempo aleatorio basado en valores musicales típicos
+    function generarTiempoAleatorio() {
+        // Define tiempos basados en milisegundos para corcheas, negras, etc.
+        const tiempos = [ 146, 323, 1000, 90, 2000];  // Corchea, Negra y Blanca
+        const indiceAleatorio = Math.floor(Math.random() * tiempos.length);
+        return tiempos[indiceAleatorio];
+    }
+
+    const intervalo = setInterval(() => {
+        if (asciiCatElement.style.display === 'none') {
+            const asciiContainer = document.getElementById('ascii-art');
+            const newX = Math.random() * (asciiContainer.offsetWidth - asciiCatElement.offsetWidth);
+            const newY = Math.random() * (asciiContainer.offsetHeight - asciiCatElement.offsetHeight);
+
+            asciiCatElement.style.left = `${newX}px`;
+            asciiCatElement.style.top = `${newY}px`;
+            asciiCatElement.style.display = 'block';
+
+            generarRuidoBlanco(0.3);  // Genera ruido blanco por 0.3 segundos
+
+            contadorApariciones++;
+        } else {
+            asciiCatElement.style.display = 'none';
+        }
+
+        if (contadorApariciones >= 4) {
+            clearInterval(intervalo);
+            contadorApariciones = 0;
+        }
+    }, generarTiempoAleatorio());  // Utiliza un tiempo aleatorio para cada intervalo
+}
+
+document.getElementById('ascii-cat').addEventListener('click', function(event) {
+    cicloAparicionGato(); // Inicia el ciclo de aparición del gato con tiempos aleatorios
+});
+
+
+new p5(sketch1, 'p5-canvas'); // Asegúrate de que 'p5-canvas' sea el ID del contenedor para este canvas
+
+function startAudioContext() {
+    if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        oscilador = audioCtx.createOscillator();
+        gainNode = audioCtx.createGain();
+
+        // Crear delay y configurar
+        const delay = audioCtx.createDelay(1.0);
+        const delayGain = audioCtx.createGain();
+        delay.delayTime.value = 0.1; // Tiempo de delay inicial
+        delayGain.gain.value = 0.5;  // Ganancia del delay para controlar la intensidad del eco
+
+        delay.connect(delayGain);
+        delayGain.connect(delay);
+        delayGain.connect(audioCtx.destination); // Enviar eco al destino
+
+        // Conectar el oscilador a gainNode y al delay
+        oscilador.connect(gainNode);
+        gainNode.connect(audioCtx.destination);
+        gainNode.connect(delay); // También enviamos el sonido al delay
+
+        oscilador.start();
+    }
+}
+
+
+
+
+
+
+
+
+</script>
+
+<script>
+    // Instancia de p5 para el árbol
+    let sketch2 = function(p) {
+  let asciiCat = `
+  
+         
+  ☁☁ ☁ 
+  
+
+  `;
+
+  p.setup = function() {
+    p.createCanvas(710, 400);
+    p.textSize(32);
+    p.fill(255);
+    x = p.random(p.width - 100); // Coordenada inicial x
+        y = p.random(p.height - 100); // Coordenada inicial y
+    };
+
+  p.draw = function() {
+    p.background(0);
+
+    let x = p.random(p.width - 100); // Asegura espacio para el gato
+    let y = p.random(p.height - 250); // Asegura espacio para el gato
+
+    // Dibuja el gato en el canvas en la posición aleatoria
+    p.text(asciiCat, x, y,x);
+
+  };
+
+  p.mouseClicked = function() {
+    p.clear(); // Limpia el canvas
+    p.draw(); // Dibuja un nuevo gato
+  };
+};
+
+new p5(sketch2, 'tree-sketch-container');
+    </script>
+
+<script>
+    // Define la nueva instancia de p5.js para el sketch de las barras de color
+    new p5(function(p) {
+  const barSize = 50; // Tamaño de cada "barra" cuadrada
+  let lastBarIndex = -1; // Último índice de la barra dibujada
+
+  p.setup = function() {
+    let canvas = p.createCanvas(220, 200); // Dimensiones del canvas
+    canvas.parent('color-bar-sketch-container'); // Asigna el contenedor
+    canvas.style('opacity', '0.2'); // Establece la opacidad del canvas
+
+    p.colorMode(p.HSB, p.width, p.width, p.width); // Modo de color HSB basado en el ancho
+    p.noStroke();
+    p.background(0);
+  };
+
+  p.draw = function() {
+    let mouseXAdjusted = p.mouseX - (p.width / 2); // Ajusta mouseX para que el centro sea 0
+    let mouseYAdjusted = p.mouseY - (p.height / 2); // Ajusta mouseY para que el centro sea 0
+    // Calcula la "barra" basada en la distancia más corta al eje X o Y desde el centro
+    let whichBarIndex = p.int(p.min(p.abs(mouseXAdjusted), p.abs(mouseYAdjusted)) / barSize);
+    
+    if (whichBarIndex !== lastBarIndex) {
+      // Calcula la posición inicial de la barra cuadrada
+      let startX = (p.width / 2) - whichBarIndex * barSize;
+      let startY = (p.height / 2) - whichBarIndex * barSize;
+
+      for (let i = 0; i <= whichBarIndex; i++) {
+        // Dibuja cada "barra" cuadrada a lo largo de la diagonal
+        let x = startX + i * barSize;
+        let y = startY + i * barSize;
+        
+        p.fill(p.mouseX, p.width, p.width); // Color basado en la posición del ratón
+        p.rect(x, y, barSize, barSize); // Dibuja el rectángulo
+      }
+      lastBarIndex = whichBarIndex;
+    }
+  };
+
+}, 'color-bar-sketch-container'); // Asegúrate de que este ID coincida con el del contenedor
+
+    </script>
+    
+    
+    <script>
+        new p5(function(p) {
+  const barHeight = 20; // La altura de cada barra será de 50
+  let lastBar = -1; // Cambiado para ser -1 para que coincida con el índice inicial de barra
+
+  p.setup = function() {
+    let canvas = p.createCanvas(220, 200); // Ajusta el tamaño si es necesario
+    canvas.parent('color-bar-sketch-container'); // Asigna el contenedor
+    canvas.style('opacity', '0.2'); // Establece la opacidad del canvas
+
+    p.colorMode(p.HSB, p.width, p.width, p.width); // Cambia a modo HSB basado en el ancho
+    p.noStroke();
+    p.background(0);
+  };
+
+  p.draw = function() {
+    let whichBar = p.int(p.mouseY / barHeight); // Calcula la barra horizontal en lugar de la vertical
+    if (whichBar !== lastBar) {
+      let barY = whichBar * barHeight;
+      p.fill(p.mouseX, p.width, p.width); // Usa mouseX para la saturación y brillo
+      p.rect(0, barY, p.width, barHeight); // Dibuja las barras horizontalmente
+      lastBar = whichBar;
+    }
+  };
+
+}, 'color-bar-sketch-container'); // Asegúrate de que este ID coincida con el del contenedor
+
+    </script>
+</body>
+
+</html>
