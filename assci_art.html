@@ -76,10 +76,12 @@ body {
 #ascii-cat{
     display: flex;
     white-space:pre-wrap;
-    word-wrap: break-word;
+    word-wrap: break-word; 
     font-size: 4px;
     cursor: pointer;
-    margin: 20px;
+    margin: 50px;
+    padding-top: -30px;
+    margin-right:170px;
    
 
 }
@@ -105,7 +107,7 @@ margin-left: 100px; /* Centra horizontalmente */
 
 #tree-sketch-container {
     width: 900px; /* Ancho del canvas */
-    height: 500px; /* Altura del canvas */
+    height: 550px; /* Altura del canvas */
     position: relative;
     top: 0;
     left: 0;
@@ -134,33 +136,35 @@ margin-left: 100px; /* Centra horizontalmente */
 
 #ascii-art-container{
   position: absolute;
-  top: -10;
+  top: 10;
   left: 0;
   width: 100%;
   height: 100%;
-  margin:10px;
-  margin-left: 150px;
+  margin-left: 100px;
+  
 }
 
 
 
 #ascii-sol {
-    font-size: 3px;
+    font-size: 4px;
     cursor: pointer;
     position: absolute; /* Posicionamiento absoluto dentro de su contenedor */
     top: 0;             /* Alinea la parte superior del elemento con la parte superior del contenedor */
     right: 0;           /* Alinea el lado derecho del elemento con el lado derecho del contenedor */
-    margin-right: 10px; /* Agrega un pequeño margen derecho, si es necesario */
+    margin-right:90px; /* Agrega un pequeño margen derecho, si es necesario */
     z-index: 1000;      /* Asegura que el elemento sea visible sobre otros posibles elementos */
 }
 
 #ascii-luna {
-    font-size: 4px;
+    font-size: 5px;
     z-index: 1000; 
     cursor: pointer;
     position: absolute; /* Posicionamiento absoluto dentro de su contenedor */
-    top: 0;             /* Alinea la parte superior del elemento con la parte superior del contenedor */
+    top: 20;             /* Alinea la parte superior del elemento con la parte superior del contenedor */
     left: 0;
+    margin-left:90px;  
+    z-index: 2000;
 
 }
 
@@ -170,7 +174,7 @@ margin-left: 100px; /* Centra horizontalmente */
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: 1000; /* Fondo */
+           /* Fondo */z-index: 2000;
             pointer-events: none; /* Permite hacer clic a través del contenedor */
 
         }
@@ -1072,7 +1076,7 @@ function startAudioContext() {
     p.background(0);
 
     let x = p.random(p.width - 100); // Asegura espacio para el gato
-    let y = p.random(p.height - 350); // Asegura espacio para el gato
+    let y = p.random(p.height - 250); // Asegura espacio para el gato
 
     // Dibuja el gato en el canvas en la posición aleatoria
     p.text(asciiCat, x, y,x);
@@ -1307,5 +1311,6 @@ function handleArrowKeys(arrowKey) {
     </script>
 </body>
 </html>
+
 
 
