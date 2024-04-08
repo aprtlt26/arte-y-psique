@@ -1,18 +1,40 @@
 <!DOCTYPE html>
-<html>
-<body>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="Alfonso Pretelt Artista">
+    <meta name="keywords" content="collage, alfonsopretelt,tarot,erosion,">
+    <meta name="author" content="alfonsopretelt">
+    <meta name="robots" content="collage">
+    <meta name="google" content="translate">
+    <meta property="og:type" content="www.arteypsique.com">
+    <meta property="og:url" content="https://www.arteypsique.com">
+    <meta property="og:title" content="Arte & Psique">
+    <meta property="og:description" content="Plataforma de aprendizaje y creación">
+    <meta property="og:image" content="log.png">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
-    <script>
+
+    <title>ART & PSYCHE</title>
+    <script src="https://cdn.jsdelivr.net/npm/interactjs@1.10.11/dist/interact.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/RecordRTC/5.6.1/RecordRTC.min.js"></script>
+
+  
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+       <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anta&family=Kode+Mono:wght@400..700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet">
 
 
-        // Declarar el AudioContext globalmente
-let audioCtx;
-
-
-
+   
+<script>
+        
         
   document.addEventListener('contextmenu', function(e) {
     e.preventDefault();
@@ -20,820 +42,653 @@ let audioCtx;
   }, false);
 
  
+</script>
 
+    <style>
+    
+       
+       /* Estilos base para móviles */
+  
 
-  document.addEventListener('DOMContentLoaded', (event) => {
-    verificarPermisoMicrofono();
-});
+        header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    position: fixed;
+    background-color: transparent;
+    top: 0; /* Establece en 0 para mover el header hacia arriba */
+    z-index: 2; /* Asegúrate de que el z-index sea suficiente para mantenerlo por encima de otros elementos */
 
-function verificarPermisoMicrofono() {
-    navigator.permissions.query({ name: 'microphone' })
-        .then((permissionStatus) => {
-            // 'prompt' significa que no se ha pedido el permiso todavía
-            if (permissionStatus.state === 'prompt') {
-                solicitarPermisoMicrofono();
-            } else if (permissionStatus.state === 'granted') {
-                alert("El permiso para el micrófono ya ha sido concedido.");
-                // Ya puedes empezar a usar el micrófono
-            } else {
-                alert("El permiso para el micrófono ha sido denegado.");
-                // Aquí puedes guiar al usuario sobre cómo cambiar los permisos del micrófono
-            }
-        })
-        .catch((error) => {
-            console.log('Error al verificar los permisos del micrófono:', error);
-        });
+    padding-top: 5px; /* Reduce el padding superior para acercar el contenido al borde superior */
+    padding-bottom: 5px; /* Ajusta según sea necesario */
+
 }
 
-// Aquí iría la función solicitarPermisoMicrofono() que ya tienes
 
-</script>
-<style>
+
+        .navbar-nav .nav-link {
+            font-size: 1rem; 
+            color: #3bc0ac; 
+            transition: color 0.3s; 
+            margin: 0 15px; 
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #55d1ba; 
+            border: 2px dashed  #c4d49c
+
+        }
+       
+
+@media (max-width: 768px) {
+    .navbar {
+        justify-content: center;
+        align-items: center;
+        text-align: center; /* Asegura que el texto también esté centrado */
+        background-color: transparent; 
+
+    }
+
+    .navbar-brand {
+        width: 100%; /* Ocupa todo el ancho disponible para asegurar el centrado */
+        display: block; /* Trata el elemento como un bloque para mejor manejo del centrado */
+        background-color: transparent; 
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+
+    }
+
+    /* Asegúrate de que todos los elementos del navbar estén centrados en dispositivos móviles */
+    .navbar-nav,
+    .navbar-toggler {
+        justify-content: center;
+        width: 100%; /* Ocupa todo el ancho para elementos internos también */
+
+    }
+}
+/* Para asegurar que el navbar se expanda adecuadamente en dispositivos grandes */
+@media (min-width: 992px) {
+    .navbar {
+        justify-content: center; /* Mantiene el contenido centrado en dispositivos grandes */
+        z-index: 1;
+    }
+}
+
+        .navbar-toggler {
+            border: 2px dashed  #c4d49c
+        }
+
+        .navbar-toggler-icon {
+            background-color: transparent; 
+            border: 2px dashed  #c4d49c
+
+        }
+
+        .navbar-toggler:focus {
+            outline: none; 
+        }
+
+          .navbar-collapse {
+            background-color: transparent;
+
+            border: 2px dashed  #c4d49c
+
+        }
+
+        .navbar-collapse .navbar-nav .nav-link {
+            padding: 15px 0; 
+        }
+
+        .navbar-collapse .navbar-nav .nav-link:last-child {
+            border-bottom: none; 
+        }
+
+        
+        @media screen and (max-width: 576px) {
+    .navbar-nav {
+        font-size: 0.9rem;
+        margin: 10px 15px;
+        width: 80%; /* Hace que la barra de menú use todo el ancho disponible */
+        text-align: center; /* Centra el texto de los enlaces */
+align-items: center;
+background-color:  transparent;
+
+    }
+
+    .navbar {
+        width: 80%; /* Asegura que el elemento navbar también ocupe todo el ancho */
+        text-align: center; /* Centra el texto de los enlaces */
+        background-color:  transparent;
+
+        
+    }
+
+    .navbar-collapse {
+        width: 80%; /* Hace que el contenido colapsable de la navbar ocupe todo el ancho */
+        text-align: center; /* Centra el texto de los enlaces */
+        background-color:  transparent;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+
+    }
+
+    .navbar-toggler {
+        margin-right: 0; /* Elimina el margen derecho para alinear el toggler a la derecha */
+        text-align: center; /* Centra el texto de los enlaces */
+;
+
+    }
+
+    .navbar-nav .nav-link {
+        text-align: center; /* Centra el texto de los enlaces */
+    }
+}
+
+
+
+        #menu-links a {
+            color: #97f955; 
+            text-decoration: none;
+            margin: 0 10px; 
+            background-color:  transparent;
+
+        }
+
+        #menu-links a:hover {
+         border: 2px dashed  #c4d49c      
+          }
+
+        #header img {
+            width: 75px;
+            height: auto;
+            margin-right: 10px;
+
+        }
+
+    
+
+        /* Estilos para la barra de menú */
+.navbar {
+    background-color: transparent !important; /* Hace la barra de menú transparente */
+    box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1); /* Agrega una sombra suave */
+    color: #f8f8f8;
+}
+
+/* Estilos para el menú desplegable en versión móvil */
+.navbar-collapse {
+    background-color:   transparent; /* Semi-transparente con sombra */
+    box-shadow: 0 8px 10px rgba(255, 255, 255, 0.2); /* Sombra más notoria */
+    
+}
+
+/* Ajusta la transparencia del botón del menú desplegable para mejor coherencia visual */
+.navbar-toggler {
+    background-color: rgba(255, 255, 255, 0.5); /* Semi-transparente */
+    border-color: rgba(255, 255, 255, 0.5); /* Ajusta el color del borde del botón */
+    color: #f8f8f8;
+}
+
+
+#logout-btn{
+    color: gray;
+    background-color: #fff;
+    border: none;
+
+}
+#logout-btn:hover{
+    border: 2px dashed  #c4d49c
+}
+
+footer a {
+    color: #515151; /* Color de los enlaces */
+    text-decoration: none; /* Elimina el subrayado de los enlaces */
+    
+}
+
+footer a:hover {
+color: #00f7b5;
+text-decoration: none; /* Elimina el subrayado de los enlaces */
+
+}
+
+    
+    .gallery-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 450px; /* Ajusta este valor según necesites para subir la galería */
+        margin-left: 300px;
+    /* Otros estilos de tu galería */
+    z-index: 2000; /* Más alto que el lienzo de p5.js */
+    position: absolute; /* Necesario para que z-index funcione */
+
+}
+@media (max-width: 768px) {
+    .gallery-container {
+        flex-direction: wrap;
+        margin-top: 350px;
+margin-left: 0px;        
+    }
+}
+
+    .gallery-container img {
+        justify-content: center;
+    align-items: center;
+        width: 100px; /* Tamaño reducido de las imágenes de la galería */
+        height: auto;
+        margin: -38px; /* Espacio alrededor de cada imagen */
+        cursor: pointer;
+        border: 2px solid transparent;
+        border-radius: 5px;
+        transition: transform 0.3s ease; /* Suaviza la transición al hacer hover */
+    }
+
+    .gallery-container img:hover {
+        transform: scale(1.1); /* Efecto de zoom al pasar el mouse */
+        border-color: #91ff3d;
+    }
+    /* Contenedor para la galería y el botón */
+.gallery-wrapper {
+    display: flex;
+    align-items: center; /* Centra los items verticalmente */
+    justify-content: center; /* Centra los items horizontalmente */
+    position: relative; /* Para posicionamiento absoluto de elementos internos si es necesario */
+    z-index: 100; /* Asegúrate de que esté por encima del lienzo */
+    margin-top: 100px; /* Espacio desde la parte superior o según necesites */
+}
+
+/* Estilo específico para el botón para asegurar su posicionamiento */
+
+
+
+    /* Estilo para el contenedor de imágenes seleccionadas */
+    #imageContainer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 3;
+        width: auto; /* Cambiado a auto para contener correctamente las imágenes */
+        flex-wrap: wrap;
+        padding-top: 1600px;
+    }
+    
+
+    #imageContainer img {
+        max-width: 100%; /* Tamaño de las imágenes seleccionadas */
+        margin-right: 5px; /* Espaciado entre imágenes seleccionadas */
+        height: 100%;
+        padding-top: 600px;
+
+    }
+  
+
+
+    #imageContainer img:hover {
+        transform: scale(0.0,5); /* Efecto de zoom al pasar el mouse */
+    }
+        
+
+
+
+.anta-regular {
+  font-family: "Anta", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+
+
+.box {
+  width: 50px; /* O el tamaño deseado */
+  height: 80px; /* O el tamaño deseado */
+  background-color: #787878 transparent; /* Color inicial de la caja */
+  margin: 2px;
+  display: inline-block; /* Alinea las cajas horizontalmente */
+  cursor: pointer; /* Cambia el cursor a una mano para indicar que es clickeable */
+  z-index: 2;
+  box-shadow: 0 2px 4px rgba(255, 255, 255, 0.652);
+  
+}
+
+
+
+
+#shuffleButton:hover {
+  background-color: #99ff99;
+  border: none;
+}
 
 body {
-    background-color: black;
-    color: #e6e6e6;
-    font-family: 'Courier New', Courier, monospace;
     margin: 0;
-    overflow-y: hidden;
-    overflow-x: hidden;
-}
-
-
-
-#ascii-art, #ascii-cat {
-   display:flex;
-    word-wrap: break-word;
-    font-size: 5px;
-    line-height: 1;
-    z-index: 2000;
-    cursor: pointer;
-    margin: auto;
-
- }
-
-    
-#ascii-cat{
+    padding: 0;
+    background-color: black;
+    font-family: "Anta", sans-serif;
     display: flex;
-    white-space:pre-wrap;
-    word-wrap: break-word;
-    font-size: 4px;
-    cursor: pointer;
-    margin: 20px;
-   
-
-}
-    #ascii-container {
-display: flex;    
-height: auto; /* Asegúrate de que pueda expandirse para ajustarse al nuevo tamaño del canvas */
-    z-index: -100;
-margin-top: -200px;
-margin-left: 100px; /* Centra horizontalmente */
-    margin-right: auto;
-}
-
-
-#p5-canvas {
-    position: relative;
-    top: 0;
-    left: 0;
-    z-index: 10; /* Ajustar según sea necesario */
-    cursor: pointer;
-   
-
-}
-
-#tree-sketch-container {
-    width: 900px; /* Ancho del canvas */
-    height: 500px; /* Altura del canvas */
-    position: relative;
-    top: 0;
-    left: 0;
-    font-size: 3px;
-    margin-left: 290px;
-    z-index: 1000;
-    padding-bottom: 200px;
-}
-
-
-#color-bar-sketch-container{
-   display: flex;
-   justify-content: center; /* Centra los elementos horizontalmente dentro del contenedor */
+    flex-direction: column;
     align-items: center;
-    z-index: 100;
-    margin-left:auto;
-    margin-right: auto;
-    margin: auto;
-    margin-top: -500px;
-    width: 200px; /* Ancho fijo del contenedor */
-    height: 200px;
-    position: relative; /* Habilita el posicionamiento relativo */
-    overflow: hidden; 
+    justify-content: flex-start;
+    min-height: 100vh;
 }
 
-
-#ascii-art-container{
-  position: absolute;
-  top: -10;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  margin:10px;
-  margin-left: 150px;
-}
-
-
-
-#ascii-sol {
-    font-size: 3px;
-    cursor: pointer;
-    position: absolute; /* Posicionamiento absoluto dentro de su contenedor */
-    top: 0;             /* Alinea la parte superior del elemento con la parte superior del contenedor */
-    right: 0;           /* Alinea el lado derecho del elemento con el lado derecho del contenedor */
-    margin-right: 10px; /* Agrega un pequeño margen derecho, si es necesario */
-    z-index: 1000;      /* Asegura que el elemento sea visible sobre otros posibles elementos */
-}
-
-#ascii-luna {
-    font-size: 4px;
-    z-index: 1000; 
-    cursor: pointer;
-    position: absolute; /* Posicionamiento absoluto dentro de su contenedor */
-    top: 0;             /* Alinea la parte superior del elemento con la parte superior del contenedor */
-    left: 0;
-
-}
-
-#rain-sketch-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1000; /* Fondo */
-            pointer-events: none; /* Permite hacer clic a través del contenedor */
-
-        }
-
-       /* Reglas de media query para dispositivos con ancho máximo de 600px */
-@media (max-width: 600px) {
-    body {
-        overflow-y: hidden; /* Permite desplazamiento vertical si es necesario */
-    }
-
-    #ascii-art  {
-        display: flex;
-
-        font-size: 4px; /* Ajusta el tamaño de la fuente para visibilidad en pantallas pequeñas */
-        margin: 0 60px; /* Agrega márgenes laterales para no tocar los bordes de la pantalla */
-        margin-top: -140px;
-    }
-    #ascii-cat {
-        font-size: 3px;
-        margin-top: -100px;
-
-
-    }
-
-    #ascii-sol{
-        display: flex;
-        font-size: 2.3px; /* Ajusta el tamaño de la fuente para visibilidad en pantallas pequeñas */
-        margin-left: 0;
-       z-index: 2000;
-
-    }
-    #ascii-luna{
-        margin-left: 0;
-        margin-right:0;
-        font-size: 2.8px;
-        margin: 3px;
-
-    }
-
-    #tree-sketch-container  {
-        margin-left: 0;
-        margin-right:0;
-        width: 5%; /* Reduce el ancho para evitar desbordamiento horizontal */
-    z-index: -100;
-    }
-    #color-bar-sketch-container{
-display:flex;
-margin-left: 0px; /* Ajusta el margen izquierdo para centrar */
-        margin-right: 0px; /* Ajusta el margen derecho para centrar */
-
-    }
-
-    #ascii-container {
-        display: flex;
-        margin-top: 0; /* Elimina el margen superior excesivo en móviles */
-        margin-left: 0px; /* Ajusta el margen izquierdo para centrar */
-        margin-right: 0px; /* Ajusta el margen derecho para centrar */
-        flex-direction:row; /* Alinea los elementos verticalmente */
-        z-index:1000;
-    }
-
-    #rain-sketch-container {
-        height: 100vh; /* Asegura que el contenedor de lluvia ocupe todo el alto disponible */
-    }
-}
-
-/* Reglas adicionales para orientación horizontal (landscape) */
-@media (max-width: 600px) and (orientation: landscape) {
-    body {
-        flex-direction: row; /* Organiza los contenedores en fila en lugar de columna */
-        overflow-y: hidden;
-    }
-
-    #tree-sketch-container, #color-bar-sketch-container {
-        width: 48%; /* Asigna un ancho menor para cada contenedor */
-        height: auto; /* Ajusta la altura automáticamente */
-        margin-top: 5px; /* Ajusta el margen superior */
-        margin-bottom: 5px; /* Ajusta el margen inferior */
-    }
-
-
-}
 
  
+    
 
-</style>
 
+.boxes {
+    display: block;
+    z-index: 1;
+    position: absolute; /* Cambiado de 'absolute' para que fluya con el documento */
+    margin: 50px 0; /* Ajusta según necesites */
+    padding-top: 700px;
+    z-index: 200;
+
+}
+
+
+@media (max-width: 768px) {
+    .boxes, #boxes-container {
+        margin-top: 10px; /* Reduce significativamente el espacio superior en dispositivos móviles */
+    }
+    .box {
+        width: 40px; /* Tamaño ajustado para pantallas más pequeñas */
+        height: 60px;
+    }
+}
+
+footer {
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+    position: relative; /* Cambiado de 'fixed' a 'relative' */
+    bottom: 0; /* Ajusta según necesites */
+    background-color: transparent;
+    color: rgb(103, 103, 103);
+    margin-top: 20px; /* Espacio antes del footer */
+}
+
+#p5-container {
+  position: absolute;
+  top: 50%; /* Mueve el canvas al centro vertical */
+  left: 50%; /* Mueve el canvas al centro horizontal */
+  transform: translate(-50%, -50%); /* Centra el canvas */
+  width: 100%;
+  height: 60vh; /* Ocupa el 60% de la altura de la ventana */
+  z-index: -1;
+  margin-top: 1000px; /* Ajusta este valor según necesites */
+}
+@media (max-width: 768px) {
+    #p5-container {
+        height: 40vh;  /* Menor altura en dispositivos móviles */
+    }
+}
+#shuffleButton {
+    bottom: 20px; /* Posicionar hacia la parte inferior de la pantalla */
+    transform: translateX(-50%); 
+    margin-left: 500px; /* Espacio entre la galería y el botón */
+    cursor: pointer; /* Indica que es clickeable */
+    align-self: start; /* Alinea el botón al principio de la columna */
+margin: 300px;}
+
+
+@media (max-width: 768px) {
+    #shuffleButton {
+        bottom: 10px; /* Menor espacio desde el borde inferior para evitar recorte */
+        padding: 5px 10px; /* Ligeramente más pequeño para adaptarse a pantallas menores */
+        font-size: 0.8rem; /* Tamaño de fuente reducido */
+        margin: 500px;
+        margin-left:40px ;
+    }
+}
+
+    </style>
 </head>
+
 <body>
 
-<div id="rain-sketch-container"></div>
+    <header id="header">
 
-                  <div id="container" style="position: relative; width: 100%; height: 100%;">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" style="color: #fff;"  href="about.html">ARTE & PSIQUE</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+<div class="collapse navbar-collapse" id="navbarNav">
+<div id="menu-links" class="navbar-nav">                 
+<a class="nav-link" href="opensoundt.html" target="_blank">Tarot FQ</a>
+<a class="nav-link" href="collage.html">Collage</a>
+<a class="nav-link" href="paint.html">Paint</a>
 
-                       <pre id="ascii-luna">
-                                                                                                           
-                  *****, *##%###%/ .****************************. ,%#%, ,,        /*.  ,/           
-                  (#*,   .  ,**,*, ###/ ***********************************,  **..#,  ./%%%%#.              
-                   /  #%%%%##%%#/.   .,***********,,,************************,. %###%##%#  ,,*,,*. *@    #  
-                  ,,,,,.  %###%#%#..******.  .(#%%%%#%%%#,   ,**,***************. %#/          .*/##%%%%%(  
-                  /*  ,***,. .%## *,*,. .(,   ..,**,   ./%%%%%(  ,***************, *#%#%%##%#%%%##%(. ,(    
-            ,#%#%%%%%%%%%%%%%%%(.,,,   * %# &% & %/   ,#%%(  (%%%%  ,*************,..%##%#%%%(.     .,*     
-               %   /%%#%%##%#%(.**  *.///*/& &% & &% & &, *%#%, #%#%. ,************* ,%#. .,**,*****,       
-             .  &(*      .(%#% ,, &/.&&&(...*&&%&#&&.&& &,(* *%%( %%%% ,*************      ..,,  /@         
-               ,,*,,,**,*,,,   ,.&&& /&%&#.  /&&&&&&%%& &//&.( /#% ,%%% .,***********,,#%#%%#%%%###%%##(/,. 
-                 &    ./###%#., &&&%&, &@.   @ %&&&&%(%%&/%%*#&  ##.*##% ,,********,*, %#%###%##%%(*.  ./@  
-         ,  .*(%%####%%#%####.. &&&&&&%/ &,*& &&&&&,%%&&&&&&,&#.# #% ###/.***********, #(,   .,,**,..   (   
-                     ..,,*/((/ ,&&&&&&&& &&* (%#,.&&&&&&&&%&&& &,* #*,%## ***********.*#%/.  .*,***,        
-                  @. *******.  .&%&%&&&% &&&&&%&&&&&&&&&&&&&#*&(.& (/.%## ,********,* ####%%%%%%#.  .(      
-                 .*,*,,.. #%%#( #&&&&%&.&&&&%#.*&&&&%&&&&&&&&%/#&  #,/%%,.,********* *##%%%%%%%%%%#%####/   
-                   # .##%#%%###( &&&&&(/%&&  ./%&&&#%%&&&&&&&&&% & % %%# ,*********.*%* .*******,  &@@&&&,  
-              // .%%#%#%%%%%%%#(* %&&&&*,%&& (%   ,(&&&&&&&&&#.&&   #%# ,********* (#%##%(  ,*******. ,*    
-              &%(*     , .*,*,,..#, &&%&&&%&&%&&*  .&%&&&&&&%&%#.  ##* ,********..%%%%%%%###%      ..,,*.   
-                     @ .*,**,. %%##%  &&&%&&&&&&& &%&&&&&&&&&&&.  %( ,,******,.  ..   /%%##%%#%%. ,         
-                     .*,.    %##%%%#%#/ ,%&%&&&&& (&&&&&%&%&, * /. *,*****,, (#%%% .,,***,   ,(%%#%/  /     
-                         ( %%#%#%#%, ,*..(  #&&%&%# .,  .,*    .,******,.   ,%#%%##%  *****, *  @,  .//     
-                       # %%%%%%/  ****.,%#%%%%.    .,*.   .,*,***,,. ,%%##..*,  #####%. *   .,              
-                     &.##%%(  @,.,*** /%%##%( *, %#%%%#* . *(#%%%(   %###%% ,*,**  *%###. /                 
-                   & ##%  %    .,,** (##%%( .,*, %#%### ,*, %###%*.*, *%%%%%  ,*,*. % .%%%.                 
-                   #* //      ,*, , #%%%( & ***, %%%%%  *** /#%%%..***, #%%%# %  ,*.   *  (%. @             
-                             . /%@ ##%( @ / *,,,.%%%% # ,*,, %#%%   *,*.  %%#,   *         * ,*             
-                                % %## @   .,**. /##%,. /.*, .*#%% @/ **. # /#%..                            
-                               ( %( @      *. @.##%*.    , /& %#%   % ,,   / %% /                           
-                                % (         #   #%(           *## .          . %.                           
-                                              @ %#           @ %#                                           
-                                              . % @           .*(                                           
-                                                              @ /                                         
+                </div>
+            </nav>
+        </header>
 
-                       </pre>
-  
-   </div>
-
-
-
-    <pre id="ascii-sol">
-                                                                                                   
-                                 *&&&% (#%.#%/(     @.%%(,&%*..../                                  
-                                 (#/%%((%%.#%#*@    @.%%*#%%.%%%.@      @#                          
-                        @#..&#    @//%%.%%#/%%.@    &,%%.%&((%%.@     @.#**./@@                     
-                    %.*%//%%//@%,./&/#%#,%&.%%,@   @(/%#*%%.%%,# ( & %.%%(,%%% %@(                  
-                 @ ,#% %%%.#%# /#.&.@.#%*#%*/%*%*.,,,(%*%%,(%((@ %,& /%%.%%%,(%%#.@                 
-                 &@,#%%#.%&#,%%.,%.&,%.%% && %#,.,,..%%.&%,%(,(*%.& #%#*%%//%%#.@*                  
-                    @//%%(,%&,(%( #%.#&.##,%*#% .,,, %(*%,##.%#,&, %%.%%(,%%(,@.     @/ @           
-          @/(# &@     @(,%%(*%%.%#..#&.&#**%%,% ,,,* %,%#*//&,%/#.%#,%%.#%(,@     @( %%%./@%        
-       .@(* (%%%(.&@  ..,%.%%**%//%.,%&/&,#.&,# **,*.#.%.%.&#*&.*%.%%.#%/,%    @%.(%%%,*%%%.@       
-       & (%%&%*.#%%(.&/,.,,  #%,(%.#((&.&%,(*#* **.**./#/((&(/&*(,&*/%/ .* *.%.(%%#.(&%%/.#(,@.     
-     @**%%%(.*%%%%./%%#.(.* **.*%.#(.(&#*&#*,%..**.** %.(,&&.&&*%(*%*.*,.*. /%%*.%%%(.(%%%%*.#@     
-      @@%.,#%%%%.,%&%/.#%#  *..**,. #.%&%,&&,.****.**,* #&&.&&(* *.**.**.*%%,*&%( (%%%( /@@         
-           @@&,.#%%%,.%%%.*%(.** **** ,(&%  (,#%(%/&(%%*( .#&* .**, ****#.#%# (%%#,.#&&%%#/         
-   @@&/  ,/.%#( ,.    .(/.#%(./.**,.**./*%.,./(.((,((,//...%,( *.,*** .%%./%%*.#.#&.#&,  %@&*.,(#*/ 
-  & %%#(..,./&&%%%%%#..%&#.((.*%,.*,.#/..#*###############*(../#*,*...%&&&&&&&&&%.#/*. /##%%%%%%/ /@
- @,/,..*#%%%%%##* ,(/.%&%.%&&&%(*,. **.####*..,(#####/...,(###,*/,.%&&*.(%&&&&&&%,,%%%(,.,(#%&&%%& @
- &*#%&&%&%%%%%(*..*/%%%,(&&&(,.**.& ,*(#*.,*/.,#.##/*#.,**../#((. &.(&&%,,(%(,../#%&&%&%#/*...*(##.@
-@&*%%%%%%%##(/*,..,*(%&&%#*.*%&#,( ,(#, *%*  &* ,##// ##  %%  ###, (, *#%&(/,..,/(#%%%%%%%%%%#(/**, 
- #((/*,......,,,***/(/*,...,,**.#//((#(,*(*,*/..*(#*/ **../(,.###(*/#.*****,,,...  .*/(&@@@..       
-         ..,,,,,............... ,,.*########(###/(#*(##((#((#####*.., ,,,,,************,            
-    ....@@@@@@&%/.      ..,****.%(,*(########/*#######*/########(*,(%.*,.  .,/(#%###((//*,... ...,,*
- ./(#%%%%%%%%%%%%#/,. .*(%&%(, , , (#############* *#############(.*./ *..,/%%&%%%#/,. .,*(##%%%%%*#
- @*(*...*(%%%%&%%%(,.,/##(,.(&&&/,&.,(#######.,.     ...########,.&*.%&&&#*...,/##(*..,(%%&%%%%%%%//
- @*%%%&&#*../(%%%%(.#&&&&&#*.,#&&&.,#.,#(##/(###,   .###*###(#*.%, &&&&#*..,,,*#&&/ ,/%%%%%%#(/..,,@
-  ( #%%%%%%#*.*#//%.(&&&&&&&&#*.(.**.*#.,(//####*###*(###(//, %,.**, , *#&&%(**(&%,(% %@@%* ,(%%% @ 
-  @*/*.,%@%   .%/*&,//.(%#,*%(. ***.,*,,,&*. *( ((,((,(*..*%,,,**,.**,,*,%%*,#%(,,.#%,,##     &@@%  
-             /%%* /%%#,*&%,*%.*** *** ,.&&(.../%/&,&*#/,. #&*.#,.***.,*,*%#./%%/.(%%#,  .,          
-         /@&.,#%%%,,%&%./%%.,*,,** (.% &&*(&% (.**,*** %&#/&& # %.* *** *, *%%/.%&%( /%%%#,,&@@     
-      @(./%%%%*.#&%# #%%, ,* ,* (%.%# %&/#&*(.% **,**...&&(,&&.#,(% %# ,*.,,,,*%%#.(%%%#./%%%.#(    
-       @(.*.%%%%,,%%%,*(.,.*. (%,#%.#*(%,&((/#//,*,,*.*(*(&&**&&.( %%.%%.,.*.,.@**%%%( #&%%(/@      
-        @*(%%.(%%%*,@@   ,&.#%(*%(*%,.%#/&,#.&.#.*,,*.%.%.(.(&&.&%*(,%%.%%**&    @@*,%%%#,./@       
-          @&.#%(.%@     @.#%#.%&.#%./#&.%#*,%%,%.*,,*.%*%%,%.*#& &.%%.%%(,%%(*@@    @@**/(@         
-            @,%@     #&.#%%.%%#*%( (%,/%.##*&*## ,,,..%#,%,(% .&.%/*(%#,%%(*%%#.@@                  
-                   @&.%%%,#%&.#%/.&.%**,#%.%%.##. *, ((%.%%.%% % &.@%,%%,(%%//%%#.#@                
-                  @ #%%(,%&#,%%,#*(%/%#(%#*&%*%#,/../%*%(*%#/%( &.%.,& %%# %&%,(*./@                
-                    /@.(&%.#%%.@@./#.%.%% &%*#%#/%   @,%%.%%,#%/#.    @,#%%/*#.%@                   
-                       &@#(.#,@     &,%%/(&& %%*#    @.%%/#%% %%,#@    @%. @@                       
-                                   @,#%%.%&(*%% &    #*#%%.%&#/%%,&                                 
-                                   &##(,*(#,,(% @    /(/#* *,, %&@#    
-                                   
-                                   
-                                </pre>
-                            </div>
-
-
-                            <script>
-                                // Crear instancia de Audio para el sol
-                                let audioSol = new Audio('ambient.wav');
-                                audioSol.loop = true;  // Habilitar reproducción en bucle
-                                audioSol.volume = 1.0;  // Establecer el volumen al máximo
-                            
-                                document.getElementById('ascii-sol').addEventListener('click', function() {
-                                    // Comprueba si el audio está reproduciéndose y alterna su reproducción
-                                    if (audioSol.paused) {
-                                        audioSol.play();  // Comienza a reproducir el audio
-                                    } else {
-                                        audioSol.pause();
-                                        audioSol.currentTime = 0;  // Reinicia el audio si ya estaba reproduciendo
-                                    }
-                                });
-                            </script>
-                            
-                            <script>
-                                // Crear instancia de Audio para la luna
-                                let audioLuna = new Audio('1s.mp3');
-                                audioLuna.loop = true;  // Habilitar reproducción en bucle
-                                audioLuna.volume = 1.0;  // Establecer el volumen al máximo
-                            
-                                document.getElementById('ascii-luna').addEventListener('click', function() {
-                                    // Comprueba si el audio está reproduciéndose y alterna su reproducción
-                                    if (audioLuna.paused) {
-                                        audioLuna.play();  // Comienza a reproducir el audio
-                                    } else {
-                                        audioLuna.pause();
-                                        audioLuna.currentTime = 0;  // Reinicia el audio si ya estaba reproduciendo
-                                    }
-                                });
-                            </script>
-                            
-
-
-<div id="tree-sketch-container"></div>    
-
-    
- 
-
-        
-        <div id="color-bar-sketch-container"></div>
-
-        <div id="ascii-container" class="container">
-
-        <pre id="ascii-art">
-                ./##/,((/****,,,,,,,*(.,,/*,*,,*(##((*(///*****..,,.,,..,..,......         
-                *                                                                         /   
-              ,    ,%%%#((((((///////*******////////**,,,..                                 , 
-                   ,@                                                                  *&    /
-                   ,&                                                                  *&     
-                   *&,..,,,,,****/////(((((###%%#&&#&%&&&&%@%@&&@@&&@@@@@@@@@@@@@@@@@@@@%     
-                   *&                #%%(      /#,/.((,*(.(,#../(/                     /%     
-                   *&                &%&&x xxc .%.,#*#.%,(#(%.,%(%%                      /%     
-                   *&                 #,(/**....,,,*//**,#(#%,/*/#,                    /%     
-                   *&                   (&//*,*/.*/*#,(.%&.#.**,#/#                    /%     
-                   /&         (&//,*#%,     (&%(,/%/*(((((/#%,&#/,.(                   (%     
-                   /&        %#(//**/*,/*     #.&..,(,(*(#/..,..../%                   (%     
-                   /&   .(.../%(*.#,,#*.       .(.(*#%,#&#//.....*..(                  (%     
-                   (&   @*.,,*((&(##/.%###/%%&#/ **(,,(/*%(%*//(/.*,,.*                #%     
-                   (%    #,..*(&(/%##(,/((/*&%#....,*(#(/*,%(#(,#.,,,.     (#%,,&/     #%     
-                   #&       #&(*##*(./.   ,###(*&#*%%,#&#%(*,**.%,*(#%#((.#&%#,*#/,,   #%     
-                   #%      &##/.#%.*&.*..&(/,*/,%(((%,##*#*##%.#**,(( **%,&,#(.#,*/(#* #%     
-                   #%    */##*,.(&.,,#,/,((****(,##%,&#*&#*#(,/*******#,,*,&.*,        %%     
-                   #%    %.(/.,//#,*,/.,%*******%./###*##(.*/***(..../(**/.,#          %%     
-                   #%    #.(,*.%.,(,*,/,%&*%******,*((#(/**(/,***,.,,,.*,.#            %#     
-                   %%     **.,(.,,(./,,(%&/#**/#(#****%#***#&/##,((*#,.,,..,#          &#     
-                   %%        #/..,../#,/%%/(&(####(,###%&%%%@///%*,&.,,,,,,.,**        &#    ,
-                   &%          ,.&/((.*/#&%%&&(##&//(#&#&%###**,**,,,.,,,,,,,,.#       &#    .
-                   &%          ,##/.   #(%%%####%(&##&#%###%#*,*,,.,,,.,,/,/##(#&#     &#    .
-                   &%                 ,#&&%(#%##%&##&#%#%###%(/,,,,,*(./*.,.,,,&,/*    @#     
-                   &#                /&%##%%#(#%###%&####%&#&#*&%/*(%#((.,.,,,**,#     @(    .
-                   &#               %(###*%#&&&#(&#%#%%#&#&%(##%(/*%(/(%.,.#&@,.*      @(    .
-                   &#             &#((&(%&#.*((@&%#%#&&#@%%%&&%%   *(/%#%.*.,,.(       @(    .
-                   &#           &&&%%#%######(#&/(,,(*&@%%###%.       .(**/.,..#       @(    .
-                   &(         %##(#%#%#%#####%#%##&%&(.(./(/            ##.,,,.#       @(    .
-                   &(       #%%%%&##&#%######%#%#%%&##@#%(#,            ,&.&,.,#       @(    .
-                   &(     .%%#%#&(#%########%##%(%%%#&%%%%%%@            #,#,,,*   &(/ @(    .
-                   @(    %%##&%(%####%#&#(##%##%(%%##%##%&#%&%.           %&..*@%/(#(  @(    .
-                   @(  .&%(##&@@&@@%((//(#%&&&&&%%%#(#####%%%(%           . #/,*#,,#// @(    ,
-                   @( ./**/%%&(#%%(/*****#&@#%%&&%(/,......,*#&*              &*,*#.#/ @(    .
-                   @(   /*(.@&%#&&&(,.,,,#%#&%#%(%#%#%...#.,..(,             ,#(((.%#  @(    ,
-                   @/   .*@*/,,./&&#(*.,.&%%%(#%(&(&##...,*.,,,,            %(#/#/     @(    .
-                   @/   *,..,,*..,/.%.,,,.%@#####%(&(#,.,*@,,.,#          .&#%         @/    ,
-                   @/   /.,/*%(..*%%*..,**(.%,&###(&##,,/,%(,,..(        ,##%          @/    ,
-                   @/   (((,,,..,/%#,,,%,(,.,& ,&##%#&.,**,(.,..(       (((/           @/    ,
-                   @/ /*..,.,##(/..,,,/#..#..*  @%###/.(%*%..,.#./     #(#.            &/    *
-                   @&/%#.*#,,,..,...,..,%...#   /,.#%.,,,,./&./,.%    &(&              &*    *
-                   @/*,*%%*,,&/.(#,..#..,..#    %(.(.*((,,&(..,(.(  .#(%               &*    ,
-                   @&@**,,.,......#,....#**      **.......,*(..,.,,*(#/                &*    ,
-                   @/.*%&##(#&(/%./&/...,,(            #**(/,...,.&##,                 &*    ,
-                   @(//#(//,((%(*#,/...,.*,           .(*#//...,,%(&                   &*    ,
-                   @/*.//    %*///,..,./*.,.  .#/* ,,  %/#/*,,.(((%                    &*    ,
-                   @/%.*  @. &%,(,..,.# .//*#,/#%*/(%&( @%(,.,%#%.(                    &*    *
-                   @* @.##%( @*(.,.,.#   .*/(%,(#*##/(.  %(*(#(%..(   .,.   .@/        &*    ,
-                   @* /*&#*#,*(.,,.,&,./(*..,(#*%/..,*//,.*&##*...,*      %.% /,(/*(*  @*    ,
-                   @%,(,,*/(#%.,,,/,.(,*#//(##.(.//..,*,.(##&&#(...&  ./#,#.%,#//*(%/%*&,    ,
-                   @*./,,,*(#,,,,/,.,,,///%.,,,.(.(/,...%##*,,%/*,,,**//&*/*((/*(#,%,  &,    ,
-                   &*,./,%%#**/,(.,,(**#,,......,,*,,.,##%....*%(,..&,.(*.*%#*(%/.,,,,*&,    ,
-                 ,,&*,.%##(#&%##%,,*#%&#.,./((.*/.(/.%(#/.....,#(*.,.%..,..,,,/#(/(#.,/&,    ,
-                 .,&*,.,.,/#######&/,..,,,((,#,*/%*(%#%......,.(%#%&&##%*.,,,,,*&/ *((*&.    ,
-                 .,&*....,...,.%#&###(%,,,,.(%/(%,%##*,,.,,.,,.&#############&.,,(,&*&*&.    ,
-                 ,,&,.........,.,,,,,,,,,,,*,,,***,**********************************/#&.    ,
-                 *,&,                       %/ %   (  % ,**  &  (                     .&.    ,
-                  .&,                                                                 .&.    ,
-                                                           .......,,,,****************//.   ,.
-              .(                                                                          ,*  
-                 ,(%#/,                  ,                                           ,*##,   
-               
-          
-           
-             
-    </div>
-
-
-        <pre id="ascii-cat">
- 
-            @(,                                                 
-            %(,*/%&                                               
- @r         **.##/.,,                                              
-/,/       /**#.*%*,                                              
-/**%./(     //.#../#....                                           
-(*/#%(.((/(/../#&&&&%%(*.,,,                                       
-/*,%*,%#*./%&&&&&&&@&&@&&/.,                                       
-(,*%/..,(%*/&&&&&&&&@&&&(,.,,                                     
-,/(,(%#,.#%,(&&&&&&&@&%,(&%*....                                             
- /,##(*,*,*%&&&&@&&&#,.*&&&&&&*..                                 
-(*.%&&(%&&&&&&&&&&&&%&&&&&&&&&%..                 (#(..,,,        
-(,/%&//%%%&&&&&&&&&&&&&&&&&&&%,..               ,#,/%%%/,..,,     
-(,/%&(*#*(%*%&%&&&&&&&&&%(*. ,.,              .#**%%&**%%%(*,...  
-(*.%&%.%#*%/(#*&&&&&%&%%%%/,.*               &#.#&&&&&%%,/%%%*,,.,
- /*(&&&&&&&&&&&&&&%*.,*/##,.,              @%*,&&&&&%&/,&%#.%&&%.*
-//,,,(&&@&&&&&&&%@&&&&&&&&&,,,           .%%,*%&&&&%,*#%&&&&%%*,*(.
-/(*,(%&&/#@&#*%&&%(/&&#%&%&&&%#.,   .,.#%#(/.*&&&&&&(.#&&&&&&#,,*(/   
-//,*%&&&&&&&&&&#,#*(#(*%(,%(,,//,/(///(#%%%&&&&&&&&%**%%&@&%*,/,%       
-//./&&&&&&&&&&&&&&&%#(*,/./%/,*,%%&&&&&&&&&&&&&&&%(.*%%&&&%,*#,*          
-**.(&&&&&&&&&&&&&&&&&&&&&&&&%%%%%/,#%&&&&&&&&%/,*(%&&&&&&%,*.(             
-./*,#.#%/#&&&&&&&&&&&&&&&&&&&&&&&&&&&&&%/,,,,,/#&&&&&&&&&&%/,#/               
-...%%&% #(*%&((&&#&&&&&@&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&%*,%&                 
-,.,&&&&&&(,..##,%&*/%*%&&&&&&&&&&&&%%&&&&&&&&&&&&&%(*,.,,/%&@                   
-,.,&&&&&&@&%%%,..%#,((*%#,%%#,&&%,&%#,%%&%&&&&&@&@&%%,,%                        
-,.,&&&&&&&&&&&&&&(,,,,(.##.(%%,(%&(.#%%,(%(,(%&&&%/.(&%                         
-../%,%&&&&&&&&&&&&&%%%**,.*.,#%*,#%%/....***(.(#%/                             
-.,(**/((&#&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&%%%./%                                 
-,.,%&(,/,##*%&&&&&&&&&&&&&&&&&&&&&&&&@@&&(.(%#                                  
-,.,&&&&#,.*#*/%%,%&//&&%%%&&&&&%&&&@&&&(./%                                     
-.,*%&&&&&&#(*,/%.(%(,#%(,%%/*&%/,%&%# (%,                                      
-,//%&&&&&&&&&&%/*/,,,.*#(,,*,*/(#*,#%,                                        
-.,%,(%.%%&%/%&&&&%&&%&&&&&&%%%(*.#%%                                           
-.,&&%.//,%%(,%(/%,##,*%%%/,,*(/*                                               
-.,&&&&&%%#/,*,,#,/#,.,,/(/.                                                    
-,.,&&&&&%&&&&&&(.*                                                              
-,.,&&&&&*/%&(,*//                                                               
-,.,&&&&&,/,*/*                                                                  
-.,&&&%,AA/                                                                      
-.,&#,*(,A                                                                       
-vvvvvv
-vvvvvv
-vvvvvv
-vvvvv
-vvvv
-vvv
-vv
-
-</div>
-
-<pre id="ascii-cat">
- 
-    @(,                                                 
-    %(,*/%&                                               
-@r         **.##/.,,                                              
-/,/       /**#.*%*,                                              
-/**%./(     //.#../#....                                           
-(*/#%(.((/(/../#&&&&%%(*.,,,                                       
-/*,%*,%#*./%&&&&&&&@&&@&&/.,                                       
-(,*%/..,(%*/&&&&&&&&@&&&(,.,,                                     
-,/(,(%#,.#%,(&&&&&&&@&%,(&%*....                                             
-/,##(*,*,*%&&&&@&&&#,.*&&&&&&*..                                 
-(*.%&&(%&&&&&&&&&&&&%&&&&&&&&&%..                 (#(..,,,        
-(,/%&//%%%&&&&&&&&&&&&&&&&&&&%,..               ,#,/%%%/,..,,     
-(,/%&(*#*(%*%&%&&&&&&&&&%(*. ,.,              .#**%%&**%%%(*,...  
-(*.%&%.%#*%/(#*&&&&&%&%%%%/,.*               &#.#&&&&&%%,/%%%*,,.,
-/*(&&&&&&&&&&&&&&%*.,*/##,.,              @%*,&&&&&%&/,&%#.%&&%.*
-//,,,(&&@&&&&&&&%@&&&&&&&&&,,,           .%%,*%&&&&%,*#%&&&&%%*,*(.
-/(*,(%&&/#@&#*%&&%(/&&#%&%&&&%#.,   .,.#%#(/.*&&&&&&(.#&&&&&&#,,*(/   
-//,*%&&&&&&&&&&#,#*(#(*%(,%(,,//,/(///(#%%%&&&&&&&&%**%%&@&%*,/,%       
-//./&&&&&&&&&&&&&&&%#(*,/./%/,*,%%&&&&&&&&&&&&&&&%(.*%%&&&%,*#,*          
-**.(&&&&&&&&&&&&&&&&&&&&&&&&%%%%%/,#%&&&&&&&&%/,*(%&&&&&&%,*.(             
-./*,#.#%/#&&&&&&&&&&&&&&&&&&&&&&&&&&&&&%/,,,,,/#&&&&&&&&&&%/,#/               
-...%%&% #(*%&((&&#&&&&&@&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&%*,%&                 
-,.,&&&&&&(,..##,%&*/%*%&&&&&&&&&&&&%%&&&&&&&&&&&&&%(*,.,,/%&@                   
-,.,&&&&&&@&%%%,..%#,((*%#,%%#,&&%,&%#,%%&%&&&&&@&@&%%,,%                        
-,.,&&&&&&&&&&&&&&(,,,,(.##.(%%,(%&(.#%%,(%(,(%&&&%/.(&%                         
-../%,%&&&&&&&&&&&&&%%%**,.*.,#%*,#%%/....***(.(#%/                             
-.,(**/((&#&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&%%%./%                                 
-,.,%&(,/,##*%&&&&&&&&&&&&&&&&&&&&&&&&@@&&(.(%#                                  
-,.,&&&&#,.*#*/%%,%&//&&%%%&&&&&%&&&@&&&(./%                                     
-.,*%&&&&&&#(*,/%.(%(,#%(,%%/*&%/,%&%# (%,                                      
-,//%&&&&&&&&&&%/*/,,,.*#(,,*,*/(#*,#%,                                        
-.,%,(%.%%&%/%&&&&%&&%&&&&&&%%%(*.#%%                                           
-.,&&%.//,%%(,%(/%,##,*%%%/,,*(/*                                               
-.,&&&&&%%#/,*,,#,/#,.,,/(/.                                                    
-,.,&&&&&%&&&&&&(.*                                                              
-,.,&&&&&*/%&(,*//                                                               
-,.,&&&&&,/,*/*                                                                  
-.,&&&%,AA/                                                                      
-.,&#,*(,A                                                                       
-vvvvvv
-vvvvvv
-vvvvvv
-vvvvv
-vvvv
-vvv
-vv
-
-</div>
-
-<pre id="ascii-cat">
- 
-    @(,                                                 
-    %(,*/%&                                               
-@r         **.##/.,,                                              
-/,/       /**#.*%*,                                              
-/**%./(     //.#../#....                                           
-(*/#%(.((/(/../#&&&&%%(*.,,,                                       
-/*,%*,%#*./%&&&&&&&@&&@&&/.,                                       
-(,*%/..,(%*/&&&&&&&&@&&&(,.,,                                     
-,/(,(%#,.#%,(&&&&&&&@&%,(&%*....                                             
-/,##(*,*,*%&&&&@&&&#,.*&&&&&&*..                                 
-(*.%&&(%&&&&&&&&&&&&%&&&&&&&&&%..                 (#(..,,,        
-(,/%&//%%%&&&&&&&&&&&&&&&&&&&%,..               ,#,/%%%/,..,,     
-(,/%&(*#*(%*%&%&&&&&&&&&%(*. ,.,              .#**%%&**%%%(*,...  
-(*.%&%.%#*%/(#*&&&&&%&%%%%/,.*               &#.#&&&&&%%,/%%%*,,.,
-/*(&&&&&&&&&&&&&&%*.,*/##,.,              @%*,&&&&&%&/,&%#.%&&%.*
-//,,,(&&@&&&&&&&%@&&&&&&&&&,,,           .%%,*%&&&&%,*#%&&&&%%*,*(.
-/(*,(%&&/#@&#*%&&%(/&&#%&%&&&%#.,   .,.#%#(/.*&&&&&&(.#&&&&&&#,,*(/   
-//,*%&&&&&&&&&&#,#*(#(*%(,%(,,//,/(///(#%%%&&&&&&&&%**%%&@&%*,/,%       
-//./&&&&&&&&&&&&&&&%#(*,/./%/,*,%%&&&&&&&&&&&&&&&%(.*%%&&&%,*#,*          
-**.(&&&&&&&&&&&&&&&&&&&&&&&&%%%%%/,#%&&&&&&&&%/,*(%&&&&&&%,*.(             
-./*,#.#%/#&&&&&&&&&&&&&&&&&&&&&&&&&&&&&%/,,,,,/#&&&&&&&&&&%/,#/               
-...%%&% #(*%&((&&#&&&&&@&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&%*,%&                 
-,.,&&&&&&(,..##,%&*/%*%&&&&&&&&&&&&%%&&&&&&&&&&&&&%(*,.,,/%&@                   
-,.,&&&&&&@&%%%,..%#,((*%#,%%#,&&%,&%#,%%&%&&&&&@&@&%%,,%                        
-,.,&&&&&&&&&&&&&&(,,,,(.##.(%%,(%&(.#%%,(%(,(%&&&%/.(&%                         
-../%,%&&&&&&&&&&&&&%%%**,.*.,#%*,#%%/....***(.(#%/                             
-.,(**/((&#&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&%%%./%                                 
-,.,%&(,/,##*%&&&&&&&&&&&&&&&&&&&&&&&&@@&&(.(%#                                  
-,.,&&&&#,.*#*/%%,%&//&&%%%&&&&&%&&&@&&&(./%                                     
-.,*%&&&&&&#(*,/%.(%(,#%(,%%/*&%/,%&%# (%,                                      
-,//%&&&&&&&&&&%/*/,,,.*#(,,*,*/(#*,#%,                                        
-.,%,(%.%%&%/%&&&&%&&%&&&&&&%%%(*.#%%                                           
-.,&&%.//,%%(,%(/%,##,*%%%/,,*(/*                                               
-.,&&&&&%%#/,*,,#,/#,.,,/(/.                                                    
-,.,&&&&&%&&&&&&(.*                                                              
-,.,&&&&&*/%&(,*//                                                               
-,.,&&&&&,/,*/*                                                                  
-.,&&&%,AA/                                                                      
-.,&#,*(,A                                                                       
-vvvvvv
-vvvvvv
-vvvvvv
-vvvvv
-vvvv
-vvv
-vv
-
-
-hbggvh
-v
-<script>
-    
-        let oscilador;
-        let gainNode;
-        let compressor;
-
-        let whiteNoiseSource;
-        let whiteNoiseGain;
-        let shuffleInterval = null;
-        let currentIntervalId = null;
-let currentIntervalSpeed = 50; // Velocidad inicial del intervalo en milisegundos
-
-
-function startAudioContext() {
-            if (!audioCtx) {
-                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-                oscilador = audioCtx.createOscillator();
-                gainNode = audioCtx.createGain();
-
-                gainNode.connect(audioCtx.destination);
-                oscilador.connect(gainNode);
-                oscilador.start();
-            }
-        }
-
-        function solicitarPermisoMicrofono() {
-            // Solicitar acceso al micrófono
-            navigator.mediaDevices.getUserMedia({ audio: true }).then(function(stream) {
-                // Permiso concedido
-                // ...
-            }).catch(function(error) {
-                // Permiso denegado o error
-                // ...
-            });
-        }
-
-        // Esta función inicia el AudioContext y solicita permisos después de la interacción del usuario
-        function iniciarInteraccionUsuario() {
-            iniciarAudio();
-            solicitarPermisoMicrofono();
-            // Eliminar el listener para no volver a solicitar permisos
-            document.removeEventListener('touchend', iniciarInteraccionUsuario);
-        }
-
-        // Muestra un alerta y luego espera una interacción del usuario para iniciar todo
-        window.onload = function() {
-            alert('Toca la pantalla para activar el sonido y los permisos.');
-            // Añade un listener al documento que esperará que el usuario toque la pantalla
-            document.addEventListener('touchend', iniciarInteraccionUsuario);
-        };
-
-
-        function toggleIntervalSpeed() {
-    if (currentIntervalId !== null) {
-        clearInterval(currentIntervalId); // Detiene el intervalo actual
-    }
-
-    // Cambia la velocidad del intervalo
-    currentIntervalSpeed = currentIntervalSpeed === 50 ? 550 : 50;
-
-    // Reinicia el intervalo con la nueva velocidad
-    currentIntervalId = setInterval(shuffleAsciiArtAndSound, currentIntervalSpeed);
-}
-
-
-
-
-    function shuffleAsciiArtAndSound() {
-        
-        
-        let newText = '';
-        const characters = ['@', '#', '$', '%', '&', '*', '-', '+', '=', '?', ';', ':', ',', '.'];
-
-
-        
-        for (let char of asciiArtElement.innerText) {
-            if (characters.includes(char)) {
-                let randomChar = characters[Math.floor(Math.random() * characters.length)];
-                newText += randomChar;
-            } else {
-                newText += char;
-
-                
-            }
-        }
-
-
-        
-        asciiArtElement.innerText = newText;
-        oscilador.frequency.value = Math.random() * (100 - 2200) + 100;
-    }
+        </div>
 
    
 
 
-
-    document.body.addEventListener('click', function() {
-    if (!audioCtx) {
-        startAudioContext();
-        // Establece el intervalo para mezclar los caracteres del arte ASCII principal
-        if (currentIntervalId === null) {
-            currentIntervalId = setInterval(shuffleAsciiArtAndSound, currentIntervalSpeed);
-        shuffleAsciiCat(); // Cambia los caracteres del gato ASCII inmediatamente
-        setInterval(shuffleAsciiCat, 10); // Continúa cambiando los caracteres del gato ASCII
-    }}
-});
-
-
-
-document.body.addEventListener('dblclick', function() {
-    toggleIntervalSpeed();
-    // Aquí puedes agregar cualquier otra lógica que necesites ejecutar en un doble clic
-});
-
-const asciiArtElement = document.getElementById('ascii-art' );
-
-// Nuevo manejador de eventos para el movimiento del mouse
-document.getElementById('ascii-art').addEventListener('mousemove', function(event) {
-    if (!audioCtx) return; // Asegúrate de que el contexto de audio esté inicializado
-
-    const frequency = (event.offsetX / this.offsetWidth) * (2200 - 100) + 100;
-    oscilador.frequency.value = frequency; // Ajusta la frecuencia según la posición del mouse
-
-
- const gainValue = 0.3 - (event.offsetY / this.offsetHeight);
- gainNode.gain.value = gainValue;
-});
-
-
-
-
-
-
-
-let osciladoresActivos = [];
-
- 
-        let prevMouseX = 0;
-        let prevMouseY = 0;
-        let mouseMoving = false;
         
-        function setup() {
-            let asciiArtContainer = document.getElementById('ascii-container'); 
-            let desiredHeight = 350; // Establecer el largo deseado aquí
-            let canvas = createCanvas(asciiArtContainer.offsetWidth, desiredHeight);
 
+<div class="container">
+  <div class="row">
+      <!-- Galería vertical en la columna izquierda -->
+    
+      <div id="p5-container">
+        <div id="p5-canvas"></div>
+   
+        </div>
+
+
+            <div class="gallery-container">
+
+    <img src="port.png" alt="Mandala Mago" data-img="negro.jpeg"   data-frecuencia="100">
+    <img src="port.png" alt="Mandala Dol" data-img="negro.jpeg" data-frecuencia="200">
+    <img src="port.png" alt="Mandala Emperatriz" data-img="negro.jpeg" data-frecuencia="300">
+    <img src="port.png" alt="Mandala Emperador" data-img="negro.jpeg"data-frecuencia="400">
+    <img src="port.png" alt="Mandala Papa" data-img="negro.jpeg"data-frecuencia="500">
+    <img src="port.png" alt="Mandala Enamorados" data-img="negro.jpeg" data-frecuencia="600">
+    <img src="port.png" alt="Mandala 7" data-img= "negro.jpeg" data-frecuencia="700">
+    <img src="port.png" alt="Mandala Justicia" data-img="negro.jpeg" data-frecuencia="800">
+    <img src="port.png" alt="Mandala Justicia" data-img="negro.jpeg" data-frecuencia="900">
+    <img src="port.png" alt="Mandala Templanza" data-img="negro.jpeg" data-frecuencia="1000">
+    <img src="port.png" alt="Mandala Fuerza" data-img="negro.jpeg" data-frecuencia="1100">
+    <img src="port.png" alt="Mandala Colg" data-img="negro.jpeg"data-frecuencia="1200">
+    <img src="port.png" alt="Mandala 13" data-img="negro.jpeg"data-frecuencia="1300">
+    <img src="port.png" alt="Mandala Templanza" data-img="negro.jpeg"data-frecuencia="1400">
+    <img src="port.png" alt="Mandala Diablo" data-img="negro.jpeg"data-frecuencia="1500">
+    <img src="port.png" alt="Mandala Torre" data-img="negro.jpeg"data-frecuencia="1600">
+    <img src="port.png" alt="Mandala Estrella" data-img="negro.jpeg"data-frecuencia="1700">
+    <img src="port.png" alt="Mandala Templanza" data-img="negro.jpeg"data-frecuencia="1800">
+    <img src="port.png" alt="Mandala Dol" data-img="negro.jpeg"data-frecuencia="1900">
+    <img src="port.png" alt="Mandala Estrella" data-img="negro.jpeg" data-frecuencia="2000">
+    <img src="port.png" alt="Mandala Mundo" data-img="negro.jpeg"data-frecuencia="2100">
+    <img src="port.png" alt="Mandala Mundo" data-img="negro.jpeg"data-frecuencia="2200">
+
+    ];
+
+
+<section>
+
+</section>
+</div>
+
+
+                    
+        </div>
+        </div>
+    </div>
+</div>
+<button id="shuffleButton"><i class='bx bx-shuffle' ></i></button>
+
+</div>
+    
   
-         canvas.position(asciiArtContainer.offsetLeft, asciiArtContainer.offsetTop);
-         textSize(22);
-            fill(255);
-            noStroke();
-    background(0); 
- }
- function windowResized() {
-    let asciiArtContainer = document.getElementById('ascii-container');
-    let desiredHeight = 350; // Asegúrate de usar el mismo largo deseado que antes
-    resizeCanvas(asciiArtContainer.offsetWidth, desiredHeight);
-    canvas.position(asciiArtContainer.offsetLeft, asciiArtContainer.offsetTop);
-}
 
+   
+        <div class="boxes"> 
+            <div style=" margin-left: 178px;" class="box"  data-frecuencia="2200" data-url="assci_art.html"></div>
+
+            <div id="boxes-container">
+        <div class="box" data-frecuencia="100"></div>
+        <div class="box" data-frecuencia="200"></div>
+        <div class="box" data-frecuencia="300"></div>
+        <div class="box" data-frecuencia="400"></div>
+        <div class="box" data-frecuencia="500"></div>
+        <div class="box" data-frecuencia="600"></div>
+        <div class="box" data-frecuencia="700"></div>
+
+
+
+      </div>
+      <div id="boxes-container">
+
+        <div class="box" data-frecuencia="800"></div>
+        <div class="box" data-frecuencia="900"></div>
+        <div class="box" data-frecuencia="1000"></div>
+        <div class="box" data-frecuencia="1100"></div>
+        <div class="box" data-frecuencia="1200"></div>
+        <div class="box" data-frecuencia="1300"></div>
+        <div class="box" data-frecuencia="1400"></div>
+
+                                       
+
+      </div>
+      <div id="boxes-container">
+        <div class="box" data-frecuencia="1500"></div>
+        <div class="box" data-frecuencia="1600"></div>
+        <div class="box" data-frecuencia="1700"></div>
+        <div class="box" data-frecuencia="1800"></div>
+        <div class="box" data-frecuencia="1900"></div>
+        <div class="box" data-frecuencia="2000"></div>
+        <div class="box" data-frecuencia="2100"></div>
+
+      </div>
+      
+      
+    </div>
+    <!-- Nuevo contenedor para la imagen asociada -->
+    <div id="imagenSeleccionadaContainer">
+        <!-- La imagen seleccionada se mostrará aquí -->
+    </div>
+
+<div>
+
+</div>
+
+
+    <div id="imageContainer" >
+        <!-- Las imágenes seleccionadas se mostrarán aquí -->
+    </div>
+
+    <script>
+
+
+        let angle = 1;
+        let circleSize = 500;
+        let spinning = false;
+        let isMoving = false;
+        
+
+
+        function setup() {
+            let cnv = createCanvas(windowWidth, windowHeight - 100); // Resta el espacio que ocupará el resto del contenido por encima
+  cnv.parent('p5-container');            stroke(255);
+            noFill();
+            strokeWeight(1);
+        }
 
         function draw() {
-            // Verificar si el mouse se ha movido
-            if (mouseX !== prevMouseX || mouseY !== prevMouseY) {
-                mouseMoving = true;
-                // Generar y mostrar un carácter aleatorio en la posición del mouse
-                let char = generarCaracterAleatorio();
-                text(char, mouseX, mouseY);
-        
-                // Aquí iría el código para reproducir el sonido
-                // reproducirSonido();
-                
-                prevMouseX = mouseX;
-                prevMouseY = mouseY;
-            } else {
-                if (mouseMoving) {
-                    // El mouse se detuvo; limpiar el canvas y detener el sonido
-                    background(0);
-                    // detenerSonido();
-                    mouseMoving = false;
-                }
-            }
-        }
-        
-        function generarCaracterAleatorio() {
-            // Generar un número aleatorio y convertirlo a un carácter ASCII
-            return String.fromCharCode(int(random(65, 190))); // Letras mayúsculas A-Z
-        }
-        
-        // Funciones para manejar el audio
-        // Deberás reemplazar estas funciones con tu propia lógica de audio
-        function reproducirSonido() {
-            // Inicia el sonido
-        }
-        
-        function detenerSonido() {
-            // Detiene el sonido
-        }
+            background(0);
+            translate(width / 2, height / 2);
 
+            if (isMoving) {
+        // Usa frecuenciaActual para ajustar el movimiento
+        let velocidad = map(frecuenciaActual, 100, 2200, 0.3, 50); // Ejemplo de mapeo
+        angle += velocidad;
+    }
 
+    let circleSize = map(mouseX, 0, width, 10, 800);
+    for (let i = 0; i < 800; i++) {
+        let offset = TWO_PI / 200 * i;
+        let x = cos(angle + offset) * 1000;
+        let y = sin(angle + offset) * 100;
 
-function reproducirSonido(frecuencia) {
-    if (!audioCtx) return;
-
-
-
-    let oscilador = audioCtx.createOscillator();
-    oscilador.frequency.value = frecuencia;
-    oscilador.type = 'sine';
-    oscilador.connect(gainNode);
-    oscilador.start();
+        ellipse(x, y, x, circleSize, circleSize);
+    }
 }
+
+        function mousePressed() {
+            spinning = !spinning;
+        }
+
+
+        
+    </script>
+
+
+    <script>function shuffleImages() {
+  const container = document.querySelector('.gallery-container');
+  let images = Array.from(container.querySelectorAll('img'));
+  
+  // Función para aplicar el efecto de zoom a cada imagen
+  function zoomEffect(image, index, callback) {
+    image.style.transform = "scale(1.1)";
+    setTimeout(() => {
+      image.style.transform = "";
+      if (index < images.length - 1) {
+        zoomEffect(images[index + 1], index + 1, callback);
+      } else if (callback) {
+        callback();
+      }
+    }, 10); // Tiempo reducido a 10 ms para un efecto de zoom muy rápido
+  }
+  
+  // Comenzar el efecto de zoom desde la primera imagen
+  if (images.length > 0) {
+    zoomEffect(images[0], 0, () => {
+      // Mezclar aleatoriamente y reinsertar las imágenes después del efecto
+      images = images.sort(() => Math.random() - 0.5);
+      container.innerHTML = '';
+      images.forEach(img => container.appendChild(img));
+    });
+  }
+}
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('shuffleButton').addEventListener('click', shuffleImages);
+});
+
+
+
+
+let audioCtx;
+let gainNode;
+let compressor;
+
+
+// Esta función inicializa el AudioContext y el GainNode la primera vez que se utiliza.
+
+document.addEventListener('DOMContentLoaded', () => {
+    inicializarAudio();
+    document.querySelectorAll('.gallery-container img').forEach(img => {
+        img.addEventListener('click', function() {
+            let frecuencia = parseInt(this.getAttribute('data-frecuencia'));
+            frecuenciaActual = frecuencia; // Update the current frequency
+            isMoving = true; // Activate movement
+            reproducirSonido(frecuencia);
+            agregarImagenSeleccionada(this.dataset.img); // Ensure correct data-img path
+            activarCaja(frecuencia); // Activate the corresponding box color
+        });
+    });
+});
+
 
 
 function inicializarAudio() {
@@ -847,463 +702,94 @@ function inicializarAudio() {
         compressor.ratio.setValueAtTime(12, audioCtx.currentTime);
         compressor.attack.setValueAtTime(0, audioCtx.currentTime);
         compressor.release.setValueAtTime(0.25, audioCtx.currentTime);
-        gainNode.gain.value = 0.3;
+        gainNode.gain.value = 0.1;
  // Volumen inicial ajustable.
  gainNode.connect(compressor);
         compressor.connect(audioCtx.destination);    }
 }
 
-document.body.addEventListener('mousemove', function(e) {
-    if (!audioCtx) return; // Asegúrate de que el contexto de audio está inicializado
 
-    // Mapea la posición X del mouse a una frecuencia (por ejemplo, de 20 a 2000 Hz)
-    let frecuencia = map(e.clientX, 0, window.innerWidth, 20, 100);
+let frecuenciaActual = 0; // Nueva variable para almacenar la frecuencia actual del sonido
 
-    // Mapea la posición Y del mouse a una duración de nota (por ejemplo, de 0.1 a 1 segundo)
-    let duracionNota = map(e.clientY, 0, window.innerHeight, 0.1, 1);
+let osciladoresActivos = [];
 
-    // Ajusta la frecuencia del oscilador
-    if (osciladoresActivos.length > 0) {
-        osciladoresActivos.forEach(osc => {
-            osc.frequency.setValueAtTime(frecuencia, audioCtx.currentTime);
+function activarCaja(frecuencia) {
+    document.querySelectorAll('.box').forEach(box => {
+        if (box.dataset.frecuencia === frecuencia.toString()) {
+            box.style.backgroundColor = "#FF0000"; // Cambia el color a rojo
+            box.setAttribute('data-active', 'true'); // Marca la caja como activa
+      // Remueve el atributo activo
+        }
+    });
 
-            
-        });
-    }
+ }
+ 
+    function reproducirSonido(frecuencia) {
+    if (!audioCtx) return;
 
-    // Detener los osciladores anteriores para evitar superposición y crear uno nuevo
-    osciladoresActivos.forEach(osc => osc.stop());
-    osciladoresActivos = [];
-
-    // Crea un nuevo oscilador para la nueva frecuencia
     let oscilador = audioCtx.createOscillator();
     oscilador.frequency.value = frecuencia;
     oscilador.type = 'sine';
     oscilador.connect(gainNode);
     oscilador.start();
-    oscilador.stop(audioCtx.currentTime + duracionNota);
 
-    osciladoresActivos.push(oscilador);
-});
-
-
-
-function map(value, in_min, in_max, out_min, out_max) {
-    return (value - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
-} 
-
-// Supongamos que tienes un elemento con id 'ascii-sol' como este:
-// <pre id="ascii-sol">Aquí va tu arte ASCII del sol</pre>
-
-// Variable para almacenar el ID del intervalo para poder detenerlo más tarde si es necesario
-let shuffleIntervalId = null;
-
-document.body.addEventListener('click', function() {
-    // Comprueba si el intervalo ya está establecido
-    if (!shuffleIntervalId) {
-        shuffleIntervalId = setInterval(function() {
-            shuffleAscii(document.getElementById('ascii-sol'));
-            shuffleAscii(document.getElementById('ascii-luna'));
-            shuffleAscii(document.getElementById('ascii-cat'));
-
-        }, 30); // Cambia los caracteres cada 100 milisegundos
-    }
-});
-
-
-
-
-
-function shuffleAscii(element) {
-    let newText = '';
-    const characters = ['@', '#', '$', '%', '&', '*', '-', '+', '=', '?', ';', ':', ',', '.'];
-
-    for (let char of element.innerText) {
-        if (characters.includes(char)) {
-            let randomChar = characters[Math.floor(Math.random() * characters.length)];
-            newText += randomChar;
-        } else {
-            newText += char;
-        }
-    }
-
-    element.innerText = newText;
-}
-
-
-
-function generarRuidoBlanco(duracion = 1) {
-    if (whiteNoiseSource) {
-        whiteNoiseSource.disconnect();
-        myp5.noLoop(); // Detener la lluvia visual
-        moverYMostrarGatoAscii(false); // Ocultar el gato ASCII
-    }
-
-    const bufferSize = audioCtx.sampleRate * duracion;
-    const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
-    const data = buffer.getChannelData(0);
-
-    for (let i = 0; i < bufferSize; i++) {
-        data[i] = Math.random() * 2 - 1; // Generate white noise
-    }
-
-    whiteNoiseSource = audioCtx.createBufferSource();
-    whiteNoiseSource.buffer = buffer;
-    whiteNoiseSource.connect(audioCtx.destination);
-    whiteNoiseSource.start();
-    whiteNoiseSource.stop(audioCtx.currentTime + duracion);
-
-    myp5.loop(); // Iniciar la lluvia visual
-    moverYMostrarGatoAscii(true); // Mostrar el gato ASCII en una posición aleatoria
-}
-
-function generarRuidoBlanco(duracion = 1) {
-    if (whiteNoiseSource) {
-        whiteNoiseSource.disconnect();
-        whiteNoiseSource = null;
-        myp5.noLoop(); // Detener la lluvia visual
-        moverYMostrarGatoAscii(false); // Ocultar el gato ASCII
-    } else {
-        const bufferSize = audioCtx.sampleRate * duracion;
-        const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
-        const data = buffer.getChannelData(0);
-
-        for (let i = 0; i < bufferSize; i++) {
-            data[i] = Math.random() * 2 - 1; // Generate white noise
-        }
-
-        whiteNoiseSource = audioCtx.createBufferSource();
-        whiteNoiseSource.buffer = buffer;
-        whiteNoiseSource.connect(audioCtx.destination);
-        whiteNoiseSource.start();
-        whiteNoiseSource.stop(audioCtx.currentTime + duracion);
-
-        myp5.loop(); // Iniciar la lluvia visual
-        moverYMostrarGatoAscii(true); // Mostrar el gato ASCII en una posición aleatoria
-    }
-}
-
-// Función para manejar la visibilidad y posición del gato ASCII
-function moverYMostrarGatoAscii(mostrar) {
-    const asciiCatElement = document.getElementById('ascii-cat');
-    if (mostrar) {
-        const newX = Math.random() * (window.innerWidth - asciiCatElement.offsetWidth);
-        const newY = Math.random() * (window.innerHeight - asciiCatElement.offsetHeight);
-        asciiCatElement.style.left = `${newX}px`;
-        asciiCatElement.style.top = `${newY}px`;
-        asciiCatElement.style.display = 'block';
-    } else {
-        asciiCatElement.style.display = 'none';
-    }
-}
-
-// Eventos de teclado para activar/desactivar el ruido blanco y la lluvia visual
-document.addEventListener('keydown', function(e) {
-    if (e.code === 'Space') {
-        generarRuidoBlanco(0.5); // Genera ruido blanco por 0.5 segundos y activa la lluvia
-    }
-});
-
-
-
-// Evento de clic en el elemento del gato para activar las mismas acciones
-document.getElementById('ascii-cat').addEventListener('click', function() {
-    generarRuidoBlanco(0.5); // Usar la misma duración de ruido blanco
-});
-
-
-
-
-
-function startAudioContext() {
-    if (!audioCtx) {
-        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        oscilador = audioCtx.createOscillator();
-        gainNode = audioCtx.createGain();
-
-        // Crear delay y configurar
-        const delay = audioCtx.createDelay(1.0);
-        const delayGain = audioCtx.createGain();
-        delay.delayTime.value = 0.1; // Tiempo de delay inicial
-        delayGain.gain.value = 0.5;  // Ganancia del delay para controlar la intensidad del eco
-
-        delay.connect(delayGain);
-        delayGain.connect(delay);
-        delayGain.connect(audioCtx.destination); // Enviar eco al destino
-
-        // Conectar el oscilador a gainNode y al delay
-        oscilador.connect(gainNode);
-        gainNode.connect(audioCtx.destination);
-        gainNode.connect(delay); // También enviamos el sonido al delay
-
-        oscilador.start();
-    }
-}
-
-
-
-
-
-
-
-
-</script>
-
-<script>
-    // Instancia de p5 para el árbol
-    let sketch2 = function(p) {
-  let asciiCat = `
-  
-         
-  ☁☁ ☁ 
-  
-
-  `;
-
-  p.setup = function() {
-    p.createCanvas(710, 200);
-    p.textSize(32);
-    p.fill(255);
-    x = p.random(p.width - 100); // Coordenada inicial x
-        y = p.random(p.height - 100); // Coordenada inicial y
-    };
-
-  p.draw = function() {
-    p.background(0);
-
-    let x = p.random(p.width - 100); // Asegura espacio para el gato
-    let y = p.random(p.height - 350); // Asegura espacio para el gato
-
-    // Dibuja el gato en el canvas en la posición aleatoria
-    p.text(asciiCat, x, y,x);
-
-  };
-
-  p.mouseClicked = function() {
-    p.clear(); // Limpia el canvas
-    p.draw(); // Dibuja un nuevo gato
-  };
-};
-
-new p5(sketch2, 'tree-sketch-container');
-    </script>
-
-<script>
-    // Define la nueva instancia de p5.js para el sketch de las barras de color
-    new p5(function(p) {
-  const barSize = 50; // Tamaño de cada "barra" cuadrada
-  let lastBarIndex = -1; // Último índice de la barra dibujada
-
-  p.setup = function() {
-    let canvas = p.createCanvas(90, 200); // Dimensiones del canvas
-    canvas.parent('color-bar-sketch-container'); // Asigna el contenedor
-    canvas.style('opacity', '0.2'); // Establece la opacidad del canvas
-
-    p.colorMode(p.HSB, p.width, p.width, p.width); // Modo de color HSB basado en el ancho
-    p.noStroke();
-    p.background(0);
-  };
-
-  p.draw = function() {
-    let mouseXAdjusted = p.mouseX - (p.width / 2); // Ajusta mouseX para que el centro sea 0
-    let mouseYAdjusted = p.mouseY - (p.height / 2); // Ajusta mouseY para que el centro sea 0
-    // Calcula la "barra" basada en la distancia más corta al eje X o Y desde el centro
-    let whichBarIndex = p.int(p.min(p.abs(mouseXAdjusted), p.abs(mouseYAdjusted)) / barSize);
     
-    if (whichBarIndex !== lastBarIndex) {
-      // Calcula la posición inicial de la barra cuadrada
-      let startX = (p.width / 2) - whichBarIndex * barSize;
-      let startY = (p.height / 2) - whichBarIndex * barSize;
 
-      for (let i = 0; i <= whichBarIndex; i++) {
-        // Dibuja cada "barra" cuadrada a lo largo de la diagonal
-        let x = startX + i * barSize;
-        let y = startY + i * barSize;
-        
-        p.fill(p.mouseX, p.width, p.width); // Color basado en la posición del ratón
-        p.rect(x, y, barSize, barSize); // Dibuja el rectángulo
-      }
-      lastBarIndex = whichBarIndex;
-    }
-  };
-
-}, 'color-bar-sketch-container'); // Asegúrate de que este ID coincida con el del contenedor
-
-    </script>
-    
-    
-   <script>
-new p5(function(p) {
-    const barHeight = 20; // La altura de cada barra será de 20
-    let lastBar = -1; // Última barra actualizada
-  
-    p.setup = function() {
-      let canvas = p.createCanvas(220, 200);
-      canvas.parent('color-bar-sketch-container');
-      canvas.style('opacity', '0.5');
-  
-      p.colorMode(p.HSB, p.width, p.width, p.width);
-      p.noStroke();
-      p.background(0);
-    };
-  
-    p.draw = function() {
-      let whichBar = p.int(p.mouseY / barHeight);
-      if (whichBar !== lastBar) {
-        let barY = whichBar * barHeight;
-        p.fill(p.mouseX, p.width, p.width);
-        p.rect(0, barY, p.width, barHeight);
-        lastBar = whichBar;
-      }
-  
-      // Glitch effect
-      if (p.random() < 0.2) { // 10% chance of glitch effect
-        applyGlitch(p);
-      }
-    };
-  
-    function applyGlitch(p) {
-      // Escoge un número aleatorio de barras para aplicar el glitch
-      const glitchBars = p.int(p.random(1, 7));
-      for (let i = 0; i < glitchBars; i++) {
-        const glitchY = p.int(p.random(p.height / barHeight)) * barHeight;
-        const glitchHeight = p.random(barHeight / 4, barHeight * 5);
-        const glitchWidth = p.random(p.width * 0.1, p.width);
-        const glitchX = p.random(p.width - glitchWidth);
-        const r = p.random(255);
-        const g = p.random(255);
-        const b = p.random(255);
-  
-        p.fill(r, g, b);
-        p.rect(glitchX, glitchY, glitchWidth, glitchHeight);
-      }
-    }
-  
-  }, 'color-bar-sketch-container');
-  
-</script>
-
-<script>
-   document.addEventListener('keydown', function(event) {
-    if (!audioCtx) startAudioContext(); // Inicia el contexto de audio si aún no está activo
-
-    switch(event.key) {
-        case 's':
-        case 'S':
-            // Alternar audio del sol
-            togglePlay('ascii-sol', 'ambient.mp3');
-            break;
-        case 'l':
-        case 'L':
-            // Alternar audio de la luna
-            togglePlay('ascii-luna', '0S.mp3');
-            break;
-        case ' ':
-            // Mostrar/ocultar el gato ASCII y gestionar ruido blanco
-            toggleAsciiCatAndWhiteNoise();
-            event.preventDefault(); // Evitar que la barra espaciadora haga scroll
-            break;
-        case 'ArrowUp':
-        case 'ArrowDown':
-        case 'ArrowLeft':
-        case 'ArrowRight':
-            // Manejar el movimiento del cursor con flechas
-            handleArrowKeys(event.key);
-            break;
-    }
-});
-
-function togglePlay(elementId, audioFile) {
-    let element = document.getElementById(elementId);
-    if (!element.audio) {
-        element.audio = new Audio(audioFile);
-        element.audio.loop = true;
-        element.audio.play();
-    } else {
-        if (element.audio.paused) {
-            element.audio.play();
-        } else {
-            element.audio.pause();
-            element.audio.currentTime = 0;
-        }
-    }
-}
-
-function toggleAsciiCatAndWhiteNoise() {
-    const asciiCatElement = document.getElementById('ascii-cat');
-    let display = asciiCatElement.style.display;
-    asciiCatElement.style.display = (display === 'none' || display === '') ? 'block' : 'none';
+    // Asegurar que el sonido y la animación se detengan después de un período específico
+    oscilador.stop(audioCtx.currentTime + 11); // Ajusta este tiempo según la duración del sonido
 
 
 }
 
 
 
-function handleArrowKeys(arrowKey) {
-    console.log(`Arrow key pressed: ${arrowKey}`);
-    // Aquí puedes agregar lógica para mover un cursor o cualquier otro elemento en pantalla
+function agregarImagenSeleccionada(srcImagen) {
+    let img = document.createElement('img');
+    img.src = srcImagen; // Asegúrate de que el src es correcto
+    img.style.width = '100px';
+    img.style.height = 'auto';
+    document.getElementById('imageContainer').appendChild(img);
 }
 
 
-
-    
-    </script>
-    <script>
-        // Asegurándose de que el sketch de lluvia no se detenga al presionar la barra espaciadora
-      
-    
-        // Sketch de lluvia p5.js
-        let rainSketch = function(p) {
-            let raindrops = [];
-    
-            p.setup = function() {
-                p.createCanvas(p.windowWidth, p.windowHeight);
-                p.frameRate(100);
-            };
-    
-            p.draw = function() {
-                p.clear();
-                for (let i = raindrops.length - 1; i >= 0; i--) {
-                    raindrops[i].update();
-                    raindrops[i].display();
-                    if (raindrops[i].isOffScreen()) {
-                        raindrops.splice(i, 1);
-                    }
-                }
-    
-                if (p.frameCount % 2 === 0) {
-                    raindrops.push(new Raindrop(p));
-                }
-            };
-    
-            class Raindrop {
-                constructor(p) {
-                    this.p = p;
-                    this.x = p.random(p.width);
-                    this.y = 0;
-                    this.z = p.random(0, 20);
-                    this.len = p.map(this.z, 0, 20, 10, 20);
-                    this.yspeed = p.map(this.z, 0, 20, 4, 10);
-                }
-    
-                update() {
-                    this.y += this.yspeed;
-                    let grav = p.map(this.z, 0, 20, 0.01, 0.2);
-                    this.yspeed += grav;
-                }
-    
-                display() {
-                    p.stroke(138, 43, 300);
-                    p.line(this.x, this.y, this.x, this.y + this.len);
-                }
-    
-                isOffScreen() {
-                    return this.y > this.p.height;
-                }
+// Supongamos que cada caja tiene un data-url atributo con la URL a la que debe dirigir
+document.querySelectorAll('.box').forEach(box => {
+    box.addEventListener('click', function() {
+        // Verifica si la caja está activa antes de redirigir
+        if (this.getAttribute('data-active') === 'true') {
+            const url = this.getAttribute('data-url'); // Asegúrate de que cada caja tenga este atributo
+            if (url) { // Asegúrate de que la URL existe
+                window.open(url, '_blank'); // Abre la URL en una nueva pestaña
             }
-        };
-    
-        new p5(rainSketch, 'rain-sketch-container');
+        } else {
+            console.log("Esta caja no está activa y no redirigirá.");
+        }
+    });
+});
+
+
+document.querySelectorAll('.box').forEach(box => {
+    box.addEventListener('click', function() {
+        const frecuencia = this.dataset.frecuencia;
+        mostrarImagenPorFrecuencia(frecuencia);
+    });
+});
+
+// Función modificada para mostrar imagen y reproducir sonido
+
+
     </script>
-</body>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+    
+    
+    </script>
+
+    
+      
+    </body>
 </html>
+
