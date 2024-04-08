@@ -55,13 +55,12 @@ body {
     color: #e6e6e6;
     font-family: 'Courier New', Courier, monospace;
     margin: 0;
-    overflow-y: hidden;
-    overflow-x: hidden;
+    
 }
 
 
 
-#ascii-art, #ascii-cat {
+#ascii-art{
    display:flex;
     word-wrap: break-word;
     font-size: 5px;
@@ -74,14 +73,14 @@ body {
 
     
 #ascii-cat{
-    display: flex;
     white-space:pre-wrap;
     word-wrap: break-word; 
     font-size: 4px;
     cursor: pointer;
-    margin: 50px;
+    margin: 90px;
     padding-top: -30px;
-    margin-right:170px;
+    margin-right: 70px;
+ 
    
 
 }
@@ -101,6 +100,7 @@ margin-left: 100px; /* Centra horizontalmente */
     left: 0;
     z-index: 10; /* Ajustar según sea necesario */
     cursor: pointer;
+   margin-left: 30px;
    
 
 }
@@ -126,7 +126,7 @@ margin-left: 100px; /* Centra horizontalmente */
     margin-left:auto;
     margin-right: auto;
     margin: auto;
-    margin-top: -500px;
+    margin-top: -400px;
     width: 200px; /* Ancho fijo del contenedor */
     height: 200px;
     position: relative; /* Habilita el posicionamiento relativo */
@@ -136,11 +136,11 @@ margin-left: 100px; /* Centra horizontalmente */
 
 #ascii-art-container{
   position: absolute;
-  top: 10;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  margin-left: 100px;
+  
+  left: 30px;
+  width: 80%;
+  height: 80%;
+  top:30%;
   
 }
 
@@ -153,7 +153,7 @@ margin-left: 100px; /* Centra horizontalmente */
     top: 0;             /* Alinea la parte superior del elemento con la parte superior del contenedor */
     right: 0;           /* Alinea el lado derecho del elemento con el lado derecho del contenedor */
     margin-right:90px; /* Agrega un pequeño margen derecho, si es necesario */
-    z-index: 1000;      /* Asegura que el elemento sea visible sobre otros posibles elementos */
+    z-index: 2000;      /* Asegura que el elemento sea visible sobre otros posibles elementos */
 }
 
 #ascii-luna {
@@ -174,7 +174,7 @@ margin-left: 100px; /* Centra horizontalmente */
             left: 0;
             width: 100%;
             height: 100%;
-           /* Fondo */z-index: 2000;
+            z-index: 2000;
             pointer-events: none; /* Permite hacer clic a través del contenedor */
 
         }
@@ -182,28 +182,47 @@ margin-left: 100px; /* Centra horizontalmente */
        /* Reglas de media query para dispositivos con ancho máximo de 600px */
 @media (max-width: 600px) {
     body {
-        overflow-y: hidden; /* Permite desplazamiento vertical si es necesario */
+
+        overflow-x: hidden; /* Permite desplazamiento vertical si es necesario */
     }
+
+    #p5-canvas {
+            width: 100%;  /* Ocupa el ancho completo de la pantalla para evitar el desbordamiento horizontal */
+            height: auto; /* Altura automática basada en el aspecto del canvas */
+            position: absolute;
+            top: -200px;    /* Ajusta esta propiedad para subir o bajar el canvas */
+            left: 0;      /* Alinea al centro horizontalmente */
+            z-index: 5;   /* Asegura que esté debajo del ascii-cat si es necesario */
+        }
+
+        #ascii-cat {
+            position: absolute; /* Posicionamiento absoluto para mejor control */
+            top: 550px;  /* Baja el ascii-cat para que se muestre debajo del canvas */
+            left: 0%;
+            right: 0;     /* Alinea al centro horizontalmente */
+            width: 100%; /* Ocupa el ancho completo de la pantalla */
+            font-size: 4px; /* Ajusta el tamaño de la fuente si es necesario */
+            z-index: 10;
+            margin:10px;
+        }
+
+     
 
     #ascii-art  {
         display: flex;
-
         font-size: 4px; /* Ajusta el tamaño de la fuente para visibilidad en pantallas pequeñas */
         margin: 0 60px; /* Agrega márgenes laterales para no tocar los bordes de la pantalla */
         margin-top: -140px;
+        
     }
-    #ascii-cat {
-        font-size: 3px;
-        margin-top: -100px;
-
-
-    }
+  
 
     #ascii-sol{
         display: flex;
         font-size: 2.3px; /* Ajusta el tamaño de la fuente para visibilidad en pantallas pequeñas */
         margin-left: 0;
        z-index: 2000;
+       margin: 8px;
 
     }
     #ascii-luna{
@@ -215,11 +234,14 @@ margin-left: 100px; /* Centra horizontalmente */
     }
 
     #tree-sketch-container  {
-        margin-left: 0;
-        margin-right:0;
-        width: 5%; /* Reduce el ancho para evitar desbordamiento horizontal */
+        display: flex;
+        margin-left: 0px;
+        margin-right:0px;
+        width: 50%; /* Reduce el ancho para evitar desbordamiento horizontal */
     z-index: -100;
+    height: 50vh; 
     }
+    
     #color-bar-sketch-container{
 display:flex;
 margin-left: 0px; /* Ajusta el margen izquierdo para centrar */
@@ -234,12 +256,13 @@ margin-left: 0px; /* Ajusta el margen izquierdo para centrar */
         margin-right: 0px; /* Ajusta el margen derecho para centrar */
         flex-direction:row; /* Alinea los elementos verticalmente */
         z-index:1000;
+        
     }
 
     #rain-sketch-container {
-        height: 100vh; /* Asegura que el contenedor de lluvia ocupe todo el alto disponible */
+        height: 50vh; /* Asegura que el contenedor de lluvia ocupe todo el alto disponible */
     }
-}
+
 
 /* Reglas adicionales para orientación horizontal (landscape) */
 @media (max-width: 600px) and (orientation: landscape) {
@@ -250,15 +273,48 @@ margin-left: 0px; /* Ajusta el margen izquierdo para centrar */
 
     #tree-sketch-container, #color-bar-sketch-container {
         width: 48%; /* Asigna un ancho menor para cada contenedor */
-        height: auto; /* Ajusta la altura automáticamente */
+        height: 40%; /* Ajusta la altura automáticamente */
         margin-top: 5px; /* Ajusta el margen superior */
         margin-bottom: 5px; /* Ajusta el margen inferior */
     }
+    #ascii-ArbolG {
+        font-size: 2px; /* Más pequeño en dispositivos móviles */
+        
+    }
+    #p5-canvas{
+        width: 48%; /* Asigna un ancho menor para cada contenedor */
+        height: 40%; /* Ajusta la altura automáticamente */
+        margin-top: -500px; /* Ajusta el margen superior */
+        margin-bottom: 5px;/* Ajusta este valor según sea necesario para subir el canvas */
+        }
+ 
+    }
 
 
+
+
+#ascii-ArbolG-container {
+    position: absolute;
+    top: 50%; /* Cambiado de 50% a 40% para moverlo más arriba */
+    left: 30%;
+    transform: translate(-50%, -40%); /* Ajusta el desplazamiento vertical aquí también */
+    z-index: 1500; /* Asegúrate de que el z-index sea adecuado para que aparezca sobre otros elementos si es necesario */
+    width: auto;
+    height: auto;
+    text-align: center;
+    margin-top: -340px;
 }
 
- 
+#ascii-ArbolG {
+    font-size: 2px; /* Ajusta esto según sea necesario para el tamaño de la fuente */
+    line-height: 1;
+    
+    white-space: pre-wrap; /* Asegura que el formato del texto se mantenga */
+    color: rgb(133, 255, 109); /* O el color que prefieras */
+}
+
+ }
+
 
 </style>
 
@@ -267,12 +323,15 @@ margin-left: 0px; /* Ajusta el margen izquierdo para centrar */
 
 <div id="rain-sketch-container"></div>
 
-                  <div id="container" style="position: relative; width: 100%; height: 100%;">
+                  <div id="container" style="position: relative; width: 100%; height: 100%;  color: rgb(166, 198, 236);">
 
                        <pre id="ascii-luna">
-                                                                                                           
-                  *****, *##%###%/ .****************************. ,%#%, ,,        /*.  ,/           
-                  (#*,   .  ,**,*, ###/ ***********************************,  **..#,  ./%%%%#.              
+                                               xxxxxxxx
+                                          *******************.             
+                          ,          ###/ ***************#%#%%##%#%%%##%(             
+                              #%%%%##%%#/.   .,***********,,,*#%#%%##%#%%%##%(                                                  
+                        , *##%###%/ .****************************. ,*#%#%%##%#%%%##%(           
+                  (#*,   .  ,**,*, ###/ ***********************************,*#%#%%##%#%%%##%(             
                    /  #%%%%##%%#/.   .,***********,,,************************,. %###%##%#  ,,*,,*. *@    #  
                   ,,,,,.  %###%#%#..******.  .(#%%%%#%%%#,   ,**,***************. %#/          .*/##%%%%%(  
                   /*  ,***,. .%## *,*,. .(,   ..,**,   ./%%%%%(  ,***************, *#%#%%##%#%%%##%(. ,(    
@@ -309,7 +368,7 @@ margin-left: 0px; /* Ajusta el margen izquierdo para centrar */
 
 
 
-    <pre id="ascii-sol">
+    <pre id="ascii-sol" style=" color: rgb(255, 249, 182);">
                                                                                                    
                                  *&&&% (#%.#%/(     @.%%(,&%*..../                                  
                                  (#/%%((%%.#%#*@    @.%%*#%%.%%%.@      @#                          
@@ -375,7 +434,7 @@ margin-left: 0px; /* Ajusta el margen izquierdo para centrar */
                             
                             <script>
                                 // Crear instancia de Audio para la luna
-                                let audioLuna = new Audio('1s.mp3');
+                                let audioLuna = new Audio('0S.wav');
                                 audioLuna.loop = true;  // Habilitar reproducción en bucle
                                 audioLuna.volume = 1.0;  // Establecer el volumen al máximo
                             
@@ -402,7 +461,7 @@ margin-left: 0px; /* Ajusta el margen izquierdo para centrar */
 
         <div id="ascii-container" class="container">
 
-        <pre id="ascii-art">
+        <pre id="ascii-art" style="color: rgb(193, 193, 193);">
                 ./##/,((/****,,,,,,,*(.,,/*,*,,*(##((*(///*****..,,.,,..,..,......         
                 *                                                                         /   
               ,    ,%%%#((((((///////*******////////**,,,..                                 , 
@@ -467,19 +526,19 @@ margin-left: 0px; /* Ajusta el margen izquierdo para centrar */
                  ,(%#/,                  ,                                           ,*##,   
                
           
-           
+         
              
     </div>
 
 
-        <pre id="ascii-cat">
+        <pre id="ascii-cat" style=" color: rgb(189, 252, 255);">                                                               
  
             @(,                                                 
             %(,*/%&                                               
  @r         **.##/.,,                                              
 /,/       /**#.*%*,                                              
 /**%./(     //.#../#....                                           
-(*/#%(.((/(/../#&&&&%%(*.,,,                                       
+(*/#%(.((/(/../#&&&&%%(*.,,,                                                
 /*,%*,%#*./%&&&&&&&@&&@&&/.,                                       
 (,*%/..,(%*/&&&&&&&&@&&&(,.,,                                     
 ,/(,(%#,.#%,(&&&&&&&@&%,(&%*....                                             
@@ -626,6 +685,55 @@ vv
 
 hbggvh
 v
+
+ </div>
+<div>
+
+</div>
+
+<div id="ascii-ArbolG-container" style="position: relative; width: 100%; height: 100%; top: -1000px; color: rgb(187, 242, 132);">
+    <pre id="ascii-ArbolG" style="text-align: center; font-size: 10px; line-height: 1;">
+
+                                                                                           
+                             *%.#%(#*#%&&&#&*(##%.                              
+                          /*%/(((*.%,..,(,*,,%(..,#(@%*                         
+                       *#%##*/##*(,@ *,  ,.& &(& (**,@#%#/                      
+                    ,./&,*.*#%(//   %  ## %    /%    ,*//#&#                    
+                   ,,(*%. ## ( * ( /. &%%&&      (/ ,   #(#(#%#                 
+                 *%*#/*#&  .  @ .  #  &     (& ,/  * ,.&&@  *(#(%               
+             /%#%/**,(%@@%@,/(   &*(  & , &,%  .   ,./, (#/ .//( .              
+           (%%(**(.*     ,  & &,   & .&%/ @*      ,% ./,   ((* ##(%,            
+          #/(., /  *@%/*@@&%# #, .  &*%&@@(,  , %  ***(/* *, .%. ,,%#%          
+          . %* #          * (, &%  *  &@&&(@@@. &.   .   .  ,   &*/*%/%         
+             *  . /(   .  //     @%#..@@#@ (#      .*#/  /  (*      /           
+           ,*/.,* //#* (@((*#   %  @% @&%,  *,  /,  ,*    *,( #, %/(@((#        
+         (%%((#/#(%/    .*   #    @@%@@@%   .     /&%@   (#&      @,/#%#/(      
+      #(#%((((%@ @ #(  *.       .   @&@@&#     %& .       @ ( ., ,.*@..*(((*    
+    .#/%&/(#(.  , %    *.   @@* / #  @%#%(     &%  (,   ,.  .@@  %   (%#        
+       &#*     #  ,,. ,*/@  ,  @#(   @%(*%  //&@   (  . *  (   .   . ,//*#(,    
+         *(##   #%,   ,(/  // ,  /@@&#&#(%%(@  ,   /         ,    ./  .,//*.    
+        #(,# %,    &,(* @&#&##/&     @@&#&%@  .*  *(&###,.&.%# (##(% *          
+    ,%,&%(%@&      . ,&/  &@  @@@&#/ @@&%&%    ((%@@@@(  ##,,.   . %&#(         
+      //#.      ( /     & ,,*.    (@@%%#/##&@@@ .#*  . . %   ..    /(#.#        
+           # /#(.  . ((#  ,(   .* # @@@%#(%@     #/    *   @  //     ./         
+         .%%#*/((##@@     *, .  / .  @@@(#%@ .,  **    /       #  @ /##@(/      
+         . %//@   **,*     (    /    @@#(#%&              .##      /(%#%*%%     
+          &%#.     /      // .       @&(&/(%              ,,. . */   #%(        
+                   .  .             @@%%(/%&                                    
+                                    @@@(//#&                                    
+                                    @&@##(/&%                                   
+                                   @@&#@/&##(%                                  
+                              @@&@@#&@@@/#/%#&&/&&(                             
+              .,*/,*(#&@%&@&@#@%%@&@@#%/@@@(%#@@&@%%(&/#@&&%#/,,...             
+                           (....,(#@(.(*(##,*//,,,.. (.            
+
+                </div>
+
+                <div></div>
+<section>
+
+</section>
+
 <script>
     
         let oscilador;
@@ -1004,7 +1112,7 @@ function moverYMostrarGatoAscii(mostrar) {
 // Eventos de teclado para activar/desactivar el ruido blanco y la lluvia visual
 document.addEventListener('keydown', function(e) {
     if (e.code === 'Space') {
-        generarRuidoBlanco(0.5); // Genera ruido blanco por 0.5 segundos y activa la lluvia
+        generarRuidoBlanco(22); // Genera ruido blanco por 0.5 segundos y activa la lluvia
     }
 });
 
@@ -1012,7 +1120,7 @@ document.addEventListener('keydown', function(e) {
 
 // Evento de clic en el elemento del gato para activar las mismas acciones
 document.getElementById('ascii-cat').addEventListener('click', function() {
-    generarRuidoBlanco(0.5); // Usar la misma duración de ruido blanco
+    generarRuidoBlanco(22); // Usar la misma duración de ruido blanco
 });
 
 
@@ -1217,11 +1325,13 @@ new p5(function(p) {
     }
 });
 
+
 function togglePlay(elementId, audioFile) {
     let element = document.getElementById(elementId);
     if (!element.audio) {
         element.audio = new Audio(audioFile);
         element.audio.loop = true;
+        audio.volume = 1.5;
         element.audio.play();
     } else {
         if (element.audio.paused) {
@@ -1233,12 +1343,12 @@ function togglePlay(elementId, audioFile) {
     }
 }
 
+
+
 function toggleAsciiCatAndWhiteNoise() {
     const asciiCatElement = document.getElementById('ascii-cat');
     let display = asciiCatElement.style.display;
     asciiCatElement.style.display = (display === 'none' || display === '') ? 'block' : 'none';
-
-
 }
 
 
@@ -1253,10 +1363,7 @@ function handleArrowKeys(arrowKey) {
     
     </script>
     <script>
-        // Asegurándose de que el sketch de lluvia no se detenga al presionar la barra espaciadora
-      
-    
-        // Sketch de lluvia p5.js
+       
         let rainSketch = function(p) {
             let raindrops = [];
     
@@ -1311,6 +1418,7 @@ function handleArrowKeys(arrowKey) {
     </script>
 </body>
 </html>
+
 
 
 
