@@ -58,7 +58,39 @@ body {
     
 }
 
+section p {
+            font-size: 12px; /* Aumenta el tamaño de la fuente */
+            font-weight: bold; /* Hace el texto más grueso */
+            line-height: 1.0; /* Aumenta el espacio entre líneas para mejor legibilidad */
+            color: #fff; /* Cambia el color del texto a blanco, ajusta según tu diseño */
+            text-align: justify; /* Alinea justificadamente el texto */
+            margin: 10px 170px; /* Añade márgenes alrededor del párrafo para más espacio */
+        margin-top: -960px;
+        }
 
+        @media (max-width: 768px) {
+        section p {
+            font-size: 9px; /* Un poco más pequeño para tabletas */
+            margin: 10px 15px; /* Margen ligeramente más pequeño */
+            padding-top: -960px;
+        }
+    }
+
+    /* Estilos para teléfonos móviles: pantallas con un ancho máximo de 480px */
+    @media (max-width: 480px) {
+        section p {
+            font-size: 9px; /* Más pequeño para teléfonos móviles */
+            margin: 10px 10px;
+        }
+    }
+
+    /* Estilos para pantallas muy pequeñas: pantallas con un ancho máximo de 320px */
+    @media (max-width: 320px) {
+        section p {
+            font-size: 8px; /* Muy pequeño para pantallas muy pequeñas */
+            margin: 5px;
+        }
+    }
 
 #ascii-art{
    display:flex;
@@ -721,17 +753,54 @@ v
           &%#.     /      // .       @&(&/(%              ,,. . */   #%(        
                    .  .             @@%%(/%&                                    
                                     @@@(//#&                                    
+                                    @@%%(/%&                                    
+                                    @@@(//#&                                    
+                                    @@%%(/%&                                    
+                                    @@@(//#&                                    
+                                    
+                                    @@%%(/%&                                    
+                                    @@@(//#&                                    
                                     @&@##(/&%                                   
                                    @@&#@/&##(%                                  
                               @@&@@#&@@@/#/%#&&/&&(                             
               .,*/,*(#&@%&@&@#@%%@&@@#%/@@@(%#@@&@%%(&/#@&&%#/,,...             
-                           (....,(#@(.(*(##,*//,,,.. (.            
-
+   (....,(#@(.(*(##,*//,,,.. (        (....,(#@(.(*(##,*//,,,.. (.         
+   
+(##
                 </div>
 
                 <div></div>
 <section>
+  <p> 
+     
+    Develop & AVS design by Alfonso Pretelt 
+    ® All rights reserved. 
 
+    
+    Usage control:
+
+    Space bar: start sound (optionally).
+    It generates white noise and a puddle of water 
+    when the sound has already 
+    started.
+    
+    Click: start sound.
+    
+    Double Click: Changes to a slow tempo.
+    
+    S: audio of the sun. (click)
+    L: Moon audio (click)
+    
+    Cat: click = white noise. Puddle.
+    
+    Move the mouse pointer to alter the audio frequency.
+    
+    You can create a soundscape freely by playing with 
+    the elements or follow the 
+    score. 
+
+
+</p>
 </section>
 
 <script>
@@ -858,7 +927,7 @@ document.getElementById('ascii-art').addEventListener('mousemove', function(even
     oscilador.frequency.value = frequency; // Ajusta la frecuencia según la posición del mouse
 
 
- const gainValue = 0.3 - (event.offsetY / this.offsetHeight);
+ const gainValue = 0.1 - (event.offsetY / this.offsetHeight);
  gainNode.gain.value = gainValue;
 });
 
@@ -877,7 +946,7 @@ let osciladoresActivos = [];
         
         function setup() {
             let asciiArtContainer = document.getElementById('ascii-container'); 
-            let desiredHeight = 350; // Establecer el largo deseado aquí
+            let desiredHeight = 400; // Establecer el largo deseado aquí
             let canvas = createCanvas(asciiArtContainer.offsetWidth, desiredHeight);
 
   
@@ -889,7 +958,7 @@ let osciladoresActivos = [];
  }
  function windowResized() {
     let asciiArtContainer = document.getElementById('ascii-container');
-    let desiredHeight = 350; // Asegúrate de usar el mismo largo deseado que antes
+    let desiredHeight = 400; // Asegúrate de usar el mismo largo deseado que antes
     resizeCanvas(asciiArtContainer.offsetWidth, desiredHeight);
     canvas.position(asciiArtContainer.offsetLeft, asciiArtContainer.offsetTop);
 }
@@ -959,7 +1028,7 @@ function inicializarAudio() {
         compressor.ratio.setValueAtTime(12, audioCtx.currentTime);
         compressor.attack.setValueAtTime(0, audioCtx.currentTime);
         compressor.release.setValueAtTime(0.25, audioCtx.currentTime);
-        gainNode.gain.value = 0.3;
+        gainNode.gain.value = 0.1;
  // Volumen inicial ajustable.
  gainNode.connect(compressor);
         compressor.connect(audioCtx.destination);    }
@@ -1077,7 +1146,6 @@ document.getElementById('ascii-cat').addEventListener('click', function(event) {
     if (!audioCtx) {
         audioCtx = new (window.AudioContext || window.webkitAudioContext)();
     }
-    generarRuidoBlanco(0.5); // Genera ruido blanco por 0.5 segundos
 });
 let contadorApariciones = 0;
 
@@ -1100,7 +1168,6 @@ function cicloAparicionGato() {
             asciiCatElement.style.display = 'block';
 
             // Generar ruido blanco en cada aparición
-            generarRuidoBlanco(0.5);
 
             contadorApariciones++;
         } else {
@@ -1133,7 +1200,7 @@ function startAudioContext() {
         // Crear delay y configurar
         const delay = audioCtx.createDelay(1.0);
         const delayGain = audioCtx.createGain();
-        delay.delayTime.value = 0.1; // Tiempo de delay inicial
+        delay.delayTime.value = 0.2; // Tiempo de delay inicial
         delayGain.gain.value = 0.5;  // Ganancia del delay para controlar la intensidad del eco
 
         delay.connect(delayGain);
@@ -1361,12 +1428,13 @@ function toggleAsciiCatAndWhiteNoise() {
 
 
 document.getElementById('ascii-cat').addEventListener('click', function(event) {
-     moverYMostrarGatoAscii(), generarRuidoBlanco(22); // Inicia el ciclo de aparición del gato
-});
+     moverYMostrarGatoAscii(), generarRuidoBlanco(10); // Inicia el ciclo de aparición del gato
+
+    });
 
 document.addEventListener('keydown', function(e) {
     if (e.code === 'Space') {
-        generarRuidoBlanco(22), cicloAparicionGato(); // Genera ruido blanco por 0.5 segundos y activa la lluvia
+        generarRuidoBlanco(10), cicloAparicionGato(); // Genera ruido blanco por 0.5 segundos y activa la lluvia
         e.preventDefault();  // Prevenir el scroll de la página
     }
 });
@@ -1439,6 +1507,8 @@ function handleArrowKeys(arrowKey) {
     </script>
 </body>
 </html>
+
+
 
 
 
