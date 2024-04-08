@@ -1361,7 +1361,7 @@ function toggleAsciiCatAndWhiteNoise() {
 
 
 document.getElementById('ascii-cat').addEventListener('click', function(event) {
-     moverYMostrarGatoAscii(); // Inicia el ciclo de aparición del gato
+     moverYMostrarGatoAscii(), generarRuidoBlanco(22); // Inicia el ciclo de aparición del gato
 });
 
 document.addEventListener('keydown', function(e) {
