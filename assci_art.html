@@ -1044,84 +1044,81 @@ function shuffleAscii(element) {
 
 
 
-function generarRuidoBlanco(duracion = 1) {
-    if (whiteNoiseSource) {
-        whiteNoiseSource.disconnect();
-        myp5.noLoop(); // Detener la lluvia visual
-        moverYMostrarGatoAscii(false); // Ocultar el gato ASCII
-    }
 
-    const bufferSize = audioCtx.sampleRate * duracion;
+
+
+
+function generarRuidoBlanco(duracion = 1) {
+    const bufferSize = audioCtx.sampleRate * duracion; // Duración del buffer de 1 segundo
     const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
     const data = buffer.getChannelData(0);
 
+    // Llenar el buffer con datos de ruido blanco
     for (let i = 0; i < bufferSize; i++) {
-        data[i] = Math.random() * 2 - 1; // Generate white noise
+        data[i] = Math.random() * 2 - 1;
     }
 
-    whiteNoiseSource = audioCtx.createBufferSource();
+    const whiteNoiseSource = audioCtx.createBufferSource();
     whiteNoiseSource.buffer = buffer;
     whiteNoiseSource.connect(audioCtx.destination);
     whiteNoiseSource.start();
     whiteNoiseSource.stop(audioCtx.currentTime + duracion);
-
-    myp5.loop(); // Iniciar la lluvia visual
-    moverYMostrarGatoAscii(true); // Mostrar el gato ASCII en una posición aleatoria
 }
 
-function generarRuidoBlanco(duracion = 1) {
-    if (whiteNoiseSource) {
-        whiteNoiseSource.disconnect();
-        whiteNoiseSource = null;
-        myp5.noLoop(); // Detener la lluvia visual
-        moverYMostrarGatoAscii(false); // Ocultar el gato ASCII
-    } else {
-        const bufferSize = audioCtx.sampleRate * duracion;
-        const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
-        const data = buffer.getChannelData(0);
 
-        for (let i = 0; i < bufferSize; i++) {
-            data[i] = Math.random() * 2 - 1; // Generate white noise
+document.getElementById('ascii-cat').addEventListener('click', function(event) {
+    event.stopPropagation(); // Previene la propagación del evento al cuerpo del documento
+
+    // Mueve el gato ASCII a una nueva posición aleatoria
+    moverYMostrarGatoAscii();
+    const asciiCatElement = document.getElementById('ascii-cat');
+
+    // Genera ruido blanco
+    if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    }
+    generarRuidoBlanco(0.5); // Genera ruido blanco por 0.5 segundos
+});
+let contadorApariciones = 0;
+
+function cicloAparicionGato() {
+    const asciiCatElement = document.getElementById('ascii-cat');
+    // Reiniciar el contador si es el inicio de un nuevo ciclo
+    if (contadorApariciones === 0) {
+        asciiCatElement.style.display = 'none'; // Asegurar que comienza oculto
+    }
+    const intervalo = setInterval(() => {
+        if (asciiCatElement.style.display === 'none') {
+            // Calcular nueva posición aleatoria
+            const asciiContainer = document.getElementById('ascii-art');
+            const newX = Math.random() * (asciiContainer.offsetWidth - asciiCatElement.offsetWidth);
+            const newY = Math.random() * (asciiContainer.offsetHeight - asciiCatElement.offsetHeight);
+
+            // Actualizar posición y mostrar
+            asciiCatElement.style.left = `${newX}px`;
+            asciiCatElement.style.top = `${newY}px`;
+            asciiCatElement.style.display = 'block';
+
+            // Generar ruido blanco en cada aparición
+            generarRuidoBlanco(0.5);
+
+            contadorApariciones++;
+        } else {
+            asciiCatElement.style.display = 'none';
         }
 
-        whiteNoiseSource = audioCtx.createBufferSource();
-        whiteNoiseSource.buffer = buffer;
-        whiteNoiseSource.connect(audioCtx.destination);
-        whiteNoiseSource.start();
-        whiteNoiseSource.stop(audioCtx.currentTime + duracion);
-
-        myp5.loop(); // Iniciar la lluvia visual
-        moverYMostrarGatoAscii(true); // Mostrar el gato ASCII en una posición aleatoria
-    }
+        // Verificar si el ciclo debe terminar
+        if (contadorApariciones >= 3) {
+            clearInterval(intervalo);
+            contadorApariciones = 0; // Restablecer para el próximo clic
+        }
+    }, random); // Ajusta este valor según necesites controlar la velocidad de aparición
 }
 
-// Función para manejar la visibilidad y posición del gato ASCII
-function moverYMostrarGatoAscii(mostrar) {
-    const asciiCatElement = document.getElementById('ascii-cat');
-    if (mostrar) {
-        const newX = Math.random() * (window.innerWidth - asciiCatElement.offsetWidth);
-        const newY = Math.random() * (window.innerHeight - asciiCatElement.offsetHeight);
-        asciiCatElement.style.left = `${newX}px`;
-        asciiCatElement.style.top = `${newY}px`;
-        asciiCatElement.style.display = 'block';
-    } else {
-        asciiCatElement.style.display = 'none';
-    }
-}
-
-// Eventos de teclado para activar/desactivar el ruido blanco y la lluvia visual
-document.addEventListener('keydown', function(e) {
-    if (e.code === 'Space') {
-        generarRuidoBlanco(22); // Genera ruido blanco por 0.5 segundos y activa la lluvia
-    }
+document.getElementById('ascii-cat').addEventListener('click', function(event) {
+    cicloAparicionGato(); // Inicia el ciclo de aparición del gato
 });
 
-
-
-// Evento de clic en el elemento del gato para activar las mismas acciones
-document.getElementById('ascii-cat').addEventListener('click', function() {
-    generarRuidoBlanco(22); // Usar la misma duración de ruido blanco
-});
 
 
 
@@ -1314,6 +1311,7 @@ new p5(function(p) {
             // Mostrar/ocultar el gato ASCII y gestionar ruido blanco
             toggleAsciiCatAndWhiteNoise();
             event.preventDefault(); // Evitar que la barra espaciadora haga scroll
+
             break;
         case 'ArrowUp':
         case 'ArrowDown':
@@ -1326,30 +1324,53 @@ new p5(function(p) {
 });
 
 
-function togglePlay(elementId, audioFile) {
-    let element = document.getElementById(elementId);
-    if (!element.audio) {
-        element.audio = new Audio(audioFile);
-        element.audio.loop = true;
-        audio.volume = 1.5;
-        element.audio.play();
+function moverYMostrarGatoAscii(mostrar) {
+    console.log("moverYMostrarGatoAscii: mostrar =", mostrar); // Depuración
+    const asciiCatElement = document.getElementById('ascii-cat');
+    if (mostrar) {
+        const newX = Math.random() * (window.innerWidth - asciiCatElement.offsetWidth);
+        const newY = Math.random() * (window.innerHeight - asciiCatElement.offsetHeight);
+        asciiCatElement.style.left = `${newX}px`;
+        asciiCatElement.style.top = `${newY}px`;
+        asciiCatElement.style.display = 'block';
     } else {
-        if (element.audio.paused) {
-            element.audio.play();
-        } else {
-            element.audio.pause();
-            element.audio.currentTime = 0;
+        asciiCatElement.style.display = 'none';
+    }
+}
+
+
+function toggleAsciiCatAndWhiteNoise() {
+    const asciiCatElement = document.getElementById('ascii-cat');
+    // Verificar si el gato está visible basado en el estilo 'display'
+    const isVisible = asciiCatElement.style.display === 'block';
+
+    if (isVisible) {
+        // Detener el ruido blanco y ocultar el gato ASCII
+        if (whiteNoiseSource) {
+            whiteNoiseSource.disconnect();
+            whiteNoiseSource = null;
         }
+        moverYMostrarGatoAscii(false); // Ocultar el gato ASCII
+    } else {
+        // Generar ruido blanco y mostrar el gato ASCII
+        generarRuidoBlanco(22); // Suponemos que la función ya mueve y muestra el gato ASCII
     }
 }
 
 
 
-function toggleAsciiCatAndWhiteNoise() {
-    const asciiCatElement = document.getElementById('ascii-cat');
-    let display = asciiCatElement.style.display;
-    asciiCatElement.style.display = (display === 'none' || display === '') ? 'block' : 'none';
-}
+
+document.getElementById('ascii-cat').addEventListener('click', function(event) {
+     moverYMostrarGatoAscii(); // Inicia el ciclo de aparición del gato
+});
+
+document.addEventListener('keydown', function(e) {
+    if (e.code === 'Space') {
+        generarRuidoBlanco(22), cicloAparicionGato(); // Genera ruido blanco por 0.5 segundos y activa la lluvia
+        e.preventDefault();  // Prevenir el scroll de la página
+    }
+});
+
 
 
 
@@ -1418,6 +1439,7 @@ function handleArrowKeys(arrowKey) {
     </script>
 </body>
 </html>
+
 
 
 
