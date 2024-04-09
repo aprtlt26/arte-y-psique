@@ -1256,7 +1256,7 @@ function shuffleAscii(element) {
 
 
 
-function generarRuidoBlanco(duracion = 1) {
+function generarRuidoBlanco(duracion = 10) {
     const bufferSize = audioCtx.sampleRate * duracion; // Duración del buffer de 1 segundo
     const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
     const data = buffer.getChannelData(0);
