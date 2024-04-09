@@ -47,7 +47,6 @@
     <style>
     
        
-       /* Estilos base para móviles */
   
 
         header {
@@ -57,11 +56,11 @@
     width: 100%;
     position: fixed;
     background-color: transparent;
-    top: 0; /* Establece en 0 para mover el header hacia arriba */
-    z-index: 2; /* Asegúrate de que el z-index sea suficiente para mantenerlo por encima de otros elementos */
+    top: 0; 
+    z-index: 2; 
 
-    padding-top: 5px; /* Reduce el padding superior para acercar el contenido al borde superior */
-    padding-bottom: 5px; /* Ajusta según sea necesario */
+    padding-top: 5px;
+    padding-bottom: 5px; 
 
 }
 
@@ -85,32 +84,30 @@
     .navbar {
         justify-content: center;
         align-items: center;
-        text-align: center; /* Asegura que el texto también esté centrado */
+        text-align: center; 
         background-color: transparent; 
 
     }
 
     .navbar-brand {
-        width: 100%; /* Ocupa todo el ancho disponible para asegurar el centrado */
-        display: block; /* Trata el elemento como un bloque para mejor manejo del centrado */
+        width: 100%; 
+        display: block; 
         background-color: transparent; 
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 
 
     }
 
-    /* Asegúrate de que todos los elementos del navbar estén centrados en dispositivos móviles */
     .navbar-nav,
     .navbar-toggler {
         justify-content: center;
-        width: 100%; /* Ocupa todo el ancho para elementos internos también */
+        width: 100%; 
 
     }
 }
-/* Para asegurar que el navbar se expanda adecuadamente en dispositivos grandes */
 @media (min-width: 992px) {
     .navbar {
-        justify-content: center; /* Mantiene el contenido centrado en dispositivos grandes */
+        justify-content: center; 
         z-index: 1;
     }
 }
@@ -149,24 +146,24 @@
     .navbar-nav {
         font-size: 0.9rem;
         margin: 10px 15px;
-        width: 80%; /* Hace que la barra de menú use todo el ancho disponible */
-        text-align: center; /* Centra el texto de los enlaces */
+        width: 80%; 
+        text-align: center;
 align-items: center;
 background-color:  transparent;
 
     }
 
     .navbar {
-        width: 80%; /* Asegura que el elemento navbar también ocupe todo el ancho */
-        text-align: center; /* Centra el texto de los enlaces */
+        width: 80%; 
+        text-align: center; 
         background-color:  transparent;
 
         
     }
 
     .navbar-collapse {
-        width: 80%; /* Hace que el contenido colapsable de la navbar ocupe todo el ancho */
-        text-align: center; /* Centra el texto de los enlaces */
+        width: 80%; 
+        text-align: center; 
         background-color:  transparent;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 
@@ -174,14 +171,14 @@ background-color:  transparent;
     }
 
     .navbar-toggler {
-        margin-right: 0; /* Elimina el margen derecho para alinear el toggler a la derecha */
-        text-align: center; /* Centra el texto de los enlaces */
+        margin-right: 0; 
+        text-align: center; 
 ;
 
     }
 
     .navbar-nav .nav-link {
-        text-align: center; /* Centra el texto de los enlaces */
+        text-align: center; 
     }
 }
 
@@ -208,24 +205,22 @@ background-color:  transparent;
 
     
 
-        /* Estilos para la barra de menú */
+     
 .navbar {
     background-color: transparent !important; /* Hace la barra de menú transparente */
     box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1); /* Agrega una sombra suave */
     color: #f8f8f8;
 }
 
-/* Estilos para el menú desplegable en versión móvil */
 .navbar-collapse {
-    background-color:   transparent; /* Semi-transparente con sombra */
-    box-shadow: 0 8px 10px rgba(255, 255, 255, 0.2); /* Sombra más notoria */
+    background-color:   transparent; 
+    box-shadow: 0 8px 10px rgba(255, 255, 255, 0.2); 
     
 }
 
-/* Ajusta la transparencia del botón del menú desplegable para mejor coherencia visual */
 .navbar-toggler {
-    background-color: rgba(255, 255, 255, 0.5); /* Semi-transparente */
-    border-color: rgba(255, 255, 255, 0.5); /* Ajusta el color del borde del botón */
+    background-color: rgba(255, 255, 255, 0.5); 
+    border-color: rgba(255, 255, 255, 0.5); 
     color: #f8f8f8;
 }
 
@@ -241,14 +236,14 @@ background-color:  transparent;
 }
 
 footer a {
-    color: #515151; /* Color de los enlaces */
-    text-decoration: none; /* Elimina el subrayado de los enlaces */
+    color: #515151;
+    text-decoration: none;
     
 }
 
 footer a:hover {
 color: #00f7b5;
-text-decoration: none; /* Elimina el subrayado de los enlaces */
+text-decoration: none; 
 
 }
 
@@ -257,11 +252,10 @@ text-decoration: none; /* Elimina el subrayado de los enlaces */
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 450px; /* Ajusta este valor según necesites para subir la galería */
+    margin-top: 450px; 
         margin-left: 300px;
-    /* Otros estilos de tu galería */
     z-index: 2000; /* Más alto que el lienzo de p5.js */
-    position: absolute; /* Necesario para que z-index funcione */
+    position: absolute; 
 
 }
 @media (max-width: 768px) {
@@ -275,34 +269,31 @@ margin-left: 0px;
     .gallery-container img {
         justify-content: center;
     align-items: center;
-        width: 100px; /* Tamaño reducido de las imágenes de la galería */
+        width: 100px; 
         height: auto;
-        margin: -38px; /* Espacio alrededor de cada imagen */
+        margin: -38px;
         cursor: pointer;
         border: 2px solid transparent;
         border-radius: 5px;
-        transition: transform 0.3s ease; /* Suaviza la transición al hacer hover */
+        transition: transform 0.3s ease; 
     }
 
     .gallery-container img:hover {
-        transform: scale(1.1); /* Efecto de zoom al pasar el mouse */
+        transform: scale(1.1); 
         border-color: #91ff3d;
     }
-    /* Contenedor para la galería y el botón */
 .gallery-wrapper {
     display: flex;
-    align-items: center; /* Centra los items verticalmente */
-    justify-content: center; /* Centra los items horizontalmente */
-    position: relative; /* Para posicionamiento absoluto de elementos internos si es necesario */
-    z-index: 100; /* Asegúrate de que esté por encima del lienzo */
-    margin-top: 100px; /* Espacio desde la parte superior o según necesites */
+    align-items: center; 
+    justify-content: center; 
+    position: relative; 
+    z-index: 100; 
+    margin-top: 100px; 
 }
 
-/* Estilo específico para el botón para asegurar su posicionamiento */
 
 
 
-    /* Estilo para el contenedor de imágenes seleccionadas */
     #imageContainer {
         display: flex;
         justify-content: center;
@@ -312,15 +303,15 @@ margin-left: 0px;
         left: 50%;
         transform: translate(-50%, -50%);
         z-index: 3;
-        width: auto; /* Cambiado a auto para contener correctamente las imágenes */
+        width: auto; 
         flex-wrap: wrap;
         padding-top: 1600px;
     }
     
 
     #imageContainer img {
-        max-width: 100%; /* Tamaño de las imágenes seleccionadas */
-        margin-right: 5px; /* Espaciado entre imágenes seleccionadas */
+        max-width: 100%; 
+        margin-right: 5px; 
         height: 100%;
         padding-top: 600px;
 
@@ -329,7 +320,7 @@ margin-left: 0px;
 
 
     #imageContainer img:hover {
-        transform: scale(0.0,5); /* Efecto de zoom al pasar el mouse */
+        transform: scale(0.0,5);
     }
         
 
@@ -345,12 +336,12 @@ margin-left: 0px;
 
 
 .box {
-  width: 50px; /* O el tamaño deseado */
-  height: 80px; /* O el tamaño deseado */
-  background-color: #787878 transparent; /* Color inicial de la caja */
+  width: 50px; 
+  height: 80px; 
+  background-color: #787878 transparent;
   margin: 2px;
-  display: inline-block; /* Alinea las cajas horizontalmente */
-  cursor: pointer; /* Cambia el cursor a una mano para indicar que es clickeable */
+  display: inline-block; 
+  cursor: pointer; 
   z-index: 2;
   box-shadow: 0 2px 4px rgba(255, 255, 255, 0.652);
   
@@ -384,8 +375,8 @@ body {
 .boxes {
     display: block;
     z-index: 1;
-    position: absolute; /* Cambiado de 'absolute' para que fluya con el documento */
-    margin: 50px 0; /* Ajusta según necesites */
+    position: absolute; 
+    margin: 50px 0;
     padding-top: 700px;
     z-index: 200;
 
@@ -394,10 +385,10 @@ body {
 
 @media (max-width: 768px) {
     .boxes, #boxes-container {
-        margin-top: 10px; /* Reduce significativamente el espacio superior en dispositivos móviles */
+        margin-top: 10px; 
     }
     .box {
-        width: 40px; /* Tamaño ajustado para pantallas más pequeñas */
+        width: 40px; 
         height: 60px;
     }
 }
@@ -406,42 +397,42 @@ footer {
     width: 100%;
     text-align: center;
     padding: 10px 0;
-    position: relative; /* Cambiado de 'fixed' a 'relative' */
-    bottom: 0; /* Ajusta según necesites */
+    position: relative; 
+    bottom: 0; 
     background-color: transparent;
     color: rgb(103, 103, 103);
-    margin-top: 20px; /* Espacio antes del footer */
+    margin-top: 20px; 
 }
 
 #p5-container {
   position: absolute;
-  top: 50%; /* Mueve el canvas al centro vertical */
-  left: 50%; /* Mueve el canvas al centro horizontal */
-  transform: translate(-50%, -50%); /* Centra el canvas */
+  top: 50%; 
+  left: 50%; 
+  transform: translate(-50%, -50%); 
   width: 100%;
-  height: 60vh; /* Ocupa el 60% de la altura de la ventana */
+  height: 60vh; 
   z-index: -1;
-  margin-top: 1000px; /* Ajusta este valor según necesites */
+  margin-top: 1000px; 
 }
 @media (max-width: 768px) {
     #p5-container {
-        height: 40vh;  /* Menor altura en dispositivos móviles */
+        height: 40vh;  
     }
 }
 #shuffleButton {
-    bottom: 20px; /* Posicionar hacia la parte inferior de la pantalla */
+    bottom: 20px; 
     transform: translateX(-50%); 
-    margin-left: 500px; /* Espacio entre la galería y el botón */
-    cursor: pointer; /* Indica que es clickeable */
-    align-self: start; /* Alinea el botón al principio de la columna */
+    margin-left: 500px; 
+    cursor: pointer; 
+    align-self: start; 
 margin: 300px;}
 
 
 @media (max-width: 768px) {
     #shuffleButton {
-        bottom: 10px; /* Menor espacio desde el borde inferior para evitar recorte */
-        padding: 5px 10px; /* Ligeramente más pequeño para adaptarse a pantallas menores */
-        font-size: 0.8rem; /* Tamaño de fuente reducido */
+        bottom: 10px; 
+        padding: 5px 10px; 
+        font-size: 0.8rem; 
         margin: 500px;
         margin-left:40px ;
     }
@@ -479,7 +470,6 @@ margin: 300px;}
 
 <div class="container">
   <div class="row">
-      <!-- Galería vertical en la columna izquierda -->
     
       <div id="p5-container">
         <div id="p5-canvas"></div>
@@ -574,9 +564,7 @@ margin: 300px;}
       
       
     </div>
-    <!-- Nuevo contenedor para la imagen asociada -->
     <div id="imagenSeleccionadaContainer">
-        <!-- La imagen seleccionada se mostrará aquí -->
     </div>
 
 <div>
@@ -585,7 +573,6 @@ margin: 300px;}
 
 
     <div id="imageContainer" >
-        <!-- Las imágenes seleccionadas se mostrarán aquí -->
     </div>
 
     <script>
@@ -599,7 +586,7 @@ margin: 300px;}
 
 
         function setup() {
-            let cnv = createCanvas(windowWidth, windowHeight - 100); // Resta el espacio que ocupará el resto del contenido por encima
+            let cnv = createCanvas(windowWidth, windowHeight - 100); 
   cnv.parent('p5-container');            stroke(255);
             noFill();
             strokeWeight(1);
@@ -610,8 +597,7 @@ margin: 300px;}
             translate(width / 2, height / 2);
 
             if (isMoving) {
-        // Usa frecuenciaActual para ajustar el movimiento
-        let velocidad = map(frecuenciaActual, 100, 2200, 0.3, 50); // Ejemplo de mapeo
+        let velocidad = map(frecuenciaActual, 100, 2200, 0.3, 50); 
         angle += velocidad;
     }
 
@@ -638,7 +624,6 @@ margin: 300px;}
   const container = document.querySelector('.gallery-container');
   let images = Array.from(container.querySelectorAll('img'));
   
-  // Función para aplicar el efecto de zoom a cada imagen
   function zoomEffect(image, index, callback) {
     image.style.transform = "scale(1.1)";
     setTimeout(() => {
@@ -648,13 +633,11 @@ margin: 300px;}
       } else if (callback) {
         callback();
       }
-    }, 10); // Tiempo reducido a 10 ms para un efecto de zoom muy rápido
+    }, 10); 
   }
   
-  // Comenzar el efecto de zoom desde la primera imagen
   if (images.length > 0) {
     zoomEffect(images[0], 0, () => {
-      // Mezclar aleatoriamente y reinsertar las imágenes después del efecto
       images = images.sort(() => Math.random() - 0.5);
       container.innerHTML = '';
       images.forEach(img => container.appendChild(img));
@@ -673,18 +656,17 @@ let gainNode;
 let compressor;
 
 
-// Esta función inicializa el AudioContext y el GainNode la primera vez que se utiliza.
 
 document.addEventListener('DOMContentLoaded', () => {
     inicializarAudio();
     document.querySelectorAll('.gallery-container img').forEach(img => {
         img.addEventListener('click', function() {
             let frecuencia = parseInt(this.getAttribute('data-frecuencia'));
-            frecuenciaActual = frecuencia; // Update the current frequency
-            isMoving = true; // Activate movement
+            frecuenciaActual = frecuencia; 
+            isMoving = true; 
             reproducirSonido(frecuencia);
-            agregarImagenSeleccionada(this.dataset.img); // Ensure correct data-img path
-            activarCaja(frecuencia); // Activate the corresponding box color
+            agregarImagenSeleccionada(this.dataset.img); 
+            activarCaja(frecuencia); 
         });
     });
 });
@@ -698,27 +680,25 @@ function inicializarAudio() {
         compressor = audioCtx.createDynamicsCompressor();
 
         compressor.threshold.setValueAtTime(-50, audioCtx.currentTime);
-        compressor.knee.setValueAtTime(40, audioCtx.currentTime); // Hace la transición más suave
+        compressor.knee.setValueAtTime(40, audioCtx.currentTime); 
         compressor.ratio.setValueAtTime(12, audioCtx.currentTime);
         compressor.attack.setValueAtTime(0, audioCtx.currentTime);
         compressor.release.setValueAtTime(0.25, audioCtx.currentTime);
         gainNode.gain.value = 0.1;
- // Volumen inicial ajustable.
  gainNode.connect(compressor);
         compressor.connect(audioCtx.destination);    }
 }
 
 
-let frecuenciaActual = 0; // Nueva variable para almacenar la frecuencia actual del sonido
+let frecuenciaActual = 0; 
 
 let osciladoresActivos = [];
 
 function activarCaja(frecuencia) {
     document.querySelectorAll('.box').forEach(box => {
         if (box.dataset.frecuencia === frecuencia.toString()) {
-            box.style.backgroundColor = "#FF0000"; // Cambia el color a rojo
-            box.setAttribute('data-active', 'true'); // Marca la caja como activa
-      // Remueve el atributo activo
+            box.style.backgroundColor = "#FF0000"; 
+            box.setAttribute('data-active', 'true'); 
         }
     });
 
@@ -735,8 +715,7 @@ function activarCaja(frecuencia) {
 
     
 
-    // Asegurar que el sonido y la animación se detengan después de un período específico
-    oscilador.stop(audioCtx.currentTime + 11); // Ajusta este tiempo según la duración del sonido
+    oscilador.stop(audioCtx.currentTime + 11); 
 
 
 }
@@ -745,21 +724,19 @@ function activarCaja(frecuencia) {
 
 function agregarImagenSeleccionada(srcImagen) {
     let img = document.createElement('img');
-    img.src = srcImagen; // Asegúrate de que el src es correcto
+    img.src = srcImagen; 
     img.style.width = '100px';
     img.style.height = 'auto';
     document.getElementById('imageContainer').appendChild(img);
 }
 
 
-// Supongamos que cada caja tiene un data-url atributo con la URL a la que debe dirigir
 document.querySelectorAll('.box').forEach(box => {
     box.addEventListener('click', function() {
-        // Verifica si la caja está activa antes de redirigir
         if (this.getAttribute('data-active') === 'true') {
-            const url = this.getAttribute('data-url'); // Asegúrate de que cada caja tenga este atributo
-            if (url) { // Asegúrate de que la URL existe
-                window.open(url, '_blank'); // Abre la URL en una nueva pestaña
+            const url = this.getAttribute('data-url'); 
+            if (url) { 
+                window.open(url, '_blank'); 
             }
         } else {
             console.log("Esta caja no está activa y no redirigirá.");
@@ -775,7 +752,6 @@ document.querySelectorAll('.box').forEach(box => {
     });
 });
 
-// Función modificada para mostrar imagen y reproducir sonido
 
 
     </script>
