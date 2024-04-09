@@ -1173,30 +1173,32 @@ function inicializarAudio() {
  gainNode.connect(compressor);
         compressor.connect(audioCtx.destination);    }
 }
+function handleMoveEvent(e) {
+    let x, y;
+    if (e.type === 'mousemove') {
+        x = e.clientX;
+        y = e.clientY;
+    } else if (e.type === 'touchmove' && e.touches) {
+        x = e.touches[0].clientX;
+        y = e.touches[0].clientY;
+    } else {
+        return; // Si no es un evento conocido, no hacer nada
+    }
 
-document.body.addEventListener('mousemove', function(e) {
-    if (!audioCtx) return; // Asegúrate de que el contexto de audio está inicializado
+    if (!audioCtx) return; // Asegúrate de que el contexto de audio esté inicializado
 
-    // Mapea la posición X del mouse a una frecuencia (por ejemplo, de 20 a 2000 Hz)
-    let frecuencia = map(e.clientX, 0, window.innerWidth, 20, 100);
+    let frecuencia = map(x, 0, window.innerWidth, 20, 100);
+    let duracionNota = map(y, 0, window.innerHeight, 0.1, 1);
 
-    // Mapea la posición Y del mouse a una duración de nota (por ejemplo, de 0.1 a 1 segundo)
-    let duracionNota = map(e.clientY, 0, window.innerHeight, 0.1, 1);
-
-    // Ajusta la frecuencia del oscilador
     if (osciladoresActivos.length > 0) {
         osciladoresActivos.forEach(osc => {
             osc.frequency.setValueAtTime(frecuencia, audioCtx.currentTime);
-
-            
         });
     }
 
-    // Detener los osciladores anteriores para evitar superposición y crear uno nuevo
     osciladoresActivos.forEach(osc => osc.stop());
     osciladoresActivos = [];
 
-    // Crea un nuevo oscilador para la nueva frecuencia
     let oscilador = audioCtx.createOscillator();
     oscilador.frequency.value = frecuencia;
     oscilador.type = 'sine';
@@ -1205,13 +1207,11 @@ document.body.addEventListener('mousemove', function(e) {
     oscilador.stop(audioCtx.currentTime + duracionNota);
 
     osciladoresActivos.push(oscilador);
-});
+}
 
+document.body.addEventListener('mousemove', handleMoveEvent);
+document.body.addEventListener('touchmove', handleMoveEvent);
 
-
-function map(value, in_min, in_max, out_min, out_max) {
-    return (value - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
-} 
 
 // Supongamos que tienes un elemento con id 'ascii-sol' como este:
 // <pre id="ascii-sol">Aquí va tu arte ASCII del sol</pre>
@@ -1269,8 +1269,10 @@ function generarRuidoBlanco(duracion = 1) {
 
     const whiteNoiseSource = audioCtx.createBufferSource();
     whiteNoiseSource.buffer = buffer;
+
     whiteNoiseSource.connect(audioCtx.destination);
     whiteNoiseSource.start();
+    
     whiteNoiseSource.stop(audioCtx.currentTime + duracion);
 }
 
@@ -1582,10 +1584,6 @@ document.addEventListener('keydown', function(e) {
 
 
 
-function handleArrowKeys(arrowKey) {
-    console.log(`Arrow key pressed: ${arrowKey}`);
-    // Aquí puedes agregar lógica para mover un cursor o cualquier otro elemento en pantalla
-}
 
 
 
