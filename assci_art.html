@@ -1271,9 +1271,10 @@ function generarRuidoBlanco(duracion = 1) {
     whiteNoiseSource.loop = true;
     whiteNoiseSource.connect(gainNode);
     whiteNoiseSource.start(0);
+    whiteNoiseSource.stop(audioCtx.currentTime + duracion);
+
 }
     
-    whiteNoiseSource.stop(audioCtx.currentTime + duracion);
 
 
 
@@ -1573,9 +1574,12 @@ function toggleAsciiCatAndWhiteNoise() {
 let catVisible = false; // Estado de visibilidad del gato
 
 document.getElementById('ascii-cat').addEventListener('click', function() {
+
     generarRuidoBlanco();  // Iniciar ruido blanco al clic
     catVisible = !catVisible;
     this.style.display = catVisible ? 'block' : 'true';
+    generarRuidoBlanco.stop(audioCtx.currentTime + duracion);
+
 });
 
 
@@ -1671,6 +1675,8 @@ function handleMovement(event) {
     </script>
 </body>
 </html>
+
+
 
 
 
