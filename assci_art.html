@@ -169,7 +169,6 @@ margin-left: 100px; /* Centra horizontalmente */
     width: 200px; /* Ancho fijo del contenedor */
     height: 200px;
     position: relative; /* Habilita el posicionamiento relativo */
-    overflow: hidden; 
 }
 
 
@@ -222,7 +221,7 @@ margin-left: 100px; /* Centra horizontalmente */
 @media (max-width: 600px) {
     body {
 
-        overflow-x: none;
+        overflow: hidden;
         height: 100%;
     }
 
@@ -310,7 +309,7 @@ margin-left: 0px; /* Ajusta el margen izquierdo para centrar */
         flex-direction: flex
         ; /* Organiza los contenedores en fila en lugar de columna */
         height: 100%;
-        overflow-x: none;
+        overflow: hidden;
     }
 
     #ascii-ArbolG-container {
@@ -438,7 +437,7 @@ footer {
 @media (max-width: 768px) {
     body {
         padding-bottom: 10px; /* Reduce este valor si aún ves espacio extra */
-        overflow-x: none;
+    overflow: hidden;
     }
 
     footer, .ultimo-elemento {
