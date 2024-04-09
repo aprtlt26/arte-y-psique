@@ -70,7 +70,7 @@ section p {
             color: #fff; /* Cambia el color del texto a blanco, ajusta según tu diseño */
             text-align: justify; /* Alinea justificadamente el texto */
             margin: 0px 400px; /* Añade márgenes alrededor del párrafo para más espacio */
-        margin-top: -1160px;
+        margin-top: -350px;
         }
 
         @media (max-width: 768px) {
@@ -94,6 +94,7 @@ section p {
         section p {
             font-size: 8px; /* Muy pequeño para pantallas muy pequeñas */
             margin: 5px;
+            
         }
     }
 
@@ -221,7 +222,7 @@ margin-left: 100px; /* Centra horizontalmente */
 @media (max-width: 600px) {
     body {
 
-        overflow-x: hidden; /* Permite desplazamiento vertical si es necesario */
+        overflow: hidden;
         height: 100%;
     }
 
@@ -302,16 +303,25 @@ margin-left: 0px; /* Ajusta el margen izquierdo para centrar */
         height: 50vh; /* Asegura que el contenedor de lluvia ocupe todo el alto disponible */
     }
 
-    footer, .ultimo-elemento {
-        margin-bottom: 0; /* Elimina cualquier margen al fondo */
-    } }
+   }
 /* Reglas adicionales para orientación horizontal (landscape) */
 @media (max-width: 600px) and (orientation: landscape) {
     body {
         flex-direction: flex
         ; /* Organiza los contenedores en fila en lugar de columna */
         height: 100%;
+        overflow: hidden;
     }
+
+    #ascii-ArbolG-container {
+    position: absolute;
+    width: 100%;
+    color: rgb(187, 242, 132);
+    text-align: center;
+    font-size: 10px;
+    line-height: 1;
+}
+
 
     #tree-sketch-container, #color-bar-sketch-container {
         width: 48%; /* Asigna un ancho menor para cada contenedor */
@@ -319,10 +329,7 @@ margin-left: 0px; /* Ajusta el margen izquierdo para centrar */
         margin-top: 5px; /* Ajusta el margen superior */
         margin-bottom: 5px; /* Ajusta el margen inferior */
     }
-    #ascii-ArbolG {
-        font-size: 2px; /* Más pequeño en dispositivos móviles */
-        
-    }
+ 
     #p5-canvas{
         width: 48%; /* Asigna un ancho menor para cada contenedor */
         height: 40%; /* Ajusta la altura automáticamente */
@@ -330,55 +337,99 @@ margin-left: 0px; /* Ajusta el margen izquierdo para centrar */
         margin-bottom: 5px;/* Ajusta este valor según sea necesario para subir el canvas */
         }
 
+
+
         footer, .ultimo-elemento {
-        margin-bottom: 0; /* Elimina cualquier margen al fondo */
-    }
+    margin-top: -500px;
+    margin-bottom: -100;
+    font-size: 10px;
+    justify-content: center;
+    text-align: center;
+    color: rgb(142, 142, 248);
+        }
  
     }
 
 
+    @media (max-width: 768px) {
+    #ascii-ArbolG-container {
+        font-size: 8px; /* Reduce el tamaño de la fuente para tabletas */
+    }
+}
 
+/* Estilos para teléfonos móviles: pantallas con un ancho máximo de 480px */
+@media (max-width: 480px) {
+    #ascii-ArbolG-container {
+        font-size: 6px; /* Reduce aún más el tamaño de la fuente para móviles */
+    }
+}
+
+/* Estilos para pantallas muy pequeñas: pantallas con un ancho máximo de 320px */
+@media (max-width: 320px) {
+    #ascii-ArbolG-container {
+        font-size: 5px; /* Tamaño de fuente muy pequeño para pantallas muy pequeñas */
+    }
+}
 
 #ascii-ArbolG-container {
     position: absolute;
-    top: 50%; /* Cambiado de 50% a 40% para moverlo más arriba */
-    left: 50%;
-    transform: translate(-50%, -40%); /* Ajusta el desplazamiento vertical aquí también */
-    z-index: 1500; /* Asegúrate de que el z-index sea adecuado para que aparezca sobre otros elementos si es necesario */
-    width: auto;
-    height: auto;
+    left: 50%; /* Centra horizontalmente respecto al 50% del ancho del contenedor padre */
+    transform: translate(-50%, -50%); /* Ajusta el desplazamiento para que el centro del elemento sea el punto de referencia */
+    z-index: 1500; /* Asegúrate de que esté sobre otros elementos si necesario */
     text-align: center;
-    margin-top: 270px;
+    font-size: 11px; /* Ajusta según necesidad para diferentes tamaños de pantalla con media queries si es necesario */
+    width: auto; /* Ancho auto para ajustar al contenido */
+    height: auto; /* Altura auto para ajustar al contenido */
+    top: 980px;
 }
 
-#ascii-ArbolG {
-    font-size: 2px; /* Ajusta esto según sea necesario para el tamaño de la fuente */
-    line-height: 1;
-    
-    white-space: pre-wrap; /* Asegura que el formato del texto se mantenga */
-    color: rgb(133, 255, 109); /* O el color que prefieras */
+
+footer {
+    width: 100%;
+    padding: 5px 5;
+    text-align: center;
+    background-color: #000000;
+    color: rgb(209, 209, 209);
+    margin-left: -50px;
+    font-size: 16px; /* Tamaño de letra inicial */
+    box-shadow: 0 -2px 5px rgba(255, 255, 255, 0.428); /* Sombra opcional para dar efecto elevado */
 }
+
+
 
  
 
     @media (max-width: 768px) {
         section {
-            margin: 10px; /* Menos margen en dispositivos más pequeños */
-            margin-top: -1200px;
+            display: flex;
+            margin: 60px; /* Menos margen en dispositivos más pequeños */
+            margin-top: -600px;
+            justify-content: center;
+            left: 0;
+            right: 0;
+
+
         }
+
+        #ascii-ArbolG-container {
+    position: absolute;
+    left: 50%; /* Centra horizontalmente respecto al 50% del ancho del contenedor padre */
+    transform: translate(-50%, -50%); /* Ajusta el desplazamiento para que el centro del elemento sea el punto de referencia */
+    z-index: 1500; /* Asegúrate de que esté sobre otros elementos si necesario */
+    text-align: center;
+    font-size: 5px; /* Ajusta según necesidad para diferentes tamaños de pantalla con media queries si es necesario */
+    width: auto; /* Ancho auto para ajustar al contenido */
+    height: auto; /* Altura auto para ajustar al contenido */
+    top: -480px;
+}
+
+
     }
 
-    footer, .ultimo-elemento {
-    margin-top: -500px;
-    margin-bottom: -1500;
-    font-size: 20px;
-    justify-content: center;
-    text-align: center;
-    color: rgb(142, 142, 248);
-    
+  
 
 
-}
+
 .body-content {
     margin-bottom: 0;
 }
@@ -387,7 +438,17 @@ margin-left: 0px; /* Ajusta el margen izquierdo para centrar */
 @media (max-width: 768px) {
     body {
         padding-bottom: 10px; /* Reduce este valor si aún ves espacio extra */
+    overflow: hidden;
     }
+
+    footer, .ultimo-elemento {
+    margin-top: 100px;
+    margin-bottom: -100;
+    font-size: 10px;
+    justify-content: center;
+    text-align: center;
+    color: rgb(142, 142, 248);
+        }
 }
 
 #container, .container {
@@ -782,8 +843,8 @@ v
 
 </div>
 
-<div id="ascii-ArbolG-container" style="position: relative; width: 100%; height: 100%; top: -1000px; color: rgb(187, 242, 132);">
-    <pre id="ascii-ArbolG" style="text-align: center; font-size: 10px; line-height: 1;">
+<div id="ascii-ArbolG-container" style="position: absolute; width: 100%; height: 100%;  color: rgb(187, 242, 132);">
+    <pre id="ascii-ArbolG" style="text-align: center; ">
 
                                                                                            
                              *%.#%(#*#%&&&#&*(##%.                              
@@ -1586,7 +1647,6 @@ function handleArrowKeys(arrowKey) {
     </script>
 </body>
 </html>
-
 
 
 
