@@ -55,8 +55,13 @@ body {
     color: #e6e6e6;
     font-family: 'Courier New', Courier, monospace;
     margin: 0;
-    
+
+    padding: 0;
+    overflow-y: auto; /* Asegúrate de que solo se habilite el scroll cuando sea necesario */
+    height: 100%; /* Ajusta esto según la necesidad real de tu diseño */
 }
+
+
 
 section p {
             font-size: 12px; /* Aumenta el tamaño de la fuente */
@@ -64,8 +69,8 @@ section p {
             line-height: 1.0; /* Aumenta el espacio entre líneas para mejor legibilidad */
             color: #fff; /* Cambia el color del texto a blanco, ajusta según tu diseño */
             text-align: justify; /* Alinea justificadamente el texto */
-            margin: 10px 170px; /* Añade márgenes alrededor del párrafo para más espacio */
-        margin-top: -960px;
+            margin: 0px 400px; /* Añade márgenes alrededor del párrafo para más espacio */
+        margin-top: -1160px;
         }
 
         @media (max-width: 768px) {
@@ -109,9 +114,9 @@ section p {
     word-wrap: break-word; 
     font-size: 4px;
     cursor: pointer;
-    margin: 90px;
-    padding-top: -30px;
-    margin-right: 70px;
+    margin: 50px;
+    padding-top: -120px;
+    margin-right: 10px;
  
    
 
@@ -138,15 +143,16 @@ margin-left: 100px; /* Centra horizontalmente */
 }
 
 #tree-sketch-container {
-    width: 900px; /* Ancho del canvas */
+    display: flex;
+    width: 800px; /* Ancho del canvas */
     height: 550px; /* Altura del canvas */
     position: relative;
     top: 0;
     left: 0;
     font-size: 3px;
-    margin-left: 290px;
+    margin-left: 280px;
     z-index: 1000;
-    padding-bottom: 200px;
+    padding-bottom: 500px;
 }
 
 
@@ -158,7 +164,7 @@ margin-left: 100px; /* Centra horizontalmente */
     margin-left:auto;
     margin-right: auto;
     margin: auto;
-    margin-top: -400px;
+    margin-top: -250px;
     width: 200px; /* Ancho fijo del contenedor */
     height: 200px;
     position: relative; /* Habilita el posicionamiento relativo */
@@ -209,13 +215,14 @@ margin-left: 100px; /* Centra horizontalmente */
             z-index: 2000;
             pointer-events: none; /* Permite hacer clic a través del contenedor */
 
-        }
+        } 
 
        /* Reglas de media query para dispositivos con ancho máximo de 600px */
 @media (max-width: 600px) {
     body {
 
         overflow-x: hidden; /* Permite desplazamiento vertical si es necesario */
+        height: 100%;
     }
 
     #p5-canvas {
@@ -229,13 +236,13 @@ margin-left: 100px; /* Centra horizontalmente */
 
         #ascii-cat {
             position: absolute; /* Posicionamiento absoluto para mejor control */
-            top: 550px;  /* Baja el ascii-cat para que se muestre debajo del canvas */
             left: 0%;
             right: 0;     /* Alinea al centro horizontalmente */
             width: 100%; /* Ocupa el ancho completo de la pantalla */
-            font-size: 4px; /* Ajusta el tamaño de la fuente si es necesario */
-            z-index: 10;
+            font-size: 3px; /* Ajusta el tamaño de la fuente si es necesario */
+            z-index: 100;
             margin:10px;
+            margin-top: 70px;
         }
 
      
@@ -295,12 +302,15 @@ margin-left: 0px; /* Ajusta el margen izquierdo para centrar */
         height: 50vh; /* Asegura que el contenedor de lluvia ocupe todo el alto disponible */
     }
 
-
+    footer, .ultimo-elemento {
+        margin-bottom: 0; /* Elimina cualquier margen al fondo */
+    } }
 /* Reglas adicionales para orientación horizontal (landscape) */
 @media (max-width: 600px) and (orientation: landscape) {
     body {
-        flex-direction: row; /* Organiza los contenedores en fila en lugar de columna */
-        overflow-y: hidden;
+        flex-direction: flex
+        ; /* Organiza los contenedores en fila en lugar de columna */
+        height: 100%;
     }
 
     #tree-sketch-container, #color-bar-sketch-container {
@@ -319,6 +329,10 @@ margin-left: 0px; /* Ajusta el margen izquierdo para centrar */
         margin-top: -500px; /* Ajusta el margen superior */
         margin-bottom: 5px;/* Ajusta este valor según sea necesario para subir el canvas */
         }
+
+        footer, .ultimo-elemento {
+        margin-bottom: 0; /* Elimina cualquier margen al fondo */
+    }
  
     }
 
@@ -328,13 +342,13 @@ margin-left: 0px; /* Ajusta el margen izquierdo para centrar */
 #ascii-ArbolG-container {
     position: absolute;
     top: 50%; /* Cambiado de 50% a 40% para moverlo más arriba */
-    left: 30%;
+    left: 50%;
     transform: translate(-50%, -40%); /* Ajusta el desplazamiento vertical aquí también */
     z-index: 1500; /* Asegúrate de que el z-index sea adecuado para que aparezca sobre otros elementos si es necesario */
     width: auto;
     height: auto;
     text-align: center;
-    margin-top: -340px;
+    margin-top: 270px;
 }
 
 #ascii-ArbolG {
@@ -345,7 +359,52 @@ margin-left: 0px; /* Ajusta el margen izquierdo para centrar */
     color: rgb(133, 255, 109); /* O el color que prefieras */
 }
 
- }
+ 
+
+    @media (max-width: 768px) {
+        section {
+            margin: 10px; /* Menos margen en dispositivos más pequeños */
+            margin-top: -1200px;
+        }
+    }
+
+    footer, .ultimo-elemento {
+    margin-top: -500px;
+    margin-bottom: -1500;
+    font-size: 20px;
+    justify-content: center;
+    text-align: center;
+    color: rgb(142, 142, 248);
+    
+
+
+}
+.body-content {
+    margin-bottom: 0;
+}
+
+/* Optimiza los estilos de media query para reducir espacio en dispositivos más pequeños */
+@media (max-width: 768px) {
+    body {
+        padding-bottom: 10px; /* Reduce este valor si aún ves espacio extra */
+    }
+}
+
+#container, .container {
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+* {
+    margin: 0;
+    padding: 0;
+}
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+
 
 
 </style>
@@ -773,36 +832,56 @@ v
 <section>
   <p> 
      
-    Develop & AVS design by Alfonso Pretelt 
-    ® All rights reserved. 
+  
 
+    ----------------- 
+   / Usage control: /
+   -----------------
+
+    -------
+   / Clic /
+   ------
+    start sound.
+
+    Double Click: Changes to a slow 
+    tempo.
+
+    Cat: white noise. Puddle W.
+    Sun: Audio (play&stop)
+    Moon: Audio (play&stop)
     
-    Usage control:
+    Move the mouse pointer to alter the 
+    sound frequency.
+
+    -------------------------------------
+
+    ------
+   / Key /
+   ------
 
     Space bar: start sound (optionally).
-    It generates white noise and a puddle of water 
-    when the sound has already 
+    It generates white noise and a puddle 
+    of water when the sound has already 
     started.
-    
-    Click: start sound.
-    
-    Double Click: Changes to a slow tempo.
-    
-    S: audio of the sun. (click)
-    L: Moon audio (click)
-    
-    Cat: click = white noise. Puddle.
-    
-    Move the mouse pointer to alter the audio frequency.
-    
-    You can create a soundscape freely by playing with 
-    the elements or follow the 
-    score. 
+
+    S: audio of the sun. (play&stop)
+    L: Moon audio (play&stop)
+
+    Note:
+    You can create a soundscape freely by 
+    playing with the elements or follow 
+    the score. 
+
+    Enjoy.
 
 
 </p>
 </section>
 
+ <footer>
+    <p>  Develop & AVS design by Alfonso Pretelt 
+    ® All rights reserved. </p >
+ </footer>
 <script>
     
         let oscilador;
@@ -1507,6 +1586,8 @@ function handleArrowKeys(arrowKey) {
     </script>
 </body>
 </html>
+
+
 
 
 
