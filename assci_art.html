@@ -222,7 +222,7 @@ margin-left: 100px; /* Centra horizontalmente */
 @media (max-width: 600px) {
     body {
 
-        overflow: hidden;
+        overflow-x: none;
         height: 100%;
     }
 
@@ -310,7 +310,7 @@ margin-left: 0px; /* Ajusta el margen izquierdo para centrar */
         flex-direction: flex
         ; /* Organiza los contenedores en fila en lugar de columna */
         height: 100%;
-        overflow: hidden;
+        overflow-x: none;
     }
 
     #ascii-ArbolG-container {
@@ -438,7 +438,7 @@ footer {
 @media (max-width: 768px) {
     body {
         padding-bottom: 10px; /* Reduce este valor si aún ves espacio extra */
-    overflow: hidden;
+        overflow-x: none;
     }
 
     footer, .ultimo-elemento {
@@ -1267,14 +1267,15 @@ function generarRuidoBlanco(duracion = 1) {
         data[i] = Math.random() * 2 - 1;
     }
 
-    const whiteNoiseSource = audioCtx.createBufferSource();
+    whiteNoiseSource = audioCtx.createBufferSource();
     whiteNoiseSource.buffer = buffer;
-
-    whiteNoiseSource.connect(audioCtx.destination);
-    whiteNoiseSource.start();
+    whiteNoiseSource.loop = true;
+    whiteNoiseSource.connect(gainNode);
+    whiteNoiseSource.start(0);
+}
     
     whiteNoiseSource.stop(audioCtx.currentTime + duracion);
-}
+
 
 
 document.getElementById('ascii-cat').addEventListener('click', function(event) {
@@ -1569,15 +1570,21 @@ function toggleAsciiCatAndWhiteNoise() {
 
 
 
-document.getElementById('ascii-cat').addEventListener('click', function(event) {
-     moverYMostrarGatoAscii(), generarRuidoBlanco(10); // Inicia el ciclo de aparición del gato
 
-    });
+let catVisible = false; // Estado de visibilidad del gato
 
-document.addEventListener('keydown', function(e) {
-    if (e.code === 'Space') {
-        generarRuidoBlanco(10), cicloAparicionGato(); // Genera ruido blanco por 0.5 segundos y activa la lluvia
-        e.preventDefault();  // Prevenir el scroll de la página
+document.getElementById('ascii-cat').addEventListener('click', function() {
+    generarRuidoBlanco();  // Iniciar ruido blanco al clic
+    catVisible = !catVisible;
+    this.style.display = catVisible ? 'block' : 'none';
+});
+
+
+document.addEventListener('keydown', function(event) {
+    if (event.key === ' ') {
+        catVisible = !catVisible; // Alternar visibilidad con barra espaciadora
+        document.getElementById('ascii-cat').style.display = catVisible ? 'block' : 'none';
+        event.preventDefault(); // Evitar el desplazamiento de la página
     }
 });
 
@@ -1586,6 +1593,26 @@ document.addEventListener('keydown', function(e) {
 
 
 
+// Evento para controlar la ganancia con el movimiento del mouse o touch
+document.body.addEventListener('mousemove', handleMovement);
+document.body.addEventListener('touchmove', handleMovement);
+
+function handleMovement(event) {
+    let x, y;
+    if (event.touches) {
+        x = event.touches[0].clientX;
+        y = event.touches[0].clientY;
+    } else {
+        x = event.clientX;
+        y = event.clientY;
+    }
+
+    // Escalar la amplitud del ruido blanco según la posición vertical
+    let newGain = Math.max(0, Math.min(1, (window.innerHeight - y) / window.innerHeight));
+    gainNode.gain.value = newGain;
+
+    // Aquí puedes añadir la lógica para cambiar algún otro parámetro con x si lo deseas
+}
 
     
     </script>
@@ -1645,6 +1672,8 @@ document.addEventListener('keydown', function(e) {
     </script>
 </body>
 </html>
+
+
 
 
 
