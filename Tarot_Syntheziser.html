@@ -86,6 +86,7 @@
         align-items: center;
         text-align: center; 
         background-color: transparent; 
+        z-index: 2000;
 
     }
 
@@ -94,6 +95,7 @@
         display: block; 
         background-color: transparent; 
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        z-index: 2000;
 
 
     }
@@ -102,18 +104,21 @@
     .navbar-toggler {
         justify-content: center;
         width: 100%; 
+        z-index: 2000;
 
     }
 }
 @media (min-width: 992px) {
     .navbar {
         justify-content: center; 
-        z-index: 1;
+        z-index: 2000;
     }
 }
 
         .navbar-toggler {
-            border: 2px dashed  #c4d49c
+            border: 2px dashed  #c4d49c;
+            z-index: 2000;
+
         }
 
         .navbar-toggler-icon {
@@ -126,12 +131,7 @@
             outline: none; 
         }
 
-          .navbar-collapse {
-            background-color: transparent;
-
-            border: 2px dashed  #c4d49c
-
-        }
+      
 
         .navbar-collapse .navbar-nav .nav-link {
             padding: 15px 0; 
@@ -145,7 +145,7 @@
         @media screen and (max-width: 576px) {
     .navbar-nav {
         font-size: 0.9rem;
-        margin: 10px 15px;
+        margin: 10px 5px;
         width: 80%; 
         text-align: center; 
 align-items: center;
@@ -154,25 +154,22 @@ background-color:  transparent;
     }
 
     .navbar {
-        width: 80%; 
+        width: 50%; 
         text-align: center; 
         background-color:  transparent;
 
         
     }
 
-    .navbar-collapse {
-        width: 80%; 
-        text-align: center; 
-        background-color:  transparent;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 
-
-    }
 
     .navbar-toggler {
         margin-right: 0; 
         text-align: center; 
+        background-color: transparent;
+        z-index: 2000;
+
+        
     }
 
     .navbar-nav .nav-link {
@@ -187,6 +184,7 @@ background-color:  transparent;
             text-decoration: none;
             margin: 0 10px; 
             background-color:  transparent;
+            z-index: 2000;
 
         }
 
@@ -209,17 +207,8 @@ background-color:  transparent;
     color: #f8f8f8;
 }
 
-.navbar-collapse {
-    background-color:   transparent;
-    box-shadow: 0 8px 10px rgba(255, 255, 255, 0.2); 
-    
-}
 
-.navbar-toggler {
-    background-color: rgba(255, 255, 255, 0.5); 
-    border-color: rgba(255, 255, 255, 0.5);
-    color: #f8f8f8;
-}
+
 
 
 #logout-btn{
@@ -276,7 +265,7 @@ text-decoration: none;
         flex-direction: wrap;
         margin-top: 80px;
 
-margin: 180px;
+margin: 190px;
 
     }
 }
@@ -458,6 +447,38 @@ border-style:  dashed  #a8a8a8;
         margin-left:40px ;
     }
 }
+@media (max-width: 768px) {
+    .navbar {
+        align-items: center;
+        justify-content: center;
+        position: fixed; 
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: rgba(47, 47, 47, 0); 
+        z-index: 3000; 
+    }
+
+    .navbar-collapse.show {
+        display: block;
+        position: absolute;
+        width: 200%;
+        top: 35px; /* Ajusta esto basado en la altura de tu barra de navegación */
+    }
+}
+
+
+footer {
+    width: 60%;
+    height: 10%;
+    padding: 1px 1;
+    text-align: center;
+    background-color: #00000000;
+    color: rgb(209, 209, 209);
+    font-size: 10px; /* Tamaño de letra inicial */
+padding-top: 80px;
+}
+
 
     </style>
 </head>
@@ -485,8 +506,7 @@ border-style:  dashed  #a8a8a8;
 
                
 
-        
- 
+       
 
 <div class="container">
   <div class="row">
@@ -587,6 +607,11 @@ border-style:  dashed  #a8a8a8;
     <div id="imageContainer"  >
     </div>
 
+    <div></div>
+    <footer>
+        <p>  Develop & AVS design, 
+             Alfonso Pretelt® </p >
+     </footer>
     <script>
 
 
@@ -650,6 +675,18 @@ let shadowOffset = 5;
 }
 
         
+document.addEventListener('DOMContentLoaded', function() {
+    const navbarToggler = document.querySelector('.navbar-toggler');
+    const navbarMenu = document.querySelector('.navbar-collapse');
+
+    document.querySelectorAll('#navbarNav .nav-link').forEach(item => {
+        item.addEventListener('click', function() {
+            if (navbarMenu.classList.contains('show')) {
+                navbarToggler.click();
+            }
+        });
+    });
+});
     </script>
 
     
@@ -795,6 +832,7 @@ function ocultarImageContainer() {
 document.addEventListener('DOMContentLoaded', ocultarImageContainer);
 
 
+
     </script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
@@ -813,9 +851,11 @@ document.addEventListener('DOMContentLoaded', ocultarImageContainer);
     
     </script>
 
-    
+     
+  
       
     </body>
 </html>
+
 
 
