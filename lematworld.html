@@ -539,12 +539,14 @@ footer{
 
                
 
-       
+
+        
 
 <div class="container">
   <div class="row">
     
    
+    <div id="audioControlArea" style="height: 100vh; cursor: crosshair; background: rgba(0,0,0,0.05);">
 
         
         </div>
@@ -592,7 +594,7 @@ footer{
 
    
         <div class="boxes"> 
-            <div id="loco"  class="box"  data-frecuencia="2200" data-url="assci_art.html"></div>
+            <div id="loco"  class="box"  data-frecuencia="2200" data-url="lematworld.html"></div>
 
             <div id="boxes-container">
         <div class="box" data-frecuencia="100"></div>
@@ -759,69 +761,43 @@ document.addEventListener('DOMContentLoaded', () => {
 let audioCtx;
 let gainNode;
 let compressor;
-
+let convolver;
 
 
 function inicializarAudio() {
-    if (!window.audioCtx) {
-        window.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        // Resto de tu inicialización
-  
-   
             audioCtx = new (window.AudioContext || window.webkitAudioContext)();
             gainNode = audioCtx.createGain();
+            delay = audioCtx.createDelay(5.0);
             compressor = audioCtx.createDynamicsCompressor();
-            const delay = audioCtx.createDelay(8.0);
-            delay.delayTime.value = 0.2;  // Delay de 200 ms
+            convolver = audioCtx.createConvolver();
 
-            const delayGain = audioCtx.createGain();
-            const convolver = audioCtx.createConvolver();
-            const reverbGain = audioCtx.createGain();
-reverbGain.gain.value = 2.5;  // Aumenta para más efecto de reverberación
+            // Configuraciones de los nodos
+            delay.delayTime.value = 0.5; // Tiempo de delay inicial
+            gainNode.gain.value = 0.5; // Volumen inicial
 
-// Asegúrate de conectar el convolver al gain y luego al destino o al siguiente nodo en tu cadena de audio
-convolver.connect(reverbGain);
-reverbGain.connect(audioCtx.destination);
-
-// Conecta un oscilador o cualquier fuente de audio al delay, luego al convolver
-source.connect(delay);
-delay.connect(convolver);
-
-            // Configuraciones de nodos
-            compressor.threshold.setValueAtTime(-50, audioCtx.currentTime);
-            compressor.knee.setValueAtTime(40, audioCtx.currentTime);
-            compressor.ratio.setValueAtTime(12, audioCtx.currentTime);
-            compressor.attack.setValueAtTime(0, audioCtx.currentTime);
-            compressor.release.setValueAtTime(0.25, audioCtx.currentTime);
-
-            delay.delayTime.value = 0.8;
-            delayGain.gain.value = 0.8;
-
-            gainNode.gain.value = 0.1; // Baja el volumen general
-
-            // Conexiones de nodos
-            delay.connect(delayGain);
-            delayGain.connect(delay);
-            delayGain.connect(compressor);
-
+            // Conectar nodos
+            delay.connect(gainNode);
             gainNode.connect(compressor);
             compressor.connect(audioCtx.destination);
 
-            // Cargar un archivo de impulso para la reverberación
-            fetch('cathedral.wav').then(response => {
-                return response.arrayBuffer();
-            }).then(arrayBuffer => {
-                return audioCtx.decodeAudioData(arrayBuffer);
-            }).then(audioBuffer => {
-                convolver.buffer = audioBuffer;
-                convolver.normalize = true;
-                gainNode.connect(convolver);
-                convolver.connect(audioCtx.destination);
-                console.log("Audio convolver loaded and connected.");
-            }).catch(e => console.error(e));
-
+            // Escucha en el área de control
+            document.getElementById('audioControlArea').addEventListener('mousemove', ajustarParametrosAudio);
         }
-    }
+
+        function ajustarParametrosAudio(event) {
+            var rect = event.target.getBoundingClientRect();
+            var x = event.clientX - rect.left; // x position within the element.
+            var y = event.clientY - rect.top;  // y position within the element.
+
+            // Calcular nuevos valores basados en la posición del mouse
+            var delayTime = (x / rect.width) * 2; // Máximo 2 segundos de delay
+            var gainValue = 1 - (y / rect.height); // Volumen de 0 a 1
+
+            delay.delayTime.setValueAtTime(delayTime, audioCtx.currentTime);
+            gainNode.gain.setValueAtTime(gainValue, audioCtx.currentTime);
+        }
+
+        document.addEventListener('DOMContentLoaded', inicializarAudio);
 
 
 
