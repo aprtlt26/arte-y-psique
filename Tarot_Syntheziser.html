@@ -581,7 +581,7 @@ footer{
 
    
         <div class="boxes"> 
-            <div id="loco"  class="box"  data-frecuencia="2200" data-url="lematworld.html"></div>
+            <div id="loco"  class="box"  data-frecuencia="2200" data-url="assci_art.html"></div>
 
             <div id="boxes-container">
         <div class="box" data-frecuencia="100"></div>
@@ -752,9 +752,11 @@ let compressor;
 
 
 function inicializarAudio() {
- 
-    if (!audioCtx) {
-        try {
+    if (!window.audioCtx) {
+        window.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        // Resto de tu inicialización
+  
+   
             audioCtx = new (window.AudioContext || window.webkitAudioContext)();
             gainNode = audioCtx.createGain();
             compressor = audioCtx.createDynamicsCompressor();
@@ -795,27 +797,25 @@ function inicializarAudio() {
                 console.log("Audio convolver loaded and connected.");
             }).catch(e => console.error(e));
 
-            console.log("Audio context initialized successfully.");
-        } catch (e) {
-            console.error("Error initializing audio context: ", e);
         }
     }
 
-}
+
 
 document.addEventListener('DOMContentLoaded', () => {
     inicializarAudio();
     document.querySelectorAll('.gallery-container img').forEach(img => {
         img.addEventListener('click', function() {
             let frecuencia = parseInt(this.getAttribute('data-frecuencia'));
-            window.frecuenciaActual = frecuencia;  // Considera usar `window.` si necesitas global
-            window.isMoving = true;               // También para `isMoving`
+            frecuenciaActual = frecuencia; 
+            isMoving = true; 
             reproducirSonido(frecuencia);
-            agregarImagenSeleccionada(this.dataset.img);
-            activarCaja(frecuencia);
+            agregarImagenSeleccionada(this.dataset.img); 
+            activarCaja(frecuencia); 
         });
     });
 });
+
 // Asegúrate de llamar a esta función mediante una acción del usuario, por ejemplo:
 // document.getElementById('yourButtonId').addEventListener('click', inicializarAudio);
 
@@ -911,5 +911,4 @@ document.addEventListener('DOMContentLoaded', ocultarImageContainer);
       
     </body>
 </html>
-
 
