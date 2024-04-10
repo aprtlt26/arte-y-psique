@@ -539,7 +539,7 @@ footer{
 
                
 
-        
+       
 
 <div class="container">
   <div class="row">
@@ -777,7 +777,7 @@ function inicializarAudio() {
             const delayGain = audioCtx.createGain();
             const convolver = audioCtx.createConvolver();
             const reverbGain = audioCtx.createGain();
-reverbGain.gain.value = 2.5;  // Aumenta para más efecto de reverberación
+reverbGain.gain.value = 2.0;  // Aumenta para más efecto de reverberación
 
 // Asegúrate de conectar el convolver al gain y luego al destino o al siguiente nodo en tu cadena de audio
 convolver.connect(reverbGain);
@@ -808,7 +808,7 @@ delay.connect(convolver);
             compressor.connect(audioCtx.destination);
 
             // Cargar un archivo de impulso para la reverberación
-            fetch('cathedral.wav').then(response => {
+            fetch('cathedral').then(response => {
                 return response.arrayBuffer();
             }).then(arrayBuffer => {
                 return audioCtx.decodeAudioData(arrayBuffer);
