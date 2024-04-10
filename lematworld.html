@@ -656,7 +656,7 @@ footer{
             translate(width / 2, height / 2);
 
             if (isMoving) {
-        let velocidad = map(frecuenciaActual, 100, 2200, 0.3, 50); // Ejemplo de mapeo
+        let velocidad = map(frecuenciaActual, 100, 2200, 0.3, 50); 
         angle += velocidad;
     }
 
@@ -762,7 +762,6 @@ function inicializarAudio() {
             const delayGain = audioCtx.createGain();
             const convolver = audioCtx.createConvolver();
 
-            // Configuraciones de nodos
             compressor.threshold.setValueAtTime(-50, audioCtx.currentTime);
             compressor.knee.setValueAtTime(40, audioCtx.currentTime);
             compressor.ratio.setValueAtTime(12, audioCtx.currentTime);
@@ -772,9 +771,8 @@ function inicializarAudio() {
             delay.delayTime.value = 0.8;
             delayGain.gain.value = 0.8;
 
-            gainNode.gain.value = 0.1; // Baja el volumen general
+            gainNode.gain.value = 0.1; 
 
-            // Conexiones de nodos
             delay.connect(delayGain);
             delayGain.connect(delay);
             delayGain.connect(compressor);
@@ -782,7 +780,6 @@ function inicializarAudio() {
             gainNode.connect(compressor);
             compressor.connect(audioCtx.destination);
 
-            // Cargar un archivo de impulso para la reverberación
             fetch('cathedral.wav').then(response => {
                 return response.arrayBuffer();
             }).then(arrayBuffer => {
@@ -816,8 +813,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
-// Asegúrate de llamar a esta función mediante una acción del usuario, por ejemplo:
-// document.getElementById('yourButtonId').addEventListener('click', inicializarAudio);
+
 
 
 
@@ -842,9 +838,9 @@ function activarCaja(frecuencia) {
     const oscilador = audioCtx.createOscillator();
     oscilador.frequency.value = frecuencia;
     oscilador.type = 'sine';
-    oscilador.connect(gainNode);  // Conectar al nodo de ganancia para controlar el volumen
+    oscilador.connect(gainNode);  
     oscilador.start();
-    oscilador.stop(audioCtx.currentTime + 5); // Duración del sonido de 1 segundo
+    oscilador.stop(audioCtx.currentTime + 5); 
 }
 
 
