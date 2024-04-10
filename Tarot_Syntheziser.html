@@ -772,20 +772,9 @@ function inicializarAudio() {
             gainNode = audioCtx.createGain();
             compressor = audioCtx.createDynamicsCompressor();
             const delay = audioCtx.createDelay(8.0);
-            delay.delayTime.value = 0.2;  // Delay de 200 ms
-
             const delayGain = audioCtx.createGain();
             const convolver = audioCtx.createConvolver();
-            const reverbGain = audioCtx.createGain();
-reverbGain.gain.value = 2.0;  // Aumenta para más efecto de reverberación
 
-// Asegúrate de conectar el convolver al gain y luego al destino o al siguiente nodo en tu cadena de audio
-convolver.connect(reverbGain);
-reverbGain.connect(audioCtx.destination);
-
-// Conecta un oscilador o cualquier fuente de audio al delay, luego al convolver
-source.connect(delay);
-delay.connect(convolver);
 
             // Configuraciones de nodos
             compressor.threshold.setValueAtTime(-50, audioCtx.currentTime);
@@ -808,7 +797,7 @@ delay.connect(convolver);
             compressor.connect(audioCtx.destination);
 
             // Cargar un archivo de impulso para la reverberación
-            fetch('cathedral').then(response => {
+            fetch('cathedral.wav').then(response => {
                 return response.arrayBuffer();
             }).then(arrayBuffer => {
                 return audioCtx.decodeAudioData(arrayBuffer);
