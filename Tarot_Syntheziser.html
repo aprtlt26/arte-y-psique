@@ -381,14 +381,26 @@ margin-left: 117px;
 
          @media (max-width: 768px) {
             .box {
+
         width: 30px; 
         height: 50px;
-    }
-     }
-    #boxes {
-        width: 40px; 
-        height: 70px;
-    }
+            }
+        .boxes{
+
+    display: block;
+    z-index: 1;
+    position: absolute; 
+    margin: 50px 0; 
+    padding-top: 300px;
+
+}
+
+            
+
+        }
+    
+     
+ 
 
 
 footer {
@@ -476,9 +488,19 @@ footer {
     background-color: #00000000;
     color: rgb(209, 209, 209);
     font-size: 10px; /* Tamaño de letra inicial */
-padding-top: 80px;
+padding-top: 100px;
 }
+@media (max-width: 768px) {
 
+footer{
+    padding-top: 300px;
+    padding: 1px 1;
+
+
+
+}
+    
+ }
 
     </style>
 </head>
@@ -729,37 +751,75 @@ let compressor;
 
 
 
+function inicializarAudio() {
+ 
+    if (!audioCtx) {
+        try {
+            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            gainNode = audioCtx.createGain();
+            compressor = audioCtx.createDynamicsCompressor();
+            const delay = audioCtx.createDelay(8.0);
+            const delayGain = audioCtx.createGain();
+            const convolver = audioCtx.createConvolver();
+
+            // Configuraciones de nodos
+            compressor.threshold.setValueAtTime(-50, audioCtx.currentTime);
+            compressor.knee.setValueAtTime(40, audioCtx.currentTime);
+            compressor.ratio.setValueAtTime(12, audioCtx.currentTime);
+            compressor.attack.setValueAtTime(0, audioCtx.currentTime);
+            compressor.release.setValueAtTime(0.25, audioCtx.currentTime);
+
+            delay.delayTime.value = 0.8;
+            delayGain.gain.value = 0.8;
+
+            gainNode.gain.value = 0.1; // Baja el volumen general
+
+            // Conexiones de nodos
+            delay.connect(delayGain);
+            delayGain.connect(delay);
+            delayGain.connect(compressor);
+
+            gainNode.connect(compressor);
+            compressor.connect(audioCtx.destination);
+
+            // Cargar un archivo de impulso para la reverberación
+            fetch('cathedral.wav').then(response => {
+                return response.arrayBuffer();
+            }).then(arrayBuffer => {
+                return audioCtx.decodeAudioData(arrayBuffer);
+            }).then(audioBuffer => {
+                convolver.buffer = audioBuffer;
+                convolver.normalize = true;
+                gainNode.connect(convolver);
+                convolver.connect(audioCtx.destination);
+                console.log("Audio convolver loaded and connected.");
+            }).catch(e => console.error(e));
+
+            console.log("Audio context initialized successfully.");
+        } catch (e) {
+            console.error("Error initializing audio context: ", e);
+        }
+    }
+
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     inicializarAudio();
     document.querySelectorAll('.gallery-container img').forEach(img => {
         img.addEventListener('click', function() {
             let frecuencia = parseInt(this.getAttribute('data-frecuencia'));
-            frecuenciaActual = frecuencia; 
-            isMoving = true; 
+            window.frecuenciaActual = frecuencia;  // Considera usar `window.` si necesitas global
+            window.isMoving = true;               // También para `isMoving`
             reproducirSonido(frecuencia);
-            agregarImagenSeleccionada(this.dataset.img); 
-            activarCaja(frecuencia); 
+            agregarImagenSeleccionada(this.dataset.img);
+            activarCaja(frecuencia);
         });
     });
 });
+// Asegúrate de llamar a esta función mediante una acción del usuario, por ejemplo:
+// document.getElementById('yourButtonId').addEventListener('click', inicializarAudio);
 
 
-
-function inicializarAudio() {
-    if (!audioCtx) {
-        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        gainNode = audioCtx.createGain();
-        compressor = audioCtx.createDynamicsCompressor();
-
-        compressor.threshold.setValueAtTime(-50, audioCtx.currentTime);
-        compressor.knee.setValueAtTime(40, audioCtx.currentTime); 
-        compressor.ratio.setValueAtTime(12, audioCtx.currentTime);
-        compressor.attack.setValueAtTime(0, audioCtx.currentTime);
-        compressor.release.setValueAtTime(0.25, audioCtx.currentTime);
-        gainNode.gain.value = 0.1;
- gainNode.connect(compressor);
-        compressor.connect(audioCtx.destination);    }
-}
 
 
 let frecuenciaActual = 0; 
@@ -776,20 +836,15 @@ function activarCaja(frecuencia) {
 
  }
  
-    function reproducirSonido(frecuencia) {
+ function reproducirSonido(frecuencia) {
     if (!audioCtx) return;
 
-    let oscilador = audioCtx.createOscillator();
+    const oscilador = audioCtx.createOscillator();
     oscilador.frequency.value = frecuencia;
     oscilador.type = 'sine';
-    oscilador.connect(gainNode);
+    oscilador.connect(gainNode);  // Conectar al nodo de ganancia para controlar el volumen
     oscilador.start();
-
-    
-
-    oscilador.stop(audioCtx.currentTime + 11); 
-
-
+    oscilador.stop(audioCtx.currentTime + 5); // Duración del sonido de 1 segundo
 }
 
 
@@ -856,6 +911,5 @@ document.addEventListener('DOMContentLoaded', ocultarImageContainer);
       
     </body>
 </html>
-
 
 
