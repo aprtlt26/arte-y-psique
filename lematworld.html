@@ -752,7 +752,7 @@ let compressor;
 
 
 function inicializarAudio() {
-    // Verificar si el contexto de audio ya fue creado
+ 
     if (!audioCtx) {
         try {
             audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -800,23 +800,22 @@ function inicializarAudio() {
             console.error("Error initializing audio context: ", e);
         }
     }
-}
 
+}
 
 document.addEventListener('DOMContentLoaded', () => {
     inicializarAudio();
     document.querySelectorAll('.gallery-container img').forEach(img => {
         img.addEventListener('click', function() {
             let frecuencia = parseInt(this.getAttribute('data-frecuencia'));
-            frecuenciaActual = frecuencia; 
-            isMoving = true; 
+            window.frecuenciaActual = frecuencia;  // Considera usar `window.` si necesitas global
+            window.isMoving = true;               // También para `isMoving`
             reproducirSonido(frecuencia);
-            agregarImagenSeleccionada(this.dataset.img); 
-            activarCaja(frecuencia); 
+            agregarImagenSeleccionada(this.dataset.img);
+            activarCaja(frecuencia);
         });
     });
 });
-
 // Asegúrate de llamar a esta función mediante una acción del usuario, por ejemplo:
 // document.getElementById('yourButtonId').addEventListener('click', inicializarAudio);
 
@@ -912,6 +911,7 @@ document.addEventListener('DOMContentLoaded', ocultarImageContainer);
       
     </body>
 </html>
+
 
 
 
