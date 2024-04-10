@@ -59,7 +59,7 @@
     top: 0; 
     z-index: 2; 
 
-    padding-top: 5px;
+    padding-top: 5px; 
     padding-bottom: 5px; 
 
 }
@@ -147,7 +147,7 @@
         font-size: 0.9rem;
         margin: 10px 15px;
         width: 80%; 
-        text-align: center;
+        text-align: center; 
 align-items: center;
 background-color:  transparent;
 
@@ -173,8 +173,6 @@ background-color:  transparent;
     .navbar-toggler {
         margin-right: 0; 
         text-align: center; 
-;
-
     }
 
     .navbar-nav .nav-link {
@@ -205,22 +203,21 @@ background-color:  transparent;
 
     
 
-     
 .navbar {
-    background-color: transparent !important; /* Hace la barra de menú transparente */
-    box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1); /* Agrega una sombra suave */
+    background-color: transparent !important;
+    box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1); 
     color: #f8f8f8;
 }
 
 .navbar-collapse {
-    background-color:   transparent; 
+    background-color:   transparent;
     box-shadow: 0 8px 10px rgba(255, 255, 255, 0.2); 
     
 }
 
 .navbar-toggler {
     background-color: rgba(255, 255, 255, 0.5); 
-    border-color: rgba(255, 255, 255, 0.5); 
+    border-color: rgba(255, 255, 255, 0.5);
     color: #f8f8f8;
 }
 
@@ -236,8 +233,8 @@ background-color:  transparent;
 }
 
 footer a {
-    color: #515151;
-    text-decoration: none;
+    color: #515151; 
+    text-decoration: none; 
     
 }
 
@@ -252,31 +249,51 @@ text-decoration: none;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 450px; 
-        margin-left: 300px;
-    z-index: 2000; /* Más alto que el lienzo de p5.js */
+    margin-top: 130px; 
+        margin-left:200px;
+    
+    z-index: 2000;
     position: absolute; 
 
 }
+
+.gallery-container img {
+        justify-content: center;
+    align-items: center;
+        width: 80px; 
+        height: auto;
+        margin: -28px; 
+        cursor: pointer;
+        border: 2px solid transparent;
+        border-radius: 5px;
+        transition: transform 0.3s ease;  }
+
+
 @media (max-width: 768px) {
     .gallery-container {
+        justify-content: center;
+        align-items: center;
         flex-direction: wrap;
-        margin-top: 350px;
-margin-left: 0px;        
+        margin-top: 80px;
+
+margin: 180px;
+
     }
 }
+
+@media (max-width: 768px) {
 
     .gallery-container img {
         justify-content: center;
     align-items: center;
-        width: 100px; 
+        width: 40px; 
         height: auto;
-        margin: -38px;
+        margin: -27px; 
         cursor: pointer;
         border: 2px solid transparent;
         border-radius: 5px;
         transition: transform 0.3s ease; 
-    }
+    } }
 
     .gallery-container img:hover {
         transform: scale(1.1); 
@@ -292,37 +309,13 @@ margin-left: 0px;
 }
 
 
-
-
-    #imageContainer {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        z-index: 3;
-        width: auto; 
-        flex-wrap: wrap;
-        padding-top: 1600px;
-    }
     
-
-    #imageContainer img {
-        max-width: 100%; 
-        margin-right: 5px; 
-        height: 100%;
-        padding-top: 600px;
+    #imageContainer{
+        z-index: -2000;
 
     }
-  
 
 
-    #imageContainer img:hover {
-        transform: scale(0.0,5);
-    }
-        
 
 
 
@@ -336,12 +329,11 @@ margin-left: 0px;
 
 
 .box {
-  width: 50px; 
-  height: 80px; 
-  background-color: #787878 transparent;
+  width: 40px; 
+  height: 70px; 
+  background-color: #787878 transparent; 
   margin: 2px;
   display: inline-block; 
-  cursor: pointer; 
   z-index: 2;
   box-shadow: 0 2px 4px rgba(255, 255, 255, 0.652);
   
@@ -365,6 +357,7 @@ body {
     align-items: center;
     justify-content: flex-start;
     min-height: 100vh;
+    overflow:hidden;
 }
 
 
@@ -376,22 +369,39 @@ body {
     display: block;
     z-index: 1;
     position: absolute; 
-    margin: 50px 0;
-    padding-top: 700px;
+    margin: 50px 0; 
+    padding-top: 200px;
     z-index: 200;
 
 }
 
+#loco{
+  margin-left: 150px;
+}
 
 @media (max-width: 768px) {
-    .boxes, #boxes-container {
-        margin-top: 10px; 
+
+    #loco{
+align-items: center;
+justify-content: center;
+margin-left: 117px;
     }
-    .box {
+  
+
+         }
+   
+
+         @media (max-width: 768px) {
+            .box {
+        width: 30px; 
+        height: 50px;
+    }
+     }
+    #boxes {
         width: 40px; 
-        height: 60px;
+        height: 70px;
     }
-}
+
 
 footer {
     width: 100%;
@@ -404,36 +414,48 @@ footer {
     margin-top: 20px; 
 }
 
-#p5-container {
-  position: absolute;
-  top: 50%; 
-  left: 50%; 
-  transform: translate(-50%, -50%); 
-  width: 100%;
-  height: 60vh; 
-  z-index: -1;
-  margin-top: 1000px; 
+#p5-container, #p5-container-1 {
+  position: fixed; 
+  top: 0; 
+  left: 0; 
+  width: 100vw; 
+  height: 100vh; 
+  z-index: -1000; 
 }
+
+
+
+
 @media (max-width: 768px) {
-    #p5-container {
-        height: 40vh;  
-    }
-}
+#p5-container {
+  position: fixed; 
+  top: 0px; 
+  left: 0px; 
+
+  z-index: -1; 
+
+}}
+
 #shuffleButton {
-    bottom: 20px; 
+    bottom: 10px; 
     transform: translateX(-50%); 
-    margin-left: 500px; 
+    margin-left: 200px; 
     cursor: pointer; 
     align-self: start; 
-margin: 300px;}
+margin: 200px;
+z-index: 2000;
+background-color: #91ff3d;
+border-style:  dashed  #a8a8a8;
+}
+
 
 
 @media (max-width: 768px) {
     #shuffleButton {
-        bottom: 10px; 
-        padding: 5px 10px; 
+        bottom: 5px; 
+        padding: 3px 5px; 
         font-size: 0.8rem; 
-        margin: 500px;
+        margin: 100px;
         margin-left:40px ;
     }
 }
@@ -463,17 +485,17 @@ margin: 300px;}
 
         </div>
 
-   
-
+               
 
         
+ 
 
 <div class="container">
   <div class="row">
     
-      <div id="p5-container">
-        <div id="p5-canvas"></div>
    
+
+        
         </div>
 
 
@@ -505,26 +527,21 @@ margin: 300px;}
     ];
 
 
-<section>
 
-</section>
 </div>
 
 
-                    
-        </div>
-        </div>
-    </div>
+  
 </div>
 <button id="shuffleButton"><i class='bx bx-shuffle' ></i></button>
 
 </div>
     
-  
+
 
    
         <div class="boxes"> 
-            <div style=" margin-left: 178px;" class="box"  data-frecuencia="2200" data-url="assci_art.html"></div>
+            <div id="loco"  class="box"  data-frecuencia="2200" data-url="assci_art.html"></div>
 
             <div id="boxes-container">
         <div class="box" data-frecuencia="100"></div>
@@ -563,33 +580,30 @@ margin: 300px;}
       </div>
       
       
-    </div>
-    <div id="imagenSeleccionadaContainer">
-    </div>
-
+   
 <div>
 
 </div>
 
 
-    <div id="imageContainer" >
+    <div id="imageContainer"  >
     </div>
 
     <script>
 
 
         let angle = 1;
-        let circleSize = 500;
+        let circleSize = 300;
         let spinning = false;
         let isMoving = false;
         
 
 
         function setup() {
-            let cnv = createCanvas(windowWidth, windowHeight - 100); 
+            let cnv = createCanvas(windowWidth, windowHeight ); 
   cnv.parent('p5-container');            stroke(255);
             noFill();
-            strokeWeight(1);
+            strokeWeight(0.4);
         }
 
         function draw() {
@@ -597,27 +611,50 @@ margin: 300px;}
             translate(width / 2, height / 2);
 
             if (isMoving) {
-        let velocidad = map(frecuenciaActual, 100, 2200, 0.3, 50); 
+        let velocidad = map(frecuenciaActual, 100, 2200, 0.3, 50); // Ejemplo de mapeo
         angle += velocidad;
     }
 
-    let circleSize = map(mouseX, 0, width, 10, 800);
-    for (let i = 0; i < 800; i++) {
-        let offset = TWO_PI / 200 * i;
-        let x = cos(angle + offset) * 1000;
-        let y = sin(angle + offset) * 100;
+    for (let i = 0; i < 600; i++) {
+        let offset = TWO_PI / 600 * i;
+        let x = cos(angle + offset) * circleSize;
+        let y = sin(angle + offset) * circleSize;
+        ellipse(x, y, x, y, x, circleSize, circleSize);
+ 
 
-        ellipse(x, y, x, circleSize, circleSize);
-    }
-}
+        
+        
+let shadowOffset = 5;
+        strokeWeight(0.8);
+        stroke(0, 0, 0, 50); 
+        ellipse(x + shadowOffset, y + shadowOffset, circleSize, circleSize);
+
+        stroke(255, 255, 255, 40);
+        for (let j = 2; j < 10; j++) {
+            ellipse(x, y, circleSize / j, circleSize / j);
+        }        strokeWeight(0.1);
+        stroke(255); 
+        
+        if (i % 20 == 0) { 
+            let dSize = 1; 
+            strokeWeight(dSize);
+            stroke(255, 255, 255, 140); 
+            point(x, y, x, y, x,y,); 
+        }
+
+        
 
         function mousePressed() {
             spinning = !spinning;
         }
 
+    }
+}
 
         
     </script>
+
+    
 
 
     <script>function shuffleImages() {
@@ -752,6 +789,12 @@ document.querySelectorAll('.box').forEach(box => {
     });
 });
 
+function ocultarImageContainer() {
+    var imageContainer = document.getElementById('imageContainer');
+    imageContainer.style.display = 'none'; 
+}
+
+document.addEventListener('DOMContentLoaded', ocultarImageContainer);
 
 
     </script>
@@ -759,7 +802,15 @@ document.querySelectorAll('.box').forEach(box => {
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
+<div id="p5-container-1"></div>
 
+<div id="p5-container">
+
+    <div id="p5-canvas"></div>
+
+
+
+    
     
     
     </script>
