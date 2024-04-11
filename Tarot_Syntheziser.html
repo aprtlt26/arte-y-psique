@@ -916,76 +916,59 @@ document.addEventListener('DOMContentLoaded', ocultarImageContainer);
     
     </script>
 
+     
     <script>
-        let audioContext = null;
+        // Función que inicializa y reproduce el ruido verde de fondo
+        function iniciarRuidoVerde() {
+            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
         
-        function startGreenNoise() {
-            if (!audioContext) {
-                audioContext = new (window.AudioContext || window.webkitAudioContext)();
-                
-                const bufferSize = audioContext.sampleRate * 2; // Buffer for 2 seconds
-                const noiseBuffer = audioContext.createBuffer(1, bufferSize, audioContext.sampleRate);
-                const output = noiseBuffer.getChannelData(0);
-        
-                for (let i = 0; i < bufferSize; i++) {
-                    output[i] = Math.random() * 2 - 1; // Fill the buffer with white noise
-                }
-        
-                const whiteNoiseSource = audioContext.createBufferSource();
-                whiteNoiseSource.buffer = noiseBuffer;
-                whiteNoiseSource.loop = true;
-        
-                const filter = audioContext.createBiquadFilter();
-                filter.type = 'lowpass';
-                filter.frequency.value = 500; // Low-pass filter to modify the noise character
-        
-                gainNode = audioContext.createGain();
-                gainNode.gain.value = 0.5; // Initial volume set to mid-level
-        
-                whiteNoiseSource.connect(filter);
-                filter.connect(gainNode);
-                gainNode.connect(audioContext.destination);
-        
-                whiteNoiseSource.start(0);
+            // Crear un buffer de ruido blanco
+            const bufferSize = audioContext.sampleRate * 2; // 2 segundos de buffer
+            const noiseBuffer = audioContext.createBuffer(1, bufferSize, audioContext.sampleRate);
+            let output = noiseBuffer.getChannelData(0);
+            for (let i = 0; i < bufferSize; i++) {
+                output[i] = Math.random() * 2 - 1; // Llenar el buffer con ruido blanco
             }
+        
+            // Crear fuente de audio a partir del buffer
+            const whiteNoiseSource = audioContext.createBufferSource();
+            whiteNoiseSource.buffer = noiseBuffer;
+            whiteNoiseSource.loop = true;
+        
+            // Crear un filtro
+            const filter = audioContext.createBiquadFilter();
+            filter.type = 'lowpass'; // Tipo de filtro
+            filter.frequency.value = 500; // Frecuencia de corte del filtro
+        
+            // Crear un nodo de ganancia para controlar el volumen
+            const gainNode = audioContext.createGain();
+            gainNode.gain.value = 0.3; // Configurar el volumen inicial
+        
+            // Conectar todo
+            whiteNoiseSource.connect(filter);
+            filter.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+        
+            // Iniciar la reproducción
+            whiteNoiseSource.start(0);
+        
+            return audioContext;
         }
         
-        // Event handler for changing volume based on vertical screen position
-        function adjustVolume(event) {
-            if (!audioContext) return;
-        
-            const y = event.touches ? event.touches[0].clientY : event.clientY; // Supports both mouse and touch
-            const volume = 1 - (y / window.innerHeight);
-            gainNode.gain.value = volume;
-        }
-        
-        document.addEventListener('mousemove', adjustVolume);
-        document.addEventListener('touchmove', adjustVolume);
-        
-        // Ensure audio context is resumed (necessary on some browsers)
-        document.addEventListener('click', function ensureAudioContext() {
-            if (audioContext && audioContext.state === 'suspended') {
-                audioContext.resume();
+        // Asegurarse de que el audio comience con la primera interacción del usuario
+        let audioContextInitialized = false; // Estado para controlar la inicialización
+        document.addEventListener('click', function startAudioContext() {
+            if (!audioContextInitialized) {
+                iniciarRuidoVerde();
+                audioContextInitialized = true; // Marcar el contexto de audio como inicializado
+                document.removeEventListener('click', startAudioContext); // Remover el manejador de eventos después del primer uso
             }
-        });
-        
-        // Initialize audio on first interaction
-        document.addEventListener('touchstart', function initAudioOnTouch() {
-            startGreenNoise();
-            document.removeEventListener('touchstart', initAudioOnTouch);
-        });
-        
-        document.addEventListener('click', function initAudioOnClick() {
-            startGreenNoise();
-            document.removeEventListener('click', initAudioOnClick);
         });
         </script>
-        
         
         
       
     </body>
 </html>
-
 
 
