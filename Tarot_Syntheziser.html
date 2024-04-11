@@ -759,6 +759,61 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
+let audioCtx;
+let gainNode;
+let compressor;
+
+
+
+function inicializarAudio() {
+    if (!window.audioCtx) {
+        window.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  
+   
+            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            gainNode = audioCtx.createGain();
+            compressor = audioCtx.createDynamicsCompressor();
+            const delay = audioCtx.createDelay(8.0);
+            const delayGain = audioCtx.createGain();
+            const convolver = audioCtx.createConvolver();
+
+
+            compressor.threshold.setValueAtTime(-50, audioCtx.currentTime);
+            compressor.knee.setValueAtTime(40, audioCtx.currentTime);
+            compressor.ratio.setValueAtTime(12, audioCtx.currentTime);
+            compressor.attack.setValueAtTime(0, audioCtx.currentTime);
+            compressor.release.setValueAtTime(0.25, audioCtx.currentTime);
+
+            delay.delayTime.value = 0.8;
+            delayGain.gain.value = 0.8;
+
+            gainNode.gain.value = 0.1; 
+
+            // Conexiones de nodos
+            delay.connect(delayGain);
+            delayGain.connect(delay);
+            delayGain.connect(compressor);
+
+            gainNode.connect(compressor);
+            compressor.connect(audioCtx.destination);
+
+            fetch('cathedral.wav').then(response => {
+                return response.arrayBuffer();
+            }).then(arrayBuffer => {
+                return audioCtx.decodeAudioData(arrayBuffer);
+            }).then(audioBuffer => {
+                convolver.buffer = audioBuffer;
+                convolver.normalize = true;
+                gainNode.connect(convolver);
+                convolver.connect(audioCtx.destination);
+                console.log("Audio convolver loaded and connected.");
+            }).catch(e => console.error(e));
+
+        }
+    }
+
+
+
 document.addEventListener('DOMContentLoaded', () => {
     inicializarAudio();
     document.querySelectorAll('.gallery-container img').forEach(img => {
@@ -772,104 +827,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
-
-let audioCtx, gainNode, compressor, convolver, noiseSource, noiseGain;
-
-function createNoiseSource(audioContext) {
-    const bufferSize = 2 * audioContext.sampleRate;
-    const noiseBuffer = audioContext.createBuffer(1, bufferSize, audioContext.sampleRate);
-    const output = noiseBuffer.getChannelData(0);
-
-    for (let i = 0; i < bufferSize; i++) {
-        output[i] = Math.random() * 2 - 1; // Genera ruido blanco
-    }
-
-    const whiteNoise = audioContext.createBufferSource();
-    whiteNoise.buffer = noiseBuffer;
-    whiteNoise.loop = true;
-
-    const filter = audioContext.createBiquadFilter();
-    filter.type = 'lowpass';
-    filter.frequency.value = 500; 
-    filter.Q.value = 1;  // Ajusta esto para cambiar el tono del ruido verde
-
-    whiteNoise.connect(filter);
-    filter.connect(audioContext.destination);
-    return filter;
-}
-
-
-function inicializarAudio() {
-    if (!window.audioCtx) {
-  
-   
-            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-            gainNode = audioCtx.createGain();
-            gainNode.gain.value = 0.5;  // Controla el volumen del ruido verde
-
-            compressor = audioCtx.createDynamicsCompressor();
-            const delay = audioCtx.createDelay(8.0);
-            const delayGain = audioCtx.createGain();
-            const convolver = audioCtx.createConvolver();
-
-            noiseSource = createNoiseSource(audioCtx);
-    noiseSource.connect(gainNode);
-    gainNode.connect(audioCtx.destination);
-    noiseSource.start(0); 
-
-            compressor.threshold.setValueAtTime(-50, audioCtx.currentTime);
-            compressor.knee.setValueAtTime(40, audioCtx.currentTime);
-            compressor.ratio.setValueAtTime(12, audioCtx.currentTime);
-            compressor.attack.setValueAtTime(0, audioCtx.currentTime);
-            compressor.release.setValueAtTime(0.25, audioCtx.currentTime);
-
-            delay.delayTime.value = 0.8;
-            delayGain.gain.value = 0.8;
-
-             // Conexión de nodos
-    gainNode.connect(compressor);
-    compressor.connect(convolver);
-    convolver.connect(audioCtx.destination);
-
- 
-      
-
-
-            // Conexiones de nodos
-            delay.connect(delayGain);
-            delayGain.connect(delay);
-            delayGain.connect(compressor);
-
-            noiseSource.connect(noiseGain);
-    noiseGain.connect(delay); // Conecta el ruido al delay si deseas efecto de delay en el ruido
-    delay.connect(delayGain);
-    delayGain.connect(compressor);
-    
-            fetch('cathedral.wav').then(response => {
-                return response.arrayBuffer();
-            }).then(arrayBuffer => {
-                return audioCtx.decodeAudioData(arrayBuffer);
-            }).then(audioBuffer => {
-                convolver.buffer = audioBuffer;
-                convolver.normalize = true;
-                console.log("Audio convolver loaded and connected.");
-            }).catch(e => console.error(e));
-
-        }
-    }
-
-    function reproducirSonido(frecuencia) {
-    if (!audioCtx) return;
-    const oscilador = audioCtx.createOscillator();
-    oscilador.frequency.value = frecuencia;
-    oscilador.type = 'sine';
-    oscilador.connect(gainNode);
-    oscilador.start();
-    oscilador.stop(audioCtx.currentTime + 1); // Duración del tono
-}
-
-
-
 
 
 
@@ -890,15 +847,25 @@ function activarCaja(frecuencia) {
 
  }
  
+ function reproducirSonido(frecuencia) {
+    if (!audioCtx) return;
 
- function agregarImagenSeleccionada(srcImagen) {
-    const imgContainer = document.getElementById('imageContainer');
-    imgContainer.style.display = 'block'; // Asegúrate de que el contenedor esté visible
-    imgContainer.innerHTML = ''; // Limpia el contenedor
+    const oscilador = audioCtx.createOscillator();
+    oscilador.frequency.value = frecuencia;
+    oscilador.type = 'sine';
+    oscilador.connect(gainNode);  
+    oscilador.start();
+    oscilador.stop(audioCtx.currentTime + 5); 
+}
+
+
+
+function agregarImagenSeleccionada(srcImagen) {
     let img = document.createElement('img');
-    img.src = srcImagen;
-    img.style.width = '1px';
-    imgContainer.appendChild(img);
+    img.src = srcImagen; 
+    img.style.width = '100px';
+    img.style.height = 'auto';
+    document.getElementById('imageContainer').appendChild(img);
 }
 
 
