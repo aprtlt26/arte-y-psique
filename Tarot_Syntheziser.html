@@ -759,15 +759,47 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-let audioCtx;
-let gainNode;
-let compressor;
+document.addEventListener('DOMContentLoaded', () => {
+    inicializarAudio();
+    document.querySelectorAll('.gallery-container img').forEach(img => {
+        img.addEventListener('click', function() {
+            let frecuencia = parseInt(this.getAttribute('data-frecuencia'));
+            frecuenciaActual = frecuencia; 
+            isMoving = true; 
+            reproducirSonido(frecuencia);
+            agregarImagenSeleccionada(this.dataset.img); 
+            activarCaja(frecuencia); 
+        });
+    });
+});
 
+let audioCtx, gainNode, compressor, convolver, noiseSource, noiseGain;
+
+function createNoiseSource(audioContext) {
+    const bufferSize = 2 * audioContext.sampleRate;
+    const noiseBuffer = audioContext.createBuffer(1, bufferSize, audioContext.sampleRate);
+    const output = noiseBuffer.getChannelData(0);
+
+    for (let i = 0; i < bufferSize; i++) {
+        output[i] = Math.random() * 2 - 1; // Genera ruido blanco
+    }
+
+    const whiteNoise = audioContext.createBufferSource();
+    whiteNoise.buffer = noiseBuffer;
+    whiteNoise.loop = true;
+
+    const filter = audioContext.createBiquadFilter();
+    filter.type = 'lowpass';
+    filter.frequency.value = 150; // Ajusta esto para cambiar el tono del ruido verde
+
+    whiteNoise.connect(filter);
+    filter.connect(audioContext.destination);
+    return filter;
+}
 
 
 function inicializarAudio() {
     if (!window.audioCtx) {
-        window.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
   
    
             audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -777,6 +809,9 @@ function inicializarAudio() {
             const delayGain = audioCtx.createGain();
             const convolver = audioCtx.createConvolver();
 
+            noiseSource = createNoiseSource(audioCtx);
+    noiseGain = audioCtx.createGain();
+    noiseGain.gain.value = 0.2
 
             compressor.threshold.setValueAtTime(-50, audioCtx.currentTime);
             compressor.knee.setValueAtTime(40, audioCtx.currentTime);
@@ -787,7 +822,17 @@ function inicializarAudio() {
             delay.delayTime.value = 0.8;
             delayGain.gain.value = 0.8;
 
-            gainNode.gain.value = 0.1; 
+             // Conexión de nodos
+    gainNode.connect(compressor);
+    compressor.connect(convolver);
+    convolver.connect(audioCtx.destination);
+
+    noiseSource.connect(noiseGain);
+    noiseGain.connect(delay); // Conecta el ruido al delay si deseas efecto de delay en el ruido
+    delay.connect(delayGain);
+    delayGain.connect(compressor);
+      
+
 
             // Conexiones de nodos
             delay.connect(delayGain);
@@ -804,29 +849,24 @@ function inicializarAudio() {
             }).then(audioBuffer => {
                 convolver.buffer = audioBuffer;
                 convolver.normalize = true;
-                gainNode.connect(convolver);
-                convolver.connect(audioCtx.destination);
                 console.log("Audio convolver loaded and connected.");
             }).catch(e => console.error(e));
 
         }
     }
 
+    function reproducirSonido(frecuencia) {
+    if (!audioCtx) return;
+    const oscilador = audioCtx.createOscillator();
+    oscilador.frequency.value = frecuencia;
+    oscilador.type = 'sine';
+    oscilador.connect(gainNode);
+    oscilador.start();
+    oscilador.stop(audioCtx.currentTime + 1); // Duración del tono
+}
 
 
-document.addEventListener('DOMContentLoaded', () => {
-    inicializarAudio();
-    document.querySelectorAll('.gallery-container img').forEach(img => {
-        img.addEventListener('click', function() {
-            let frecuencia = parseInt(this.getAttribute('data-frecuencia'));
-            frecuenciaActual = frecuencia; 
-            isMoving = true; 
-            reproducirSonido(frecuencia);
-            agregarImagenSeleccionada(this.dataset.img); 
-            activarCaja(frecuencia); 
-        });
-    });
-});
+
 
 
 
@@ -847,25 +887,15 @@ function activarCaja(frecuencia) {
 
  }
  
- function reproducirSonido(frecuencia) {
-    if (!audioCtx) return;
 
-    const oscilador = audioCtx.createOscillator();
-    oscilador.frequency.value = frecuencia;
-    oscilador.type = 'sine';
-    oscilador.connect(gainNode);  
-    oscilador.start();
-    oscilador.stop(audioCtx.currentTime + 5); 
-}
-
-
-
-function agregarImagenSeleccionada(srcImagen) {
+ function agregarImagenSeleccionada(srcImagen) {
+    const imgContainer = document.getElementById('imageContainer');
+    imgContainer.style.display = 'block'; // Asegúrate de que el contenedor esté visible
+    imgContainer.innerHTML = ''; // Limpia el contenedor
     let img = document.createElement('img');
-    img.src = srcImagen; 
+    img.src = srcImagen;
     img.style.width = '100px';
-    img.style.height = 'auto';
-    document.getElementById('imageContainer').appendChild(img);
+    imgContainer.appendChild(img);
 }
 
 
@@ -922,4 +952,5 @@ document.addEventListener('DOMContentLoaded', ocultarImageContainer);
       
     </body>
 </html>
+
 
