@@ -671,6 +671,8 @@ footer{
         angle += velocidad;
     }
 
+                    let circleSize = map(mouseX, 0, width, 10, 800);
+
     for (let i = 0; i < 600; i++) {
         let offset = TWO_PI / 600 * i;
         let x = cos(angle + offset) * circleSize;
