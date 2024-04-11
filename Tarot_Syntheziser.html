@@ -790,7 +790,8 @@ function createNoiseSource(audioContext) {
 
     const filter = audioContext.createBiquadFilter();
     filter.type = 'lowpass';
-    filter.frequency.value = 150; // Ajusta esto para cambiar el tono del ruido verde
+    filter.frequency.value = 500; 
+    filter.Q.value = 1;  // Ajusta esto para cambiar el tono del ruido verde
 
     whiteNoise.connect(filter);
     filter.connect(audioContext.destination);
@@ -804,14 +805,17 @@ function inicializarAudio() {
    
             audioCtx = new (window.AudioContext || window.webkitAudioContext)();
             gainNode = audioCtx.createGain();
+            gainNode.gain.value = 0.5;  // Controla el volumen del ruido verde
+
             compressor = audioCtx.createDynamicsCompressor();
             const delay = audioCtx.createDelay(8.0);
             const delayGain = audioCtx.createGain();
             const convolver = audioCtx.createConvolver();
 
             noiseSource = createNoiseSource(audioCtx);
-    noiseGain = audioCtx.createGain();
-    noiseGain.gain.value = 0.2
+    noiseSource.connect(gainNode);
+    gainNode.connect(audioCtx.destination);
+    noiseSource.start(0); 
 
             compressor.threshold.setValueAtTime(-50, audioCtx.currentTime);
             compressor.knee.setValueAtTime(40, audioCtx.currentTime);
@@ -827,10 +831,7 @@ function inicializarAudio() {
     compressor.connect(convolver);
     convolver.connect(audioCtx.destination);
 
-    noiseSource.connect(noiseGain);
-    noiseGain.connect(delay); // Conecta el ruido al delay si deseas efecto de delay en el ruido
-    delay.connect(delayGain);
-    delayGain.connect(compressor);
+ 
       
 
 
@@ -839,9 +840,11 @@ function inicializarAudio() {
             delayGain.connect(delay);
             delayGain.connect(compressor);
 
-            gainNode.connect(compressor);
-            compressor.connect(audioCtx.destination);
-
+            noiseSource.connect(noiseGain);
+    noiseGain.connect(delay); // Conecta el ruido al delay si deseas efecto de delay en el ruido
+    delay.connect(delayGain);
+    delayGain.connect(compressor);
+    
             fetch('cathedral.wav').then(response => {
                 return response.arrayBuffer();
             }).then(arrayBuffer => {
@@ -894,7 +897,7 @@ function activarCaja(frecuencia) {
     imgContainer.innerHTML = ''; // Limpia el contenedor
     let img = document.createElement('img');
     img.src = srcImagen;
-    img.style.width = '100px';
+    img.style.width = '1px';
     imgContainer.appendChild(img);
 }
 
@@ -952,5 +955,6 @@ document.addEventListener('DOMContentLoaded', ocultarImageContainer);
       
     </body>
 </html>
+
 
 
