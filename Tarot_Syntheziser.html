@@ -982,11 +982,13 @@ document.addEventListener('DOMContentLoaded', ocultarImageContainer);
         document.addEventListener('mousemove', ajustarVolumen);
         document.addEventListener('touchmove', ajustarVolumen);
 
-         document.addEventListener('click', function() {
-            iniciarRuidoVerde();
-            // Eliminar el listener después del primer clic para evitar reiniciar el audio
-            document.removeEventListener('click', iniciarRuidoVerde);
-        });
+          function handler() {
+    iniciarRuidoVerde();
+    // Eliminar el listener después del primer clic para evitar reiniciar el audio
+    document.removeEventListener('click', handler);
+}
+
+document.addEventListener('click', handler);
     
     </script>
    
