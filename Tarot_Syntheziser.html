@@ -50,10 +50,8 @@ function verificarPermisoMicrofono() {
                 solicitarPermisoMicrofono();
             } else if (permissionStatus.state === 'granted') {
                 alert("El permiso para el micrófono ya ha sido concedido.");
-                // Ya puedes empezar a usar el micrófono
             } else {
                 alert("El permiso para el micrófono ha sido denegado.");
-                // Aquí puedes guiar al usuario sobre cómo cambiar los permisos del micrófono
             }
         })
         .catch((error) => {
