@@ -221,11 +221,11 @@ function initAudio() {
 
 class Boid {
     constructor() {
-        this.position = createVector(random(width), random(height));
+     this.position = createVector(random(width), random(height));
         this.velocity = p5.Vector.random2D();
         this.velocity.setMag(random(2, 8));
         this.acceleration = createVector();
-        this.maxForce = 0.35;
+        this.maxForce = 0.1;
         this.maxSpeed = 8;
         this.perceptionRadius = 370;
 
@@ -237,7 +237,7 @@ class Boid {
 
             updateOscillator() {
     // Frecuencia se modifica en base a la posición x
-    let freq = map(this.position.x, 0, width, 100, 800);
+    let freq = map(this.position.x, 0, width, 207.285, 214,655);
     this.osc.freq(freq);
 
     // Amplitud se modifica en base a la posición y
@@ -305,7 +305,7 @@ class Boid {
                 let total = 0;
                 for (let other of boids) {
                     let d = dist(this.position.x, this.position.y, other.position.x, other.position.y);
-                    if (other !== this && d < this.perceptionRadius / 2) {
+                    if (other !== this && d < this.perceptionRadius / 8) {
                         let diff = p5.Vector.sub(this.position, other.position);
                         diff.div(d);
                         steering.add(diff);
@@ -352,13 +352,16 @@ class Boid {
       
             show() {
                 push();
-                imageMode(CENTER);
-                translate(this.position.x, this.position.y);
-                rotate(this.velocity.heading() + radians(90));
-                image(boidImage, 0, 0, 20, 20);
-                pop();
-            }
-        }
+        imageMode(CENTER);
+        translate(this.position.x, this.position.y);
+        rotate(this.velocity.heading() + radians(190));
+        let size = max(15, 0 * window.devicePixelRatio); // Asegura la visibilidad en dispositivos de alta resolución
+        image(boidImage, 0, 0, size, size);
+        pop();
+    }
+
+}
+        
 
 
         let flock = [];
@@ -415,7 +418,6 @@ class Boid {
             }
         }
 
-
       
 
         function windowResized() {
@@ -425,12 +427,14 @@ class Boid {
         function initFlock() {
     console.log(`Inicializando boids en canvas de tamaño: ${width}x${height}`);
     flock = [];
-    for (let i = 0; i < 180; i++) {
+    for (let i = 0; i < 100; i++) {
         let boid = new Boid(random(width), random(height));
         flock.push(boid);
         console.log(`Boid creado en posición: ${boid.position.x}, ${boid.position.y}`);
     }
 }
+
+
 
 
 
