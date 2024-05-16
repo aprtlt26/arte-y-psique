@@ -321,13 +321,13 @@ class Boid {
             }
 
             followMouse() {
-                let mouse = createVector(mouseX, mouseY);
-                let steer = p5.Vector.sub(mouse, this.position);
-                steer.setMag(this.maxSpeed);
-                steer.sub(this.velocity);
-                steer.limit(this.maxForce);
-                this.acceleration.add(steer);
-            }
+        let mouse = createVector(mouseX, mouseY);
+        let steer = p5.Vector.sub(mouse, this.position);
+        steer.setMag(this.maxSpeed);
+        steer.sub(this.velocity);
+        steer.limit(this.maxForce);
+        this.acceleration.add(steer);
+    }
 
             flock(boids) {
                 let alignment = this.align(boids);
