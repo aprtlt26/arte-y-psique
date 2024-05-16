@@ -219,21 +219,21 @@ function initAudio() {
 
 
 
+class Boid {
+    constructor() {
+        this.position = createVector(random(width), random(height));
+        this.velocity = p5.Vector.random2D();
+        this.velocity.setMag(random(2, 8));
+        this.acceleration = createVector();
+        this.maxForce = 0.35;
+        this.maxSpeed = 8;
+        this.perceptionRadius = 370;
 
-        class Boid {
-            constructor() {
-                this.position = createVector(random(width), random(height));
-                this.velocity = p5.Vector.random2D();
-                this.velocity.setMag(random(2, 8));
-                this.acceleration = createVector();
-                this.maxForce = 0.35;
-                this.maxSpeed = 8;
-                this.perceptionRadius = 370;
-                this.osc = new p5.Oscillator('sine');
-                
-                this.osc.amp(0.01);
-                this.osc.start();
-            }
+        // Crear un oscilador para cada boid
+        this.osc = new p5.Oscillator('sine');
+        this.osc.amp(0.01); // Inicialmente, una amplitud baja para evitar ruidos molestos
+        this.osc.start();
+    }
 
             updateOscillator() {
     // Frecuencia se modifica en base a la posición x
