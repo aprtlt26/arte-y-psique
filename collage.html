@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,13 +10,14 @@
     <meta name="author" content="alfonsopretelt">
     <meta name="robots" content="collage">
     <meta name="google" content="translate">
-   <meta property="og:type" content="www.arteypsique.com">
+    <meta property="og:type" content="www.arteypsique.com">
     <meta property="og:url" content="https://www.arteypsique.com">
     <meta property="og:title" content="Arte & Psique">
     <meta property="og:description" content="Plataforma de aprendizaje y creación">
-    <link rel="icon" href="rostro.jpg" type="image/x-icon">
-    <meta property="og:image" content="log.png">
+    <link rel="icon" href="https://firebasestorage.googleapis.com/v0/b/libro-digital-ccf11.appspot.com/o/rostro.jpg?alt=media" type="image/x-icon">
+    <meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/libro-digital-ccf11.appspot.com/o/rostro.jpg?alt=media">
     <title>ART & PSYCHE</title>
+
     <script src="https://cdn.jsdelivr.net/npm/interactjs@1.10.11/dist/interact.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
@@ -23,266 +25,502 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/RecordRTC/5.6.1/RecordRTC.min.js"></script>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-       <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anta&family=Kode+Mono:wght@400..700&display=swap" rel="stylesheet">
-<link href="https://cdn.jsdelivr.net/npm/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anta&family=Kode+Mono:wght@400..700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet">
 
+    <!-- Add Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-storage.js"></script>
 
-  
-<script>
+    <script>
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyARA9tqBfkiFK80XcaWtS1ar6yglfmEh3g",
+            authDomain: "artepsique-9ced7-98586.firebaseapp.com",
+            projectId: "artepsique-9ced7",
+            storageBucket: "artepsique-9ced7.appspot.com",
+            messagingSenderId: "269569252943",
+            appId: "1:269569252943:web:b185a96dee1ff30ab2d43a",
+            measurementId: "G-K4WB0E0THH"
+        };
 
-collageContainer.addEventListener('touchmove', function(e) {
-    e.preventDefault();
-}, { passive: false });
+        // Initialize Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+        const storage = firebase.storage();
 
+        const images = ['0.png', '01.png', '02.png', '03.png', '04.png', '05.png', '06.png', '07.png', '08.png', 'c1.png', 'c2.png', 'c3.png', 'c4.png', 'c5.png', 'c6.png', 'c7.png', 'd1.png', 'd2.png', 'd3.png', 'd4.png', 'd5.png', 'd7.png', 'd8.png', 'd9.png', 'd10.png', 'd11.png', 'd12.png', 'd13.png', 'd14.png', 'd15.png', 'd16.png', 'e1.png', 'e2.png', 'e3.png', 'e4.png', 'e5.png', 'e6.png', 'f1.png', 'f2.png', 'f3.png', 'f4.png', 'f5.png', 'f6.png', 'h1.png', 'h2.png', 'h3.png', 'h4.png', 'iii.png', 'iii1.png', 'iii2.png', 'iii3.png', 'iii4.png', 'iii5.png', 'iii6.png', 'iii7.png', 'j1.png', 'j2.png', 'j3.png', 'j4.png', 'j5.png', 'j6.png', 'l1.png', 'l2.png', 'l3.png', 'l4.png', 'm1.png', 'm2.png', 'm3.png', 'm4.png', 'm5.png', 'm7.png', 'm8.png', 'm9.png', 'm10.png', 'm11.png', 'm12.png', 'ojos.png', 'p1.png', 'p2.png', 'p3.png', 'p4.png', 'p5.png', 'p6.png', 'r1.png', 'r2.png', 'r3.png', 'r4.png', 's1.png', 's2.png', 's3.png', 's4.png', 's5.png', 's6.png', 't1.png', 't2.png', 't3.png', 't4.png', 't5.png', 'vi.png', 'vi1.png', 'vi2.png', 'vi3.png', 'vi4.png', 'vii2.png', 'viii.png', 'viii1.png', 'viii2.png', 'viii3.png', 'viii4.png', 'viii6.png', 'vxii3.png', 'xii.png', 'XII1.png', 'xii2.png', 'xii4.png', 'xii5.png', 'xii6.png', 'xii7.png', 'xiii.png', 'xiii1.png', 'xiii2.png', 'xiii3.png', 'xiiii.png', 'xiiii1.png', 'xiiii3.png', 'xiiii4.png', 'xvii.png', 'xvii1.png', 'xvii2.png', 'xvii4.png', 'xvii5.png', 'xvii6.png', 'xvii7.png', 'xviiii.png', 'xviiii1.png', 'xviiii2.png', 'xviiii3.png', 'xx.png', 'xxi.png', 'xxi1.png', 'xxi2.png', 'xxi3.png', 'xxi4.png', 'xxi5.png'];
+        const images2 = ['Nt63v.gif', 'Nt61.gif', 'Nt6v.gif', 'Nt6.gif', 'Nt6cv1.gif', 'Nt6cv.gif', '29A2.gif', '6SSp.gif', '6p3E.gif', '6OV5-unscreen.gif', '4A5-unscreen.gif', '3Whh.gif', '2vDc.gif', '2iiB.gif', "VhkF.gif", '2ii5.gif', 'bo.gif', 'bcc.gif', 'boc.gif', 'b.gif', 'boca.gif', 'cLV.gif', 'TRkX.gif', 'VfL.gif', 'WG8U.gif', 'WMk.gif', 'WS2k.gif', 'WUUT.gif', 'YX4S.gif'];
 
-        
-  document.addEventListener('contextmenu', function(e) {
-    e.preventDefault();
-    alert('El clic derecho está desactivado en esta página.');
-  }, false);
+        const imageAudioMap = {
+            '0.png': '0.mp3',
+            '01.png': '01.mp3',
+            '02.png': '02.mp3',
+            '03.png': '03.mp3',
+            '04.png': '04.mp3',
+            '05.png': '05.mp3',
+            '06.png': '06.mp3',
+            '07.png': '07.mp3',
+            '08.png': '08.mp3',
+            'c1.png': 'c1.mp3',
+            'c2.png': 'c2.mp3',
+            'c3.png': 'c3.mp3',
+            'c4.png': 'c4.mp3',
+            'c5.png': 'c5.mp3',
+            'c6.png': 'c6.mp3',
+            'c7.png': 'c7.mp3',
+            'd1.png': 'd1.mp3',
+            'd2.png': 'd2.mp3',
+            'd3.png': 'd3.mp3',
+            'd4.png': 'd4.mp3',
+            'd5.png': 'd5.mp3',
+            'd7.png': 'd7.mp3',
+            'd8.png': 'd8.mp3',
+            'd9.png': 'd9.mp3',
+            'd10.png': 'd10.mp3',
+            'd11.png': 'd11.mp3',
+            'd12.png': 'd12.mp3',
+            'd13.png': 'd13.mp3',
+            'd14.png': 'd14.mp3',
+            'd15.png': 'd15.mp3',
+            'd16.png': 'd16.mp3',
+            'e1.png': 'e1.mp3',
+            'e2.png': 'e2.mp3',
+            'e3.png': 'e3.mp3',
+            'e4.png': 'e4.mp3',
+            'e5.png': 'e5.mp3',
+            'e6.png': 'e6.mp3',
+            'f1.png': 'f1.mp3',
+            'f2.png': 'f2.mp3',
+            'f3.png': 'f3.mp3',
+            'f4.png': 'f4.mp3',
+            'f5.png': 'f5.mp3',
+            'f6.png': 'f6.mp3',
+            'h1.png': 'h1.mp3',
+            'h2.png': 'h2.mp3',
+            'h3.png': 'h3.mp3',
+            'h4.png': 'h4.mp3',
+            'iii.png': 'iii.mp3',
+            'iii1.png': 'iii1.mp3',
+            'iii2.png': 'iii2.mp3',
+            'iii3.png': 'iii3.mp3',
+            'iii4.png': 'iii4.mp3',
+            'iii5.png': 'iii5.mp3',
+            'iii6.png': 'iii6.mp3',
+            'iii7.png': 'iii7.mp3',
+            'j1.png': 'j1.mp3',
+            'j2.png': 'j2.mp3',
+            'j3.png': 'j3.mp3',
+            'j4.png': 'j4.mp3',
+            'j5.png': 'j5.mp3',
+            'j6.png': 'j6.mp3',
+            'l1.png': 'l1.mp3',
+            'l2.png': 'l2.mp3',
+            'l3.png': 'l3.mp3',
+            'l4.png': 'l4.mp3',
+            'm1.png': 'm1.mp3',
+            'm2.png': 'm2.mp3',
+            'm3.png': 'm3.mp3',
+            'm4.png': 'm4.mp3',
+            'm5.png': 'm5.mp3',
+            'm7.png': 'm7.mp3',
+            'm8.png': 'm8.mp3',
+            'm9.png': 'm9.mp3',
+            'm10.png': 'm10.mp3',
+            'm11.png': 'm11.mp3',
+            'm12.png': 'm12.mp3',
+            'ojos.png': 'ojos.mp3',
+            'p1.png': 'p1.mp3',
+            'p2.png': 'p2.mp3',
+            'p3.png': 'p3.mp3',
+            'p4.png': 'p4.mp3',
+            'p5.png': 'p5.mp3',
+            'p6.png': 'p6.mp3',
+            'r1.png': 'r1.mp3',
+            'r2.png': 'r2.mp3',
+            'r3.png': 'r3.mp3',
+            'r4.png': 'r4.mp3',
+            's1.png': 's1.mp3',
+            's2.png': 's2.mp3',
+            's3.png': 's3.mp3',
+            's4.png': 's4.mp3',
+            's5.png': 's5.mp3',
+            's6.png': 's6.mp3',
+            't1.png': 't1.mp3',
+            't2.png': 't2.mp3',
+            't3.png': 't3.mp3',
+            't4.png': 't4.mp3',
+            't5.png': 't5.mp3',
+            'vi.png': 'vi.mp3',
+            'vi1.png': 'vi1.mp3',
+            'vi2.png': 'vi2.mp3',
+            'vi3.png': 'vi3.mp3',
+            'vi4.png': 'vi4.mp3',
+            'vii2.png': 'vii2.mp3',
+            'viii.png': 'viii.mp3',
+            'viii1.png': 'viii1.mp3',
+            'viii2.png': 'viii2.mp3',
+            'viii3.png': 'viii3.mp3',
+            'viii4.png': 'viii4.mp3',
+            'viii6.png': 'viii6.mp3',
+            'vxii3.png': 'vxii3.mp3',
+            'xii.png': 'xii.mp3',
+            'XII1.png': 'XII1.mp3',
+            'xii2.png': 'xii2.mp3',
+            'xii4.png': 'xii4.mp3',
+            'xii5.png': 'xii5.mp3',
+            'xii6.png': 'xii6.mp3',
+            'xii7.png': 'xii7.mp3',
+            'xiii.png': 'xiii.mp3',
+            'xiii1.png': 'xiii1.mp3',
+            'xiii2.png': 'xiii2.mp3',
+            'xiii3.png': 'xiii3.mp3',
+            'xiiii.png': 'xiiii.mp3',
+            'xiiii1.png': 'xiiii1.mp3',
+            'xiiii3.png': 'xiiii3.mp3',
+            'xiiii4.png': 'xiiii4.mp3',
+            'xvii.png': 'xvii.mp3',
+            'xvii1.png': 'xvii1.mp3',
+            'xvii2.png': 'xvii2.mp3',
+            'xvii4.png': 'xvii4.mp3',
+            'xvii5.png': 'xvii5.mp3',
+            'xvii6.png': 'xvii6.mp3',
+            'xvii7.png': 'xvii7.mp3',
+            'xviiii.png': 'xviiii.mp3',
+            'xviiii1.png': 'xviiii1.mp3',
+            'xviiii2.png': 'xviiii2.mp3',
+            'xviiii3.png': 'xviiii3.mp3',
+            'xx.png': 'xx.mp3',
+            'xxi.png': 'xxi.mp3',
+            'xxi1.png': 'xxi1.mp3',
+            'xxi2.png': 'xxi2.mp3',
+            'xxi3.png': 'xxi3.mp3',
+            'xxi4.png': 'xxi4.mp3',
+            'xxi5.png': 'xxi5.mp3',
+            'iii7.png': 'iii7.mp3',
+        };
 
- 
-</script>
+        const imageAudioMap2 = {
+            '2ii5.gif': 'white.mp3',
+            'Nt6v.gif': 'ritm.mp3',
+            'Nt63v.gif': 'ambientloop.mp3',
+            'Nt61.gif': 'audio5.mp3',
+            'Nt6.gif': 'gaitaexp.mp3',
+            'Nt6cv1.gif': 'canto.mp3',
+            'Nt6cv.gif': 'ruido.mp3',
+        };
 
+        let collageImageAudioMap = new Map();
+        let audiosImages = [];
+
+        document.addEventListener('DOMContentLoaded', function () {
+            loadImagesFromFirebase();
+            loadImages2FromFirebase();
+        });
+
+        function loadImagesFromFirebase() {
+            const galleryContainer = document.querySelector('#gallery-container');
+            images.forEach(image => {
+                loadFirebaseImage(image).then(url => {
+                    const img = document.createElement('img');
+                    img.src = url;
+                    img.style.width = '100px';
+                    img.addEventListener('click', function (e) {
+                        e.stopPropagation();
+                        const collageImg = img.cloneNode();
+                        collageImg.classList.add('draggable');
+                        collageImg.style.position = 'absolute';
+                        collageImg.style.left = '0px';
+                        collageImg.style.top = '0px';
+                        document.getElementById('collage-container').appendChild(collageImg);
+                        makeImageInteractive(collageImg);
+
+                        const audioSrc = imageAudioMap[image];
+                        if (audioSrc) {
+                            const audio = new Audio(audioSrc);
+                            collageImageAudioMap.set(collageImg, audio);
+                            audio.play(); // Reproduce el audio cuando se coloca la imagen
+                        }
+                    });
+                    galleryContainer.appendChild(img);
+                }).catch(error => {
+                    console.error(`Error al cargar la imagen ${image}:`, error);
+                });
+            });
+        }
+
+        function loadImages2FromFirebase() {
+            const galleryContainer2 = document.querySelector('#gallery-container-2');
+            images2.forEach(image => {
+                loadFirebaseImage(image).then(url => {
+                    const img = document.createElement('img');
+                    img.src = url;
+                    img.style.width = '60px';
+                    img.addEventListener('click', function (e) {
+                        e.stopPropagation();
+                        const collageImg = img.cloneNode();
+                        collageImg.classList.add('draggable');
+                        collageImg.style.position = 'absolute';
+                        collageImg.style.left = '0px';
+                        collageImg.style.top = '0px';
+                        document.getElementById('collage-container').appendChild(collageImg);
+                        makeImageInteractive(collageImg);
+
+                        const audioSrc = imageAudioMap2[image];
+                        if (audioSrc) {
+                            const audio = new Audio(audioSrc);
+                            collageImageAudioMap.set(collageImg, audio);
+                            audio.play(); // Reproduce el audio cuando se coloca la imagen
+                        }
+                    });
+                    galleryContainer2.appendChild(img);
+                }).catch(error => {
+                    console.error(`Error al cargar la imagen ${image}:`, error);
+                });
+            });
+        }
+
+        function loadFirebaseImage(fileName) {
+            const storageRef = storage.ref();
+            const imageRef = storageRef.child(fileName);
+            return imageRef.getDownloadURL();
+        }
+
+        function makeImageInteractive(img) {
+            interact(img)
+                .draggable({
+                    listeners: {
+                        start(event) {
+                            let target = event.target;
+                            target.style.zIndex = 1000;
+                        },
+                        move(event) {
+                            let target = event.target,
+                                x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
+                                y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
+
+                            target.style.transform = `translate(${x}px, ${y}px) rotate(${target.getAttribute('data-angle') || 0}deg)`;
+
+                            target.setAttribute('data-x', x);
+                            target.setAttribute('data-y', y);
+                        }
+                    },
+                    inertia: true,
+                    modifiers: [
+                        interact.modifiers.restrictRect({
+                            restriction: 'parent',
+                            endOnly: true
+                        })
+                    ],
+                    autoScroll: true
+                })
+                .resizable({
+                    edges: { left: true, right: true, bottom: true, top: true },
+                    listeners: {
+                        move(event) {
+                            let target = event.target;
+                            let x = (parseFloat(target.getAttribute('data-x')) || 0);
+                            let y = (parseFloat(target.getAttribute('data-y')) || 0);
+
+                            target.style.width = event.rect.width + 'px';
+                            target.style.height = event.rect.height + 'px';
+
+                            x += event.deltaRect.left;
+                            y += event.deltaRect.top;
+
+                            target.style.transform = `translate(${x}px, ${y}px) rotate(${target.getAttribute('data-angle') || 0}deg)`;
+
+                            target.setAttribute('data-x', x);
+                            target.setAttribute('data-y', y);
+                        }
+                    }
+                });
+
+            img.addEventListener('dblclick', function () {
+                let angle = parseInt(this.getAttribute('data-angle') || '0');
+                angle = (angle + 180) % 360;
+                this.style.transform = `translate(${this.getAttribute('data-x') || 0}px, ${this.getAttribute('data-y') || 0}px) rotate(${angle}deg)`;
+                this.setAttribute('data-angle', angle.toString());
+            });
+
+            img.addEventListener('click', function (e) {
+                if (e.ctrlKey || e.metaKey) {
+                    img.classList.toggle('selected');
+                } else {
+                    document.querySelectorAll('.draggable.selected').forEach(selectedImg => {
+                        if (selectedImg !== img) {
+                            selectedImg.classList.remove('selected');
+                        }
+                    });
+                    img.classList.add('selected');
+                }
+            });
+        }
+
+    </script>
 
     <style>
-    
-       
         body {
-                        background-color: #ffffff;
-                        font-family: "Anta", sans-serif;
-            margin-top: 10px;
-            margin-left: 10px;
-            margin-right: 10px;
-            margin-bottom: 100px; 
-            background-image: url('papr.jpg');
-
-
+            background-color: #ffffff;
+            font-family: "Anta", sans-serif;
+            margin: 0px;
+            background-image: url('pap.jpg');
             
         }
 
-             .anta-regular {
-  font-family: "Anta", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-}
+        .anta-regular {
+            font-family: "Anta", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+        }
 
-     
-
-#header {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    left: 0;
-    z-index: 1050; /* Eleva el z-index para que esté sobre otros elementos */
-    position: fixed;
-
-
-}
-
-
-#navbar {
-    display: flex; /* Usa Flexbox para el diseño */
-    justify-content: center; /* Centra los elementos horizontalmente */
-    align-items: center; /* Centra los elementos verticalmente */
-    color: #fbfbfb !important; /* Color de texto blanco */
-    border: 2px dashed #5d626b; /* Borde personalizado */
-    margin-right: auto; /* Centra el navbar ajustando automáticamente el margen derecho */
-    margin-left: auto;
-    position: fixed
-
-
-}
-
-
-
-#navbar-brand {
-    display: flex; /* Usa Flexbox para el diseño */
-    justify-content: center; /* Centra los elementos horizontalmente */
-    align-items: center; 
-    font-size: 1.1rem; /* Tamaño de la fuente */
-    margin-top: 2px;
-    padding: 8px;
-    background-color:  transparent;
-
-
-}
-
-        
-        #navbar.navbar-expand-lg.navbar-light.bg-light {
-padding: 5px;
+        #header {
             display: flex;
-            justify-content: center; /* Centra los elementos horizontalmente */
-    align-items: center; 
-    background-color: transparent; 
-    border: 2px dashed #c4d49c;
-    z-index: 1050; /* Eleva el z-index para que esté sobre otros elementos */
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            left: 0;
+            z-index: 1050;
+            position: fixed;
+        }
 
-}
+        #navbar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fbfbfb !important;
+            border: 2px dashed #5d626b;
+            margin-right: auto;
+            margin-left: auto;
+            position: fixed;
+        }
+
+        #navbar-brand {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.1rem;
+            margin-top: 2px;
+            padding: 8px;
+            background-color: transparent;
+        }
+
+        #navbar.navbar-expand-lg.navbar-light.bg-light {
+            padding: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: transparent;
+            border: 2px dashed #c4d49c;
+            z-index: 1050;
+        }
+
         .navbar-nav .nav-link {
-            font-size: 1rem; 
-            color: #3bc0ac; 
-            transition: color 0.3s; 
-            margin: 0 15px; 
+            font-size: 1rem;
+            color: #3bc0ac;
+            transition: color 0.3s;
+            margin: 0 15px;
         }
 
         .navbar-nav .nav-link:hover {
-            color: #55d1ba; 
-            border: 2px dashed  #c4d49c
-
+            color: #55d1ba;
+            border: 2px dashed #c4d49c
         }
-       
 
-@media (max-width: 768px) {
-    .navbar {
-        justify-content: center;
-        align-items: center;
-        text-align: center; /* Asegura que el texto también esté centrado */
-        background-color: transparent; 
+        @media (max-width: 768px) {
+            .navbar {
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                background-color: transparent;
+            }
 
-    }
+            .navbar-brand {
+                width: 100%;
+                display: block;
+                background-color: transparent;
+            }
 
-    .navbar-brand {
-        width: 100%; /* Ocupa todo el ancho disponible para asegurar el centrado */
-        display: block; /* Trata el elemento como un bloque para mejor manejo del centrado */
-        background-color: transparent; 
+            .navbar-nav,
+            .navbar-toggler {
+                justify-content: center;
+                width: 100%;
+            }
+        }
 
-    }
-
-    /* Asegúrate de que todos los elementos del navbar estén centrados en dispositivos móviles */
-    .navbar-nav,
-    .navbar-toggler {
-        justify-content: center;
-        width: 100%; /* Ocupa todo el ancho para elementos internos también */
-
-    }
-}
-/* Para asegurar que el navbar se expanda adecuadamente en dispositivos grandes */
-@media (min-width: 992px) {
-    .navbar {
-        justify-content: center; /* Mantiene el contenido centrado en dispositivos grandes */
-        z-index: 1;
-    }
-}
+        @media (min-width: 992px) {
+            .navbar {
+                justify-content: center;
+                z-index: 1;
+            }
+        }
 
         .navbar-toggler {
-            border: 2px dashed  #c4d49c
+            border: 2px dashed #c4d49c
         }
 
         .navbar-toggler-icon {
-            background-color: #ffffff; 
-            border: 2px dashed  #c4d49c
-
+            background-color: #ffffff;
+            border: 2px dashed #c4d49c
         }
 
         .navbar-toggler:focus {
-            outline: none; 
+            outline: none;
         }
 
-          .navbar-collapse {
-            background-color: #ffffff; 
-              border-radius: 5px;
-
-            border: 2px dashed  #c4d49c
-
+        .navbar-collapse {
+            background-color: #ffffff;
+            border-radius: 5px;
+            border: 2px dashed #c4d49c
         }
 
         .navbar-collapse .navbar-nav .nav-link {
-            padding: 15px 0; 
+            padding: 15px 0;
         }
 
         .navbar-collapse .navbar-nav .nav-link:last-child {
-            border-bottom: none; 
+            border-bottom: none;
         }
 
-        
         @media screen and (max-width: 576px) {
-    .navbar-nav {
-        font-size: 0.9rem;
-        margin: 10px 15px;
-        width: 80%; /* Hace que la barra de menú use todo el ancho disponible */
-        text-align: center; /* Centra el texto de los enlaces */
-align-items: center;
-    }
+            .navbar-nav {
+                font-size: 0.9rem;
+                margin: 10px 15px;
+                width: 80%;
+                text-align: center;
+                align-items: center;
+            }
 
-    .navbar {
-        width: 80%; /* Asegura que el elemento navbar también ocupe todo el ancho */
-        text-align: center; /* Centra el texto de los enlaces */
+            .navbar {
+                width: 80%;
+                text-align: center;
+            }
 
-        
-    }
+            .navbar-collapse {
+                width: 80%;
+                text-align: center;
+            }
 
-    .navbar-collapse {
-        width: 80%; /* Hace que el contenido colapsable de la navbar ocupe todo el ancho */
-        text-align: center; /* Centra el texto de los enlaces */
+            .navbar-toggler {
+                margin-right: 0;
+                text-align: center;
+            }
 
-    }
+            .navbar-nav .nav-link {
+                text-align: center;
+            }
+        }
 
-    .navbar-toggler {
-        margin-right: 0; /* Elimina el margen derecho para alinear el toggler a la derecha */
-        text-align: center; /* Centra el texto de los enlaces */
-;
-
-    }
-
-    .navbar-nav .nav-link {
-        text-align: center; /* Centra el texto de los enlaces */
-    }
-}
-
-
-
-        #audio-player-container {
-  padding: 1px;
-  background-color: transparent; 
-  border-radius: 2px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
-  max-width: 200px; 
-  margin: auto; 
-}
-
-#audio-player-container label {
-  font-size: 14px;
-  color: #3c3c3c;
-  margin-bottom: 2px;
-}
-     
-#audio-player-container #pitchRange {
-  width: 100%; 
-  -webkit-appearance: none;
-  appearance: none;
-  height: 5px;
-  background: #ddd;
-  outline: none;
-  opacity: 0.7;
-  -webkit-transition: .2s;
-  transition: opacity .2s;
-}
-
-#audio-player-container audio {
-  width: 100%; 
-  margin-bottom: 5px; 
-}
-
-#audio-player-container #pitchRange:hover::-webkit-slider-thumb,
-#audio-player-container #pitchRange:hover::-moz-range-thumb {
-  background: #fefffe;
-}
         #menu-links a {
-            color: #767676; 
+            color: #767676;
             text-decoration: none;
-            margin: 0 20px; 
+            margin: 0 20px;
         }
 
         #menu-links a:hover {
-         border: 2px dashed  #c4d49c      
-          }
+            border: 2px dashed #c4d49c
+        }
 
         #header img {
             width: 75px;
@@ -295,7 +533,7 @@ align-items: center;
         }
 
         .section {
-            padding: 20px; 
+            padding: 20px;
             text-align: center;
         }
 
@@ -304,81 +542,76 @@ align-items: center;
             top: 50%;
             left: 0;
             width: 100%;
-            height: 30%; 
+            height: 30%;
             overflow-x: auto;
             white-space: nowrap;
-            padding: 30px;
+            padding: 80px;
             display: flex;
-            flex-wrap: wrap; 
+            flex-wrap: wrap;
             gap: 5px;
             align-items: center;
             justify-content: flex-start;
-            
-
+            display: none;
         }
+
         #gallery-container-2 {
             position: fixed;
-            top: 33%;
+            top: 35%;
             left: 0;
-            width: 100%;
-            height: 130px; 
+            width: 90%;
             overflow-x: auto;
             white-space: nowrap;
-            padding: 5px;
+            padding: 2px;
             display: flex;
             align-items: center;
             justify-content: flex-start;
-
-
+            display: none;
         }
-        /* Estilos para la barra de menú */
-.navbar {
-    background-color: transparent !important; /* Hace la barra de menú transparente */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Agrega una sombra suave */
-}
 
-/* Estilos para el menú desplegable en versión móvil */
-.navbar-collapse {
-    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparente con sombra */
-    box-shadow: 0 8px 10px rgba(0, 0, 0, 0.2); /* Sombra más notoria */
-}
+        .navbar {
+            background-color: transparent !important;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
 
-/* Ajusta la transparencia del botón del menú desplegable para mejor coherencia visual */
-.navbar-toggler {
-    background-color: rgba(255, 255, 255, 0.5); /* Semi-transparente */
-    border-color: rgba(255, 255, 255, 0.5); /* Ajusta el color del borde del botón */
-}
-.navbar-toggler-icon {
-    background-image: url("data:image/svg+xml,..."); /* Asegúrate de usar tu propia imagen SVG aquí */
-}
+        .navbar-collapse {
+            background-color: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 8px 10px rgba(0, 0, 0, 0.2);
+        }
 
+        .navbar-toggler {
+            background-color: rgba(255, 255, 255, 0.5);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
 
         #gallery-container img {
             width: 40px;
-            height: 50px;
+            height: 40px;
             margin-right: 1px;
             margin-bottom: 1px;
             cursor: pointer;
             background-image: url('papel.jpeg');
             display: inline-block;
-    vertical-align: middle;
-    background-size: cover; 
-    background-position: center;
-            }
-        
-            #gallery-container-2 img {
-            width: 50px;
-            height: 50px;
+            vertical-align: middle;
+            background-size: cover;
+            background-position: center;
+            box-shadow: 0px 9px 10px rgba(206, 255, 72, 0.9);
+
+        }
+
+        #gallery-container-2 img {
+            width: 40px;
+            height: 40px;
             margin-right: 5px;
             margin-bottom: 10px;
             cursor: pointer;
             background-image: url('papel.jpeg');
-    background-size: cover; 
-    background-position: center;
-    margin-top: 40px;
-    padding: 10px;
+            background-size: cover;
+            background-position: center;
+            margin-top: 40px;
+            padding: 10px;
+            box-shadow: 0px 9px 10px rgba(87, 87, 87, 0.9);
 
-            }
+        }
 
         #collage-container {
             padding: 50px;
@@ -388,514 +621,495 @@ align-items: center;
             height: 90%;
             float: left;
             display: flex;
-            background-color: #000;
+            background-color: transparent;
             position: relative;
-         border: 2px dashed #c2f700;
-         background-image: url('ppp.jpg');
-    background-size: cover; 
-    margin-top: 45vh; /* Ajuste para asegurar visibilidad de la galería */
-        height: calc(200vh - 200px); /* Altura ajustada para permitir interacción */
-        padding: 0px; /* Añade un poco de relleno alrededor */
-                    margin-top: 400px;
+            border: 4px dashed #c2f700;
+            background-image: url('papr.webp');
+            background-size: cover;
+            margin-top: 45vh;
+            height: calc(200vh - 200px);
+            padding: 0px;
+            margin-top: 400px;
+            box-shadow: 0px 9px 10px rgba(163, 72, 255, 0.9);
 
 
         }
 
         @media (max-width: 390px) {
-            
             #gallery-container img {
-               width: 20px;
-            height: 20px;
-            gap: 5px;
-
-                height: auto; /* Ajusta para mantener la proporción */
-                margin: 0 auto; /* Centra la imagen si es necesario */
+                width: 20px;
+                height: 20px;
+                gap: 5px;
+                height: auto;
+                margin: 0 auto;
                 position: relative;
                 display: inline;
-                z-index :100px;
+                z-index: 100px;
                 margin-right: 0px;
-            margin-bottom: 0px;
-        
+                margin-bottom: 0px;
             }
-          
-        
+
             #collage-container {
-                margin-top: 60vh; /* Ajusta según la altura de tu galería */
+                margin-top: 60vh;
                 width: 100%;
                 height: 500px;
                 position: fixed;
                 display: block;
             }
-        
+
             #collage-container img {
-                max-width: 100%; /* Asegúrate de que no excedan el ancho del contenedor */
-                max-height: auto; /* Ajusta para mantener la proporción */
+                max-width: 100%;
+                max-height: auto;
                 cursor: move;
-                box-shadow: 0 0 5px rgba(0,0,0,0.5);
+                box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
                 transition: transform 0.1s ease;
                 display: block;
-                margin: 0 auto; /* Centra la imagen si es necesario */
+                margin: 0 auto;
             }
         }
-        
-/* iPads en modo paisaje */
-@media only screen 
-  and (min-device-width: 768px) 
-  and (max-device-width: 1024px) 
-  and (orientation: landscape) {
-    #gallery-container-2 {
-        /* Ajustes para mejorar la visibilidad */
-        position: fixed;
-        top: 10%; /* Ajusta este valor según sea necesario */
-    }
-    #collage-container {
-        margin-top: 10vh; /* Espacio para la galería */
-        position: fixed;
-    }
-}
 
-/* iPads en modo retrato */
-@media only screen 
-  and (min-device-width: 768px) 
-  and (max-device-width: 1024px) 
-  and (orientation: portrait) {
+        @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
+            #gallery-container-2 {
+                position: fixed;
+                top: 10%;
+            }
 
-    #gallery-container {
-        height: 20%;
-        
-        position: fixed;
-        top: 5%; /* Ajuste según necesidad */
- }    
-    #gallery-container-2 {
-        height: 10%;
+            #collage-container {
+                margin-top: 10vh;
+                position: fixed;
+            }
+        }
 
-        position: fixed;
-        top: 30%; /* Ajuste basado en tu diseño específico */
-    }
-    #collage-container {
-        top: 5vh; /* Ajuste según el contenido de tu galería */
-        position: fixed;
-    }
-}
+        @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
+            #gallery-container {
+                height: 20%;
+                position: fixed;
+                top: 5%;
+            }
+
+            #gallery-container-2 {
+                height: 10%;
+                position: fixed;
+                top: 30%;
+            }
+
+            #collage-container {
+                top: 5vh;
+                position: fixed;
+            }
+        }
+
+        @media only screen and (min-device-width: 390px) and (max-device-width: 844px) {
+            #gallery-container img {
+                width: 10%;
+                height: 30%;
+            }
+
+            #gallery-container {
+                position: fixed;
+                top: 15%;
+                gap: 2px;
+            }
+
+            #gallery-container-2 {
+                position: fixed;
+                top: 30%;
+            }
+
+            #collage-container {
+                margin-top: 45vh;
+            }
+        }
+
+        #gallery-container-2 img {
+            width: 20px;
+            height: auto;
+            margin-right: 4px;
+            margin-bottom: 4px;
+            top: 24%;
+        }
+
+        #gallery-container {
+            position: fixed;
+            top: 10%;
+            overflow-x: auto;
+            white-space: nowrap;
+            padding: 20px;
+        }
+
+        #volume-slider-images2 {
+            display: inline-block;
+            padding: 12px 10px;
+            background-color: #000000;
+            text-align: center;
+            cursor: pointer;
+            width: 100px;
+            border: 2px dashed #c2f700;
+            font-size: 12px;
+            position: absolute;
+            z-index: 100;
+            -webkit-appearance: none;
+            appearance: none;
+            outline: none;
+            padding: 10px 20px;
+            text-align: center;
+            border: none;
+            cursor: pointer;
+            border: 2px dashed #c2f700;
+            width: 150px;
+            font-size: 12px;
+            position: absolute;
+            top: 10px;
+            right: 60px;
+            z-index: 100;
+        }
 
 
-
-
-/* Estilos específicos para iPhone 12 */
-@media only screen 
-  and (min-device-width: 390px) 
-  and (max-device-width: 844px) {
-
-    #gallery-container img {
-
-               width:10%;
-            height: 30%;}
-
-
-    #gallery-container {
-        position: fixed;
-        top: 15%; /* Ajusta esta distancia según lo que se vea mejor */
-        gap: 2px;
-    }
-    #gallery-container-2 {
-        position: fixed;
-        top: 30%; /* Ajusta esta distancia según lo que se vea mejor */
-    }
-    #collage-container {
-        margin-top: 45vh; /* Ajusta según el espacio requerido por la galería */
-    }
-}
-
-    #gallery-container-2 img {width: 20px; /* Reduce el tamaño para ajustarse a la pantalla más pequeña */
-        height: auto; /* Mantiene la proporción */
-        margin-right: 4px; /* Espaciado reducido entre imágenes */
-        margin-bottom: 4px;
-        top: 24%; /* Posición ajustada para la visualización */
-        
-    }
-   
-    #gallery-container{
-        position: fixed;
-        top: 10%; /* Posición ajustada para la visualización */
-        overflow-x: auto; /* Permite desplazamiento horizontal */
-        white-space: nowrap; /* Alinea las imágenes horizontalmente */
-        padding: 20px; /* Añade un poco de relleno alrededor */
-    }
-    
-    
- 
-
-
-  #volume-slider-images2 {
-    display: inline-block;
-    padding: 12px 10px;
-    background-color: #000000;
-    text-align: center;
-    cursor: pointer;
-    width: 100px; 
-    border: 2px dashed #c2f700;
-    font-size: 12px;
-    position: absolute;
-    z-index: 100;
-    -webkit-appearance: none; 
-  appearance: none;          
-  outline: none;        
-    padding: 10px 20px;
-    text-align: center;
-    border: none;
-    cursor: pointer;
-                border: 2px dashed #c2f700;
-    width:150px; 
-    font-size: 12px;
-        
-    position: absolute;
-    top: 10px; 
-
-    right:  60px; 
-    z-index: 100;
-}
+        #gallery-toggle-button {
+            display: inline-block;
+            padding: 8px 8px;
+            background-color: #000000;
+            text-align: center;
+            cursor: pointer;
+            color: #dddddd;
+            width: 80px;
+            border: 2px dashed #c2f700;
+            font-size: 12px;
+            position: absolute;
+            z-index: 100;
+            -webkit-appearance: none;
+            appearance: none;
+            outline: none;
+            padding: 7px 10px;
+            text-align: center;
+            border: none;
+            cursor: pointer;
+            border: 2px dashed #c2f700;
+            width: 150px;
+            font-size: 12px;
+            position: absolute;
+            top: 10px;
+            right: 230px;
+            z-index: 100;
+        }
 
         .no-scroll {
-    touch-action: none;
-}
+            touch-action: none;
+        }
 
+        #volume-slider-images2::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 10px;
+            height: 10px;
+            background: #c5c2c2;
+            border-radius: 50%;
+        }
 
-#volume-slider-images2 ::-webkit-slider-thumb {
-  -webkit-appearance: none; 
-  appearance: none;
-  width: 10px;              
-  height: 10px;             
-  background: #c5c2c2;     
-  border-radius: 50%;
-    
-}
-#imput-slider:hover{
-    background-color: rgb(218, 212, 255);
-    border: 2px dashed #c2f700;
+        #imput-slider:hover {
+            background-color: rgb(218, 212, 255);
+            border: 2px dashed #c2f700;
+        }
 
-}
+        .volume-slider:hover .hover-text {
+            display: block;
+            position: absolute;
+            bottom: -10px;
+            padding: 1px 4px;
+            top: 10px;
+            z-index: 100;
+            right: 150px;
+            transform: translateX(-50%);
+            background-color: #fff;
+            color: #000;
+            border-radius: 5px;
+            font-size: 10px;
+            white-space: nowrap;
+            height: 20px;
+        }
 
-.volume-slider:hover  .hover-text {
- 
-    display: block; /* Oculta el texto por defecto */
-    position: absolute; /* Posicionamiento relativo al botón */
-    bottom: -10px; /* Ajusta según necesites */
-    padding: 1px 4px; 
-    top: 10px; 
-    z-index: 100;
-    right:  150px;
-    transform: translateX(-50%); /* Centra el texto bajo el botón */
-    background-color: #fff; /* Fondo del texto */
-    color: #000; /* Color del texto */
-    /* Espaciado interno */
-    border-radius: 5px; /* Bordes redondeados */
-    font-size: 10px; /* Tamaño del texto */
-    white-space: nowrap; /* Evita que el texto se divida en líneas */
-    height: 20px;
+        input:hover .hover-text {
+            display: block;
+        }
 
-}
-input:hover .hover-text {
-    display: block; /* Muestra el texto en hover */
-}
+        #bg-color-picker {
+            display: inline-block;
+            padding: 12px 10px;
+            background-color: #000000;
+            color: rgb(255, 255, 255);
+            font-weight: bold;
+            text-align: center;
+            cursor: pointer;
+            border: 2px dashed #c2f700;
+            width: 50px;
+            font-size: 12px;
+            position: absolute;
+            top: 220px;
+            right: 10px;
+            z-index: 1000;
+            margin-top: 20px;
+        }
 
-#bg-color-picker {
-    display: inline-block;
-    padding: 12px 10px;
-    background-color: #000000;
-    color: rgb(255, 255, 255);    font-weight: bold;
-    text-align: center;
-    cursor: pointer;
-    border: 2px dashed#c2f700;
+        #bg-color-picker:hover {
+            background-color: rgb(218, 212, 252)
+        }
 
-    width: 50px; 
-    font-size: 12px;
-    position: absolute;
-    top: 220px; 
-    right:  10px; 
-    z-index: 1000;
+        .color-picker:hover .hover-text {
+            display: block;
+            position: absolute;
+            bottom: -10px;
+            padding: 1px 4px;
+            top: 220px;
+            z-index: 15;
+            right: 10px;
+            transform: translateX(-50%);
+            background-color: #fff;
+            color: #000;
+            border-radius: 5px;
+            font-size: 10px;
+            white-space: nowrap;
+            height: 20px;
+        }
 
-    margin-top: 20px; 
-}
-#bg-color-picker:hover {
-    background-color: rgb(218, 212, 252)
+        #play-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #000000;
+            color: rgb(255, 255, 255);
+            font-weight: bold;
+            text-align: center;
+            border: none;
+            cursor: pointer;
+            border: 2px dashed #c2f700;
+            width: 50px;
+            font-size: 12px;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 1000;
+        }
 
-}
+        .hover-text {
+            display: none;
+            position: absolute;
+            bottom: -10px;
+            padding: 1px 4px;
+            top: 10px;
+            z-index: 1000;
+            right: 10px;
+            height: 20px;
+            font-family: "Anta", sans-serif;
+            transform: translateX(-50%);
+            background-color: #fff;
+            color: #000;
+            border-radius: 5px;
+            font-size: 10px;
+            white-space: nowrap;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
 
+        #play-button:hover {
+            background-color: rgb(218, 212, 252)
+        }
 
-.color-picker:hover .hover-text {
-    display: block; /* Oculta el texto por defecto */
-    position: absolute; /* Posicionamiento relativo al botón */
-    bottom: -10px; /* Ajusta según necesites */
-    padding: 1px 4px; 
-    top: 220px; 
-    z-index: 15;
-    right:  10px;
-    transform: translateX(-50%); /* Centra el texto bajo el botón */
-    background-color: #fff; /* Fondo del texto */
-    color: #000; /* Color del texto */
-    /* Espaciado interno */
-    border-radius: 5px; /* Bordes redondeados */
-    font-size: 10px; /* Tamaño del texto */
-    white-space: nowrap; /* Evita que el texto se divida en líneas */
-    height: 20px;
-}
- 
-#play-button {
+        button:hover .hover-text {
+            display: block;
+        }
 
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #000000;
-    color: rgb(255, 255, 255);    font-weight: bold;
-    text-align: center;
-    border: none;
-    cursor: pointer;
-                border: 2px dashed#c2f700;
-    width:50px; 
-    font-size: 12px;
-        
-    position: absolute;
-    top: 10px; 
+        #play-audios-images2 {
+            display: none;
+            padding: 10px 20px;
+            background-color: #000000;
+            color: rgb(255, 255, 255);
+            font-weight: bold;
+            text-align: center;
+            border: none;
+            cursor: pointer;
+            border: 2px dashed #c2f700;
+            width: 50px;
+            font-size: 12px;
+            position: absolute;
+            top: 50px;
+            right: 60px;
+            z-index: 100;
+        }
 
-    right:  10px; 
-    z-index: 1000;
-}
+        #play-audios-images2:hover {
+            background-color: rgb(218, 212, 252)
+        }
 
-.hover-text {
-    display: none; /* Oculta el texto por defecto */
-    position: absolute; /* Posicionamiento relativo al botón */
-    bottom: -10px; /* Ajusta según necesites */
-    padding: 1px 4px; 
-    top: 10px; 
-    z-index: 1000;
-    right:  10px;
-    height: 20px;
-                        font-family: "Anta", sans-serif;
+        #stop-audios-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #000000;
+            color: rgb(255, 255, 255);
+            font-weight: bold;
+            text-align: center;
+            border: none;
+            cursor: pointer;
+            border: 2px dashed #c2f700;
+            width: 50px;
+            font-size: 12px;
+            position: absolute;
+            top: 85px;
+            right: 60px;
+            z-index: 1000;
+        }
 
-    transform: translateX(-50%); /* Centra el texto bajo el botón */
-    background-color: #fff; /* Fondo del texto */
-    color: #000; /* Color del texto */
-    /* Espaciado interno */
-    border-radius: 5px; /* Bordes redondeados */
-    font-size: 10px; /* Tamaño del texto */
-    white-space: nowrap; /* Evita que el texto se divida en líneas */
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2); /* Sombra opcional para resaltar */
-}
-#play-button:hover {
+        #stop-audios-button:hover {
+            background-color: rgb(218, 212, 252)
+        }
 
-    background-color: rgb(218, 212, 252)
+        #loop-audios-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #000000;
+            color: rgb(255, 255, 255);
+            font-weight: bold;
+            text-align: center;
+            border: none;
+            cursor: pointer;
+            border: 2px dashed #c2f700;
+            width: 50px;
+            font-size: 12px;
+            position: absolute;
+            top: 120px;
+            right: 60px;
+            z-index: 1000;
+        }
 
-}
+        #loop-audios-button:hover {
+            background-color: rgb(218, 212, 252)
+        }
 
+        #move-down {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #000000;
+            color: rgb(255, 255, 255);
+            font-weight: bold;
+            text-align: center;
+            border: none;
+            cursor: pointer;
+            border: 2px dashed #c2f700;
+            width: 50px;
+            font-size: 12px;
+            position: absolute;
+            top: 120px;
+            right: 10px;
+            z-index: 1000;
+        }
 
-button:hover .hover-text {
-    display: block; /* Muestra el texto en hover */
-}
+        #move-down:hover {
+            background-color: rgb(218, 212, 252)
+        }
 
+        #move-up {
+            display: inline-block;
+            padding: 10px 10px;
+            background-color: #000000;
+            color: rgb(255, 255, 255);
+            font-weight: bold;
+            text-align: center;
+            cursor: pointer;
+            width: 50px;
+            font-size: 12px;
+            border: 2px dashed #c2f700;
+            position: absolute;
+            top: 155px;
+            right: 10px;
+            z-index: 1000;
+        }
 
+        #move-up:hover {
+            background-color: rgb(218, 212, 252)
+        }
 
+        #change-background-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #000000;
+            color: rgb(255, 255, 255);
+            font-weight: bold;
+            text-align: center;
+            border: none;
+            cursor: pointer;
+            border: 2px dashed #c2f700;
+            width: 50px;
+            font-size: 12px;
+            position: absolute;
+            top: 49px;
+            right: 10px;
+            z-index: 1000;
+        }
 
-#play-audios-images2{
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #000000;
-    color: rgb(255, 255, 255);    font-weight: bold;
-    text-align: center;
-    border: none;
-    cursor: pointer;
-                border: 2px dashed #c2f700;
-    width:50px; 
-    font-size: 12px;
-        
-    position: absolute;
-    top: 50px; 
+        #change-background-button:hover {
+            background-color: rgb(218, 212, 252)
+        }
 
-    right:  60px; 
-    z-index: 100;
-}
-#play-audios-images2:hover{ 
-background-color: rgb(218, 212, 252)
-}
-#stop-audios-button{
+        #delete-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #000000;
+            color: rgb(255, 255, 255);
+            font-weight: bold;
+            text-align: center;
+            border: none;
+            cursor: pointer;
+            border: 2px dashed #c2f700;
+            width: 50px;
+            font-size: 12px;
+            position: absolute;
+            top: 85px;
+            right: 10px;
+            z-index: 1000;
+        }
 
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #000000;
-    color: rgb(255, 255, 255);    font-weight: bold;
-    text-align: center;
-    border: none;
-    cursor: pointer;
-    border: 2px dashed #c2f700;
-    width:50px; 
-    font-size: 12px;
-    position: absolute;
-    top: 85px; 
-    right:  60px; 
-    z-index: 1000;
-}
-#stop-audios-button:hover{
+        #delete-button:hover {
+            background-color: rgb(218, 212, 252)
+        }
 
-    background-color: rgb(218, 212, 252)
-
-}
-
-#loop-audios-button{
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #000000;
-    color: rgb(255, 255, 255);    font-weight: bold;
-    text-align: center;
-    border: none;
-    cursor: pointer;
-    border: 2px dashed #c2f700;
-    width:50px; 
-    font-size: 12px;
-    position: absolute;
-    top: 120px; 
-    right:  60px; 
-    z-index: 1000;
-}
-#loop-audios-button:hover {
-    background-color: rgb(218, 212, 252)
-
-}
-
-#move-down{
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #000000;
-    color: rgb(255, 255, 255);    font-weight: bold;
-    text-align: center;
-    border: none;
-    cursor: pointer;
-    border: 2px dashed#c2f700;
-    width:50px; 
-    font-size: 12px;
-    position: absolute;
-    top: 120px; 
-    right:  10px; 
-    z-index: 1000;
-}
-#move-down:hover{
-background-color: rgb(218, 212, 252)
- }
-
-
-#move-up{
-
-    display: inline-block;
-    padding: 10px 10px;
-    background-color: #000000;
-    color: rgb(255, 255, 255);    font-weight: bold;
-    text-align: center;
-    cursor: pointer;
-    width: 50px; 
-    font-size: 12px;
-    border: 2px dashed#c2f700;
-    position: absolute;
-    top: 155px; 
-    right:  10px; 
-    z-index: 1000;
-    
-}
-
-
-#move-up:hover{
-background-color: rgb(218, 212, 252)
- }
-
-
-#change-background-button{
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #000000;
-    color: rgb(255, 255, 255);    font-weight: bold;
-    text-align: center;
-    border: none;
-    cursor: pointer;
-    border: 2px dashed #c2f700;;
-    width:50px; 
-    font-size: 12px;
-    position: absolute;
-    top: 49px; 
-    right:  10px; 
-    z-index: 1000;
-}
-
-#change-background-button:hover{
-background-color: rgb(218, 212, 252)
- }
-
-#delete-button{
-
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #000000;
-    color: rgb(255, 255, 255);    font-weight: bold;
-    text-align: center;
-    border: none;
-    cursor: pointer;
-    border: 2px dashed#c2f700;
-    width:50px; 
-    font-size: 12px;
-    position: absolute;
-    top: 85px; 
-    right:  10px; 
-    z-index: 1000;
-}
-
-#delete-button:hover{
-background-color: rgb(218, 212, 252)
- }
-
-#print-button{
-
-    display: inline-block;
-    padding: 5px 7px;
-    background-color: #000000;
-    color: rgb(255, 255, 255);    font-weight: bold;
-    text-align: center;
-    cursor: pointer;
-    width: 50px; 
-    font-size: 12px;
-    border: 2px dashed#c2f700;
-    position: absolute;
-    top: 212px; 
-    right:  10px; 
-    z-index: 1000;
-}
-
-#print-button:hover {
-    
-    background-color: rgb(211, 199, 199)
-
-}
+        #print-button {
+            display: inline-block;
+            padding: 5px 7px;
+            background-color: #000000;
+            color: rgb(255, 255, 255);
+            font-weight: bold;
+            text-align: center;
+            cursor: pointer;
+            width: 50px;
+            font-size: 12px;
+            border: 2px dashed #c2f700;
+            position: absolute;
+            top: 212px;
+            right: 10px;
+            z-index: 1000;
+        }
 
 
 
+        #print-button:hover {
+            background-color: rgb(211, 199, 199)
+        }
 
- #collage-container img {
-  
-    min-width:  60px;
-    min-height: 60px;
-    max-width: none;
-    max-height: none;
-    cursor: move;
-    transition: transform 0.1s ease; 
-    transform-origin: center center; 
-}
+        #collage-container img {
+            min-width: 40px;
+            min-height: 40px;
+            max-width: none;
+            max-height: none;
+            cursor: move;
+            transition: transform 0.1s ease;
+            transform-origin: center center;
+            background-color: transparent;
+        }
 
-
-
-.draggable {
+        .draggable {
             position: absolute;
             cursor: move;
             background-size: cover;
             background-position: center;
-           touch-action: manipulation;
-
+            touch-action: manipulation;
         }
-
-       
 
         #collage-footer {
             text-align: center;
@@ -915,45 +1129,78 @@ background-color: rgb(218, 212, 252)
             pointer-events: none;
         }
 
-
         @media print {
-  body, html {
-    background: #FFF;
-    color: #000;
-  }
-  #print-button, #volume-control, #volume-slider, #bg-color-picker, #gallery-container img{
-    display: none; 
-  }
+            body,
+            html {
+                background: #FFF;
+                color: #000;
+            }
 
+            #print-button,
+            #volume-control,
+            #volume-slider,
+            #bg-color-picker,
+            #gallery-container img {
+                display: none;
+            }
         }
-.draggable.selected {
-    border: 2px dashed #90ff00;
-}
 
-#logout-btn{
-    color: gray;
-    background-color: #fff;
-    border: none;
+        .draggable.selected {
+            border: 2px dashed #90ff00;
+        }
 
-}
-#logout-btn:hover{
-    border: 2px dashed  #c4d49c
-}
+        #logout-btn {
+            color: gray;
+            background-color: #fff;
+            border: none;
+        }
+
+        #logout-btn:hover {
+            border: 2px dashed #c4d49c
+        }
 
         .no-scroll {
-    overflow: hidden;
-    height: 100%;
-}
-        
-</style>
+            overflow: hidden;
+            height: 100%;
+        }
 
+        #message-container {
+            position:fixed;
+            top: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(255, 255, 255, 0.29);
+            border: 2px dashed #c2f700;
+            color: #697571;
+            padding: 20px;
+            z-index: 2000;
+            width: 80%;
+            text-align: center;
+            font-family: "Anta", sans-serif;
+            font-size: 16px;
+            box-shadow: 10px 10px 10px rgba(49, 49, 49, 0.9);
+
+        }
+
+        #close-button {
+            background-color: #000;
+            color: #ecebeb;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-family: "Anta", sans-serif;
+        }
+
+        #close-button:hover {
+            background-color: #80ff00;
+        }
     </style>
+
 </head>
 
 <body>
 
     <header id="header">
-
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" href="index.html">ARTE & PSIQUE</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
@@ -963,754 +1210,175 @@ background-color: rgb(218, 212, 252)
             <div class="collapse navbar-collapse" id="navbarNav">
                 <div id="menu-links" class="navbar-nav">
                     <a class="nav-link" href="Aprendizaje.html">Curso</a>
-<a class="nav-link" href="opensoundt.html" target="_blank">Tarot FQ</a>
-         <a class="nav-link" href="paint.html">Paint</a>
-
+                    <a class="nav-link" href="opensoundt.html" target="_blank">Tarot FQ</a>
+                    <a class="nav-link" href="paint.html">Paint</a>
                 </div>
-            </nav>
+            </div>
+        </nav>
+    </header>
 
-
-        </header>
-
-
-    <div id="gallery-container">
-    </div>
-    <div id="gallery-container-2">
-    </div>
-
+    <div id="gallery-container"></div>
+    <div id="gallery-container-2"></div>
 
     <div id="collage-container" ondrop="drop(event)" ondragover="allowDrop(event)" ondragenter="return false"
-    ondragleave="return false">
+        ondragleave="return false">
 
-
-
-   <div>
-        <P>  - Música[Dale play a cada audio - loop] /// </P>
-    </div>
+        <div id="message-container">
+            <div id="message"></div>
+            <button id="close-button">X</button>
+        </div>
         
-    <div>
-        <P>  - Img [Arma tu collage - Play al final]  </P>
-    </div>
+          
+        <div>
+            <p>Arte & Psique® All rights reserved. Alfonso Pretelt</p>
+        </div>
 
-
-
-    <div>
-        <P>  - Usa "<" para rotar la imagen-  </P>
-    </div>
-    <div></div>
-    <div>..............</div>
-
-    <div><p>Arte & Psique® All rights reserved. Alfonso Pretelt </p>
-    </div>
-
-   
-
-   
-    <div class="=icons" > 
-
-        <button id="play-button" i class='bx bx-play-circle' style='color:rgba(188,186,186,0.98)' ></i>
-         <span class="hover-text">Play al poema collage final</span>
-    </button>
-
-        <button id="stop-audios-button" class='bx bx-stop' style='color:rgba(188,186,186,0.98)'><span class="hover-text">Stop</span></button>
-
-        <button id="loop-audios-button" class='bx bx-repeat' style='color:rgba(188,186,186,0.98)'>         <span class="hover-text">Loop</span>
-        </button>
-
-        <div class="input-container">
-
-   
-    
-            <div class="color-picker" style=" display: inline-block;">
-                <input type="color" id="bg-color-picker" value="#ffffff" class='bx bx-palette' style='color:rgba(188,186,186,0.98)'>
-                <span class="hover-text">Cambia el color de Fondo</span>
+        <div class="icons">
+            <button id="play-button" class='bx bx-play-circle' style='color:rgba(188,186,186,0.98)'></button>
+            <span class="hover-text">Play al poema collage final</span>
+            <button id="stop-audios-button" class='bx bx-stop' style='color:rgba(188,186,186,0.98)'><span
+                    class="hover-text">Stop</span></button>
+            <button id="loop-audios-button" class='bx bx-repeat' style='color:rgba(188,186,186,0.98)'><span
+                    class="hover-text">Loop</span></button>
+                    <button id="gallery-toggle-button" class="toggle-gallery-button">GALERÍA</button>
+            <div class="input-container">
+                <div class="color-picker" style="display: inline-block;">
+                    <input type="color" id="bg-color-picker" value="#ffffff" class='bx bx-palette'
+                        style='color:rgba(188,186,186,0.98)'>
+                    <span class="hover-text">Cambia el color de Fondo</span>
+                </div>
+                <button id="print-button" class='bx bx-save' style='color:rgba(188,186,186,0.98)'
+                    class='bx bx-printer' style='color:rgba(188,186,186,0.98)'></button>
+                <span class="hover-text">guarda-imprime</span>
+                <button id="change-background-button" class='bx bx-image-alt' style='color:rgba(188,186,186,0.98)'></button>
+                <span class="hover-text">Cambia el tapiz</span>
+                <button id="delete-button" class='bx bx-eraser' style='color:rgba(233,233,233,0.98)'></button>
+                <span class="hover-text">Borrar</span>
+                <button id="move-up" class='bx bx-layer-plus' style='color:rgba(233,233,233,0.98)'></button>
+                <span class="hover-text">Abajo</span>
+                <button id="move-down" class='bx bxs-layer-minus' style='color:rgba(233,233,233,0.98)'></button>
+                <span class="hover-text">Arriba</span>
+                <button id="play-audios-images2" class='bx bx-play-circle' style='color:rgba(188,186,186,0.98)'></button>
+                <span class="hover-text">Play al soltar un audio</span>
+                <div class="volume-slider" style="display: inline-block;">
+                    <input type="range" id="volume-slider-images2" min="0" max="1" step="0.01" value="0.5"
+                        class='bx bx-volume-mute' style='color:rgba(188,186,186,0.98)'>
+                    <span class="hover-text">Sountracks</span>
+                </div>
             </div>
-            
-
-    <button id="print-button" i class='bx bx-save' style='color:rgba(188,186,186,0.98)' 
-        i class='bx bx-printer' style='color:rgba(188,186,186,0.98)' ></i>  <span class="hover-text">guarda-imprime</span></button>
-
-    <button id="change-background-button" i class='bx bx-image-alt' style='color:rgba(188,186,186,0.98)'></i>  <span class="hover-text">Cambia el tapiz</span> </button>
-
-    <button id="delete-button" i class='bx bx-eraser' style='color:rgba(233,233,233,0.98)' ></i><span class="hover-text">Borrar</span></button></button>
-
-    <button id="move-up" i class='bx bx-layer-plus' style='color:rgba(233,233,233,0.98)' ></i> <span class="hover-text">Abajo</span></button>
-    <button id="move-down" i class='bx bxs-layer-minus' style='color:rgba(233,233,233,0.98)' ></i> <span class="hover-text">Arriba</span></button>
-    
-<button id="play-audios-images2" i class='bx bx-play-circle' style='color:rgba(188,186,186,0.98)' ></i>
-    <span class="hover-text">Play al soltar un audio</span>
-</button>
-
-<div class="volume-slider" style=" display: inline-block;">
-    <input type="range" id="volume-slider-images2" min="0" max="1" step="0.01" value="0.5" class='bx bx-volume-mute' style='color:rgba(188,186,186,0.98)'>
-    <span class="hover-text">Sountracks</span>
-</div>
+        </div>
+    </div>
 
     
 
-
- 
-
-
-    
-    
     <script>
-         let audiosImages = [];
-    let audiosImages2 = [];
-   
-
-
-      document.addEventListener('DOMContentLoaded', function() {
-
-    const container = document.querySelector('#collage-container');
-
-
-    let history = [];
-
-    
-    });
-    function printCollage() {
-  window.print();
-}
-const images = ['0.png', '01.png', '02.png', '03.png', '04.png', '05.png', '06.png', '07.png', '08.png', 'c1.png', 'c2.png', 'c3.png', 'c4.png', 'c5.png', 'c6.png', 'c7.png', 'd1.png', 'd2.png', 'd3.png', 'd4.png', 'd5.png', 'd7.png', 'd8.png', 'd9.png', 'd10.png', 'd11.png', 'd12.png', 'd13.png', 'd14.png', 'd15.png', 'd16.png', 'e1.png', 'e2.png', 'e3.png', 'e4.png', 'e5.png', 'e6.png', 'f1.png', 'f2.png', 'f3.png', 'f4.png', 'f5.png', 'f6.png', 'h1.png', 'h2.png', 'h3.png', 'h4.png', 'iii.png', 'iii1.png', 'iii2.png', 'iii3.png', 'iii4.png', 'iii5.png', 'iii6.png', 'iii7.png', 'j1.png', 'j2.png', 'j3.png', 'j4.png', 'j5.png', 'j6.png', 'l1.png', 'l2.png', 'l3.png', 'l4.png', 'm1.png', 'm2.png', 'm3.png', 'm4.png', 'm5.png', 'm7.png', 'm8.png', 'm9.png', 'm10.png', 'm11.png', 'm12.png', 'ojos.png', 'p1.png', 'p2.png', 'p3.png', 'p4.png', 'p5.png', 'p6.png', 'r1.png', 'r2.png', 'r3.png', 'r4.png', 's1.png', 's2.png', 's3.png', 's4.png', 's5.png', 's6.png', 't1.png', 't2.png', 't3.png', 't4.png', 't5.png', 'vi.png', 'vi1.png', 'vi2.png', 'vi3.png', 'vi4.png', 'vii2.png', 'viii.png', 'viii1.png', 'viii2.png', 'viii3.png', 'viii4.png', 'viii6.png', 'vxii3.png', 'xii.png', 'XII1.png', 'xii2.png', 'xii4.png', 'xii5.png', 'xii6.png', 'xii7.png', 'xiii.png', 'xiii1.png', 'xiii2.png', 'xiii3.png', 'xiiii.png', 'xiiii1.png', 'xiiii3.png', 'xiiii4.png', 'xvii.png', 'xvii1.png', 'xvii2.png', 'xvii4.png', 'xvii5.png', 'xvii6.png', 'xvii7.png', 'xviiii.png', 'xviiii1.png', 'xviiii2.png', 'xviiii3.png', 'xx.png', 'xxi.png', 'xxi1.png', 'xxi2.png', 'xxi3.png', 'xxi4.png', 'xxi5.png'];
-
-const images2 = [ 'Nt63v.gif', 'Nt61.gif','Nt6v.gif', 'Nt6.gif','Nt6cv1.gif','Nt6cv.gif','29A2.gif',
-  '6SSp.gif',
-  '6p3E.gif',
-  '6OV5-unscreen.gif',
-  '4A5-unscreen.gif',
-  '3Whh.gif',
-  '2vDc.gif',
-  '2iiB.gif',
-  "VhkF.gif",
-  '2ii5.gif',
-  'bo.gif','bcc.gif','boc.gif','b.gif','boca.gif',  'cLV.gif', 'TRkX.gif',
-  'VfL.gif',
-  'WG8U.gif',
-  'WMk.gif',
-  'WS2k.gif',
-  'WUUT.gif',
-  'YX4S.gif',
-  ];
-
-            const imageAudioMap = {
-                
-                
-       
-     '0.png': '0.mp3',
-    '01.png': '01.mp3',
-    '02.png': '02.mp3',
-    '03.png': '03.mp3',
-    '04.png': '04.mp3',
-    '05.png': '05.mp3',
-    '06.png': '06.mp3',
-    '07.png': '07.mp3',
-    '08.png': '08.mp3',
-    'c1.png': 'c1.mp3',
-    'c2.png': 'c2.mp3',
-    'c3.png': 'c3.mp3',
-    'c4.png': 'c4.mp3',
-    'c5.png': 'c5.mp3',
-    'c6.png': 'c6.mp3',
-    'c7.png': 'c7.mp3',
-    'd1.png': 'd1.mp3',
-    'd2.png': 'd2.mp3',
-    'd3.png': 'd3.mp3',
-    'd4.png': 'd4.mp3',
-    'd5.png': 'd5.mp3',
-    'd7.png': 'd7.mp3',
-    'd8.png': 'd8.mp3',
-    'd9.png': 'd9.mp3',
-    'd10.png': 'd10.mp3',
-    'd11.png': 'd11.mp3',
-    'd12.png': 'd12.mp3',
-    'd13.png': 'd13.mp3',
-    'd14.png': 'd14.mp3',
-    'd15.png': 'd15.mp3',
-    'd16.png': 'd16.mp3',
-    'e1.png': 'e1.mp3',
-    'e2.png': 'e2.mp3',
-    'e3.png': 'e3.mp3',
-    'e4.png': 'e4.mp3',
-    'e5.png': 'e5.mp3',
-    'e6.png': 'e6.mp3',
-    'f1.png': 'f1.mp3',
-    'f2.png': 'f2.mp3',
-    'f3.png': 'f3.mp3',
-    'f4.png': 'f4.mp3',
-    'f5.png': 'f5.mp3',
-    'f6.png': 'f6.mp3',
-    'h1.png': 'h1.mp3',
-    'h2.png': 'h2.mp3',
-    'h3.png': 'h3.mp3',
-    'h4.png': 'h4.mp3',
-    'iii.png': 'iii.mp3',
-    'iii1.png': 'iii1.mp3',
-    'iii2.png': 'iii2.mp3',
-    'iii3.png': 'iii3.mp3',
-    'iii4.png': 'iii4.mp3',
-    'iii5.png': 'iii5.mp3',
-    'iii6.png': 'iii6.mp3',
-    'iii7.png': 'iii7.mp3',
-    'j1.png': 'j1.mp3',
-    'j2.png': 'j2.mp3',
-    'j3.png': 'j3.mp3',
-    'j4.png': 'j4.mp3',
-    'j5.png': 'j5.mp3',
-    'j6.png': 'j6.mp3',
-    'l1.png': 'l1.mp3',
-    'l2.png': 'l2.mp3',
-    'l3.png': 'l3.mp3',
-    'l4.png': 'l4.mp3',
-    'm1.png': 'm1.mp3',
-    'm2.png': 'm2.mp3',
-    'm3.png': 'm3.mp3',
-    'm4.png': 'm4.mp3',
-    'm5.png': 'm5.mp3',
-    'm7.png': 'm7.mp3',
-    'm8.png': 'm8.mp3',
-    'm9.png': 'm9.mp3',
-    'm10.png': 'm10.mp3',
-    'm11.png': 'm11.mp3',
-    'm12.png': 'm12.mp3',
-    'ojos.png': 'ojos.mp3',
-    'p1.png': 'p1.mp3',
-    'p2.png': 'p2.mp3',
-    'p3.png': 'p3.mp3',
-    'p4.png': 'p4.mp3',
-    'p5.png': 'p5.mp3',
-    'p6.png': 'p6.mp3',
-    'r1.png': 'r1.mp3',
-    'r2.png': 'r2.mp3',
-    'r3.png': 'r3.mp3',
-    'r4.png': 'r4.mp3',
-    's1.png': 's1.mp3',
-    's2.png': 's2.mp3',
-    's3.png': 's3.mp3',
-    's4.png': 's4.mp3',
-    's5.png': 's5.mp3',
-    's6.png': 's6.mp3',
-    't1.png': 't1.mp3',
-    't2.png': 't2.mp3',
-    't3.png': 't3.mp3',
-    't4.png': 't4.mp3',
-    't5.png': 't5.mp3',
-    'vi.png': 'vi.mp3',
-    'vi1.png': 'vi1.mp3',
-    'vi2.png': 'vi2.mp3',
-    'vi3.png': 'vi3.mp3',
-    'vi4.png': 'vi4.mp3',
-    'vii2.png': 'vii2.mp3',
-    'viii.png': 'viii.mp3',
-    'viii1.png': 'viii1.mp3',
-    'viii2.png': 'viii2.mp3',
-    'viii3.png': 'viii3.mp3',
-    'viii4.png': 'viii4.mp3',
-    'viii6.png': 'viii6.mp3',
-    'vxii3.png': 'vxii3.mp3',
-    'xii.png': 'xii.mp3',
-    'XII1.png': 'XII1.mp3',
-    'xii2.png': 'xii2.mp3',
-    'xii4.png': 'xii4.mp3',
-    'xii5.png': 'xii5.mp3',
-    'xii6.png': 'xii6.mp3',
-    'xii7.png': 'xii7.mp3',
-    'xiii.png': 'xiii.mp3',
-    'xiii1.png': 'xiii1.mp3',
-    'xiii2.png': 'xiii2.mp3',
-    'xiii3.png': 'xiii3.mp3',
-    'xiiii.png': 'xiiii.mp3',
-    'xiiii1.png': 'xiiii1.mp3',
-    'xiiii3.png': 'xiiii3.mp3',
-    'xiiii4.png': 'xiiii4.mp3',
-    'xvii.png': 'xvii.mp3',
-    'xvii1.png': 'xvii1.mp3',
-    'xvii2.png': 'xvii2.mp3',
-    'xvii4.png': 'xvii4.mp3',
-    'xvii5.png': 'xvii5.mp3',
-    'xvii6.png': 'xvii6.mp3',
-    'xvii7.png': 'xvii7.mp3',
-    'xviiii.png': 'xviiii.mp3',
-    'xviiii1.png': 'xviiii1.mp3',
-    'xviiii2.png': 'xviiii2.mp3',
-    'xviiii3.png': 'xviiii3.mp3',
-    'xx.png': 'xx.mp3',
-    'xxi.png': 'xxi.mp3',
-    'xxi1.png': 'xxi1.mp3',
-    'xxi2.png': 'xxi2.mp3',
-    'xxi3.png': 'xxi3.mp3',
-    'xxi4.png': 'xxi4.mp3',
-    'xxi5.png': 'xxi5.mp3',
-    'iii7.png': 'iii7.mp3',
-    
-
-};
-     
-        
-let collageImageAudioMap = new Map();
-
-
-    
-images.forEach(image => {
-    const img = document.createElement('img');
-    img.src = image;
-    img.style.width = '100px';
-    img.addEventListener('click', function(e) {
-        const collageImg = img.cloneNode();
-        collageImg.classList.add('draggable');
-        collageImg.style.position = 'absolute';
-        collageImg.style.left = '0px';
-        collageImg.style.top = '0px';
-        collageContainer.appendChild(collageImg);
-        makeImageInteractive(collageImg);
-
-        const audioSrc = imageAudioMap[image];
-        if (audioSrc) {
-            const audio = new Audio(audioSrc);
-            audio.play();
-            audiosImages.push(audio);
-    }
-});
-    document.querySelector('#gallery-container').appendChild(img);
-
-
-    
-    const imageAudioMap2 = {
-    '2ii5.gif': 'white.mp3',
-    'Nt6v.gif': 'ritm.mp3',
-    'Nt63v.gif': 'ambientloop.mp3',
-    'Nt61.gif': 'audio5.mp3',
-    'Nt6.gif':'gaitaexp.mp3',
-    'Nt6cv1.gif':'canto.mp3',
-    'Nt6cv.gif':'ruido.mp3',
-    
-};
-
-
-images2.forEach(image => {
-    const img = document.createElement('img');
-    img.src = image;
-    img.style.width = '60px';
-    img.addEventListener('click', function(e) {
-        const collageImg = img.cloneNode();
-        collageImg.classList.add('draggable');
-        collageImg.style.position = 'absolute';
-        collageImg.style.left = '10px';
-        collageImg.style.top = '100px';
-        document.querySelector('#collage-container').appendChild(collageImg);
-        makeImageInteractive(collageImg);
-    
-        const audioSrc = imageAudioMap2[image];
-        if (audioSrc) {
-            const audio = new Audio(audioSrc);
-            audiosImages2.push(audio);
-            collageImageAudioMap.set(collageImg, audio); // Asocia la imagen clonada con el audio
-        }
-    });
-  document.querySelector('#gallery-container-2').appendChild(img);
-});
-
-
-document.getElementById('play-audios-images2').addEventListener('click', function() {
-    collageImageAudioMap.forEach((audio, img) => {
-        if (document.body.contains(img)) {
-            audio.play();
-        }
-    });
-
-
-    document.getElementById('volume-slider-images2').addEventListener('input', function() {
-    const volume = this.value ;
-    audiosImages2.forEach(audio => {
-
-        audio.volume = volume;
-    });
-});});
-
-
-    });
-
-
-    
-    function moveSelectedImages(deltaX, deltaY) {
-    const selectedImages = document.querySelectorAll('.draggable.selected');
-    selectedImages.forEach(img => {
-        // Calcula las nuevas posiciones basadas en deltaX y deltaY.
-        let x = (parseFloat(img.getAttribute('data-x')) || 0) + deltaX;
-        let y = (parseFloat(img.getAttribute('data-y')) || 0) + deltaY;
-        img.style.transform = `translate(${x}px, ${y}px)`;
-        img.setAttribute('data-x', x);
-        img.setAttribute('data-y', y);
-    });
-}
-    
-
-interact('.draggable')
-  .resizable({
-    edges: { left: true, right: true, bottom: true, top: true },
-  })
-  .on('resizemove', function (event) {
-    var target = event.target;
-    var x = (parseFloat(target.getAttribute('data-x')) || 0);
-    var y = (parseFloat(target.getAttribute('data-y')) || 0);
-
-    target.style.width = event.rect.width + 'px';
-    target.style.height = event.rect.height + 'px';
-
-    x += event.deltaRect.left;
-    y += event.deltaRect.top;
-
-    target.style.transform = 'translate(' + x + 'px,' + y + 'px)';
-
-    target.setAttribute('data-x', x);
-    target.setAttribute('data-y', y);
-    target.setAttribute('data-angle', target.getAttribute('data-angle') || 0);
-  });
-
-interact('.draggable').draggable({
-        listeners: {
-            move(event) {
-                if (event.target.classList.contains('selected')) {
-                    document.querySelectorAll('.draggable.selected').forEach(selectedImg => {
-                        let x = (parseFloat(selectedImg.getAttribute('data-x')) || 0) + event.dx;
-                        let y = (parseFloat(selectedImg.getAttribute('data-y')) || 0) + event.dy;
-                        selectedImg.style.transform = `translate(${x}px, ${y}px)`;
-                        selectedImg.setAttribute('data-x', x);
-                        selectedImg.setAttribute('data-y', y);
-                    });
-                } else {
-                    let x = (parseFloat(event.target.getAttribute('data-x')) || 0) + event.dx;
-                    let y = (parseFloat(event.target.getAttribute('data-y')) || 0) + event.dy;
-                    event.target.style.transform = `translate(${x}px, ${y}px)`;
-                    event.target.setAttribute('data-x', x);
-                    event.target.setAttribute('data-y', y);
-                }
-            }
-        }
-    });
-    
-   
-    document.addEventListener('click', function(e) {
-    if (e.target.classList.contains('draggable')) {
-        if (e.ctrlKey || e.metaKey) {
-            e.target.classList.toggle('selected');
-        } else {
-            document.querySelectorAll('.draggable.selected').forEach(selectedImg => {
-                if (selectedImg !== e.target) {
-                    selectedImg.classList.remove('selected');
+        document.getElementById('play-button').addEventListener('click', function () {
+            collageImageAudioMap.forEach((audio, img) => {
+                if (document.body.contains(img)) {
+                    audio.play();
                 }
             });
-            e.target.classList.add('selected');
-        }
-    } else {
-        if (!e.ctrlKey && !e.metaKey) {
-            document.querySelectorAll('.draggable.selected').forEach(selectedImg => {
-                selectedImg.classList.remove('selected');
+        });
+
+        document.getElementById('stop-audios-button').addEventListener('click', function () {
+            collageImageAudioMap.forEach((audio, img) => {
+                if (audio) {
+                    audio.pause();
+                    audio.currentTime = 0;
+                }
             });
-        }
-    }
-});
+        });
 
+        document.getElementById('loop-audios-button').addEventListener('click', function () {
+            const isLooping = !collageImageAudioMap.values().next().value.loop;
+            collageImageAudioMap.forEach(audio => {
+                audio.loop = isLooping;
+            });
+            this.textContent = isLooping ? 'Loop is ON' : 'Loop is OFF';
+        });
 
+        document.getElementById('volume-slider-images2').addEventListener('input', function () {
+            const volume = this.value;
+            collageImageAudioMap.forEach(audio => {
+                audio.volume = volume;
+            });
+        });
 
-document.getElementById('move-up').addEventListener('click', function() {
-    const selectedImage = document.querySelector('.draggable.selected');
-    if (selectedImage) {
-        let zIndex = parseInt(window.getComputedStyle(selectedImage).zIndex, 10);
-        zIndex = isNaN(zIndex) ? 1 : zIndex + 1;
-        selectedImage.style.zIndex = zIndex;
-    }
-});
+        document.getElementById('play-audios-images2').addEventListener('click', function () {
+            collageImageAudioMap.forEach((audio, img) => {
+                if (document.body.contains(img) && images2.includes(img.src.split('/').pop())) {
+                    audio.play();
+                }
+            });
+        });
 
-document.getElementById('move-down').addEventListener('click', function() {
-    const selectedImage = document.querySelector('.draggable.selected');
-    if (selectedImage) {
-        let zIndex = parseInt(window.getComputedStyle(selectedImage).zIndex, 10);
-        zIndex = isNaN(zIndex) ? 0 : zIndex - 1;
-        selectedImage.style.zIndex = zIndex;
-    }
-});
+        document.getElementById('change-background-button').addEventListener('click', function () {
+            const backgroundImages = [
+                'papr.webp','pe.webp','ppp.webp','paper.webp', // Lista de tus imágenes de fondo
+            ];
+            const selectedImage = backgroundImages[Math.floor(Math.random() * backgroundImages.length)];
+            const collageContainer = document.getElementById('collage-container');
+            collageContainer.style.backgroundImage = `url('${selectedImage}')`;
+            collageContainer.style.backgroundSize = 'cover';
+        });
 
+        document.getElementById('print-button').addEventListener('click', function () {
+            window.print();
+        });
 
+        document.getElementById('delete-button').addEventListener('click', function () {
+            const selectedImages = document.querySelectorAll('.draggable.selected');
+            selectedImages.forEach(img => {
+                img.remove();
+                const audio = collageImageAudioMap.get(img);
+                if (audio) {
+                    audio.pause();
+                    collageImageAudioMap.delete(img);
+                }
+                img.remove();
+            });
+        });
 
-function allowDrop(event) {
-event.preventDefault();
-}
+        document.getElementById('bg-color-picker').addEventListener('change', function() {
+            const collageContainer = document.getElementById('collage-container');
+            collageContainer.style.backgroundColor = this.value;
+        });
 
-    const collageContainer = document.querySelector('#collage-container');
-    collageContainer.addEventListener('dragover', e => e.preventDefault());
-    collageContainer.addEventListener('drop', e => {
-        e.preventDefault();
-        const src = e.dataTransfer.getData('text');
-        const img = document.createElement('img');
-        img.src = src;
+        document.getElementById('gallery-toggle-button').addEventListener('click', function () {
+            const galleryContainer = document.getElementById('gallery-container');
+            const galleryContainer2 = document.getElementById('gallery-container-2');
+            const collageContainer = document.getElementById('collage-container');
+            const isGalleryVisible = galleryContainer.style.display === 'flex';
+            galleryContainer.style.display = isGalleryVisible ? 'none' : 'flex';
+            galleryContainer2.style.display = isGalleryVisible ? 'none' : 'flex';
+            collageContainer.style.marginTop = isGalleryVisible ? '100px' : '400px';
+        });
 
-
-        if (imageAudioMap[src.split('/').pop()]) {
-const audioSrc = imageAudioMap[src.split('/').pop()];
-const audio = new Audio(audioSrc);
-audio.play();
-    
-
-
-if (!collageAudios.some(audio => audio.src === audioSrc)) {
-collageAudios.push(audio);
-}
-
-        } 
-}); 
-
-    
-
-function makeImageInteractive(img) {
-interact(img)
-    .draggable({
-        listeners: {
-            start(event) {
-                let target = event.target;
-                target.style.zIndex = 1000;
-            },
-            move(event) {
-                let target = event.target,
-                    x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
-                    y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
-
-                target.style.transform = `translate(${x}px, ${y}px) rotate(${target.getAttribute('data-angle') || 0}deg)`;
-
-                target.setAttribute('data-x', x);
-                target.setAttribute('data-y', y);
+        function typeWriter(text, elementId, speed) {
+            let i = 0;
+            function type() {
+                if (i < text.length) {
+                    document.getElementById(elementId).innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
             }
-        },
-
-        
-        inertia: true,
-        modifiers: [
-            interact.modifiers.restrictRect({
-                restriction: 'parent',
-                endOnly: true
-            })
-        ],
-        autoScroll: true,
-        onmove: window.dragMoveListener
-        
-    });
-
-        img.addEventListener('dblclick', function() {
-    let angle = parseInt(this.getAttribute('data-angle') || '0');
-    angle = (angle + 180) % 360;
-    this.style.transform = `translate(${this.getAttribute('data-x') || 0}px, ${this.getAttribute('data-y') || 0}px) rotate(${angle}deg)`;
-    this.setAttribute('data-angle', angle.toString());
-    
-});
-    }
-    
-    document.getElementById('play-button').addEventListener('click', function() {
-    const allImages = [...document.querySelectorAll('#collage-container img'), ];
-
-    let promiseChain = Promise.resolve();
-
-    allImages.forEach(img => {
-        const imageName = img.src.split('/').pop(); 
-        const audioSrc = imageAudioMap[imageName] ; 
-
-        if (audioSrc) {
-            promiseChain = promiseChain.then(() => new Promise(resolve => {
-                const audio = new Audio(audioSrc);
-                audio.play();
-                audio.onended = resolve; 
-            }));
+            type();
         }
-    });
 
-    document.querySelector('#gallery-container-2').addEventListener('click', function(e) {
-    if (e.target.tagName === 'IMG') {
-        const audioSrc = imageAudioMap2[e.target.src.split('/').pop()];
-        if (audioSrc) {
-            const audio = new Audio(audioSrc);
-            const pitchValue = document.getElementById('pitchRange').value;
-            audio.playbackRate = pitchValue; 
-            audio.play();
-        }
-    }
-});
+        document.getElementById('close-button').addEventListener('click', function () {
+            document.getElementById('message-container').style.display = 'none';
+        });
 
-
-
-
-    document.querySelectorAll('.draggable').forEach(img => {
-    let startY; 
-
-    img.addEventListener('touchstart', e => {
-        startY = e.touches[0].clientY; 
-    }, {passive: true});
-
-    img.addEventListener('touchmove', e => {
-        const moveY = e.touches[0].clientY; 
-        const diffY = moveY - startY; 
-
-        if (Math.abs(diffY) > Math.abs(e.touches[0].clientX - e.touches[0].screenX)) {
-            e.preventDefault(); 
-        }
-    }, {passive: false});
-});});
-
-document.addEventListener('touchmove [0].clientY', function(e) {
-    e.preventDefault();
-}, { passive: false });
-
-
-document.getElementById('bg-color-picker').addEventListener('change', function() {
-    const collageContainer = document.getElementById('collage-container');
-    collageContainer.style.backgroundColor = this.value; // 
-});
-
-
-
-
-document.getElementById('print-button').addEventListener('click', function() {
-        window.print();
-    });
-
-    document.getElementById('change-background-button').addEventListener('click', function() {
-    changeBackground();
-});
-
-document.getElementById('delete-button').addEventListener('click', function() {
-    const selectedImages = document.querySelectorAll('.draggable.selected');
-    selectedImages.forEach(img => {
-        img.remove();
-        const audio = collageImageAudioMap.get(img);
-        if (audio) {
-            audio.pause();
-            collageImageAudioMap.delete(img);
-        }
-        img.remove();
-    });
-});
-
-
-const backgroundImages = [
-     'color',
-    'pap.jpg',
-    'ppp.jpg',
-    'papr.jpg'
-];
-
-function changeBackground() {
-    const selectedImage = backgroundImages[Math.floor(Math.random() * backgroundImages.length)];
-    const collageContainer = document.getElementById('collage-container');
-    collageContainer.style.backgroundImage = `url('${selectedImage}')`;
-    collageContainer.style.backgroundSize = 'cover'; // Asegura que la imagen de fondo cubra todo el contenedor
-}
-document.getElementById('change-background-button').addEventListener('click', function() {
-        changeBackground();
-        
-
-document.querySelectorAll('.draggable').forEach(img => {
-    img.addEventListener('touchstart', function(e) {
-        e.preventDefault(); 
-    });
-
-    img.addEventListener('touchmove', function(e) {
-        e.preventDefault(); 
-    });
-
-    img.addEventListener('touchend', function(e) {
-    });
-});});
-
-let isLooping = false; 
-
-document.getElementById('loop-audios-button').addEventListener('click', function() {
-    isLooping = !isLooping; 
-    
-    audiosImages2.forEach(audio => {
-        audio.loop = isLooping;
-    });
-    
-    this.textContent = isLooping ? 'Loop is ON' : 'Loop is OFF';
-});
-
-
-document.getElementById('stop-audios-button').addEventListener('click', function() {
-    audiosImages.forEach(audio => {
-        audio.pause();
-        audio.currentTime = 0; 
-    });
-
-    audiosImages2.forEach(audio => {
-        audio.pause();
-        audio.currentTime = 0; 
-    });
-
-    collageImageAudioMap.forEach((audio, img) => {
-        if(audio && typeof audio.pause === 'function') {
-            audio.pause();
-            audio.currentTime = 0; 
-        }
-    });
-});
-
-let isRotating = false; // Flag para controlar el estado de la rotación
-    let rotationInterval; // Variable para almacenar el intervalo de rotación
-
-    // Función para iniciar la rotación
-    function startRotation() {
-        const selectedImage = document.querySelector('.draggable.selected');
-        if (!selectedImage || isRotating) return;
-        
-        isRotating = true;
-        let angle = parseInt(selectedImage.getAttribute('data-angle') || '0');
-        
-        rotationInterval = setInterval(() => {
-            angle = (angle + 10) % 360; // Ajusta el ángulo de rotación
-            selectedImage.style.transform = `translate(${selectedImage.getAttribute('data-x') || 0}px, ${selectedImage.getAttribute('data-y') || 0}px) rotate(${angle}deg)`;
-            selectedImage.setAttribute('data-angle', angle.toString());
-        }, 20); // Ajusta la velocidad de rotación modificando el tiempo del intervalo
-    }
-
-    // Función para detener la rotación
-    function stopRotation() {
-        if (!isRotating) return;
-        
-        clearInterval(rotationInterval);
-        isRotating = false;
-    }
-
-    // Escuchar eventos de teclado para iniciar/detener la rotación
-    document.addEventListener('keydown', function(e) {
-        if (e.key === '<') { // Reemplaza '<' por la tecla específica que deseas usar
-            startRotation();
-        }
-    });
-
-    document.addEventListener('keyup', function(e) {
-        if (e.key === '<') { // Reemplaza '<' por la tecla específica que deseas usar
-            stopRotation();
-        }
-    });
-document.addEventListener('touchstart', function() {
-    document.body.classList.add('no-scroll');
-});
-
-document.addEventListener('touchend', function() {
-    document.body.classList.remove('no-scroll');
-});
-
-document.addEventListener('touchcancel', function() {
-    document.body.classList.remove('no-scroll');
-});
-    
-</script>
-
+        document.addEventListener('DOMContentLoaded', function () {
+            const message = " - Aquí puedes crear tu propio collage sonoro. Usa las herramientas disponibles para mover, redimensionar, rotar y escuchar las imágenes - ¡Disfruta tu experiencia creativa!";
+            typeWriter(message, 'message', 30);
+        });
+    </script>
 
 </body>
 
 </html>
-
-
-
-
 
 
 
