@@ -37,7 +37,7 @@
     <script>
         // Firebase configuration
         const firebaseConfig = {
-            apiKey: "AIzaSyARA9tqBfkiFK80XcaWtS1ar6yglfmEh3g",
+            apiKey: "YOUR_API_KEY",
             authDomain: "artepsique-9ced7-98586.firebaseapp.com",
             projectId: "artepsique-9ced7",
             storageBucket: "artepsique-9ced7.appspot.com",
@@ -212,7 +212,6 @@
         };
 
         let collageImageAudioMap = new Map();
-        let audiosImages = [];
 
         document.addEventListener('DOMContentLoaded', function () {
             loadImagesFromFirebase();
@@ -232,7 +231,7 @@
                         collageImg.classList.add('draggable');
                         collageImg.style.position = 'absolute';
                         collageImg.style.left = '0px';
-                        collageImg.style.top = '0px';
+                        collageImg.style.top = '50px'; // Adjust position
                         document.getElementById('collage-container').appendChild(collageImg);
                         makeImageInteractive(collageImg);
 
@@ -263,7 +262,7 @@
                         collageImg.classList.add('draggable');
                         collageImg.style.position = 'absolute';
                         collageImg.style.left = '0px';
-                        collageImg.style.top = '0px';
+                        collageImg.style.top = '50px'; // Adjust position
                         document.getElementById('collage-container').appendChild(collageImg);
                         makeImageInteractive(collageImg);
 
@@ -271,7 +270,7 @@
                         if (audioSrc) {
                             const audio = new Audio(audioSrc);
                             collageImageAudioMap.set(collageImg, audio);
-                            audio.play(); // Reproduce el audio cuando se coloca la imagen
+                            audio.play(); 
                         }
                     });
                     galleryContainer2.appendChild(img);
@@ -358,6 +357,40 @@
             });
         }
 
+        // Move image up
+        document.getElementById('move-up').addEventListener('click', function () {
+            const selectedImages = document.querySelectorAll('.draggable.selected');
+            selectedImages.forEach(img => {
+                if (img.style.zIndex) {
+                    img.style.zIndex = parseInt(img.style.zIndex) + 1;
+                } else {
+                    img.style.zIndex = 1;
+                }
+            });
+        });
+
+        // Move image down
+        document.getElementById('move-down').addEventListener('click', function () {
+            const selectedImages = document.querySelectorAll('.draggable.selected');
+            selectedImages.forEach(img => {
+                if (img.style.zIndex && parseInt(img.style.zIndex) > 0) {
+                    img.style.zIndex = parseInt(img.style.zIndex) - 1;
+                }
+            });
+        });
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === '<') {
+                const selectedImages = document.querySelectorAll('.draggable.selected');
+                selectedImages.forEach(img => {
+                    let angle = parseInt(img.getAttribute('data-angle') || '0');
+                    angle = (angle - 15) % 360;
+                    img.style.transform = `translate(${img.getAttribute('data-x') || 0}px, ${img.getAttribute('data-y') || 0}px) rotate(${angle}deg)`;
+                    img.setAttribute('data-angle', angle.toString());
+                });
+            }
+        });
+
     </script>
 
     <style>
@@ -366,7 +399,6 @@
             font-family: "Anta", sans-serif;
             margin: 0px;
             background-image: url('pap.jpg');
-            
         }
 
         .anta-regular {
@@ -1374,6 +1406,60 @@
             const message = " - Aquí puedes crear tu propio collage sonoro. Usa las herramientas disponibles para mover, redimensionar, rotar y escuchar las imágenes - ¡Disfruta tu experiencia creativa!";
             typeWriter(message, 'message', 30);
         });
+
+
+
+
+let isRotating = false; // Flag para controlar el estado de la rotación
+    let rotationInterval; // Variable para almacenar el intervalo de rotación
+
+    // Función para iniciar la rotación
+    function startRotation() {
+        const selectedImage = document.querySelector('.draggable.selected');
+        if (!selectedImage || isRotating) return;
+        
+        isRotating = true;
+        let angle = parseInt(selectedImage.getAttribute('data-angle') || '0');
+        
+        rotationInterval = setInterval(() => {
+            angle = (angle + 10) % 360; // Ajusta el ángulo de rotación
+            selectedImage.style.transform = `translate(${selectedImage.getAttribute('data-x') || 0}px, ${selectedImage.getAttribute('data-y') || 0}px) rotate(${angle}deg)`;
+            selectedImage.setAttribute('data-angle', angle.toString());
+        }, 20); // Ajusta la velocidad de rotación modificando el tiempo del intervalo
+    }
+
+    // Función para detener la rotación
+    function stopRotation() {
+        if (!isRotating) return;
+        
+        clearInterval(rotationInterval);
+        isRotating = false;
+    }
+
+    // Escuchar eventos de teclado para iniciar/detener la rotación
+    document.addEventListener('keydown', function(e) {
+        if (e.key === '<') { // Reemplaza '<' por la tecla específica que deseas usar
+            startRotation();
+        }
+    });
+
+    document.addEventListener('keyup', function(e) {
+        if (e.key === '<') { // Reemplaza '<' por la tecla específica que deseas usar
+            stopRotation();
+        }
+    });
+document.addEventListener('touchstart', function() {
+    document.body.classList.add('no-scroll');
+});
+
+document.addEventListener('touchend', function() {
+    document.body.classList.remove('no-scroll');
+});
+
+document.addEventListener('touchcancel', function() {
+    document.body.classList.remove('no-scroll');
+});
+    
     </script>
 
 </body>
