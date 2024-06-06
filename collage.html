@@ -240,7 +240,7 @@
                         if (audioSrc) {
                             const audio = new Audio(audioSrc);
                             collageImageAudioMap.set(collageImg, audio);
-                            audio.play(); // Reproduce el audio cuando se coloca la imagen
+                            audio.play(); 
                         }
                     });
                     galleryContainer.appendChild(img);
@@ -1314,7 +1314,7 @@
 
         document.getElementById('change-background-button').addEventListener('click', function () {
             const backgroundImages = [
-                'papr.webp','pe.webp','ppp.webp','paper.webp', // Lista de tus imágenes de fondo
+                'papr.webp','pe.webp','ppp.webp','color.webp',  // Lista de tus imágenes de fondo
             ];
             const selectedImage = backgroundImages[Math.floor(Math.random() * backgroundImages.length)];
             const collageContainer = document.getElementById('collage-container');
