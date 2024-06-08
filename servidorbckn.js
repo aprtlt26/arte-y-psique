@@ -6,7 +6,7 @@ const app = express();
 app.use(bodyParser.json());
 
 const VALID_TOKENS = [
-    'https://arteypsique.com/lematworld.html/verificacion?token=tarot?rc4Q=zuG?0x6o-OjeaZrzFO34gp73EAmgl?0pST0HO=oFAKdNYAbTS?A9KjTtgNSkZDTHHSX5/VnmOc6PcDGiYfnPd0vz?O0ddERwfywE5Pzl1q1yB4eATfDU65f4tjlhttyGPu5j8D9JWYCaaZ/HYjihjc2VV=gSIsgEqjTH5rOKqH7hT5g3c!LaLFckIHPCo?eGG1TcMIRoNKFyPB1NzAjAnmnf5eJV-i6CxmMHVZzU0XuZlB-M3mLjB', 
+    'tarot?rc4Q=zuG?0x6o-OjeaZrzFO34gp73EAmgl?0pST0HO=oFAKdNYAbTS?A9KjTtgNSkZDTHHSX5/VnmOc6PcDGiYfnPd0vz?O0ddERwfywE5Pzl1q1yB4eATfDU65f4tjlhttyGPu5j8D9JWYCaaZ/HYjihjc2VV=gSIsgEqjTH5rOKqH7hT5g3c!LaLFckIHPCo?eGG1TcMIRoNKFyPB1NzAjAnmnf5eJV-i6CxmMHVZzU0XuZlB-M3mLjB', 
     'def456',
     'ghi789'
 ];
