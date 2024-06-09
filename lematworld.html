@@ -17,45 +17,13 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
     
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <h1 id="statusMessage">Verificando acceso...</h1>
-    <div id="protectedContent" style="display:none;">
-
+  
 
         <title>Le Mat World</title>
 <body>
 
 
-    <script>
-    async function verifyToken(token) {
-        const response = await fetch('/verify-token', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ token })
-        });
-
-        if (response.ok) {
-            const data = await response.json();
-            if (data.success) {
-                document.getElementById('statusMessage').style.display = 'none';
-                document.getElementById('protectedContent').style.display = 'block';
-            } else {
-                document.getElementById('statusMessage').innerText = 'Token inválido o expirado';
-            }
-        } else {
-            document.getElementById('statusMessage').innerText = 'Error al verificar el token';
-        }
-    }
-
-    const urlParams = new URLSearchParams(window.location.search);
-    const token = urlParams.get('token');
-    if (token) {
-        verifyToken(token);
-    } else {
-        document.getElementById('statusMessage').innerText = 'Token no proporcionado';
-    }
-</script>
+   
     <script>
 
 
