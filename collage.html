@@ -571,9 +571,9 @@
 
         #gallery-container {
             position: fixed;
-            top: 50%;
+            top: 30%;
             left: 0;
-            width: 100%;
+            width: 95%;
             height: 30%;
             overflow-x: auto;
             white-space: nowrap;
@@ -627,7 +627,6 @@
             background-size: cover;
             background-position: center;
             box-shadow: 0px 9px 10px rgba(206, 255, 72, 0.9);
-
         }
 
         #gallery-container-2 img {
@@ -659,7 +658,7 @@
             background-image: url('pap.jpg');
             background-size: cover;
             margin-top: 45vh;
-            height: calc(200vh - 200px);
+            height: calc(200vh - 160px);
             padding: 0px;
             margin-top: 400px;
             box-shadow: 0px 9px 10px rgba(163, 72, 255, 0.9);
@@ -791,7 +790,7 @@
             width: 150px;
             font-size: 12px;
             position: absolute;
-            top: 10px;
+            top: 80px;
             right: 60px;
             z-index: 100;
         }
@@ -820,7 +819,7 @@
             width: 150px;
             font-size: 12px;
             position: absolute;
-            top: 10px;
+            top: 80px;
             right: 230px;
             z-index: 100;
         }
@@ -848,7 +847,7 @@
             position: absolute;
             bottom: -10px;
             padding: 1px 4px;
-            top: 10px;
+            top: 130px;
             z-index: 100;
             right: 150px;
             transform: translateX(-50%);
@@ -916,7 +915,7 @@
             width: 50px;
             font-size: 12px;
             position: absolute;
-            top: 10px;
+            top: 80px;
             right: 10px;
             z-index: 1000;
         }
@@ -983,7 +982,7 @@
             width: 50px;
             font-size: 12px;
             position: absolute;
-            top: 85px;
+            top: 115px;
             right: 60px;
             z-index: 1000;
         }
@@ -1005,7 +1004,7 @@
             width: 50px;
             font-size: 12px;
             position: absolute;
-            top: 120px;
+            top: 140px;
             right: 60px;
             z-index: 1000;
         }
@@ -1070,7 +1069,7 @@
             width: 50px;
             font-size: 12px;
             position: absolute;
-            top: 49px;
+            top: 249px;
             right: 10px;
             z-index: 1000;
         }
@@ -1092,7 +1091,7 @@
             width: 50px;
             font-size: 12px;
             position: absolute;
-            top: 85px;
+            top: 275px;
             right: 10px;
             z-index: 1000;
         }
@@ -1168,11 +1167,11 @@
                 color: #000;
             }
 
-            #print-button,
-            #volume-control,
-            #volume-slider,
-            #bg-color-picker,
-            #gallery-container img {
+        #print-button,
+        #volume-control,
+        #volume-slider,
+        #bg-color-picker,
+        #gallery-container img {
                 display: none;
             }
         }
@@ -1182,9 +1181,9 @@
         }
 
         #logout-btn {
-            color: gray;
-            background-color: #fff;
-            border: none;
+        color: gray;
+        background-color: #fff;
+        border: none;
         }
 
         #logout-btn:hover {
@@ -1202,7 +1201,6 @@
             left: 50%;
             transform: translateX(-50%);
             background-color: rgba(8, 8, 243, 0.475);
-
             border: 2px dashed #c2f700;
             color: #ffffff;
             padding: 20px;
@@ -1226,6 +1224,27 @@
 
         #close-button:hover {
             background-color: #80ff00;
+        }
+        
+        #external-screen-button{
+
+            margin-top:90px;
+            display: inline-block;
+            background-color: #000000;
+            color: rgb(255, 255, 255);
+            font-weight: bold;
+            text-align: center;
+            border: none;
+            cursor: pointer;
+            border: 2px dashed #c2f700;
+            width: 80px;
+            font-size: 12px;
+            position: absolute;
+         
+
+        }
+        p{
+            font-size:9px;
         }
     </style>
 
@@ -1258,9 +1277,7 @@
     <div id="gallery-container"></div>
     <div id="gallery-container-2"></div>
 
-    <div id="collage-container" ondrop="drop(event)" ondragover="allowDrop(event)" ondragenter="return false"
-        ondragleave="return false">
-
+   
         <div id="message-container">
             <div id="message"></div>
             <button id="close-button">X</button>
@@ -1306,154 +1323,224 @@
             </div>
         </div>
     </div>
-
+    
+    <button id="external-screen-button" class='bx bx-tv' style='color:rgba(188,186,186,0.98)'>Pantalla</button>
+    
+        
     
 
     <script>
-        document.getElementById('play-button').addEventListener('click', function () {
-            collageImageAudioMap.forEach((audio, img) => {
-                if (document.body.contains(img)) {
-                    audio.play();
-                }
-            });
-        });
+      let externalWindow = null;
 
-        document.getElementById('stop-audios-button').addEventListener('click', function () {
-            collageImageAudioMap.forEach((audio, img) => {
-                if (audio) {
-                    audio.pause();
-                    audio.currentTime = 0;
-                }
-            });
-        });
-
-        document.getElementById('loop-audios-button').addEventListener('click', function () {
-            const isLooping = !collageImageAudioMap.values().next().value.loop;
-            collageImageAudioMap.forEach(audio => {
-                audio.loop = isLooping;
-            });
-            this.textContent = isLooping ? 'Loop is ON' : 'Loop is OFF';
-        });
-
-        document.getElementById('volume-slider-images2').addEventListener('input', function () {
-            const volume = this.value;
-            collageImageAudioMap.forEach(audio => {
-                audio.volume = volume;
-            });
-        });
-
-        document.getElementById('play-audios-images2').addEventListener('click', function () {
-            collageImageAudioMap.forEach((audio, img) => {
-                if (document.body.contains(img) && images2.includes(img.src.split('/').pop())) {
-                    audio.play();
-                }
-            });
-        });
-
-        document.getElementById('change-background-button').addEventListener('click', function () {
-            const backgroundImages = [
-                'papr.jpg','pe.jpg','ppp.jpg','color', 'paper.jpg'  // Lista de tus imágenes de fondo
-            ];
-            const selectedImage = backgroundImages[Math.floor(Math.random() * backgroundImages.length)];
+document.getElementById('external-screen-button').addEventListener('click', function () {
+    if (externalWindow && !externalWindow.closed) {
+        externalWindow.close();
+        externalWindow = null;
+    } else {
+        externalWindow = window.open('', '_blank', 'width=800,height=600');
+        if (externalWindow) {
+            externalWindow.document.write(`
+                <html>
+                <head><title>External Screen</title><style>
+                    body { margin: 0; overflow: hidden; }
+                    #external-canvas-container { width: 100%; height: 100%; position: relative; overflow: hidden; }
+                    img { position: absolute; }
+                </style></head>
+                <body><div id="external-canvas-container"></div></body>
+                </html>
+            `);
+            
+            const externalCanvasContainer = externalWindow.document.getElementById('external-canvas-container');
             const collageContainer = document.getElementById('collage-container');
-            collageContainer.style.backgroundImage = `url('${selectedImage}')`;
-            collageContainer.style.backgroundSize = 'cover';
-        });
-
-        document.getElementById('print-button').addEventListener('click', function () {
-            window.print();
-        });
-
-        document.getElementById('delete-button').addEventListener('click', function () {
-            const selectedImages = document.querySelectorAll('.draggable.selected');
-            selectedImages.forEach(img => {
-                img.remove();
-                const audio = collageImageAudioMap.get(img);
-                if (audio) {
-                    audio.pause();
-                    collageImageAudioMap.delete(img);
-                }
-                img.remove();
-            });
-        });
-
-        document.getElementById('bg-color-picker').addEventListener('change', function() {
-            const collageContainer = document.getElementById('collage-container');
-            collageContainer.style.backgroundColor = this.value;
-        });
-
-        document.getElementById('gallery-toggle-button').addEventListener('click', function () {
-            const galleryContainer = document.getElementById('gallery-container');
-            const galleryContainer2 = document.getElementById('gallery-container-2');
-            const collageContainer = document.getElementById('collage-container');
-            const isGalleryVisible = galleryContainer.style.display === 'flex';
-            galleryContainer.style.display = isGalleryVisible ? 'none' : 'flex';
-            galleryContainer2.style.display = isGalleryVisible ? 'none' : 'flex';
-            collageContainer.style.marginTop = isGalleryVisible ? '100px' : '400px';
-        });
-
-        function typeWriter(text, elementId, speed) {
-            let i = 0;
-            function type() {
-                if (i < text.length) {
-                    document.getElementById(elementId).innerHTML += text.charAt(i);
-                    i++;
-                    setTimeout(type, speed);
-                }
-            }
-            type();
+            
+            const syncCanvas = () => {
+                externalCanvasContainer.innerHTML = collageContainer.innerHTML;
+                const images = externalCanvasContainer.querySelectorAll('img');
+                images.forEach((img, index) => {
+                    const originalImg = collageContainer.querySelectorAll('img')[index];
+                    img.style.left = originalImg.style.left;
+                    img.style.top = originalImg.style.top;
+                    img.style.transform = originalImg.style.transform;
+                    img.style.width = originalImg.style.width;
+                    img.style.height = originalImg.style.height;
+                });
+            };
+            
+            syncCanvas();  // Initial sync
+            setInterval(syncCanvas, 100);  // Sync every 100ms
+            
+            const observer = new MutationObserver(syncCanvas);
+            observer.observe(collageContainer, { childList: true, subtree: true, attributes: true });
         }
+    }
+});
 
-        document.getElementById('close-button').addEventListener('click', function () {
-            document.getElementById('message-container').style.display = 'none';
-        });
+// Part 2: Generative visuals for canvas background
+const canvasBackgrounds = [
+    'background1.jpg', // Add paths to your generative visuals
+    'background2.jpg',
+    'background3.jpg'
+];
 
-        document.addEventListener('DOMContentLoaded', function () {
-            const message = " - Aquí puedes crear tu propio collage sonoro. Usa las herramientas disponibles para mover, redimensionar, rotar y escuchar las imágenes - ¡Adquiere NFTs para acceder a mundos interactivos únicos en esta plataforma.!";
-            typeWriter(message, 'message', 30);
-        });
+function changeCanvasBackground() {
+    const randomBackground = canvasBackgrounds[Math.floor(Math.random() * canvasBackgrounds.length)];
+    document.getElementById('collage-container').style.backgroundImage = `url('${randomBackground}')`;
+}
 
+// Change background every 5 seconds
+setInterval(changeCanvasBackground, 5000);
 
+function playSequentially(audios) {
+    if (audios.length === 0) return;
+    const [first, ...rest] = audios;
+    first.play();
+    first.addEventListener('ended', () => playSequentially(rest));
+}
 
+document.getElementById('play-button').addEventListener('click', function () {
+    const audiosToPlay = [];
+    collageImageAudioMap.forEach((audio, img) => {
+        if (document.body.contains(img)) {
+            audiosToPlay.push(audio);
+        }
+    });
+    playSequentially(audiosToPlay);
+});
+
+document.getElementById('stop-audios-button').addEventListener('click', function () {
+    collageImageAudioMap.forEach((audio, img) => {
+        if (audio) {
+            audio.pause();
+            audio.currentTime = 0;
+        }
+    });
+});
+
+document.getElementById('loop-audios-button').addEventListener('click', function () {
+    const isLooping = !collageImageAudioMap.values().next().value.loop;
+    collageImageAudioMap.forEach(audio => {
+        audio.loop = isLooping;
+    });
+    this.textContent = isLooping ? 'Loop is ON' : 'Loop is OFF';
+});
+
+document.getElementById('volume-slider-images2').addEventListener('input', function () {
+    const volume = this.value;
+    collageImageAudioMap.forEach(audio => {
+        audio.volume = volume;
+    });
+});
+
+document.getElementById('play-audios-images2').addEventListener('click', function () {
+    collageImageAudioMap.forEach((audio, img) => {
+        if (document.body.contains(img) && images2.includes(img.src.split('/').pop())) {
+            audio.play();
+        }
+    });
+});
+
+document.getElementById('change-background-button').addEventListener('click', function () {
+    const backgroundImages = [
+        'papr.jpg','pe.jpg','ppp.jpg','color', 'paper.jpg'  // Lista de tus imágenes de fondo
+    ];
+    const selectedImage = backgroundImages[Math.floor(Math.random() * backgroundImages.length)];
+    const collageContainer = document.getElementById('collage-container');
+    collageContainer.style.backgroundImage = `url('${selectedImage}')`;
+    collageContainer.style.backgroundSize = 'cover';
+});
+
+document.getElementById('print-button').addEventListener('click', function () {
+    window.print();
+});
+
+document.getElementById('delete-button').addEventListener('click', function () {
+    const selectedImages = document.querySelectorAll('.draggable.selected');
+    selectedImages.forEach(img => {
+        img.remove();
+        const audio = collageImageAudioMap.get(img);
+        if (audio) {
+            audio.pause();
+            collageImageAudioMap.delete(img);
+        }
+        img.remove();
+    });
+});
+
+document.getElementById('bg-color-picker').addEventListener('change', function() {
+    const collageContainer = document.getElementById('collage-container');
+    collageContainer.style.backgroundColor = this.value;
+});
+
+document.getElementById('gallery-toggle-button').addEventListener('click', function () {
+    const galleryContainer = document.getElementById('gallery-container');
+    const galleryContainer2 = document.getElementById('gallery-container-2');
+    const collageContainer = document.getElementById('collage-container');
+    const isGalleryVisible = galleryContainer.style.display === 'flex';
+    galleryContainer.style.display = isGalleryVisible ? 'none' : 'flex';
+    galleryContainer2.style.display = isGalleryVisible ? 'none' : 'flex';
+    collageContainer.style.marginTop = isGalleryVisible ? '100px' : '400px';
+});
+
+function typeWriter(text, elementId, speed) {
+    let i = 0;
+    function type() {
+        if (i < text.length) {
+            document.getElementById(elementId).innerHTML += text.charAt(i);
+            i++;
+            setTimeout(type, speed);
+        }
+    }
+    type();
+}
+
+document.getElementById('close-button').addEventListener('click', function () {
+    document.getElementById('message-container').style.display = 'none';
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    const message = " - Aquí puedes crear tu propio collage sonoro. Usa las herramientas disponibles para mover, redimensionar, rotar y escuchar las imágenes - ¡Adquiere NFTs para acceder a mundos interactivos únicos en esta plataforma.!";
+    typeWriter(message, 'message', 30);
+});
 
 let isRotating = false; // Flag para controlar el estado de la rotación
-    let rotationInterval; // Variable para almacenar el intervalo de rotación
+let rotationInterval; // Variable para almacenar el intervalo de rotación
 
-    // Función para iniciar la rotación
-    function startRotation() {
-        const selectedImage = document.querySelector('.draggable.selected');
-        if (!selectedImage || isRotating) return;
-        
-        isRotating = true;
-        let angle = parseInt(selectedImage.getAttribute('data-angle') || '0');
-        
-        rotationInterval = setInterval(() => {
-            angle = (angle + 10) % 360; // Ajusta el ángulo de rotación
-            selectedImage.style.transform = `translate(${selectedImage.getAttribute('data-x') || 0}px, ${selectedImage.getAttribute('data-y') || 0}px) rotate(${angle}deg)`;
-            selectedImage.setAttribute('data-angle', angle.toString());
-        }, 20); // Ajusta la velocidad de rotación modificando el tiempo del intervalo
+// Función para iniciar la rotación
+function startRotation() {
+    const selectedImage = document.querySelector('.draggable.selected');
+    if (!selectedImage || isRotating) return;
+    
+    isRotating = true;
+    let angle = parseInt(selectedImage.getAttribute('data-angle') || '0');
+    
+    rotationInterval = setInterval(() => {
+        angle = (angle + 10) % 360; // Ajusta el ángulo de rotación
+        selectedImage.style.transform = `translate(${selectedImage.getAttribute('data-x') || 0}px, ${selectedImage.getAttribute('data-y') || 0}px) rotate(${angle}deg)`;
+        selectedImage.setAttribute('data-angle', angle.toString());
+    }, 20); // Ajusta la velocidad de rotación modificando el tiempo del intervalo
+}
+
+// Función para detener la rotación
+function stopRotation() {
+    if (!isRotating) return;
+    
+    clearInterval(rotationInterval);
+    isRotating = false;
+}
+
+// Escuchar eventos de teclado para iniciar/detener la rotación
+document.addEventListener('keydown', function(e) {
+    if (e.key === '<') { // Reemplaza '<' por la tecla específica que deseas usar
+        startRotation();
     }
+});
 
-    // Función para detener la rotación
-    function stopRotation() {
-        if (!isRotating) return;
-        
-        clearInterval(rotationInterval);
-        isRotating = false;
+document.addEventListener('keyup', function(e) {
+    if (e.key === '<') { // Reemplaza '<' por la tecla específica que deseas usar
+        stopRotation();
     }
+});
 
-    // Escuchar eventos de teclado para iniciar/detener la rotación
-    document.addEventListener('keydown', function(e) {
-        if (e.key === '<') { // Reemplaza '<' por la tecla específica que deseas usar
-            startRotation();
-        }
-    });
-
-    document.addEventListener('keyup', function(e) {
-        if (e.key === '<') { // Reemplaza '<' por la tecla específica que deseas usar
-            stopRotation();
-        }
-    });
 document.addEventListener('touchstart', function() {
     document.body.classList.add('no-scroll');
 });
@@ -1465,12 +1552,25 @@ document.addEventListener('touchend', function() {
 document.addEventListener('touchcancel', function() {
     document.body.classList.remove('no-scroll');
 });
-    
-    </script>
+</script>
+
+
+
+
+<div id="collage-container" ondrop="drop(event)" ondragover="allowDrop(event)" ondragenter="return false"
+ondragleave="return false">
+
 
 </body>
 
 </html>
+
+
+
+
+
+
+
 
 
 
