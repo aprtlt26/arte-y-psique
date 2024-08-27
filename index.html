@@ -1,14 +1,40 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arte y Psique</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="Alfonso Pretelt - Arte y Psique - Apps">
+    <meta name="keywords" content="collage, alfonsopretelt,tarot,erosion,">
+    <meta name="author" content="alfonsopretelt">
+    <meta name="robots" content="apps">
+    <meta name="google" content="translate">
+    <meta property="og:type" content="www.arteypsique.com">
+    <meta property="og:url" content="https://www.arteypsique.com">
+    <meta property="og:title" content="Arte & Psique">
+    <meta property="og:description" content="Plataforma de aprendizaje y creación">
+    <link rel="icon" href="logoarteypsique.webp" type="image/x-icon">
+    <meta property="og:image" content="logoarteypsique.webp">
+    <title>ART & PSYCHE</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/interactjs@1.10.11/dist/interact.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/RecordRTC/5.6.1/RecordRTC.min.js"></script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anta&family=Kode+Mono:wght@400..700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet">
+
     <style>
         body {
             margin: 0;
             font-family: 'Arial', sans-serif;
-            background-color: #000;
+            background-color: #cecece;
             color: #fff;
         }
 
@@ -17,7 +43,7 @@
             width: 100%;
             top: 0;
             left: 0;
-            background: rgba(0, 0, 0, 0.8);
+            background: #cecece;
             padding: 10px 20px;
             z-index: 1000;
             display: flex;
@@ -32,7 +58,6 @@
             margin: 0;
             padding: 0;
             margin-right: 35px;
-
         }
 
         nav ul li {
@@ -64,12 +89,16 @@
             letter-spacing: 0.1em;
             margin: 0;
             animation: fadeIn 2s ease-in-out;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.7), 0 0 30px rgba(255, 255, 255, 0.5), 0 0 50px rgb(255, 255, 255);
+            transition: box-shadow 0.3s ease;
         }
 
         .hero-content p {
             font-size: 1.5em;
             margin: 20px 0;
             animation: fadeIn 3s ease-in-out;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.7), 0 0 20px rgba(255, 255, 255, 0.5), 0 0 30px rgba(255, 255, 255, 0.3);
+            transition: box-shadow 0.3s ease;
         }
 
         @keyframes fadeIn {
@@ -112,6 +141,8 @@
             transition: color 0.3s;
             z-index: 1100;
             position: relative;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.198), 0 0 20px rgba(255, 255, 255, 0.5), 0 0 30px rgba(255, 255, 255, 0.3);
+            transition: box-shadow 0.3s ease;
         }
 
         .menu-btn:hover {
@@ -124,9 +155,9 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: #ffffff02;
+            background-color: rgba(0, 0, 0, 0.8);
             background-image: url('collagetarot.gif');
-            color: #1a1919;
+            color: #fff;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -152,8 +183,8 @@
         }
 
         #menu ul li a {
-            color: transparent;
-            font-size: 8em;
+            color: #fff;
+            font-size: 2.5em;
             text-decoration: none;
             font-weight: bold;
             -webkit-text-stroke: 2px #151414;
@@ -161,7 +192,7 @@
         }
 
         #menu ul li a:hover {
-            color: #000000;
+            color: #000;
             -webkit-text-stroke: 0px;
         }
 
@@ -173,47 +204,73 @@
             cursor: pointer;
             background: none;
             border: none;
-            color: #010101;
+            color: #fff;
             z-index: 2000;
         }
 
         #close-btn:hover {
-            color: #4f4f4f;
+            color: #c5d1cb;
         }
 
+        /* Media Queries for Responsiveness */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5em;
+            }
+
+            .hero-content p {
+                font-size: 1.2em;
+            }
+
+            #menu ul li a {
+                font-size: 2em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 2em;
+            }
+
+            .hero-content p {
+                font-size: 1em;
+            }
+
+            #menu ul li a {
+                font-size: 1.5em;
+            }
+        }
     </style>
 </head>
+
 <body>
     <header>
         <button class="menu-btn" onclick="toggleMenu()">☰</button>
         <nav>
             <ul>
-                <li><a href="about.html">about</a></li>
-                <li><a href="apps.html">apps</a></li>
-                <li><a href="register.html">log/in</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="apps.html">Apps</a></li>
+                <li><a href="register.html">Log/In</a></li>
             </ul>
         </nav>
     </header>
 
     <section id="hero">
         <div class="hero-content">
+            <img src="logoarteypsique.webp" alt="Arte y Psique Logo">
             <h1>Arte y Psique</h1>
             <p>Explora el poder de la transformación mental por medio de la creación.</p>
         </div>
     </section>
 
-
-
-
-
     <div id="menu">
         <button id="close-btn" onclick="toggleMenu()">✖</button>
         <ul>
-            <li><a href="comenzar.html">COMENZAR</a></li>
-            <li><a href="Aprendizaje.html">CURSOS</a></li>
-            <li><a href="apps.html">APPS</a></li>
-            <li><a href="comunidad.html">COMUNIDAD</a></li>
-            <li><a href="register.html">LOG/IN</a></li>
+            <li><a href="comenzar.html">Comenzar</a></li>
+            <li><a href="aprendizaje.html">Cursos</a></li>
+            <li><a href="apps.html">Apps</a></li>
+            <li><a href="comunidad.html">Comunidad</a></li>
+            <li><a href="register.html">Log/In</a></li>
         </ul>
     </div>
 
@@ -224,6 +281,7 @@
         }
     </script>
 </body>
+
 </html>
 
 
