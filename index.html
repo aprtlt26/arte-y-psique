@@ -3,528 +3,227 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="description" content="Alfonso Pretelt Artista">
-    <meta name="keywords" content="collage, alfonsopretelt,tarot,erosion,">
-    <meta name="author" content="alfonsopretelt">
-    <meta name="robots" content="about">
-    <meta name="google" content="translate">
-    <link rel="icon" href="rostro.jpg" type="image/x-icon">
-
-       <meta property="og:type" content="www.arteypsique.com">
-    <meta property="og:url" content="https://www.arteypsique.com">
-    <meta property="og:title" content="Arte & Psique">
-    <meta property="og:description" content="Plataforma de aprendizaje y creación">
-    <meta property="og:image" content="collagetarot.gif">
-    <title>ART & PSYCHE</title>
-    <script src="https://cdn.jsdelivr.net/npm/interactjs@1.10.11/dist/interact.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/RecordRTC/5.6.1/RecordRTC.min.js"></script>
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-       <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anta&family=Kode+Mono:wght@400..700&display=swap" rel="stylesheet">
-<link href="https://cdn.jsdelivr.net/npm/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet">
-
-<script> 
-   
-  
-
-        
-  document.addEventListener('contextmenu', function(e) {
-    e.preventDefault();
-    alert('El clic derecho está desactivado en esta página.');
-  }, false);
-
-   
-
-  
-</script>
-
+    <title>Arte y Psique</title>
     <style>
-    
-       
-       /* Estilos base para móviles */
-body {
-    font-family: "Anta", sans-serif;
-    margin: 20px;
-    background-color: #ffffff;
-    background-image: url('collagetarot.gif');
-    background-size: 40%;
-    background-position: center;
-}
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #000;
+            color: #fff;
+        }
 
-/* Ajustes para dispositivos pequeños (menos de 768px) */
-@media (max-width: 768px) {
-    #text-container {
-        padding: 20px;
-        font-size: 14px; /* Aumenta la legibilidad */
-    }
-    
-    .navbar-toggler {
-        margin: 0 auto; /* Centra el botón del menú */
-    }
-
-    .navbar-nav {
-        text-align: center;
-    }
-
-    footer {
-        padding: 10px 20px; /* Ajuste de padding para el footer */
-        font-size: 14px; /* Tamaño de texto adecuado para lectura */
-    }
-}
-
-/* Ajustes para tabletas (entre 768px y 1024px) */
-@media (min-width: 768px) and (max-width: 1024px) {
-    #text-container {
-        max-width: 90%; /* Ajusta el ancho máximo para aprovechar mejor el espacio */
-    }
-}
-
-/* Estilos adicionales para mejorar la accesibilidad y la interacción */
-.nav-link, .navbar-brand, footer a {
-    touch-action: manipulation; /* Mejora la respuesta táctil en dispositivos móviles */
-}
-
-.hover-word:hover, .word-hover:hover, #menu-links a:hover, #logout-btn:hover, footer a:hover {
-    color: #3bc0ac; /* Cambia el color al hacer hover para mejorar la interactividad */
-}
-
-
-             .anta-regular {
-  font-family: "Anta", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-}
-
-     
-
-#header {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    left: 0;
-    z-index: 1050; /* Eleva el z-index para que esté sobre otros elementos */
-    position: fixed;
-
-
-}
-
-
-#navbar {
-    display: flex; /* Usa Flexbox para el diseño */
-    justify-content: center; /* Centra los elementos horizontalmente */
-    align-items: center; /* Centra los elementos verticalmente */
-    color: #fbfbfb !important; /* Color de texto blanco */
-    border: 2px dashed #5d626b; /* Borde personalizado */
-    margin-right: auto; /* Centra el navbar ajustando automáticamente el margen derecho */
-    margin-left: auto;
-    position: fixed
-
-
-}
-
-
-
-#navbar-brand {
-    display: flex; /* Usa Flexbox para el diseño */
-    justify-content: center; /* Centra los elementos horizontalmente */
-    align-items: center; 
-    font-size: 1.1rem; /* Tamaño de la fuente */
-    margin-top: 2px;
-    padding: 8px;
-    background-color:  transparent;
-
-
-}
-
-        
-        #navbar.navbar-expand-lg.navbar-light.bg-light {
-padding: 5px;
+        header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 10px 20px;
+            z-index: 1000;
             display: flex;
-            justify-content: center; /* Centra los elementos horizontalmente */
-    align-items: center; 
-    background-color: transparent; 
-    border: 2px dashed #c4d49c;
-    z-index: 1050; /* Eleva el z-index para que esté sobre otros elementos */
-
-}
-        .navbar-nav .nav-link {
-            font-size: 1rem; 
-            color: #3bc0ac; 
-            transition: color 0.3s; 
-            margin: 0 15px; 
+            justify-content: space-between;
+            align-items: center;
         }
 
-        .navbar-nav .nav-link:hover {
-            color: #55d1ba; 
-            border: 2px dashed  #c4d49c
-
-        }
-       
-
-@media (max-width: 768px) {
-    .navbar {
-        justify-content: center;
-        align-items: center;
-        text-align: center; /* Asegura que el texto también esté centrado */
-        background-color: transparent; 
-
-    }
-
-    .navbar-brand {
-        width: 100%; /* Ocupa todo el ancho disponible para asegurar el centrado */
-        display: block; /* Trata el elemento como un bloque para mejor manejo del centrado */
-        background-color: transparent; 
-
-    }
-
-    /* Asegúrate de que todos los elementos del navbar estén centrados en dispositivos móviles */
-    .navbar-nav,
-    .navbar-toggler {
-        justify-content: center;
-        width: 100%; /* Ocupa todo el ancho para elementos internos también */
-
-    }
-}
-/* Para asegurar que el navbar se expanda adecuadamente en dispositivos grandes */
-@media (min-width: 992px) {
-    .navbar {
-        justify-content: center; /* Mantiene el contenido centrado en dispositivos grandes */
-        z-index: 1;
-    }
-}
-
-        .navbar-toggler {
-            border: 2px dashed  #c4d49c
-        }
-
-        .navbar-toggler-icon {
-            background-color: #ffffff; 
-            border: 2px dashed  #c4d49c
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: flex-end;
+            margin: 0;
+            padding: 0;
+            margin-right: 20px;
 
         }
 
-        .navbar-toggler:focus {
-            outline: none; 
+        nav ul li {
+            margin-left: 20px;
         }
 
-          .navbar-collapse {
-            background-color: #ffffff; 
-              border-radius: 5px;
-
-            border: 2px dashed  #c4d49c
-
-        }
-
-        .navbar-collapse .navbar-nav .nav-link {
-            padding: 15px 0; 
-        }
-
-        .navbar-collapse .navbar-nav .nav-link:last-child {
-            border-bottom: none; 
-        }
-
-        
-        @media screen and (max-width: 576px) {
-    .navbar-nav {
-        font-size: 0.9rem;
-        margin: 10px 15px;
-        width: 80%; /* Hace que la barra de menú use todo el ancho disponible */
-        text-align: center; /* Centra el texto de los enlaces */
-align-items: center;
-    }
-
-    .navbar {
-        width: 80%; /* Asegura que el elemento navbar también ocupe todo el ancho */
-        text-align: center; /* Centra el texto de los enlaces */
-
-        
-    }
-
-    .navbar-collapse {
-        width: 80%; /* Hace que el contenido colapsable de la navbar ocupe todo el ancho */
-        text-align: center; /* Centra el texto de los enlaces */
-
-    }
-
-    .navbar-toggler {
-        margin-right: 0; /* Elimina el margen derecho para alinear el toggler a la derecha */
-        text-align: center; /* Centra el texto de los enlaces */
-;
-
-    }
-
-    .navbar-nav .nav-link {
-        text-align: center; /* Centra el texto de los enlaces */
-    }
-}
-
-
-
-        #menu-links a {
-            color: #767676; 
+        nav ul li a {
+            color: #fff;
             text-decoration: none;
-            margin: 0 20px; 
+            font-weight: bold;
+            transition: color 0.3s;
         }
 
-        #menu-links a:hover {
-         border: 2px dashed  #c4d49c      
-          }
-
-        #header img {
-            width: 75px;
-            height: auto;
-            margin-right: 10px;
+        nav ul li a:hover {
+            color: #47b37f;
         }
 
-        img[src="Capa%2031@3x.png"] {
-            display: none;
-        }
-
-        .section {
-            padding: 20px; 
+        #hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: url('background-image.jpg') no-repeat center center/cover;
             text-align: center;
         }
 
-        
-
-        #text-container {
-    max-width: 800px; /* Ancho máximo para pantallas grandes */
-    margin: auto; /* Centra el contenedor */
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 30px;
-    background-color: rgb(249, 249, 249);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    font-size: 80%;
-}
-
-/* Ajustes para dispositivos móviles */
-@media (max-width: 768px) {
-    #text-container {
-        max-width: 90%; /* Ajusta el ancho máximo para pantallas pequeñas */
-        padding: 15px; /* Reduce el padding para más espacio */
-        font-size: 16px; /* Ajusta el tamaño de la fuente para mejor legibilidad */
-    }
-}
-#text-container:hover{
-    color: #3bc0ac;
-}
-
-#text-container span {
-            transition: color 0.3s ease; /* Suaviza la transición del color */
-            cursor: pointer; /* Cambia el cursor a tipo puntero para indicar interactividad */
+        .hero-content h1 {
+            font-size: 4em;
+            letter-spacing: 0.1em;
+            margin: 0;
+            animation: fadeIn 2s ease-in-out;
         }
 
-        #text-container span:hover {
-            color: #00ff9d; /* Cambia el color de la palabra al hacer hover (ajusta este color a tu preferencia) */
+        .hero-content p {
+            font-size: 1.5em;
+            margin: 20px 0;
+            animation: fadeIn 3s ease-in-out;
         }
 
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
 
-#logout-btn{
-    color: gray;
-    background-color: #fff;
-    border: none;
+        section {
+            padding: 100px 20px;
+            text-align: center;
+        }
 
-}
-#logout-btn:hover{
-    border: 2px dashed  #c4d49c
-}
+        section h2 {
+            font-size: 2.5em;
+            margin-bottom: 50px;
+            animation: slideIn 1s ease-in-out;
+        }
 
-footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background-color: transparent; /* Color de fondo del footer */
+        @keyframes slideIn {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
 
-    box-shadow: 0 5px 6px rgba(0, 0, 0, 0.1); /* Sombra suave (opcional) */
+        .menu-btn {
+            font-size: 2em;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: #fff;
+            transition: color 0.3s;
+            z-index: 1100;
+            position: relative;
+        }
 
+        .menu-btn:hover {
+            color: #c5d1cb;
+        }
 
-    color: rgb(103, 103, 103); /* Color del texto */
-    text-align: center; /* Centra el texto horizontalmente */
-    padding: 5px 0; /* Añade un poco de espacio dentro del footer */
-}
+        #menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #ffffff02;
+            background-image: url('collagetarot.gif');
+            color: #1a1919;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            transform: translateX(-100%);
+            transition: transform 0.5s ease;
+            z-index: 1000;
+        }
 
-footer a {
-    color: #515151; /* Color de los enlaces */
-    text-decoration: none; /* Elimina el subrayado de los enlaces */
-    
-}
+        #menu.show {
+            transform: translateX(0);
+        }
 
-footer a:hover {
-color: #00f7b5;
-text-decoration: none; /* Elimina el subrayado de los enlaces */
+        #menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            text-align: center;
+        }
 
-}
+        #menu ul li {
+            margin: 20px 0;
+        }
 
-#text-container{
-    color: rgb(121, 121, 121);
-}
-.word-hover:hover {
-    color: #75fa00; /* Cambia el color al pasar el mouse */
-    cursor: pointer;
-    /* Agrega aquí más estilos si necesitas */
-}
+        #menu ul li a {
+            color: transparent;
+            font-size: 8em;
+            text-decoration: none;
+            font-weight: bold;
+            -webkit-text-stroke: 2px #151414;
+            transition: color 0.3s, -webkit-text-stroke 0.3s;
+        }
 
-        /* Estilos para la barra de menú */
-.navbar {
-    background-color: transparent !important; /* Hace la barra de menú transparente */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Agrega una sombra suave */
-}
+        #menu ul li a:hover {
+            color: #000000;
+            -webkit-text-stroke: 0px;
+        }
 
-/* Estilos para el menú desplegable en versión móvil */
-.navbar-collapse {
-    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparente con sombra */
-    box-shadow: 0 8px 10px rgba(0, 0, 0, 0.2); /* Sombra más notoria */
-}
+        #close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 2em;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: #010101;
+            z-index: 2000;
+        }
 
-/* Ajusta la transparencia del botón del menú desplegable para mejor coherencia visual */
-.navbar-toggler {
-    background-color: rgba(255, 255, 255, 0.5); /* Semi-transparente */
-    border-color: rgba(255, 255, 255, 0.5); /* Ajusta el color del borde del botón */
-}
-.navbar-toggler-icon {
-    background-image: url("data:image/svg+xml,..."); /* Asegúrate de usar tu propia imagen SVG aquí */
-}
-
-
-</style>
+        #close-btn:hover {
+            color: #4f4f4f;
+        }
 
     </style>
 </head>
-
 <body>
+    <header>
+        <button class="menu-btn" onclick="toggleMenu()">☰</button>
+        <nav>
+            <ul>
+                <li><a href="about.html">about</a></li>
+                <li><a href="#servicios">apps</a></li>
+                <li><a href="#contacto">contacto</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    <header id="header">
-
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="index.html">ARTE & PSIQUE</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-                <div id="menu-links" class="navbar-nav">
-                    <a class="nav-link" href="Aprendizaje.html">Curso</a>
-<a class="nav-link" href="opensoundt.html" target="_blank">Tarot FQ</a>
-                             <a class="nav-link" href="collage.html">Collage</a>
-
-
-         <a class="nav-link" href="paint.html">Paint</a>
-                                                            <a class="nav-link" href="https://orb.club/@aprtlt">NFT</a>
-                    
-                                                                                <a class="nav-link" href="https://www.youtube.com/channel/UCtNB3PA4aiSltUa_PgrfCfQ">YouTube</a>
-                                                            <a class="nav-link" href="contact">Contact</a>
-
-
-
-                </div>
-            </nav>
-
-
-
-        </header>
-
-
-     
-
+    <section id="hero">
+        <div class="hero-content">
+            <h1>Arte y Psique</h1>
+            <p>Explora el poder de la transformación mental por medio de la creación.</p>
         </div>
-
-        <section>
-        </section>
-        
-
-       
-<p> 
+    </section>
 
 
-</p>
 
 
-<div id="text-container">
-</div>
 
-<script>
-function typeWriter(element, text, i, interval) {
-    // Divide el texto en palabras basado en espacios
-    const words = text.split(' ');
+    <div id="menu">
+        <button id="close-btn" onclick="toggleMenu()">✖</button>
+        <ul>
+            <li><a href="comenzar.html">COMENZAR</a></li>
+            <li><a href="Aprendizaje.html">CURSOS</a></li>
+            <li><a href="apps.html">APPS</a></li>
+            <li><a href="comunidad.html">COMUNIDAD</a></li>
+            <li><a href="contact.html">CONTACTO</a></li>
+        </ul>
+    </div>
 
-    // Si el índice actual es menor que la longitud del arreglo de palabras, sigue añadiendo palabras
-    if (i < words.length) {
-        // Añade la palabra actual al contenedor, seguido de un espacio para separar las palabras
-        element.innerHTML += words[i] + ' ';
-        i++;
-
-        // Espera un poco antes de añadir la siguiente palabra
-        setTimeout(function() {
-            typeWriter(element, text, i, interval);
-        }, interval);
-    }
-}
-
-window.onload = function() {
-    const text = `Bienvenidx a Arte & Pisque. ******  ¡Adquiere NFTs para acceder a mundos interactivos únicos en esta plataforma.!........................................................................
-
-Soy Alfonso Pretelt y he creado este espacio [que sigo desarrollando y actualizando] especialmente para ti, que buscas la erosión de tu inconsciente por medio de lenguajes creativos.*****.........................
-
-"Colllage": Funciona creando nuevos arcanos, mezclando partes de cada uno, cada pieza que sueltas en el contenedor, habla por el arcano al que pertenece. 
-Al final, obtienes un collage y un poema único que puedes escuchar. al registrarte podrás subir tus propias imagenes y sonidos para perosnalizar tu interface *****
-
-Puedes componer piezas sonoras con los tracks de audio, y estos servirán como música de fondo para la poesía, o dar rienda suelta a tu creatividad.****
-................................................................................................................................................................................................................
-"Tarot FQ {frecuencias}" 
-    Por medio de tu fecha de nacimiento o cualquier fecha, {Mes/Año/Día} obtendras una tirada de 3 cartas correspondientes a esta numerología, y 3 frecuencias sonoras correspondientes a estas cartas. Este sonido puede ser usado para la meditación, la danza, la performance, la escucha profunda, o la producción de audio. Y tus arcanos, desde luego te servirán para indagar en ti, toda tu vida.
-................................................................................................................................................................................................................
- "Paint" 
-    Sobre los colores del tarot, Jodorowsky nos dice: Aparte de los Palos o símbolos del Tarot, resulta útil estudiar el simbolismo de los once colores presentes en el juego restaurado.
- Cada cultura, religión y tradición da su propia versión del simbolismo de los colores. Sin embargo, existe un fondo común: el combate (o la danza) entre la luz y la oscuridad genera color. La gama de los colores aparece en función de si predomina la luz o la oscuri- dad.` ;
-
-    
-
-    const element = document.getElementById('text-container');
-    const interval = 75; // Ajusta este valor para cambiar la velocidad a la que se añaden las palabras
-    typeWriter(element, text, 0, interval);
-};
-</script>
-
-    
- <script>
- window.addEventListener('DOMContentLoaded', (event) => {
-    const container = document.getElementById('text-container');
-    const paragraphs = container.getElementsByTagName('p');
-    
-    Array.from(paragraphs).forEach(paragraph => {
-        let html = paragraph.innerHTML.split(' ').map(word => `<span>${word}</span>`).join(' ');
-        paragraph.innerHTML = html;
-    });
-});
-</script>
-
-</div>
- <footer>
-    <p>
-        <small>Design and Develop by <a href="https://alfonsopretelt.com/" target="_blank">Alfonso Pretelt</a></small>
-    </p>
-</footer>
-
-
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('menu');
+            menu.classList.toggle('show');
+        }
     </script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-
 </body>
-
 </html>
+
 
