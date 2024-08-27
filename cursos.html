@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arte y Psique</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        /* Estilos generales */
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+          
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            min-height: 100vh;
+            background: #666565;
+            overflow: hidden;
+        }
+
+        /* Estilos del encabezado */
+        header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 8px;
+            right: 8px;
+            color: #a0a0a0;
+            padding: 10px 10px;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #666565; /* Fondo semitransparente */
+            border-radius: 8px; /* Esquinas redondeadas */
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: flex-end;
+            margin: 10;
+            padding: 0;
+            margin-right: 35px;
+
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            display: flex;
+            color: #a7a6a6;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #ecf2ef;
+        }
+
+        /* Estilos del menú */
+
+        #menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #ffffff02;
+            background-image: url('collagetarot.gif');
+            color: #1a1919;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            transform: translateX(-100%);
+            transition: transform 0.5s ease;
+            z-index: 1000;
+        }
+
+        #menu.show {
+            transform: translateX(0);
+        }
+
+        #menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            text-align: center;
+        }
+
+        #menu ul li {
+            margin: 20px 0;
+        }
+
+        #menu ul li a {
+            color: #151414;
+            font-size: 8em;
+            text-decoration: none;
+            font-weight: bold;
+            -webkit-text-stroke: 2px #151414;
+            transition: color 0.3s, -webkit-text-stroke 0.3s;
+        }
+
+        #menu ul li a:hover {
+            color: #000000;
+            -webkit-text-stroke: 0px;
+        }
+
+        #close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 2em;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: #010101;
+            z-index: 2000;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.7), 0 0 20px rgba(255, 255, 255, 0.5), 0 0 30px rgba(255, 255, 255, 0.3);
+            transition: box-shadow 0.3s ease;
+        }
+
+        #close-btn:hover {
+            color: #4f4f4f;
+        }
+
+        .menu-btn {
+            font-size: 2em;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: #9a9696;
+            transition: color 0.3s;
+            z-index: 1100;
+            position: relative;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.7), 0 0 20px rgba(255, 255, 255, 0.5), 0 0 30px rgba(255, 255, 255, 0.3);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .menu-btn:hover {
+            color: #cbcbcb;
+        }
+
+        /* Estilos del contenedor de casillas */
+        .container {
+            display: flex;
+            gap: 20px;
+            z-index: 1; /* Asegura que las casillas estén por encima del fondo */
+            margin-top: 100px; /* Añadir espacio superior para evitar el encabezado */
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        /* Estilos de las casillas */
+        .box {
+            width: 150px;
+            height: 150px;
+            background-color: rgba(192, 192, 192, 0.5);
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.7), 0 0 20px rgba(255, 255, 255, 0.5), 0 0 30px rgba(255, 255, 255, 0.3);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .box:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgb(234, 226, 171), 0 6px 20px rgba(255, 255, 255, 0.98);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.7), 0 0 20px rgba(253, 251, 196, 0.5), 0 0 30px rgba(255, 255, 255, 0.3);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .box.active {
+            width: 300px;
+            height: 300px;
+            background-color: azure;
+            box-shadow: 0 0 10px rgba(250, 249, 176, 0.887), 0 0 20px rgba(196, 197, 253, 0.5), 0 0 30px rgba(255, 255, 255, 0.3);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: opacity 0.3s ease;
+        }
+
+        .box .content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            font-size:larger;
+            background-color: rgba(237, 235, 235, 0.619);
+            color: #edff93;
+            text-shadow: 2px 2px 5px #000000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            text-align: center;
+            padding: 10px;
+            box-sizing: border-box;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.7), 0 0 20px rgba(253, 251, 196, 0.5), 0 0 30px rgba(255, 255, 255, 0.3);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .box.active .content {
+            opacity: 1;
+        }
+
+        .stop-button {
+            display: none;
+        }
+
+        .stop-button.active {
+            display: block;
+        }
+
+        /* CSS para el botón "Continuar" */
+        .continuar-btn-container {
+            text-align: center;
+            margin-top: 40px;
+            width: 100%;
+        }
+
+ 
+        .icono-flecha {
+            padding: 10px 10px;
+            font-size: 12px;
+            background-color: #d1d1d1;
+            color: #ffffff;
+            margin-top: 50px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0 0 20px rgb(255, 255, 255), 0 0 30px rgb(255, 255, 255), 0 0 40px rgb(255, 255, 255);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .icono-flecha:hover {
+            box-shadow: 0 0 20px rgb(150, 150, 150), 0 0 40px rgba(179, 179, 179, 0.7), 0 0 60px rgba(255, 255, 255, 0.5);
+        }
+
+        /* Estilos responsivos */
+        @media (max-width: 768px) {
+            .container {
+                gap: 15px;
+                margin-top: 80px; /* Reduce el espacio superior */
+            }
+
+            .box {
+                width: 120px;
+                height: 120px;
+            }
+
+            .box.active {
+                width: 220px;
+                height: 220px;
+            }
+
+            .continuar-btn-container {
+                margin-top: 20px;
+            }
+
+            #menu ul li a {
+                font-size: 3em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .container {
+                gap: 10px;
+                margin-top: 70px; /* Aumenta el espacio superior en móviles */
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .box {
+                width: 100px;
+                height: 100px;
+            }
+
+            .box.active {
+                width: 180px;
+                height: 180px;
+            }
+
+            .continuar-btn {
+                padding: 8px 16px;
+                font-size: 14px;
+            }
+
+            #menu ul li a {
+                font-size: 2em;
+            }
+
+            #close-btn {
+                top: 10px;
+                right: 10px;
+                font-size: 1.5em;
+            }
+
+            .menu-btn {
+                font-size: 1.5em;
+            }
+        }
+
+
+        #hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: url('background-image.jpg') no-repeat center center/cover;
+            text-align: center;
+        }
+        .hero-content h1 {
+            font-size: 4em;
+            letter-spacing: 0.1em;
+            margin: 0;
+            animation: fadeIn 5s ease-in-out;
+            color: #666565;
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.159), 0 0 10px rgba(255, 255, 255, 0.203), 0 0 30px rgba(255, 255, 255, 0.3);
+
+
+        }
+
+        .hero-content p {
+            font-size: 1.5em;
+            margin: 20px 0;
+            animation: fadeIn 4s ease-in-out;
+        }
+
+        .box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+}
+.box img:hover {
+    filter: grayscale(0%);
+    
+
+
+}
+
+
+.box.active img {
+    filter: grayscale(0%);
+}
+
+
+
+    </style>
+</head>
+<body>
+    <header>
+        <button class="menu-btn" onclick="toggleMenu()">☰</button>
+        <nav>
+            <ul>
+                <li><a href="about.html">about</a></li>
+                <li><a href="apps.html">Apps</a></li>
+                <li><a href="register.html">log/in</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div id="menu">
+        <button id="close-btn" onclick="toggleMenu()">✖</button>
+        <ul>
+            <li><a href="comenzar.html">COMENZAR</a></li>
+            <li><a href="Aprendizaje.html">CURSOS</a></li>
+            <li><a href="apps.htmlg">APPS</a></li>
+            <li><a href="comunidad">COMUNIDAD</a></li>
+            <li><a href="contacto">CONTACTO</a></li>
+        </ul>
+    </div>
+    <div id="hero">
+        <div class="hero-content">
+            <h1>CURSOS</h1>
+       
+  
+    <div class="container">
+        <div class="box" onclick="toggleBox(this, 1)">
+            <img src="sept.webp" alt="">
+            <div class="content">
+                <p>Arquetipos y Símbología</p>
+            </div>
+        </div>
+        
+        <div class="box" onclick="toggleBox(this, 2)">
+            <img src="fondo.webp" alt="">
+            <div class="content">
+                <p>Programación creativa</p>
+            </div>
+        </div>
+        <div class="box" onclick="toggleBox(this, 3)">
+            <img src="respira.webp" alt="">
+            <div class="content">
+                <p>Psico- Creatividad</p>
+            </div>
+        </div>
+            <div class="box" onclick="toggleBox(this, 3)">
+                <img src="ico.webp" alt="">
+                <div class="content">
+                    <p>Psico-Marketing</p>
+                </div>
+        </div>
+    </div>
+
+
+        <button onclick="location.href='comunidad.html'" 
+         class="icono-flecha">
+                <i class="fas fa-arrow-right"></i>
+        </button>
+    </div>
+
+    <script>
+        
+
+        function toggleMenu() {
+            const menu = document.getElementById('menu');
+            menu.classList.toggle('show');
+        }
+
+        function toggleBox(element, boxNumber) {
+            element.classList.toggle('active');
+            if (boxNumber === 1 && element.classList.contains('active')) {
+                iniciarRuidoVerde();
+                element.querySelector('.stop-button').classList.add('active');
+            } else if (boxNumber === 1) {
+                stopSound();
+                element.querySelector('.stop-button').classList.remove('active');
+            }
+        }
+
+        function stopSound() {
+            if (audioContext) {
+                lfo.stop(); // Detener el LFO
+                audioContext.close();
+                audioContext = null;
+            }
+        }
+    </script>
+</body>
+</html>

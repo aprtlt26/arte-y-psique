@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Lora', serif;
+        }
+    </style>
+    
+    <title>Arte y Psique</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background: #dfffdd;
+            color: #d8d8d8;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            background: #f7f7f700;
+            padding: 10px 20px;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: flex-end;
+            margin: 0;
+            padding: 0;
+            margin-right: 35px;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            color: #000000ed;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+            text-shadow: 0.3px 0.3px 9px #b8f990;
+        }
+
+        nav ul li a:hover {
+            color: #ddffe4;
+            text-shadow: 0.3px 0.3px 9px #f5f5f5;
+        }
+
+        #hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: url('background-image.jpg') no-repeat center center/cover;
+            text-align: center;
+        }
+
+        .hero-content h1 {
+            font-size: 4em;
+            letter-spacing: 0.1em;
+            margin: 0;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        .hero-content p {
+            font-size: 1.5em;
+            margin: 20px 0;
+            animation: fadeIn 3s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        section {
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        section h2 {
+            font-size: 2.5em;
+            margin-bottom: 50px;
+            animation: slideIn 1s ease-in-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .menu-btn {
+            font-size: 2em;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: #2b2b2b;
+            transition: color 0.3s;
+            z-index: 1100;
+            position: relative;
+            text-shadow: 0.3px 0.3px 9px #b8f990;
+        }
+
+        .menu-btn:hover {
+            color: #c5d1cb;
+            text-shadow: 0.3px 0.3px 9px #b8f990;
+        }
+
+        #menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #ffffff02;
+            background-image: url('collagetarot.gif');
+            color: #1a1919;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            transform: translateX(-100%);
+            transition: transform 0.5s ease;
+            z-index: 1000;
+        }
+
+        #menu.show {
+            transform: translateX(0);
+        }
+
+        #menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            text-align: center;
+        }
+
+        #menu ul li {
+            margin: 20px 0;
+        }
+
+        #menu ul li a {
+            color: transparent;
+            font-size: 8em;
+            text-decoration: none;
+            font-weight: bold;
+            -webkit-text-stroke: 2px #151414;
+            transition: color 0.3s, -webkit-text-stroke 0.3s;
+        }
+
+        #menu ul li a:hover {
+            color: #000000;
+            -webkit-text-stroke: 0px;
+        }
+
+        #close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 2em;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: #010101;
+            z-index: 2000;
+        }
+
+        #close-btn:hover {
+            color: #4f4f4f;
+        }
+
+        #text-container {
+            max-width: 0¡900px; /* Ancho máximo para pantallas grandes */
+            margin: auto; /* Centra el contenedor */
+            position: absolute;
+            top: 400px;
+            left: 50%;
+            font-family: 'Open Sans', sans-serif;
+            transform: translate(-50%, -50%);
+            padding: 30px;
+            background-color: rgba(68, 68, 72, 0.45);
+            box-shadow: 0 4px 8px rgba(246, 246, 248, 0.817), 0 6px 20px rgba(255, 255, 255, 0.933);
+            border-radius: 10px;
+            font-size: 100%;
+        }
+
+        #text-container:hover {
+            color: #0d0d0d;
+            text-shadow: 0.3px 0.3px 9px #ffffff;
+            text-shadow: 0.3px 0.3px 5px #c5c3c3;
+
+        }
+
+        #text-container {
+            color: #efefef;
+            text-shadow: 0.3px 0.3px 9px #e9e9e9;
+            text-shadow: 0.3px 0.3px 5px #c5c3c3;
+        }
+
+        #text-container span {
+            transition: color 0.3s ease; /* Suaviza la transición del color */
+            cursor: pointer; /* Cambia el cursor a tipo puntero para indicar interactividad */
+        }
+
+     
+
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #ffffff00; /* Ajusta el color según tus necesidades */
+            padding: 10px;
+            text-align: center;
+            z-index: 1000;
+        }
+
+        footer:hover {
+            color: rgb(0, 255, 94);
+        }
+
+        a {
+            color: rgb(0, 255, 94);
+        }
+
+        /* Ajustes para dispositivos móviles */
+        @media (max-width: 768px) {
+            #text-container {
+                max-width: 90%; /* Ajusta el ancho máximo para pantallas pequeñas */
+                padding: 15px; /* Reduce el padding para más espacio */
+                font-size: 16px; /* Ajusta el tamaño de la fuente para mejor legibilidad */
+            }
+
+            #menu ul li a {
+                font-size: 4em; /* Ajusta el tamaño de fuente del menú para pantallas más pequeñas */
+            }
+
+            .menu-btn {
+                font-size: 1.5em; /* Ajusta el tamaño del botón de menú */
+            }
+        }
+
+        @media (max-width: 480px) {
+            #text-container {
+                max-width: 90%; /* Ajusta el ancho máximo para pantallas más pequeñas */
+                padding: 10px; /* Reduce el padding aún más para más espacio */
+                font-size: 14px; /* Ajusta el tamaño de la fuente para mejor legibilidad */
+            }
+
+            #menu ul li a {
+                font-size: 3em; /* Ajusta el tamaño de fuente del menú para pantallas pequeñas */
+            }
+
+            #close-btn {
+                top: 10px;
+                right: 10px;
+                font-size: 1.5em; /* Ajusta el tamaño del botón de cierre */
+            }
+
+            .menu-btn {
+                font-size: 1.2em; /* Ajusta el tamaño del botón de menú para pantallas pequeñas */
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <button class="menu-btn" onclick="toggleMenu()">☰</button>
+        <nav>
+            <ul>
+                <li><a href="about.html">about</a></li>
+                <li><a href="apps.html">apps</a></li>
+                <li><a href="register.html">contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+
+    <div id="hero">
+        <div class="hero-content">
+            <h1>Arte y Psique</h1>
+        </div>
+    </div>
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('menu');
+            menu.classList.toggle('show');
+        }
+    </script>
+
+
+    <section>
+        <div id="text-container">
+            <!-- Aquí el contenido se escribirá con el efecto máquina de escribir -->
+        </div>
+    </section>
+
+    <div id="menu">
+        <button id="close-btn" onclick="toggleMenu()">✖</button>
+        <ul>
+            <li><a href="comenzar.html">COMENZAR</a></li>
+            <li><a href="Aprendizaje.html">CURSOS</a></li>
+            <li><a href="apps.htmlg">APPS</a></li>
+            <li><a href="comunidad">COMUNIDAD</a></li>
+            <li><a href="#contact.html">CONTACTO</a></li>
+        </ul>
+    </div>
+
+    <script>
+        function typeWriter(element, text, i, interval) {
+            const words = text.split(' ');
+
+            if (i < words.length) {
+                element.innerHTML += words[i] + ' ';
+                i++;
+
+                setTimeout(function() {
+                    typeWriter(element, text, i, interval);
+                }, interval);
+            }
+        }
+
+        window.onload = function() {
+            const text = `¡Bienvenidos a Arte y Psique! ...............................................
+Soy Alfonso Pretelt. Artista y Psicólogo. ... .........................................................
+.............................................. ......
+He creado este espacio [que sigo desarrollando y actualizando] especialmente para ti, que buscas la erosión de tu inconsciente por medio de lenguajes creativos.*****..............................................................................................................
+
+
+
+Te invito a explorar un espacio donde el arte y la psicología convergen para abrir nuevas puertas al autoconocimiento y al desarrollo personal. Aquí, creemos en el poder transformador de la creatividad como un lenguaje colectivo y profundo que toca las raíces del inconsciente. ................................................................................
+ A través de técnicas de creación artística y lenguajes simbólicos, te guiaremos en un proceso de erosión del inconsciente, donde podrás liberar bloqueos internos, traumas y descubrir nuevas formas de expresión y pensamiento......................................................................................................................................
+
+Mis cursos están diseñados para potenciar tu creatividad en cualquier ámbito. Ya sea que desees mejorar tu capacidad para generar contenido atractivo, aumentar tus ventas con estrategias de marketing y psiclogía poderosas, o simplemente emprender un camino de crecimiento personal, encontrarás en Arte y Psique las herramientas necesarias para alcanzar tus metas. 
+En esta plataforma encontrarás una variedad de cursos, tanto gratuitos como de pago, que se adaptan a tus necesidades y objetivos.
+
+Además, te ofrecezco asesoría personalizada para ayudarte a integrar estas prácticas en tu vida diaria, potenciando no solo tu creatividad, sino también tu éxito profesional y personal. Únete a este viaje de exploración interior y creación, y descubre cómo el arte puede transformar no solo tu vida, sino también tu visión del mundo.`;
+
+            const element = document.getElementById('text-container');
+            const interval = 75;
+            typeWriter(element, text, 0, interval);
+        };
+    </script>
+
+    <footer>
+        <p>
+            <small>Design and Develop by <a href="https://alfonsopretelt.com/" target="_blank">aprtlt</a></small>
+        </p>
+    </footer>
+</body>
+</html>
