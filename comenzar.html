@@ -424,38 +424,9 @@
     box-shadow: 0 0 20px rgba(255, 255, 255, 1), 0 0 40px rgba(255, 255, 255, 0.7), 0 0 60px rgba(255, 255, 255, 0.5);
 }
 
-@media (max-width: 768px) {
-    .nav-buttons {
-        gap: 15px;
-        margin-top: 40px;
 
-    }
 
-    .nav-btn {
-        justify-content: center;
-        padding: 6px 6px;
-        width:45px;
-        align-items: center;
-        justify-content: center;
 
-        font-size: 14px;
-    }
-}
-
-@media (max-width: 480px) {
-    .nav-buttons {
-        flex-direction: column;
-        gap: 10px;
-        margin-top: 30px;
-        width:35px;
-    }
-
-    .nav-btn {
-        padding: 6px 6px;
-        font-size: 9px;
-
-    }
-}
 @media (max-width: 768px) {
             .hero-content h1 {
                 margin-top: 60px;
@@ -471,19 +442,122 @@
             }
         }
 
-        @media (max-width: 480px) {
+
+
+@media (max-width: 480px) {
             .hero-content h1 {
-                font-size: 2em;
+                margin-top: 60px;
+                font-size: 2.5em;
             }
 
             .hero-content p {
-                font-size: 1em;
+                font-size: 1.2em;
             }
 
             #menu ul li a {
-                font-size: 1.5em;
+                font-size: 2em;
             }
         }
+
+    /* Estilos responsivos */
+@media (max-width: 768px) {
+    .container {
+        gap: 15px;
+        margin-top: 80px;
+    }
+
+    .box {
+        width: 120px;
+        height: 120px;
+    }
+
+    .box.active {
+        width: 220px;
+        height: 220px;
+    }
+
+    nav ul li a {
+            display: flex;
+            color: #a7a6a6;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+            margin-left: 60px;}
+
+
+    .nav-buttons {
+        margin-top: 20px; /* Reducir margen en dispositivos móviles */
+        gap: 10px;
+        justify-content: center;
+        align-items: center;
+    }
+
+    
+    .nav-btn {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+
+    header {
+        justify-content: space-between;
+        padding: 10px;
+    }
+
+    .menu-btn {
+        font-size: 1.5em;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        gap: 10px;
+        margin-top: 70px;
+        flex-direction: column;
+        align-items: center;
+    }
+    nav ul li a {
+            display: flex;
+            color: #a7a6a6;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+            margin-left: 60px;}
+
+
+    .box {
+        width: 100px;
+        height: 100px;
+    }
+
+    .box.active {
+        width: 180px;
+        height: 180px;
+    }
+
+    .nav-buttons {
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 30px;
+        align-items: center; /* Asegura que los botones estén centrados */
+    }
+
+    .nav-btn {
+        padding: 6px 6px;
+        font-size: 14px;
+    }
+
+    
+
+    header {
+        padding: 10px;
+    }
+
+    .menu-btn {
+        font-size: 1.5em;
+    }
+
+
+}
     </style>
 </head>
 
@@ -552,140 +626,83 @@
         let ruidoBlancoGainNode;
         let lfo; // Oscilador para la pulsación
 
-        function iniciarRuidoVerde() {
-            if (!audioContext) {
-                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+       // Función para iniciar el ruido verde
+function iniciarRuidoVerde() {
+    if (!audioContext) {
+        audioContext = new (window.AudioContext || window.webkitAudioContext)();
 
-                const bufferSize = audioContext.sampleRate * 2; // 2 segundos de buffer
-                const noiseBuffer = audioContext.createBuffer(1, bufferSize, audioContext.sampleRate);
-                const output = noiseBuffer.getChannelData(0);
-                for (let i = 0; i < bufferSize; i++) {
-                    output[i] = Math.random() * 2 - 1; // Ruido blanco
-                }
-
-                const whiteNoiseSource = audioContext.createBufferSource();
-                whiteNoiseSource.buffer = noiseBuffer;
-                whiteNoiseSource.loop = true;
-
-                const filter = audioContext.createBiquadFilter();
-                filter.type = 'lowpass';
-                filter.frequency.value = 500; // Frecuencia para el ruido verde
-
-                ruidoBlancoGainNode = audioContext.createGain();
-                ruidoBlancoGainNode.gain.value = 0.5; // Volumen inicial ajustable
-
-                // Crear LFO para la pulsación lenta
-                lfo = audioContext.createOscillator();
-                lfo.frequency.value = 0.25; // Frecuencia de 0.25 Hz (4 segundos por ciclo)
-                const lfoGain = audioContext.createGain();
-                lfoGain.gain.value = 0.25; // Amplitud de la pulsación
-                lfo.connect(lfoGain);
-                lfoGain.connect(ruidoBlancoGainNode.gain);
-                lfo.start();
-
-                whiteNoiseSource.connect(filter);
-                filter.connect(ruidoBlancoGainNode);
-                ruidoBlancoGainNode.connect(audioContext.destination);
-
-                whiteNoiseSource.start();
-            }
+        const bufferSize = audioContext.sampleRate * 2; // 2 segundos de buffer
+        const noiseBuffer = audioContext.createBuffer(1, bufferSize, audioContext.sampleRate);
+        const output = noiseBuffer.getChannelData(0);
+        for (let i = 0; i < bufferSize; i++) {
+            output[i] = Math.random() * 2 - 1; // Ruido blanco
         }
 
-        function ajustarVolumen(event) {
-            if (!ruidoBlancoGainNode) return;
-            const clientY = event.clientY || event.touches[0].clientY;
-            const volumen = 1 - (clientY / window.innerHeight);
-            ruidoBlancoGainNode.gain.value = volumen;
-        }
+        const whiteNoiseSource = audioContext.createBufferSource();
+        whiteNoiseSource.buffer = noiseBuffer;
+        whiteNoiseSource.loop = true;
 
-        document.addEventListener('click', iniciarRuidoVerde, { once: true });
-        document.addEventListener('mousemove', ajustarVolumen);
-        document.addEventListener('touchmove', ajustarVolumen);
+        const filter = audioContext.createBiquadFilter();
+        filter.type = 'lowpass';
+        filter.frequency.value = 500; // Frecuencia para el ruido verde
 
-        function toggleMenu() {
-            const menu = document.getElementById('menu');
-            menu.classList.toggle('show');
-        }
+        ruidoBlancoGainNode = audioContext.createGain();
+        ruidoBlancoGainNode.gain.value = 0.5; // Volumen inicial ajustable
 
-        function toggleBox(element, boxNumber) {
-            element.classList.toggle('active');
-            if (boxNumber === 1 && element.classList.contains('active')) {
-                iniciarRuidoVerde();
-                element.querySelector('.stop-button').classList.add('active');
-            } else if (boxNumber === 1) {
-                stopSound();
-                element.querySelector('.stop-button').classList.remove('active');
-            }
-        }
+        // Crear LFO para la pulsación lenta
+        lfo = audioContext.createOscillator();
+        lfo.frequency.value = 0.25; // Frecuencia de 0.25 Hz (4 segundos por ciclo)
+        const lfoGain = audioContext.createGain();
+        lfoGain.gain.value = 0.25; // Amplitud de la pulsación
+        lfo.connect(lfoGain);
+        lfoGain.connect(ruidoBlancoGainNode.gain);
+        lfo.start();
 
-        function stopSound() {
-            if (audioContext) {
-                lfo.stop(); // Detener el LFO
-                audioContext.close();
-                audioContext = null;
-            }
-        }
+        whiteNoiseSource.connect(filter);
+        filter.connect(ruidoBlancoGainNode);
+        ruidoBlancoGainNode.connect(audioContext.destination);
 
-        let startX;
-
-function handleTouchStart(event) {
-    startX = event.touches[0].clientX;
-}
-
-function handleTouchMove(event) {
-    if (!startX) return;
-
-    let endX = event.touches[0].clientX;
-    let diffX = startX - endX;
-
-    if (diffX > 50) {
-        // Desliza hacia la izquierda (Siguiente página)
-        navigateToNextPage();
-    } else if (diffX < -50) {
-        // Desliza hacia la derecha (Página anterior)
-        navigateToPreviousPage();
-    }
-
-    startX = null;
-}
-
-function navigateToNextPage() {
-    const currentUrl = window.location.href;
-    if (currentUrl.includes("comenzar.html")) {
-        window.location.href = "cursos.html";
-    } else if (currentUrl.includes("cursos.html")) {
-        window.location.href = "apps.html";
-    } else if (currentUrl.includes("apps.html")) {
-        window.location.href = "comunidad.html";
-    } else if (currentUrl.includes("comunidad.html")) {
-        window.location.href = "contacto.html";
-    } else if (currentUrl.includes("contacto.html")) {
-        window.location.href = "comenzar.html"; // o cualquier página donde quieras reiniciar el ciclo
+        whiteNoiseSource.start();
     }
 }
 
-function navigateToPreviousPage() {
-    const currentUrl = window.location.href;
-    if (currentUrl.includes("contacto.html")) {
-        window.location.href = "comunidad.html";
-    } else if (currentUrl.includes("comunidad.html")) {
-        window.location.href = "apps.html";
-    } else if (currentUrl.includes("apps.html")) {
-        window.location.href = "cursos.html";
-    } else if (currentUrl.includes("cursos.html")) {
-        window.location.href = "comenzar.html";
-    } else if (currentUrl.includes("comenzar.html")) {
-        window.location.href = "contacto.html"; // o cualquier página donde quieras reiniciar el ciclo
+// Función para manejar el clic o toque en la casilla
+function toggleBox(element, boxNumber) {
+    element.classList.toggle('active');
+    if (boxNumber === 1 && element.classList.contains('active')) {
+        iniciarRuidoVerde();
+        element.querySelector('.stop-button').classList.add('active');
+    } else if (boxNumber === 1) {
+        stopSound();
+        element.querySelector('.stop-button').classList.remove('active');
     }
 }
 
-document.addEventListener('touchstart', handleTouchStart, false);
-document.addEventListener('touchmove', handleTouchMove, false);
+// Función para detener el sonido
+function stopSound() {
+    if (audioContext) {
+        lfo.stop(); // Detener el LFO
+        audioContext.close();
+        audioContext = null;
+    }
+}
+
+// Eventos para activar el ruido verde tanto en dispositivos de escritorio como en móviles
+document.querySelectorAll('.box').forEach((box) => {
+    box.addEventListener('click', function () {
+        toggleBox(this, 1);
+    });
+    box.addEventListener('touchstart', function () {
+        toggleBox(this, 1);
+    });
+});
+
 
     </script>
 </body>
 
 </html>
+
 
 
 </html>
