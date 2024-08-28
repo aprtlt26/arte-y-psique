@@ -485,23 +485,10 @@
     }
 }
 
-@media (max-width: 480px) {
-    .nav-buttons {
-        flex-direction: column;
-        gap: 10px;
-        margin-top: 30px;
-        width:35px;
-    }
-
-    .nav-btn {
-        padding: 6px 6px;
-        font-size: 9px;
-
-    }
-}
+    
 @media (max-width: 768px) {
             .hero-content h1 {
-                font-size: 2.5em;
+                font-size: 1.5em;
             }
 
             .hero-content p {
@@ -515,7 +502,7 @@
 
         @media (max-width: 480px) {
             .hero-content h1 {
-                font-size: 2em;
+                font-size: 1.5em;
             }
 
             .hero-content p {
@@ -526,6 +513,105 @@
                 font-size: 1.5em;
             }
         }
+        /* Estilos responsivos */
+@media (max-width: 768px) {
+    .container {
+        gap: 15px;
+        margin-top: 80px;
+    }
+
+    .box {
+        width: 120px;
+        height: 120px;
+    }
+
+    .box.active {
+        width: 220px;
+        height: 220px;
+    }
+
+    nav ul li a {
+            display: flex;
+            color: #a7a6a6;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+            margin-left: 60px;}
+
+
+    .nav-buttons {
+        margin-top: 20px; /* Reducir margen en dispositivos móviles */
+        gap: 10px;
+        justify-content: center;
+        align-items: center;
+    }
+
+    
+    .nav-btn {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+
+    header {
+        justify-content: space-between;
+        padding: 10px;
+    }
+
+    .menu-btn {
+        font-size: 1.5em;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        gap: 10px;
+        margin-top: 70px;
+        flex-direction: column;
+        align-items: center;
+    }
+    nav ul li a {
+            display: flex;
+            color: #a7a6a6;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+            margin-left: 60px;}
+
+
+    .box {
+        width: 100px;
+        height: 100px;
+    }
+
+    .box.active {
+        width: 180px;
+        height: 180px;
+    }
+
+    .nav-buttons {
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 30px;
+        align-items: center; /* Asegura que los botones estén centrados */
+    }
+
+    .nav-btn {
+        padding: 6px 6px;
+        font-size: 14px;
+    }
+
+    
+
+    header {
+        padding: 10px;
+    }
+
+    .menu-btn {
+        font-size: 1.5em;
+    }
+
+
+}
     </style>
 </head>
 <body>
@@ -622,5 +708,6 @@
     </script>
 </body>
 </html>
+
 
 
