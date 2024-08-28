@@ -157,7 +157,7 @@
             height: 100%;
             background-color: #ffffff02;
             background-image: url('collagetarot.gif');
-            color: #1a1919;
+            color: #fffafa;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -179,13 +179,11 @@
         }
 
         #menu ul li {
-            font-size: 8em
             margin: 20px 0;
         }
 
         #menu ul li a {
-            color: #fff;
-
+            color: #1a1a1a;
             font-size: 8em;
             text-decoration: none;
             font-weight: bold;
@@ -194,10 +192,9 @@
         }
 
         #menu ul li a:hover {
-            color: #000;
+            color: #000000;
             -webkit-text-stroke: 0px;
         }
-
         #close-btn {
             position: absolute;
             top: 20px;
@@ -206,12 +203,14 @@
             cursor: pointer;
             background: none;
             border: none;
-            color: #050505;
+            color: #010101;
             z-index: 2000;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.7), 0 0 20px rgba(255, 255, 255, 0.5), 0 0 30px rgba(255, 255, 255, 0.3);
+            transition: box-shadow 0.3s ease;
         }
 
         #close-btn:hover {
-            color: #c5d1cb;
+            color: #4f4f4f;
         }
 
         /* Media Queries for Responsiveness */
@@ -299,6 +298,7 @@
 </body>
 
 </html>
+
 
 
 
