@@ -428,10 +428,16 @@
     .nav-buttons {
         gap: 15px;
         margin-top: 40px;
+
     }
 
     .nav-btn {
-        padding: 8px 16px;
+        justify-content: center;
+        padding: 6px 6px;
+        width:45px;
+        align-items: center;
+        justify-content: center;
+
         font-size: 14px;
     }
 }
@@ -441,15 +447,18 @@
         flex-direction: column;
         gap: 10px;
         margin-top: 30px;
+        width:35px;
     }
 
     .nav-btn {
-        padding: 8px 16px;
-        font-size: 14px;
+        padding: 6px 6px;
+        font-size: 9px;
+
     }
 }
 @media (max-width: 768px) {
             .hero-content h1 {
+                margin-top: 60px;
                 font-size: 2.5em;
             }
 
@@ -616,8 +625,68 @@
                 audioContext = null;
             }
         }
+
+        let startX;
+
+function handleTouchStart(event) {
+    startX = event.touches[0].clientX;
+}
+
+function handleTouchMove(event) {
+    if (!startX) return;
+
+    let endX = event.touches[0].clientX;
+    let diffX = startX - endX;
+
+    if (diffX > 50) {
+        // Desliza hacia la izquierda (Siguiente página)
+        navigateToNextPage();
+    } else if (diffX < -50) {
+        // Desliza hacia la derecha (Página anterior)
+        navigateToPreviousPage();
+    }
+
+    startX = null;
+}
+
+function navigateToNextPage() {
+    const currentUrl = window.location.href;
+    if (currentUrl.includes("comenzar.html")) {
+        window.location.href = "cursos.html";
+    } else if (currentUrl.includes("cursos.html")) {
+        window.location.href = "apps.html";
+    } else if (currentUrl.includes("apps.html")) {
+        window.location.href = "comunidad.html";
+    } else if (currentUrl.includes("comunidad.html")) {
+        window.location.href = "contacto.html";
+    } else if (currentUrl.includes("contacto.html")) {
+        window.location.href = "comenzar.html"; // o cualquier página donde quieras reiniciar el ciclo
+    }
+}
+
+function navigateToPreviousPage() {
+    const currentUrl = window.location.href;
+    if (currentUrl.includes("contacto.html")) {
+        window.location.href = "comunidad.html";
+    } else if (currentUrl.includes("comunidad.html")) {
+        window.location.href = "apps.html";
+    } else if (currentUrl.includes("apps.html")) {
+        window.location.href = "cursos.html";
+    } else if (currentUrl.includes("cursos.html")) {
+        window.location.href = "comenzar.html";
+    } else if (currentUrl.includes("comenzar.html")) {
+        window.location.href = "contacto.html"; // o cualquier página donde quieras reiniciar el ciclo
+    }
+}
+
+document.addEventListener('touchstart', handleTouchStart, false);
+document.addEventListener('touchmove', handleTouchMove, false);
+
     </script>
 </body>
+
+</html>
+
 
 </html>
 
