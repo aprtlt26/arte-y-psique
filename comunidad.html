@@ -26,8 +26,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Anta&family=Kode+Mono:wght@400..700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
 <head>
+
     <style>
         /* Estilos generales */
         body {
@@ -39,7 +41,7 @@
             align-items: center;
             flex-direction: column;
             min-height: 100vh;
-            background: #000000;
+            background: #3842ff;
             overflow: hidden;
         }
 
@@ -56,7 +58,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: #000000;
+            background: #3842ff;
             border-radius: 8px; /* Esquinas redondeadas */
         }
 
@@ -67,7 +69,6 @@
             margin: 10;
             padding: 0;
             margin-right: 35px;
-;
         }
 
         nav ul li {
@@ -76,16 +77,14 @@
 
         nav ul li a {
             display: flex;
-            color: #141313;
+            color: #4658f5;
             text-decoration: none;
             font-weight: bold;
             transition: color 0.3s;
-            text-shadow: 0 0 3px rgba(139, 137, 137, 0.357), 0 0 5px rgba(183, 181, 181, 0.429), 0 0 5px rgba(255, 255, 255, 0.3);
-
         }
 
         nav ul li a:hover {
-            color: #ecf2ef;
+            color: #8a9df4;
             text-shadow: 0 0 8px rgba(255, 255, 255, 0.7), 0 0 10px rgba(255, 255, 255, 0.5), 0 0 30px rgba(255, 255, 255, 0.3);
 
         }
@@ -99,7 +98,7 @@
             height: 100%;
             background-color: #ffffff02;
             background-image: url('collagetarot.gif');
-            color: #fffafa;
+            color: #1a1919;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -125,7 +124,7 @@
         }
 
         #menu ul li a {
-            color: #1a1a1a;
+            color: #ffffff;
             font-size: 8em;
             text-decoration: none;
             font-weight: bold;
@@ -136,7 +135,11 @@
         #menu ul li a:hover {
             color: #000000;
             -webkit-text-stroke: 0px;
+            -webkit-text-stroke: 2px #ffffff;
+
+
         }
+
         #close-btn {
             position: absolute;
             top: 20px;
@@ -300,13 +303,29 @@
         .continuar-btn {
             padding: 10px 20px;
             font-size: 16px;
-            background-color: #ffffff;
+            background-color: #443ef5;
             color: #a9a8a8;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             box-shadow: 0 0 10px rgba(255, 255, 255, 0.7), 0 0 20px rgba(255, 255, 255, 0.5), 0 0 30px rgba(255, 255, 255, 0.3);
             transition: box-shadow 0.3s ease;
+        }
+        .icono-flecha {
+            padding: 10px 10px;
+            font-size: 16px;
+            background-color: #443ef5;
+            margin-top: 50px;
+            color: #a9a8a8;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.7), 0 0 20px rgba(255, 255, 255, 0.5), 0 0 30px rgba(255, 255, 255, 0.3);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .icono-flecha:hover {
+            box-shadow: 0 0 20px rgb(150, 150, 150), 0 0 40px rgba(179, 179, 179, 0.7), 0 0 60px rgba(255, 255, 255, 0.5);
         }
 
         .continuar-btn:hover {
@@ -415,8 +434,8 @@
             letter-spacing: 0.1em;
             margin: 0;
             animation: fadeIn 5s ease-in-out;
-            color: #000000;
-            text-shadow: 0 0 5px rgba(95, 94, 94, 0.7), 0 0 4px rgba(155, 155, 155, 0.5), 0 0 30px rgba(83, 82, 82, 0.3);
+            color: #3842ff;
+            text-shadow: 0 0 5px rgba(87, 101, 248, 0.7), 0 0 10px rgba(253, 251, 196, 0.5), 0 0 30px rgba(255, 255, 255, 0.3);
 
 
         }
@@ -426,23 +445,6 @@
             margin: 20px 0;
             animation: fadeIn 4s ease-in-out;
 
-        }
-
-        .icono-flecha {
-            padding: 10px 10px;
-            font-size: 12px;
-            background-color: #222222;
-            color: #ffffff;
-            margin-top: 50px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            box-shadow: 0 0 20px rgb(255, 255, 255), 0 0 30px rgb(255, 255, 255), 0 0 40px rgb(255, 255, 255);
-            transition: box-shadow 0.3s ease;
-        }
-
-        .icono-flecha:hover {
-            box-shadow: 0 0 20px rgb(150, 150, 150), 0 0 40px rgba(179, 179, 179, 0.7), 0 0 60px rgba(255, 255, 255, 0.5);
         }
 
         .nav-buttons {
@@ -456,66 +458,19 @@
 .nav-btn {
     padding: 10px 10px;
     font-size: 16px;
-    background-color: #000000;
+    background-color: #3750f4;
     color: #a9a8a8;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    box-shadow: 0 0 10px rgba(69, 67, 67, 0.7), 0 0 20px rgba(91, 91, 91, 0.5), 0 0 30px rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.7), 0 0 20px rgba(255, 255, 255, 0.5), 0 0 30px rgba(255, 255, 255, 0.3);
     transition: box-shadow 0.3s ease;
 }
 
 .nav-btn:hover {
     box-shadow: 0 0 20px rgba(255, 255, 255, 1), 0 0 40px rgba(255, 255, 255, 0.7), 0 0 60px rgba(255, 255, 255, 0.5);
 }
-
-@media (max-width: 768px) {
-    .nav-buttons {
-        gap: 15px;
-        margin-top: 40px;
-
-    }
-
-    .nav-btn {
-        justify-content: center;
-        padding: 6px 6px;
-        width:45px;
-        align-items: center;
-        justify-content: center;
-
-        font-size: 14px;
-    }
-}
-
-    
-@media (max-width: 768px) {
-            .hero-content h1 {
-                font-size: 1.5em;
-            }
-
-            .hero-content p {
-                font-size: 1.2em;
-            }
-
-            #menu ul li a {
-                font-size: 2em;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero-content h1 {
-                font-size: 1.5em;
-            }
-
-            .hero-content p {
-                font-size: 1em;
-            }
-
-            #menu ul li a {
-                font-size: 1.5em;
-            }
-        }
-        /* Estilos responsivos */
+/* Estilos responsivos */
 @media (max-width: 768px) {
     .container {
         gap: 15px;
@@ -532,7 +487,7 @@
         height: 220px;
     }
 
-  
+
 
     .nav-buttons {
         margin-top: 20px; /* Reducir margen en dispositivos móviles */
@@ -601,8 +556,36 @@
 
 }
 
+@media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.0em;
+            }
+
+            .hero-content p {
+                font-size: 1.2em;
+            }
+
+          
+        }
+
+
 
 @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 2.0em;
+            }
+
+            .hero-content p {
+                font-size: 1.2em;
+            }
+
+            #menu ul li a {
+                font-size: 2em;
+            }
+        }
+
+
+        @media (max-width: 480px) {
     header {
         justify-content: space-between;
         flex-direction: row; /* Asegura que el contenido del header esté alineado en una fila */
@@ -624,7 +607,7 @@
             <ul>
                 <li><a href="about.html">about</a></li>
                 <li><a href="comenzar.html">comenzar</a></li>
-                <li><a href="registro.html">log/in</a></li>
+                <li><a href="register.html">log/in</a></li>
             </ul>
         </nav>
     </header>
@@ -636,36 +619,42 @@
             <li><a href="cursos.html">CURSOS</a></li>
             <li><a href="apps.html">APPS</a></li>
             <li><a href="comunidad.html">COMUNIDAD</a></li>
-            <li><a href="registro.html">LOG/IN</a></li>
+            <li><a href="register.html">LOG/IN
+            </a></li>
         </ul>
     </div>
 
     <div id="hero">
         <div class="hero-content">
-            <h1 style="">COMUNIDAD</h1>
+            <h1 style="">APPS</h1>
        
     <div class="container">
-        <div class="box" onclick="loadPage('https://www.youtube.com/@psychokiller012')">
-            <img src="yout.webp" alt="">
+        <div class="box" onclick="loadPage('https://arteypsique.com/tarot_syntheziser')">
+            <img src="tarotshynteziser.webp" alt="">
             <div class="content">
-                <p>youtube</p>
-                <button class="open-new-window" onclick="openInNewTab('https://www.youtube.com/@psychokiller012'); event.stopPropagation();">Abrir en nueva ventana</button>
+                <p>tarot shynteziser</p>
+                <button class="open-new-window" onclick="openInNewTab('https://arteypsique.com/tarot_syntheziser'); event.stopPropagation();">Abrir en nueva ventana</button>
             </div>
         </div>
-        <div class="box" onclick="loadPage('https://orb.club/@aprtlt')">
-            <img src="orb.webp" alt="">
+        <div class="box" onclick="loadPage('https://soundtarot.com/')">
+            <img src="tarotfq.webp" alt="">
             <div class="content">
-                <p>NFTs</p>
-                <button class="open-new-window" onclick="openInNewTab('https://orb.club/@aprtlt'); event.stopPropagation();">Abrir en nueva ventana</button>
+                <p>Tarot Listening</p>
+                <button class="open-new-window" onclick="openInNewTab('https://soundtarot.com/'); event.stopPropagation();">Abrir en nueva ventana</button>
             </div>
         </div>
-       
- 
-        <div class="box" onclick="loadPage('https://ideofxnica.netlify.app/')">
-            <img src="logoide.gif" alt="">
+        <div class="box" onclick="loadPage('https://arteypsique.com/opencllg')">
+            <img src="collagetarot.gif" alt="">
+            <div class="content">
+                <p>Collage</p>
+                <button class="open-new-window" onclick="openInNewTab('https://arteypsique.com/collage'); event.stopPropagation();">Abrir en nueva ventana</button>
+            </div>
+        </div>
+        <div class="box" onclick="loadPage('https://arteypsique.com/paint')">
+            <img src="paint.webp" alt="">
             <div class="content">
                 <p>Paint</p>
-                <button class="open-new-window" onclick="openInNewTab('https://ideofxnica.netlify.app/'); event.stopPropagation();">Abrir en nueva ventana</button>
+                <button class="open-new-window" onclick="openInNewTab('https://arteypsique.com/paint'); event.stopPropagation();">Abrir en nueva ventana</button>
             </div>
         </div>
     </div>
@@ -676,24 +665,37 @@
     </div>
 
     <div class="nav-buttons">
-        <button onclick="location.href='cursos.html'" class="nav-btn">
+        <button onclick="location.href='comenzar.html'" class="nav-btn">
             <i class="fas fa-arrow-left"></i>
         </button>
-        <button onclick="location.href='comenzar.html'" class="nav-btn">
+        <button onclick="location.href='cursos.html'" class="nav-btn">
             <i class="fas fa-arrow-right"></i>
         </button>
+    
+    
     </div>
 
     <script>
-        function loadPage(url) {
-            const iframe = document.getElementById('content-iframe');
-            const iframeContainer = document.getElementById('iframe-container');
-            const openWindowBtn = document.getElementById('open-window-btn');
-            
-            iframe.src = url;
-            iframeContainer.style.display = 'block';
-            openWindowBtn.style.display = 'block';
-        }
+        let lastBox = null; // Variable para almacenar la última casilla seleccionada
+
+function loadPage(url, element) {
+    const iframe = document.getElementById('content-iframe');
+    const iframeContainer = document.getElementById('iframe-container');
+    const openWindowBtn = document.getElementById('open-window-btn');
+
+    // Si la misma casilla se vuelve a hacer clic, cerrar el iframe
+    if (lastBox === element) {
+        iframeContainer.style.display = 'none';
+        iframe.src = '';
+        openWindowBtn.style.display = 'none';
+        lastBox = null;
+    } else {
+        iframe.src = url;
+        iframeContainer.style.display = 'block';
+        openWindowBtn.style.display = 'block';
+        lastBox = element;
+    }
+}
 
         function openInNewTab(url) {
             window.open(url, '_blank');
@@ -706,7 +708,5 @@
     </script>
 </body>
 </html>
-
-
 
 
