@@ -76,10 +76,12 @@
 
         nav ul li a {
             display: flex;
-            color: #a7a6a6;
+            color: #141313;
             text-decoration: none;
             font-weight: bold;
             transition: color 0.3s;
+            text-shadow: 0 0 3px rgba(139, 137, 137, 0.357), 0 0 5px rgba(183, 181, 181, 0.429), 0 0 5px rgba(255, 255, 255, 0.3);
+
         }
 
         nav ul li a:hover {
@@ -123,7 +125,7 @@
         }
 
         #menu ul li a {
-            color: #f0f0f0;
+            color: #1a1a1a;
             font-size: 8em;
             text-decoration: none;
             font-weight: bold;
@@ -530,14 +532,7 @@
         height: 220px;
     }
 
-    nav ul li a {
-            display: flex;
-            color: #a7a6a6;
-            text-decoration: none;
-            font-weight: bold;
-            transition: color 0.3s;
-            margin-left: 60px;}
-
+  
 
     .nav-buttons {
         margin-top: 20px; /* Reducir margen en dispositivos móviles */
@@ -569,14 +564,7 @@
         flex-direction: column;
         align-items: center;
     }
-    nav ul li a {
-            display: flex;
-            color: #a7a6a6;
-            text-decoration: none;
-            font-weight: bold;
-            transition: color 0.3s;
-            margin-left: 60px;}
-
+  
 
     .box {
         width: 100px;
@@ -608,6 +596,21 @@
 
     .menu-btn {
         font-size: 1.5em;
+    }
+
+
+}
+
+
+@media (max-width: 480px) {
+    header {
+        justify-content: space-between;
+        flex-direction: row; /* Asegura que el contenido del header esté alineado en una fila */
+        padding: 10px;
+    }
+
+    nav {
+        margin-left: auto; /* Empuja el menú hacia la derecha */
     }
 
 
@@ -708,6 +711,7 @@
     </script>
 </body>
 </html>
+
 
 
 
