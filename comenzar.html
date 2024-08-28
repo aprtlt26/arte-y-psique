@@ -74,13 +74,12 @@
             margin-left: 20px;
         }
 
-           nav ul li a {
+        nav ul li a {
             display: flex;
             color: #cac8c8;
             text-decoration: none;
             font-weight: bold;
             transition: color 0.3s;
-    
         }
 
         nav ul li a:hover {
@@ -123,8 +122,8 @@
         }
 
         #menu ul li a {
-            color: #fff;
-            font-size: 8em;
+            color: transparent;
+            font-size: 7em;
             text-decoration: none;
             font-weight: bold;
             -webkit-text-stroke: 2px #151414;
@@ -139,20 +138,19 @@
         #close-btn {
             position: absolute;
             top: 20px;
-            left: 20px;
+            right: 20px;
             font-size: 2em;
             cursor: pointer;
             background: none;
             border: none;
             color: #010101;
             z-index: 2000;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.7), 0 0 20px rgba(255, 255, 255, 0.5), 0 0 30px rgba(255, 255, 255, 0.3);
-            transition: box-shadow 0.3s ease;
         }
 
         #close-btn:hover {
             color: #4f4f4f;
         }
+
 
         .menu-btn {
             font-size: 2em;
@@ -477,7 +475,9 @@
         height: 220px;
     }
 
-
+    #menu ul li a {
+                font-size: 4em; /* Ajusta el tamaño de fuente del menú para pantallas más pequeñas */
+            }
 
     .nav-buttons {
         margin-top: 20px; /* Reducir margen en dispositivos móviles */
@@ -509,7 +509,11 @@
         flex-direction: column;
         align-items: center;
     }
-    
+ 
+
+            #menu ul li a {
+                font-size: 4em; /* Ajusta el tamaño de fuente del menú para pantallas más pequeñas */
+            }
 
     .box {
         width: 100px;
@@ -546,7 +550,8 @@
 
 }
 
-        @media (max-width: 480px) {
+/* Estilos para la versión móvil */
+@media (max-width: 480px) {
     header {
         justify-content: space-between;
         flex-direction: row; /* Asegura que el contenido del header esté alineado en una fila */
@@ -559,6 +564,9 @@
 
 
 }
+
+
+
     </style>
 </head>
 
@@ -621,6 +629,14 @@
             </div>
         </div>
     </div>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('menu');
+            menu.classList.toggle('show');
+        }
+    </script>
+    
 
     <script>
         let audioContext;
@@ -703,6 +719,7 @@ document.querySelectorAll('.box').forEach((box) => {
 </body>
 
 </html>
+
 
 
 
