@@ -51,7 +51,6 @@
             top: 0;
             left: 8px;
             right: 8px;
-            color: #a0a0a0;
             padding: 10px 10px;
             z-index: 1000;
             display: flex;
@@ -59,6 +58,7 @@
             align-items: center;
             background-color: #69ff4b; /* Fondo semitransparente */
             border-radius: 8px; /* Esquinas redondeadas */
+            color: #69ff4b;
         }
 
         nav ul {
@@ -67,20 +67,21 @@
             justify-content: flex-end;
             margin: 10;
             padding: 0;
-            margin-right: 35px;
 
         }
 
-        nav ul li {
-            margin-left: 20px;
-        }
+    
 
         nav ul li a {
             display: flex;
-            color: #a7a6a6;
             text-decoration: none;
             font-weight: bold;
             transition: color 0.3s;
+            margin-right: 35px;
+            color: #69ff4b;
+        
+
+
         }
 
         nav ul li a:hover {
@@ -113,30 +114,8 @@
             transform: translateX(0);
         }
 
-        #menu ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            text-align: center;
-        }
 
-        #menu ul li {
-            margin: 20px 0;
-        }
-
-        #menu ul li a {
-            color: #f4f4f4;
-            font-size: 8em;
-            text-decoration: none;
-            font-weight: bold;
-            -webkit-text-stroke: 2px #151414;
-            transition: color 0.3s, -webkit-text-stroke 0.3s;
-        }
-
-        #menu ul li a:hover {
-            color: #000000;
-            -webkit-text-stroke: 0px;
-        }
+      
 
         #close-btn {
             position: absolute;
@@ -286,6 +265,7 @@
             .container {
                 gap: 15px;
                 margin-top: 80px; /* Reduce el espacio superior */
+                
             }
 
             .box {
@@ -303,7 +283,7 @@
             }
 
             #menu ul li a {
-                font-size: 3em;
+                font-size: 2em;
             }
         }
 
@@ -335,9 +315,7 @@
                 font-size: 14px;
             }
 
-            #menu ul li a {
-                font-size: 2em;
-            }
+         
 
             #close-btn {
                 top: 10px;
@@ -395,88 +373,35 @@
 }
 
 
-@media (max-width: 768px) {
-    .nav-buttons {
-        gap: 15px;
-        margin-top: 40px;
-
-    }
-
-    nav ul li a {
-            display: flex;
-            color: #a7a6a6;
-            text-decoration: none;
-            font-weight: bold;
-            transition: color 0.3s;
-            margin-right: 2px;
-        }
-    .nav-btn {
-        justify-content: center;
-        padding: 6px 6px;
-        width:45px;
-        align-items: center;
-        justify-content: center;
-
-        font-size: 14px;
-    }
-}
-
-@media (max-width: 480px) {
-    .nav-buttons {
-        flex-direction: column;
-        gap: 10px;
-        margin-top: 30px;
-        width:35px;
-    }
-}
-    nav ul li a {
-            display: flex;
-            color: #a7a6a6;
-            text-decoration: none;
-            font-weight: bold;
-            transition: color 0.3s;
-            margin-right: 2px;
-    }
-    .nav-btn {
-        padding: 6px 6px;
-        font-size: 9px;
-
-    }
 
 @media (max-width: 768px) {
             .hero-content h1 {
-                font-size: 2.5em;
+                font-size: 1.5em;
             }
 
-            nav ul li a {
-            display: flex;
-            color: #a7a6a6;
-            text-decoration: none;
-            font-weight: bold;
-            transition: color 0.3s;
-            margin-right: 2px;}
+          
 
             .hero-content p {
                 font-size: 1.2em;
             }
 
             #menu ul li a {
-                font-size: 2em;
+                font-size: 1em;
             }
         }
 
         @media (max-width: 480px) {
             .hero-content h1 {
-                font-size: 2em;
+                font-size: 1em;
+                top: 100px;
+
             }
 
             .hero-content p {
                 font-size: 1em;
             }
 
-            #menu ul li a {
-                font-size: 1.5em;
-            }
+          
         }
 
         header nav ul {
@@ -487,20 +412,21 @@
     padding: 0;
 }
 
-header nav ul li {
-    margin-left: 20px;
-}
 
 header nav ul li a {
-    color: #a7a6a6;
     text-decoration: none;
     font-weight: bold;
     transition: color 0.3s;
+    margin-right: 25px;
+            color: #4cfb29;
+            text-shadow: 0 0 10px rgb(255, 255, 255), 0 0 20px rgb(255, 255, 255), 0 0 30px rgb(255, 255, 255);
+
+    
 }
 
 header nav ul li a:hover {
     color: #ecf2ef;
-    text-shadow: 0 0 8px rgba(255, 255, 255, 0.7), 0 0 10px rgba(255, 255, 255, 0.5), 0 0 30px rgba(255, 255, 255, 0.3);
+    text-shadow: 0 0 6px rgba(255, 255, 255, 0.609), 0 0 10px rgba(255, 255, 255, 0.753), 0 0 10px rgba(255, 255, 255, 0.662);
 }
 
 /* Botones de navegación */
@@ -545,14 +471,6 @@ header nav ul li a:hover {
         height: 220px;
     }
 
-    nav ul li a {
-            display: flex;
-            color: #a7a6a6;
-            text-decoration: none;
-            font-weight: bold;
-            transition: color 0.3s;
-            margin-left: 60px;}
-
 
     .nav-buttons {
         margin-top: 20px; /* Reducir margen en dispositivos móviles */
@@ -583,19 +501,16 @@ header nav ul li a:hover {
         margin-top: 70px;
         flex-direction: column;
         align-items: center;
+        top: 100px;
+
     }
-    nav ul li a {
-            display: flex;
-            color: #a7a6a6;
-            text-decoration: none;
-            font-weight: bold;
-            transition: color 0.3s;
-            margin-left: 60px;}
+   
 
 
     .box {
         width: 100px;
         height: 100px;
+
     }
 
     .box.active {
@@ -628,23 +543,21 @@ header nav ul li a:hover {
 
 }
 
-#menu ul li a {
-    font-size: 1.5em;
-}
+
 
 
 @media (max-width: 768px) {
             .hero-content h1 {
                 font-size: 1.5em;
+                top:auto;
+
             }
 
             .hero-content p {
                 font-size: 1.2em;
             }
 
-            #menu ul li a {
-                font-size: 2em;
-            }
+         
         }
 
 
@@ -652,16 +565,28 @@ header nav ul li a:hover {
 @media (max-width: 480px) {
             .hero-content h1 {
                 font-size: 1.5em;
+                top: 105px;
             }
 
             .hero-content p {
                 font-size: 1.2em;
-            }
+                top: 105px;
 
-            #menu ul li a {
-                font-size: 2em;
             }
         }
+
+
+        @media (max-width: 480px) {
+    header {
+        justify-content: space-between;
+        flex-direction: row; /* Asegura que el contenido del header esté alineado en una fila */
+        padding: 10px;
+    }
+
+    nav {
+        margin-left: auto; /* Empuja el menú hacia la derecha */
+    }
+}
 
     </style>
 </head>
@@ -762,6 +687,7 @@ header nav ul li a:hover {
     </script>
 </body>
 </html>
+
 
 
 
