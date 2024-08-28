@@ -362,7 +362,7 @@
             const selectedImages = document.querySelectorAll('.draggable.selected');
             selectedImages.forEach(img => {
                 if (img.style.zIndex) {
-                    img.style.zIndex = parseInt(img.style.zIndex) + 1;
+                    img.style.zIndex = parseInt(img.style.zIndex) + 100;
                 } else {
                     img.style.zIndex = 1;
                 }
@@ -374,7 +374,7 @@
             const selectedImages = document.querySelectorAll('.draggable.selected');
             selectedImages.forEach(img => {
                 if (img.style.zIndex && parseInt(img.style.zIndex) > 0) {
-                    img.style.zIndex = parseInt(img.style.zIndex) - 1;
+                    img.style.zIndex = parseInt(img.style.zIndex) - 100;
                 }
             });
         });
@@ -1254,11 +1254,10 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <div id="menu-links" class="navbar-nav">
+                    <a class="nav-link" href="cursos.html">Curso</a>
                     <a class="nav-link" href="opensoundt.html" target="_blank">Tarot FQ</a>
-                                        <a class="nav-link" href="tarortsintheziser.html" target="_blank">Tarot Synth</a>
-
                     <a class="nav-link" href="paint.html">Paint</a>
-              
+                    <span class="hover-text">Accede a mundos increibles adquiriendo NFTs</span>
                 </div>
             </div>
         </nav>
@@ -1267,10 +1266,6 @@
     <div id="gallery-container"></div>
     <div id="gallery-container-2"></div>
 
-    <div id="message-container">
-        <div id="message"></div>
-        <button id="close-button">X</button>
-    </div>
 
     <div>
         <p>Arte & Psique® All rights reserved. Alfonso Pretelt</p>
