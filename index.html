@@ -217,7 +217,7 @@
         /* Media Queries for Responsiveness */
         @media (max-width: 768px) {
             .hero-content h1 {
-                font-size: 2.5em;
+                font-size: 2.3em;
             }
 
             .hero-content p {
@@ -238,10 +238,22 @@
                 font-size: 1em;
             }
 
-            #menu ul li a {
-                font-size: 1.5em;
-            }
+         
         }
+
+        @media (max-width: 480px) {
+    header {
+        justify-content: space-between;
+        flex-direction: row; /* Asegura que el contenido del header esté alineado en una fila */
+        padding: 10px;
+    }
+
+    nav {
+        margin-left: auto; /* Empuja el menú hacia la derecha */
+    }
+
+
+}
     </style>
 </head>
 
