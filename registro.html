@@ -5,36 +5,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="description" content="About">
+    <meta name="description" content="Registro">
     <meta name="keywords" content="Cursoonline, tarot, alfonsopretelt, collage, eorsión">
     <meta name="author" content="alfonsopretelt">
     <meta name="robots" content="Learning">
     <meta name="google" content="translate">
-
-    <link rel="icon" href="rostro.jpg" type="image/x-icon">
-
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Anta&family=Kode+Mono:wght@400..700&display=swap" rel="stylesheet">
-    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js"></script>
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
-        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anta&family=Kode+Mono:wght@400..700&display=swap" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
-        // Configuración de Firebase
-        const firebaseConfig = {
-            apiKey: "AIzaSyARA9tqBfkiFK80XcaWtS1ar6yglfmEh3g",
-    authDomain: "artepsique-9ced7.firebaseapp.com",
-    projectId: "artepsique-9ced7",
-    storageBucket: "artepsique-9ced7.appspot.com",
-    messagingSenderId: "269569252943",
-    appId: "1:269569252943:web:b185a96dee1ff30ab2d43a"
-        };
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+<script src="treeSketch.js"></script>
 
-        // Inicializa Firebase
-        
-    </script>
 
     <script>
         document.addEventListener('contextmenu', function (e) {
@@ -44,12 +31,14 @@
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
-        body {
-            margin: 0;
-            font-family:"Anta", sans-serif;
-            background-color: #070707;
-            height: 100vh;
-        }
+body {
+    background-color: #000000; /* Fondo negro */
+    color: #ffffff; /* Texto blanco para contraste */
+    margin: 0;
+    font-family: "Anta", sans-serif; /* Asegúrate de que esta fuente esté cargada correctamente */
+    min-height: 100vh;
+}
+
 
         .anta-regular {
   font-family: "Anta", sans-serif;
@@ -57,81 +46,110 @@
   font-style: normal;
 }
         .section {
-            padding: 40px; /* Reducido el padding para móviles */
+            padding: 70px; /* Reducido el padding para móviles */
             text-align: center;
 
         }
 
-        .header .container {
-    display: flex; /* Utiliza Flexbox */
-    justify-content: center; /* Centra los contenidos horizontalmente */
-    align-items: center; /* Centra los contenidos verticalmente */
-    width: 100%; /* Asegura que el contenedor ocupe todo el ancho */
-}
+        header {
+            width: 100%;
+            background-color: #000000;
+            padding: 20px;
+            text-align: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            
+    
+        }
 
-        .navbar {
-    display: flex; /* Usa Flexbox para el diseño */
-    justify-content: center; /* Centra los elementos horizontalmente */
-    align-items: center; /* Centra los elementos verticalmente */
-    background-color: #000 !important; /* Color de fondo negro */
-    color: #fbfbfb !important; /* Color de texto blanco */
-    border: 2px dashed #5d626b; /* Borde personalizado */
-    width: auto; /* Permite que la barra de navegación ajuste su tamaño automáticamente */
-    margin-top: 10px;
-    padding: 30px;  
-    margin-right: auto; /* Centra el navbar ajustando automáticamente el margen derecho */
-    margin-left: auto;
- 
+        .navbar-brand {
+            font-size: 1.1rem; /* Tamaño de la fuente del nombre del sitio */
+            border: 2px dashed #5d626b;
+            color: #fbfbfb;
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.795), 0 0 10px rgba(255, 255, 255, 0.832), 0 0 30px rgba(255, 255, 255, 0.3);
 
-}
+            
+        }
 
-/* Estilos específicos para el .navbar-brand */
-.navbar-brand {
-    display: flex; /* Usa Flexbox para el diseño */
-    justify-content: center; /* Centra los elementos horizontalmente */
-    align-items: center; /
-    font-size: 1.1rem; /* Tamaño de la fuente */
-    color: #fbfbfb; /* Color de texto */
-    border: 2px dashed #5d626b; /* Borde personalizado */
-    margin-top: 2px;
-    padding: 8px;
-    margin: 0
-    ;
-  
 
+
+        .navbar.navbar-expand-lg.navbar-light.bg-light {
+    background-color: #000000 !important; /* Cambia el color de fondo a azul */
+    color: #fbfbfb !important; /* Cambia el color del texto a blanco */
+    border: 2px dashed #5d626b;
+    margin-left: 20%;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.795), 0 0 10px rgba(255, 255, 255, 0.832), 0 0 30px rgba(255, 255, 255, 0.3);
 
 }
 
-@media (max-width: 768px) {
-    .navbar {
-        justify-content: center;
-        align-items: center;
-        text-align: center; /* Asegura que el texto también esté centrado */
-    }
+     
 
-    .navbar-brand {
-        width: 100%; /* Ocupa todo el ancho disponible para asegurar el centrado */
-        display: block; /* Trata el elemento como un bloque para mejor manejo del centrado */
-    }
+        .navbar-nav .nav-link {
+            font-size: 1rem; /* Tamaño de la fuente de los enlaces del menú */
+            color: #3bc0ac; /* Color del texto de los enlaces */
 
-    /* Asegúrate de que todos los elementos del navbar estén centrados en dispositivos móviles */
-    .navbar-nav,
-    .navbar-toggler {
-        justify-content: center;
-        width: 100%; /* Ocupa todo el ancho para elementos internos también */
-    }
-}
-/* Para asegurar que el navbar se expanda adecuadamente en dispositivos grandes */
-@media (min-width: 992px) {
-    .navbar {
-        justify-content: center; /* Mantiene el contenido centrado en dispositivos grandes */
-    }
-}
+            transition: color 0.3s; /* Transición suave del color del texto */
+            margin: 0 15px; /* Espacio entre los enlaces */
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.795), 0 0 10px rgba(255, 255, 255, 0.832), 0 0 30px rgba(255, 255, 255, 0.3);
+
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #55d1ba; /* Color del texto al pasar el mouse sobre los enlaces */
+            border: 2px dashed #5ac6cc;
+            
+
+        }
+       
 
         .navbar-toggler {
             border: 2px dashed #5d626b;
-            color: #fbfbfb
+            color: #fbfbfb;
+            
 
+
+        }
+
+        .navbar-toggler-icon {
+            background-color: #4e4d4d; /* Color del icono del menú desplegable */
+            border: 2px dashed #5d626b;
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.795), 0 0 10px rgba(255, 255, 255, 0.832), 0 0 30px rgba(255, 255, 255, 0.3);
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.795), 0 0 10px rgba(255, 255, 255, 0.832), 0 0 30px rgba(255, 255, 255, 0.3);
+
+
+
+        }
+
+        .navbar-toggler:focus {
+            outline: none; /* Quita el contorno al enfocar el botón del menú desplegable */
+        }
+
+        .navbar-collapse {
+            background-color: #000000; /* Color de fondo del menú desplegable */
+            border: 2px dashed #5d626b;
+            box-shadow: 0 0 5px rgba(255, 255, 255, 0.795), 0 0 6px rgba(255, 255, 255, 0.832), 0 0 10px rgba(255, 255, 255, 0.3);
+
+
+        }
+
+        .navbar-collapse .navbar-nav .nav-link {
+            padding: 15px 0; /* Espaciado entre los enlaces del menú desplegable */
+            border-bottom: none; /* Borde inferior entre los enlaces */
+            color: #fbfbfb
+        }
+
+        .navbar-collapse .navbar-nav .nav-link:last-child {
+            border-bottom: none; /* Quita el borde inferior del último enlace */
+            
+        }
+
+        @media screen and (max-width: 576px) {
+            .navbar-nav .nav-link {
+                font-size: 0.9rem; /* Tamaño de la fuente de los enlaces en dispositivos móviles */
+                margin: 10px 15px; /* Espacio entre los enlaces en dispositivos móviles */
+            }
         }
 
         .section img {
@@ -148,22 +166,20 @@
         }
 
 
-        /* Estilo para la flecha lateral */
-
-
-
 
         /* Estilos para el formulario */
         #login-form, #register-form {
             max-width: 400px;
             margin: 0 auto;
-            margin-top: 40px;
             padding: 20px;
             border: 2px dashed #dedede;
             border-radius: 5px;
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.795), 0 0 10px rgba(255, 255, 255, 0.832), 0 0 30px rgba(255, 255, 255, 0.3);
+
             background-color: #000000;
             justify-content: center;
             align-items: center;
+            margin-top: 100px;
 
         }
 
@@ -179,17 +195,35 @@
             border-radius: 4px;
             box-sizing: border-box;
             border: 2px dashed #dedede;
-            background-color: #ceeeed;
+            background-color: #343333;
 font: color #dedede;
             justify-content: center;
             align-items: center;
 
         }
 
+        #login-form input[type="submit"],
+        #register-form input[type="submit"] {
+            display: flex;
+            width: 100%;
+            background-color: #a1f2f2;
+            color: rgb(0, 0, 0);
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            border: 2px dashed #595858;
+
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+
+        }
 
         input[type="text"],
 input[type="email"],
-input[type="password"] {color: #cfcfcf;}
+input[type="password"] {color: #cfcfcf;     text-shadow: 0 0 8px rgba(195, 201, 142, 0.266), 0 0 10px rgba(255, 255, 255, 0.217), 0 0 30px rgba(255, 255, 255, 0.3);
+}
 
         #login-form input[type="submit"]:hover,
         #register-form input[type="submit"]:hover {
@@ -199,14 +233,17 @@ input[type="password"] {color: #cfcfcf;}
         }
 h2{
     color: rgb(230, 226, 189);
-   
+    margin-top: 100px;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.7), 0 0 10px rgba(255, 255, 255, 0.5), 0 0 30px rgba(255, 255, 255, 0.3);
+
 
 }
 h3{
     color: rgb(230, 226, 189);
-}
+                text-shadow: 0 0 8px rgba(255, 255, 255, 0.7), 0 0 10px rgba(255, 255, 255, 0.5), 0 0 30px rgba(255, 255, 255, 0.3);
 
-section{ padding: 50px;}
+
+}
      
     </style>
 </head>
@@ -216,17 +253,31 @@ section{ padding: 50px;}
     <header class="container">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" href="index.html" style="color: rgb(189, 230, 219);">ARTE & PSIQUE</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            </button>
-           
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
+    aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+</button>
+
+<div class="collapse navbar-collapse" id="navbarNav">
+    <div id="menu-links" class="navbar-nav">
+        <!-- Aquí van los enlaces de navegación -->
+        <a class="nav-link" href="cursos.html">Cursos</a>
+        <a class="nav-link" href="opensoundt.html">Tarot FQ</a>
+        <a class="nav-link" href="tarot_syntheziser.html">Tarot Synth</a>
+        <a class="nav-link" href="collage.html">Collage</a>
+        <a class="nav-link" href="comunidad.html">Comunidad</a>
+    </div>
+</div>
+
+              
+            </nav>
     </header>
 
-    <section></section>
-    <div>
 
-    </div>
+
+
     <div class="section">
+        <h2>ARTE & PSIQUE</h2>
         <div id="login-section" style="display:block;">
           <h3>Login</h3>
           <!-- Quita action y method, maneja el submit con JS -->
@@ -240,17 +291,27 @@ section{ padding: 50px;}
       <section> 
         <div id="register-section" style="display: none;">
           <h3>Register</h3>
+          <!-- Quita action y method, maneja el submit con JS -->
           <form id="register-form">
             <input type="text" id="nombre" placeholder="Your Name" required><br>
             <input type="email" id="correo" placeholder="Your Email" required><br>
             <input type="password" id="clave" placeholder="Your Password" required><br>
+            <!-- Cambia el tipo a button para prevenir el submit por defecto -->
             <button type="button" id="register-btn">Registrar</button>
           </form>
         </div>
-        <button onclick="toggleForm()" style="background-color: #9f5ed0;">Reg-log</button>
+        <button onclick="toggleForm()" style="background-color: #9f5ed0;">To Register</button>
       </div>
       
+
+
+      <div id="tree-sketch-container"></div>
+
+
 <script>
+
+
+
 
 function toggleForm() {
         var loginSection = document.getElementById("login-section");
@@ -305,7 +366,7 @@ function toggleForm() {
       console.log("Usuario registrado:", userCredential.user);
       await setDoc(doc(db, "usuarios", userCredential.user.uid), { nombre, correo });
       alert("Usuario registrado exitosamente.");
-      window.location.href = 'https://arteypsique.com/collage'; // Ajusta esta URL si es necesario
+      window.location.href = 'collagepersonalizado.html'; // Ajusta esta URL si es necesario
 
     } catch (error) {
       console.error("Error al registrar el usuario:", error);
@@ -320,7 +381,7 @@ function toggleForm() {
       const userCredential = await signInWithEmailAndPassword(auth, correo, clave);
       console.log("Usuario logueado:", userCredential.user);
       alert("Inicio de sesión exitoso.");
-          window.location.href = 'https://arteypsique.com/collage'; // Ajusta esta URL si es necesario
+          window.location.href = 'collagepersonalizado.html'; // Ajusta esta URL si es necesario
 
     } catch (error) {
       console.error("Error al iniciar sesión:", error);
