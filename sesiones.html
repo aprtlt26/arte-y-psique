@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-Compatible" content="ie=edge">
+    <meta name="description" content="Alfonso Pretelt - Arte y Psique - Apps">
+    <meta name="keywords" content="collage, alfonsopretelt,tarot,erosion,">
+    <meta name="author" content="alfonsopretelt">
+    <meta name="robots" content="apps">
+    <meta name="google" content="translate">
+    <meta property="og:type" content="www.arteypsique.com">
+    <meta property="og:url" content="https://www.arteypsique.com">
+    <meta property="og:title" content="Arte & Psique">
+    <meta property="og:description" content="Plataforma de aprendizaje y creación">
+    <link rel="icon" href="logoarteypsique.webp" type="image/x-icon">
+    <meta property="og:image" content="logoarteypsique.webp">
+    <title>ART & PSYCHE</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Anta&family=Kode+Mono:wght@400..700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        /* Estilos generales */
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            min-height: 100vh;
+            background: #a18ff4;
+        }
+
+        /* Estilos del encabezado */
+        header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 8px;
+            right: 8px;
+            color: #a0a0a0;
+            padding: 10px 10px;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #a18ff4;
+            border-radius: 8px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: flex-end;
+            padding: 0;
+            margin-right: 35px;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            display: flex;
+            color: #a18ff4;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+                        text-shadow: 0 0 8px rgba(255, 255, 255, 0.7), 0 0 10px rgba(255, 255, 255, 0.5), 0 0 30px rgba(255, 255, 255, 0.3);
+
+        }
+
+        nav ul li a:hover {
+            color: #dedfe3;
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.7), 0 0 10px rgba(255, 255, 255, 0.5), 0 0 30px rgba(255, 255, 255, 0.3);
+        }
+
+        /* Estilos del menú */
+        #menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #ffffff02;
+            background-image: url('collagetarot.gif');
+            color: #1a1919;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            transform: translateX(-100%);
+            transition: transform 0.5s ease;
+            z-index: 1000;
+        }
+
+        #menu.show {
+            transform: translateX(0);
+        }
+
+        #menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            text-align: center;
+        }
+
+        #menu ul li {
+            margin: 20px 0;
+        }
+
+        #menu ul li a {
+            color: #ffffff;
+            font-size: 8em;
+            text-decoration: none;
+            font-weight: bold;
+            -webkit-text-stroke: 2px #151414;
+            transition: color 0.3s, -webkit-text-stroke 0.3s;
+        }
+
+        #menu ul li a:hover {
+            color: #000000;
+            -webkit-text-stroke: 0px;
+            -webkit-text-stroke: 2px #ffffff;
+        }
+
+        #close-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 2em;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: #010101;
+            z-index: 2000;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.7), 0 0 20px rgba(255, 255, 255, 0.5), 0 0 30px rgba(255, 255, 255, 0.3);
+            transition: box-shadow 0.3s ease;
+        }
+
+        #close-btn:hover {
+            color: #4f4f4f;
+        }
+
+        .menu-btn {
+            font-size: 2em;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: #9a9696;
+            transition: color 0.3s;
+            z-index: 1100;
+            position: relative;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.7), 0 0 20px rgba(255, 255, 255, 0.5), 0 0 30px rgba(255, 255, 255, 0.3);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .menu-btn:hover {
+            color: #cbcbcb;
+        }
+
+        /* Estilos del contenedor de casillas */
+        .container {
+            display: flex;
+            gap: 20px;
+            z-index: 1;
+            margin-top: 50px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        /* Estilos de las casillas */
+        .box {
+            width: 150px;
+            height: 150px;
+            background-color: rgba(192, 192, 192, 0.5);
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.7), 0 0 20px rgba(255, 255, 255, 0.5), 0 0 30px rgba(255, 255, 255, 0.3);
+        }
+
+        .box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(100%);
+            transition: filter 0.3s ease;
+        }
+
+        .box:hover img {
+            filter: grayscale(0%);
+        }
+
+        .box:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgb(234, 226, 171), 0 6px 20px rgba(255, 255, 255, 0.98);
+        }
+
+        .box.active {
+            width: 300px;
+            height: 300px;
+        }
+
+        .box .content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            font-size: larger;
+            background-color: rgba(237, 235, 235, 0.619);
+            color: #edff93;
+            text-shadow: 2px 2px 5px #000000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            text-align: center;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        .box.active .content {
+            opacity: 1;
+        }
+
+        /* Estilos para el formulario */
+        #contact-form-container {
+            display: none;
+            width: 60%;
+            padding: 15px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.7), 0 0 40px rgba(255, 255, 255, 0.5), 0 0 60px rgba(255, 255, 255, 0.5);
+            margin-top: 20px;
+            text-align: center;
+            align-items: center;
+            margin-left: 250px;
+
+        }
+
+        #contact-form-container.active {
+            display: block;
+        }
+
+        label {
+            margin-bottom: 8px;
+            color: #fff;
+            font-size: 1em;
+        }
+
+        input,
+        textarea {
+            width: 90%;
+            padding: 6px;
+            margin: 4px 0;
+            box-sizing: border-box;
+            background-color: rgba(255, 255, 255, 0.8);
+            border: none;
+            border-radius: 5px;
+            font-size: 0.9em;
+        }
+
+        button {
+            background-color: #89898a;
+            color: #2b2b2b;
+            padding: 8px;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.7), 0 0 20px rgba(255, 255, 255, 0.5), 0 0 30px rgba(255, 255, 255, 0.3);
+        }
+
+        button:hover {
+            background-color: #e2e2e2;
+        }
+
+        /* Estilos del título */
+        .hero-content h1 {
+            font-size: 4em;
+            letter-spacing: 0.1em;
+            margin: 0;
+            animation: fadeIn 5s ease-in-out;
+            color: #a18ff4;
+            text-shadow: 0 0 5px rgba(87, 101, 248, 0.7), 0 0 10px rgba(253, 251, 196, 0.5), 0 0 30px rgba(255, 255, 255, 0.3);
+        }
+
+        .icono-flecha {
+            padding: 10px 10px;
+            font-size: 12px;
+            background-color: #d1d1d1;
+            color: #ffffff;
+            margin-top: 50px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0 0 20px rgb(255, 255, 255), 0 0 30px rgb(255, 255, 255), 0 0 40px rgb(255, 255, 255);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .icono-flecha:hover {
+            box-shadow: 0 0 20px rgb(150, 150, 150), 0 0 40px rgba(179, 179, 179, 0.7), 0 0 60px rgba(255, 255, 255, 0.5);
+        }
+
+        @media (max-width: 768px) {
+            .box {
+                top: 10px;
+
+                width: 120px;
+                height: 120px;
+            }
+
+            .box.active {
+                width: 220px;
+                height: 220px;
+            }
+
+            #contact-form-container {
+                width: 80%;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .box {
+                width: 100px;
+                height: 100px;
+            }
+
+            .box.active {
+                width: 180px;
+                height: 180px;
+            }
+
+            #contact-form-container {
+                width: 90%;
+            }
+
+            .hero-content h1 {
+                font-size: 2em;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                gap: 15px;
+                margin-top: 80px; /* Reduce el espacio superior */
+            }
+
+            .box {
+                width: 120px;
+                height: 120px;
+            }
+
+            .box.active {
+                width: 220px;
+                height: 220px;
+            }
+
+            .continuar-btn-container {
+                margin-top: 20px;
+            }
+
+            #menu ul li a {
+                font-size: 2em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .container {
+                gap: 10px;
+                margin-top: 70px; /* Aumenta el espacio superior en móviles */
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .box {
+                top: 10px;
+
+                width: 100px;
+                height: 100px;
+            }
+
+            .box.active {
+                width: 180px;
+                height: 180px;
+            }
+
+            .continuar-btn {
+                padding: 8px 16px;
+                font-size: 14px;
+            }
+
+         
+
+            #close-btn {
+                top: 10px;
+                right: 10px;
+                font-size: 1.5em;
+            }
+
+            .menu-btn {
+                font-size: 1.5em;
+            }
+        }
+
+        @media (max-width: 480px) {
+    header {
+        justify-content: space-between;
+        flex-direction: row; /* Asegura que el contenido del header esté alineado en una fila */
+        padding: 10px;
+    }
+
+    nav {
+        margin-left: auto; /* Empuja el menú hacia la derecha */
+    }
+
+
+}
+
+@media (max-width: 768px) {
+
+
+            .hero-content h1 {
+                font-size:1.5em;
+            }
+
+            .hero-content p {
+
+                font-size: 1.2em;
+            }
+
+            #contact-form-container {
+            display: none;
+            width: 60%;
+            padding: 15px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.7), 0 0 40px rgba(255, 255, 255, 0.5), 0 0 60px rgba(255, 255, 255, 0.5);
+            margin-top: 10px;
+            text-align: center;
+            align-items: center;
+            margin-left: 50px;
+
+        }
+ }
+
+
+
+@media (max-width: 480px) {
+            .hero-content h1 {
+                
+                font-size: 1.5em;
+                margin-top: 95px;
+            }
+
+            .hero-content p {
+                font-size: 1.2em;
+            }
+
+         
+        }
+
+    </style>
+</head>
+
+<body>
+    <header>
+        <button class="menu-btn" onclick="toggleMenu()">☰</button>
+        <nav>
+            <ul>
+                <li><a href="about.html">about</a></li>
+                <li><a href="comenzar.html">comenzar</a></li>
+                <li><a href="register.html">log/in</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div id="menu">
+        <button id="close-btn" onclick="toggleMenu()">✖</button>
+        <ul>
+            <li><a href="comenzar.html">COMENZAR</a></li>
+            <li><a href="cursos.html">CURSOS</a></li>
+            <li><a href="apps.html">APPS</a></li>
+            <li><a href="comunidad.html">COMUNIDAD</a></li>
+            <li><a href="register.html">LOG/IN</a></li>
+        </ul>
+    </div>
+
+    <div id="hero">
+        <div class="hero-content">
+            <h1>SESIONES PSICOLOGÍA</h1>
+            <div class="container">
+                <div class="box" onclick="toggleForm(this, 'Arquetipos e Inconsciente')">
+                    <img src="arq.webp" alt="">
+                    <div class="content">
+                        <p>Arquetipos e Inconsciente</p>
+                    </div>
+                </div>
+                <div class="box" onclick="toggleForm(this, 'Frecuencias')">
+                    <img src="sono.webp" alt="">
+                    <div class="content">
+                        <p>Frecuencias</p>
+                    </div>
+                </div>
+                <div class="box" onclick="toggleForm(this, 'Psico-orientación')">
+                    <img src="psico.webp" alt="">
+                    <div class="content">
+                        <p>Psico-orientación</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="contact-form-container">
+                <div id="box-info"></div>
+                <form action="https://formspree.io/f/mayrebry" method="POST">
+                    <label for="name">Name:</label>
+                    <input type="text" name="name" required>
+                    <label for="email">Email:</label>
+                    <input type="email" name="email" required>
+                    <label for="message">Message:</label>
+                    <textarea name="message" required></textarea>
+                    <button type="submit">Send</button>
+                    <button type="button" onclick="openWhatsApp()">Contact via WhatsApp</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let lastBox = null;
+
+        function toggleForm(element, info) {
+            const formContainer = document.getElementById('contact-form-container');
+            const boxInfo = document.getElementById('box-info');
+
+            if (lastBox === element) {
+                formContainer.classList.remove('active');
+                lastBox.classList.remove('active');
+                lastBox = null;
+            } else {
+                if (lastBox) {
+                    lastBox.classList.remove('active');
+                }
+                boxInfo.innerText = info;
+                formContainer.classList.add('active');
+                element.classList.add('active');
+                lastBox = element;
+            }
+        }
+
+        function openWhatsApp() {
+            const phone = "+573160533996"; // Reemplaza con tu número de WhatsApp
+            const message = "Hola, me gustaría agendar una cita.";
+            const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+            window.open(url, '_blank');
+        }
+
+        function toggleMenu() {
+            const menu = document.getElementById('menu');
+            menu.classList.toggle('show');
+        }
+    </script>
+</body>
+
+</html>
