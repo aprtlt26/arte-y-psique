@@ -5,23 +5,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="description" content="Registro">
-    <meta name="keywords" content="Cursoonline, tarot, alfonsopretelt, collage, eorsión">
+    <meta name="description" content="Alfonso Pretelt - Arte y Psique - Apps">
+    <meta name="keywords" content="collage, alfonsopretelt,tarot,erosion,">
     <meta name="author" content="alfonsopretelt">
-    <meta name="robots" content="Learning">
+    <meta name="robots" content="apps">
     <meta name="google" content="translate">
-    
+    <meta property="og:type" content="www.arteypsique.com">
+    <meta property="og:url" content="https://www.arteypsique.com">
+    <meta property="og:title" content="Arte & Psique">
+    <meta property="og:description" content="Plataforma de aprendizaje y creación">
+    <link rel="icon" href="logoarteypsique.webp" type="image/x-icon">
+    <meta property="og:image" content="logoarteypsique.webp">
+    <title>ART & PSYCHE</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/interactjs@1.10.11/dist/interact.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/RecordRTC/5.6.1/RecordRTC.min.js"></script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anta&family=Kode+Mono:wght@400..700&display=swap" rel="stylesheet">
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
-<script src="treeSketch.js"></script>
-
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anta&family=Kode+Mono:wght@400..700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet">
 
     <script>
         document.addEventListener('contextmenu', function (e) {
@@ -31,13 +38,6 @@
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
-body {
-    background-color: #000000; /* Fondo negro */
-    color: #ffffff; /* Texto blanco para contraste */
-    margin: 0;
-    font-family: "Anta", sans-serif; /* Asegúrate de que esta fuente esté cargada correctamente */
-    min-height: 100vh;
-}
 
 
         .anta-regular {
@@ -52,7 +52,7 @@ body {
         }
 
         header {
-            width: 100%;
+            width: 80%;
             background-color: #000000;
             padding: 20px;
             text-align: center;
@@ -244,7 +244,113 @@ h3{
 
 
 }
-     
+
+
+body {
+    background-color: #000000; /* Fondo negro */
+    color: #ffffff; /* Texto blanco para contraste */
+    margin: 0;
+    font-family: "Anta", sans-serif; /* Asegúrate de que esta fuente esté cargada correctamente */
+    min-height: 100vh;
+    padding-top: 60px; /* Ajusta el espacio superior para dar cabida al header */
+}
+
+.section {
+    padding: 50px 20px; /* Padding ajustado para móviles */
+    text-align: center;
+}
+
+#login-form, #register-form {
+    max-width: 50%; /* Permite que el formulario use el 100% del ancho disponible */
+    margin: 20px auto; /* Centra el formulario y añade margen superior en móviles */
+    padding: 15px; /* Ajusta el padding para móviles */
+    border: 2px dashed #dedede;
+    border-radius: 5px;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.795), 0 0 10px rgba(255, 255, 255, 0.832), 0 0 30px rgba(255, 255, 255, 0.3);
+    background-color: #000000;
+}
+
+#login-form input[type="email"],
+#login-form input[type="password"],
+#register-form input[type="text"],
+#register-form input[type="email"],
+#register-form input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    display: block;
+    border-radius: 4px;
+    box-sizing: border-box;
+    border: 2px dashed #dedede;
+    background-color: #343333;
+    color: #dedede;
+    text-shadow: 0 0 8px rgba(195, 201, 142, 0.266), 0 0 10px rgba(255, 255, 255, 0.217), 0 0 30px rgba(255, 255, 255, 0.3);
+}
+
+#login-form input[type="submit"],
+#register-form input[type="submit"] {
+    width: 100%;
+    background-color: #a1f2f2;
+    color: rgb(0, 0, 0);
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    border: 2px dashed #595858;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+@media screen and (max-width: 768px) {
+    .section {
+        padding: 30px 10px; /* Reduce el padding para tablets */
+    }
+
+    header {
+        padding: 15px; /* Reduce el padding en el header */
+    }
+
+    .navbar-brand {
+        font-size: 1rem; /* Reduce el tamaño del texto en el logo */
+    }
+
+    .navbar-nav .nav-link {
+        font-size: 0.9rem; /* Reduce el tamaño del texto en los enlaces */
+    }
+
+    .navbar-toggler {
+        font-size: 1.2rem; /* Ajusta el tamaño del icono de la barra de menú */
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .section {
+        padding: 20px 5px; /* Reduce el padding aún más para móviles */
+    }
+
+    header {
+        padding: 8px; /* Reduce más el padding en el header para móviles pequeños */
+    }
+
+    .navbar-brand {
+        font-size: 0.9rem; /* Ajusta el tamaño del texto en el logo para móviles */
+    }
+
+    .navbar-nav .nav-link {
+        font-size: 0.8rem; /* Reduce aún más el tamaño del texto en los enlaces */
+        margin: 5px 10px; /* Reduce el espacio entre los enlaces */
+    }
+
+    #login-form, #register-form {
+        padding: 10px; /* Reduce el padding dentro del formulario para móviles pequeños */
+        margin-top: 60px; /* Asegura que haya espacio suficiente para el header */
+    }
+
+    button {
+        font-size: 0.9rem; /* Ajusta el tamaño del texto de los botones */
+    }
+}
+
     </style>
 </head>
 <body>
@@ -331,6 +437,7 @@ function toggleForm() {
         }
         
     }
+    
 </script>
 
 
