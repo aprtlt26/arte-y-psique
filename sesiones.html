@@ -37,48 +37,63 @@
         }
 
         /* Estilos del encabezado */
-        header {
-            position: fixed;
-            width: 100%;
-            top: 0;
-            left: 8px;
-            right: 8px;
-            color: #a0a0a0;
-            padding: 10px 10px;
-            z-index: 1000;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: #a18ff4;
-            border-radius: 8px;
-        }
+      /* Estilos del encabezado */
+      header {
+    position: fixed;
+    width: 100%;
+    top: 0; /* Ajustar la posición superior al borde de la ventana */
+    left: 0;
+    padding: 10px 20px; /* Espaciado interno del header */
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Asegura que el contenido esté centrado verticalmente */
+    background: #a18ff4;
+    border-radius: 8px;
+}
 
-        nav ul {
-            list-style: none;
-            display: flex;
-            justify-content: flex-end;
-            padding: 0;
-            margin-right: 35px;
-        }
+.menu-btn {
+    font-size: 2em;
+    cursor: pointer;
+    background: none;
+    border: none;
+    color: #9a9696;
+    transition: color 0.3s;
+    z-index: 1100;
+    margin: 0; /* Remover cualquier margen adicional */
+    padding: 0; /* Remover cualquier padding adicional */
+}
 
-        nav ul li {
-            margin-left: 20px;
-        }
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: flex-end;
+    padding: 0;
+    margin: 0; /* Ajustar el margen para acercar al borde superior */
 
-        nav ul li a {
-            display: flex;
-            color: #a18ff4;
-            text-decoration: none;
-            font-weight: bold;
-            transition: color 0.3s;
-                        text-shadow: 0 0 8px rgba(255, 255, 255, 0.7), 0 0 10px rgba(255, 255, 255, 0.5), 0 0 30px rgba(255, 255, 255, 0.3);
+}
 
-        }
+nav ul li {
+    margin-right: 35px;
+}
 
-        nav ul li a:hover {
-            color: #dedfe3;
-            text-shadow: 0 0 8px rgba(255, 255, 255, 0.7), 0 0 10px rgba(255, 255, 255, 0.5), 0 0 30px rgba(255, 255, 255, 0.3);
-        }
+nav ul li a {
+    display: flex;
+    color: #dedfe3;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.7), 0 0 10px rgba(255, 255, 255, 0.5), 0 0 30px rgba(255, 255, 255, 0.3);
+
+}
+
+nav ul li a:hover {
+    color: #ffffff;
+}
+
+
+
+ 
 
         /* Estilos del menú */
         #menu {
@@ -89,7 +104,7 @@
             height: 100%;
             background-color: #ffffff02;
             background-image: url('collagetarot.gif');
-            color: #1a1919;
+            color: #fffafa;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -115,8 +130,8 @@
         }
 
         #menu ul li a {
-            color: #ffffff;
-            font-size: 8em;
+            color: #1a1a1a;
+            font-size: 6em;
             text-decoration: none;
             font-weight: bold;
             -webkit-text-stroke: 2px #151414;
@@ -126,9 +141,7 @@
         #menu ul li a:hover {
             color: #000000;
             -webkit-text-stroke: 0px;
-            -webkit-text-stroke: 2px #ffffff;
         }
-
         #close-btn {
             position: absolute;
             top: 20px;
@@ -148,7 +161,7 @@
         }
 
         .menu-btn {
-            font-size: 2em;
+            font-size: 1em;
             cursor: pointer;
             background: none;
             border: none;
@@ -158,6 +171,9 @@
             position: relative;
             box-shadow: 0 0 10px rgba(255, 255, 255, 0.7), 0 0 20px rgba(255, 255, 255, 0.5), 0 0 30px rgba(255, 255, 255, 0.3);
             transition: box-shadow 0.3s ease;
+             padding: 2px 2px;
+             height: 3;
+             width: 5%;
         }
 
         .menu-btn:hover {
@@ -168,8 +184,8 @@
         .container {
             display: flex;
             gap: 20px;
-            z-index: 1;
-            margin-top: 50px;
+            z-index: 1; /* Asegura que las casillas estén por encima del fondo */
+            margin-top: 100px; /* Añadir espacio superior para evitar el encabezado */
             flex-wrap: wrap;
             justify-content: center;
         }
@@ -179,6 +195,7 @@
             width: 150px;
             height: 150px;
             background-color: rgba(192, 192, 192, 0.5);
+            top: -40px;
             border-radius: 10px;
             display: flex;
             justify-content: center;
@@ -273,43 +290,38 @@
             font-size: 0.9em;
         }
 
+     
+
+      
         button {
-            background-color: #89898a;
-            color: #2b2b2b;
-            padding: 8px;
-            border: none;
-            cursor: pointer;
-            margin-top: 10px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.7), 0 0 20px rgba(255, 255, 255, 0.5), 0 0 30px rgba(255, 255, 255, 0.3);
-        }
-
-        button:hover {
-            background-color: #e2e2e2;
-        }
-
-        /* Estilos del título */
-        .hero-content h1 {
-            font-size: 4em;
-            letter-spacing: 0.1em;
-            margin: 0;
-            animation: fadeIn 5s ease-in-out;
-            color: #a18ff4;
-            text-shadow: 0 0 5px rgba(87, 101, 248, 0.7), 0 0 10px rgba(253, 251, 196, 0.5), 0 0 30px rgba(255, 255, 255, 0.3);
-        }
-
-        .icono-flecha {
             padding: 10px 10px;
             font-size: 12px;
-            background-color: #d1d1d1;
+            background-color: #ad96dc;
             color: #ffffff;
             margin-top: 50px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            box-shadow: 0 0 20px rgb(255, 255, 255), 0 0 30px rgb(255, 255, 255), 0 0 40px rgb(255, 255, 255);
+            box-shadow: 0 0 20px rgb(189, 172, 240), 0 0 10px rgb(189, 172, 240), 0 0 10px rgb(255, 255, 255);
             transition: box-shadow 0.3s ease;
         }
+
+        button:hover {
+            box-shadow: 0 0 50px rgb(150, 150, 150), 0 0 10px rgba(179, 179, 179, 0.7), 0 0 60px rgba(255, 255, 255, 0.5);
+        }
+
+
+        /* Estilos del título */
+        .hero-content h1 {
+text-align: center;
+            font-size: 2em;
+            letter-spacing: 0.1em;
+            margin: 0;
+            animation: fadeIn 5s ease-in-out;
+            color: #a18ff4;
+            text-shadow: 0 0 5px rgba(151, 159, 245, 0.7), 0 0 10px rgba(253, 251, 196, 0.5), 0 0 30px rgba(255, 255, 255, 0.3);
+        }
+
 
         .icono-flecha:hover {
             box-shadow: 0 0 20px rgb(150, 150, 150), 0 0 40px rgba(179, 179, 179, 0.7), 0 0 60px rgba(255, 255, 255, 0.5);
@@ -482,6 +494,8 @@
          
         }
 
+        
+    
     </style>
 </head>
 
@@ -496,7 +510,7 @@
             </ul>
         </nav>
     </header>
-
+    
     <div id="menu">
         <button id="close-btn" onclick="toggleMenu()">✖</button>
         <ul>
@@ -507,6 +521,7 @@
             <li><a href="register.html">LOG/IN</a></li>
         </ul>
     </div>
+    
 
     <div id="hero">
         <div class="hero-content">
@@ -521,19 +536,19 @@
                 <div class="box" onclick="toggleForm(this, 'Frecuencias')">
                     <img src="sono.webp" alt="">
                     <div class="content">
-                        <p>Frecuencias</p>
+                        <p>Terapia con Frecuencias</p>
                     </div>
                 </div>
                 <div class="box" onclick="toggleForm(this, 'Psico-orientación')">
                     <img src="psico.webp" alt="">
                     <div class="content">
-                        <p>Psico-orientación</p>
+                        <p>Psico-Orientación</p>
                     </div>
                 </div>
             </div>
 
             <div id="contact-form-container">
-                <div id="box-info"></div>
+                <div id="box-info">Pedi Más información </div>
                 <form action="https://formspree.io/f/mayrebry" method="POST">
                     <label for="name">Name:</label>
                     <input type="text" name="name" required>
@@ -546,6 +561,16 @@
                 </form>
             </div>
         </div>
+    </div>
+
+</div>
+    <div class="nav-buttons">
+        <button onclick="location.href='cursos.html'" class="nav-btn">
+            <i class="fas fa-arrow-left"></i>
+        </button>
+        <button onclick="location.href='comunidad.html'" class="nav-btn">
+            <i class="fas fa-arrow-right"></i>
+        </button>
     </div>
 
     <script>
@@ -585,3 +610,4 @@
 </body>
 
 </html>
+
