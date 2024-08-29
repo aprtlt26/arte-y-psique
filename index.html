@@ -189,7 +189,7 @@
 
         #menu ul li a {
             color: #1a1a1a0c;
-            font-size: 6em;
+            font-size: 5em;
             text-decoration: none;
             font-weight: bold;
             -webkit-text-stroke: 2px #151414;
@@ -260,6 +260,46 @@
 
 
 }
+
+.hero-content img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px; /* Baja la imagen un poco en todas las pantallas */
+    max-height: 300px; /* Limita la altura máxima para pantallas grandes */
+}
+
+@media (max-width: 768px) {
+    .hero-content img {
+        max-width: 80%; /* Reduce el tamaño de la imagen en pantallas medianas */
+        margin-bottom: 30px; /* Baja la imagen un poco más en pantallas medianas */
+        max-height: 200px; /* Limita la altura máxima para pantallas medianas */
+    }
+
+    .hero-content h1 {
+        font-size: 1.5em;
+    }
+
+    .hero-content p {
+        font-size: 1.2em;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-content img {
+        max-width: 70%; /* Reduce aún más el tamaño de la imagen en pantallas pequeñas */
+        margin-bottom: 40px; /* Baja la imagen aún más en pantallas pequeñas */
+        max-height: 150px; /* Limita la altura máxima para pantallas pequeñas */
+    }
+
+    .hero-content h1 {
+        font-size: 1.2em;
+    }
+
+    .hero-content p {
+        font-size: 1em;
+    }
+}
+
     </style>
 </head>
 
@@ -303,6 +343,13 @@
 </body>
 
 </html>
+
+
+
+
+
+
+
 
 
 
