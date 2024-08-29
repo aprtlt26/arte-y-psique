@@ -126,7 +126,7 @@
 
         #menu ul li a {
             color: #1a1a1a;
-            font-size: 8em;
+            font-size: 6em;
             text-decoration: none;
             font-weight: bold;
             -webkit-text-stroke: 2px #151414;
@@ -290,28 +290,7 @@
             box-shadow: 0 0 20px rgba(255, 255, 255, 1), 0 0 40px rgba(255, 255, 255, 0.7), 0 0 60px rgba(255, 255, 255, 0.5);
         }
 
-        /* CSS para el botón "Continuar" */
-        .continuar-btn-container {
-            text-align: center;
-            margin-top: 40px;
-            width: 100%;
-        }
-
-        .continuar-btn {
-            padding: 10px 20px;
-            font-size: 16px;
-            background-color: #ffffff;
-            color: #a9a8a8;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.7), 0 0 20px rgba(255, 255, 255, 0.5), 0 0 30px rgba(255, 255, 255, 0.3);
-            transition: box-shadow 0.3s ease;
-        }
-
-        .continuar-btn:hover {
-            box-shadow: 0 0 20px rgba(255, 255, 255, 1), 0 0 40px rgba(255, 255, 255, 0.7), 0 0 60px rgba(255, 255, 255, 0.5);
-        }
+   
 
         /* Estilos responsivos */
         @media (max-width: 768px) {
@@ -451,6 +430,7 @@
     gap: 20px;
     margin-top: 50px;
     width: 100%;
+    
 }
 
 .nav-btn {
@@ -659,7 +639,13 @@
                 <button class="open-new-window" onclick="openInNewTab('https://orb.club/@aprtlt'); event.stopPropagation();">Abrir en nueva ventana</button>
             </div>
         </div>
-       
+        <div class="box" onclick="loadPage('https://zora.co/@aprtlt')">
+            <img src="collagetarot.gif" alt="">
+            <div class="content">
+                <p>NFTs</p>
+                <button class="open-new-window" onclick="openInNewTab('hhttps://zora.co/@aprtlt'); event.stopPropagation();">Abrir en nueva ventana</button>
+            </div>
+        </div>
         <div class="box" onclick="loadPage('https://ideofxnica.netlify.app/')">
             <img src="logoide.gif" alt="">
             <div class="content">
@@ -675,7 +661,7 @@
     </div>
 
     <div class="nav-buttons">
-        <button onclick="location.href='cursos.html'" class="nav-btn">
+        <button onclick="location.href='sesiones.html'" class="nav-btn">
             <i class="fas fa-arrow-left"></i>
         </button>
         <button onclick="location.href='comenzar.html'" class="nav-btn">
@@ -717,6 +703,7 @@ function loadPage(url, element) {
     </script>
 </body>
 </html>
+
 
 
 
