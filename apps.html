@@ -26,6 +26,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Anta&family=Kode+Mono:wght@400..700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
 <head>
 
@@ -34,13 +35,13 @@
         body {
             margin: 0;
             font-family: 'Arial', sans-serif;
-          
+            color: #fff;
             display: flex;
             justify-content: center;
             align-items: center;
             flex-direction: column;
             min-height: 100vh;
-            background: #69ff4b;
+            background: #3842ff;
             overflow: hidden;
         }
 
@@ -51,14 +52,14 @@
             top: 0;
             left: 8px;
             right: 8px;
+            color: #a0a0a0;
             padding: 10px 10px;
             z-index: 1000;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background-color: #69ff4b; /* Fondo semitransparente */
+            background: #3842ff;
             border-radius: 8px; /* Esquinas redondeadas */
-            color: #69ff4b;
         }
 
         nav ul {
@@ -67,49 +68,29 @@
             justify-content: flex-end;
             margin: 10;
             padding: 0;
-
+            margin-right: 35px;
         }
 
-    
+        nav ul li {
+            margin-left: 20px;
+        }
 
         nav ul li a {
             display: flex;
+            color: #4658f5;
             text-decoration: none;
             font-weight: bold;
             transition: color 0.3s;
-            margin-right: 35px;
-            color: #69ff4b;
-        
-
-
         }
 
         nav ul li a:hover {
-            color: #ecf2ef;
+            color: #8a9df4;
             text-shadow: 0 0 8px rgba(255, 255, 255, 0.7), 0 0 10px rgba(255, 255, 255, 0.5), 0 0 30px rgba(255, 255, 255, 0.3);
 
         }
 
         /* Estilos del menú */
-
-
-        .menu-btn {
-            font-size: 2em;
-            cursor: pointer;
-            background: none;
-            border: none;
-            color: #9a9696;
-            transition: color 0.3s;
-            z-index: 1100;
-            position: relative;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.7), 0 0 20px rgba(255, 255, 255, 0.5), 0 0 30px rgba(255, 255, 255, 0.3);
-            transition: box-shadow 0.3s ease;
-        }
-
-        .menu-btn:hover {
-            color: #cbcbcb;
-
-        }#menu {
+        #menu {
             position: fixed;
             top: 0;
             left: 0;
@@ -143,8 +124,8 @@
         }
 
         #menu ul li a {
-            color: transparent;
-            font-size: 5em;
+            color: #ffffff;
+            font-size: 8em;
             text-decoration: none;
             font-weight: bold;
             -webkit-text-stroke: 2px #151414;
@@ -154,24 +135,45 @@
         #menu ul li a:hover {
             color: #000000;
             -webkit-text-stroke: 0px;
+            -webkit-text-stroke: 2px #ffffff;
+
+
         }
 
         #close-btn {
             position: absolute;
             top: 20px;
-            right: 20px;
+            left: 20px;
             font-size: 2em;
             cursor: pointer;
             background: none;
             border: none;
             color: #010101;
             z-index: 2000;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.7), 0 0 20px rgba(255, 255, 255, 0.5), 0 0 30px rgba(255, 255, 255, 0.3);
+            transition: box-shadow 0.3s ease;
         }
 
         #close-btn:hover {
             color: #4f4f4f;
         }
 
+        .menu-btn {
+            font-size: 2em;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: #9a9696;
+            transition: color 0.3s;
+            z-index: 1100;
+            position: relative;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.7), 0 0 20px rgba(255, 255, 255, 0.5), 0 0 30px rgba(255, 255, 255, 0.3);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .menu-btn:hover {
+            color: #cbcbcb;
+        }
 
         /* Estilos del contenedor de casillas */
         .container {
@@ -228,7 +230,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            font-size:larger;
+            font-size: larger;
             background-color: rgba(237, 235, 235, 0.619);
             color: #edff93;
             text-shadow: 2px 2px 5px #000000;
@@ -256,6 +258,41 @@
             display: block;
         }
 
+        /* Estilos para el iframe */
+        #iframe-container {
+            width: 80%;
+            height: 400px;
+            margin-top: 40px;
+            border: none;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            overflow: hidden;
+            display: none; /* Inicialmente oculto */
+            position: relative;
+        }
+
+        /* CSS para el botón "Abrir en ventana" */
+        #open-window-btn {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #ffffff;
+            color: #a9a8a8;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.7), 0 0 20px rgba(255, 255, 255, 0.5), 0 0 30px rgba(255, 255, 255, 0.3);
+            transition: box-shadow 0.3s ease;
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            display: none; /* Inicialmente oculto */
+        }
+
+        #open-window-btn:hover {
+            box-shadow: 0 0 20px rgba(255, 255, 255, 1), 0 0 40px rgba(255, 255, 255, 0.7), 0 0 60px rgba(255, 255, 255, 0.5);
+        }
+
         /* CSS para el botón "Continuar" */
         .continuar-btn-container {
             text-align: center;
@@ -263,22 +300,36 @@
             width: 100%;
         }
 
- 
-        .icono-flecha {
-            padding: 10px 10px;
-            font-size: 12px;
-            background-color: #d1d1d1;
-            color: #ffffff;
-            margin-top: 50px;
+        .continuar-btn {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #443ef5;
+            color: #a9a8a8;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            box-shadow: 0 0 20px rgb(255, 255, 255), 0 0 30px rgb(255, 255, 255), 0 0 40px rgb(255, 255, 255);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.7), 0 0 20px rgba(255, 255, 255, 0.5), 0 0 30px rgba(255, 255, 255, 0.3);
+            transition: box-shadow 0.3s ease;
+        }
+        .icono-flecha {
+            padding: 10px 10px;
+            font-size: 16px;
+            background-color: #443ef5;
+            margin-top: 50px;
+            color: #a9a8a8;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.7), 0 0 20px rgba(255, 255, 255, 0.5), 0 0 30px rgba(255, 255, 255, 0.3);
             transition: box-shadow 0.3s ease;
         }
 
         .icono-flecha:hover {
             box-shadow: 0 0 20px rgb(150, 150, 150), 0 0 40px rgba(179, 179, 179, 0.7), 0 0 60px rgba(255, 255, 255, 0.5);
+        }
+
+        .continuar-btn:hover {
+            box-shadow: 0 0 20px rgba(255, 255, 255, 1), 0 0 40px rgba(255, 255, 255, 0.7), 0 0 60px rgba(255, 255, 255, 0.5);
         }
 
         /* Estilos responsivos */
@@ -303,7 +354,12 @@
             }
 
             #menu ul li a {
-                font-size: 2em;
+                font-size: 3em;
+            }
+
+            #iframe-container {
+                width: 100%;
+                height: 300px;
             }
         }
 
@@ -335,7 +391,9 @@
                 font-size: 14px;
             }
 
-         
+            #menu ul li a {
+                font-size: 2em;
+            }
 
             #close-btn {
                 top: 10px;
@@ -346,7 +404,20 @@
             .menu-btn {
                 font-size: 1.5em;
             }
+
+            #iframe-container {
+                width: 100%;
+                height: 250px;
+            }
+
+            #open-window-btn {
+                bottom: 5px;
+                right: 5px;
+                padding: 8px 16px;
+                font-size: 14px;
+            }
         }
+
 
 
         #hero {
@@ -356,14 +427,15 @@
             justify-content: center;
             background: url('background-image.jpg') no-repeat center center/cover;
             text-align: center;
+            
         }
         .hero-content h1 {
             font-size: 2em;
             letter-spacing: 0.1em;
             margin: 0;
             animation: fadeIn 5s ease-in-out;
-            color: #69ff4b;
-            text-shadow: 0 0 8px rgba(255, 255, 255, 0.785), 0 0 10px rgba(255, 255, 255, 0.647), 0 0 30px rgba(255, 255, 255, 0.904);
+            color: #3842ff;
+            text-shadow: 0 0 5px rgba(87, 101, 248, 0.7), 0 0 10px rgba(253, 251, 196, 0.5), 0 0 30px rgba(255, 255, 255, 0.3);
 
 
         }
@@ -372,84 +444,10 @@
             font-size: 1.5em;
             margin: 20px 0;
             animation: fadeIn 4s ease-in-out;
+
         }
 
-        .box img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-
-}
-.box img:hover {
-    filter: grayscale(0%);
-    
-
-
-}
-
-
-.box.active img {
-    filter: grayscale(0%);
-}
-
-
-
-@media (max-width: 768px) {
-            .hero-content h1 {
-                font-size: 2.5em;
-            }
-
-          
-
-            .hero-content p {
-                font-size: 1.2em;
-            }
-
-            #menu ul li a {
-                font-size: 2em;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero-content h1 {
-                font-size: 2em;
-                
-            }
-
-            .hero-content p {
-                font-size: 1em;
-            }
-
-          
-        }
-
-        header nav ul {
-    list-style: none;
-    display: flex;
-    justify-content: flex-end;
-    margin: 0;
-    padding: 0;
-}
-
-
-header nav ul li a {
-    text-decoration: none;
-    font-weight: bold;
-    transition: color 0.3s;
-    margin-right: 25px;
-            color: #4cfb29;
-            text-shadow: 0 0 10px rgb(255, 255, 255), 0 0 20px rgb(255, 255, 255), 0 0 30px rgb(255, 255, 255);
-
-    
-}
-
-header nav ul li a:hover {
-    color: #ecf2ef;
-    text-shadow: 0 0 6px rgba(255, 255, 255, 0.609), 0 0 10px rgba(255, 255, 255, 0.753), 0 0 10px rgba(255, 255, 255, 0.662);
-}
-
-/* Botones de navegación */
-.nav-buttons {
+        .nav-buttons {
     display: flex;
     justify-content: center;
     gap: 20px;
@@ -460,19 +458,18 @@ header nav ul li a:hover {
 .nav-btn {
     padding: 10px 10px;
     font-size: 16px;
-    background-color: #4cfb29;
-    color: #96e778;
+    background-color: #3750f4;
+    color: #a9a8a8;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    box-shadow: 0 0 10px rgba(210, 210, 210, 0.7), 0 0 20px rgba(91, 91, 91, 0.5), 0 0 30px rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.7), 0 0 20px rgba(255, 255, 255, 0.5), 0 0 30px rgba(255, 255, 255, 0.3);
     transition: box-shadow 0.3s ease;
 }
 
 .nav-btn:hover {
     box-shadow: 0 0 20px rgba(255, 255, 255, 1), 0 0 40px rgba(255, 255, 255, 0.7), 0 0 60px rgba(255, 255, 255, 0.5);
 }
-
 /* Estilos responsivos */
 @media (max-width: 768px) {
     .container {
@@ -489,6 +486,7 @@ header nav ul li a:hover {
         width: 220px;
         height: 220px;
     }
+
 
 
     .nav-buttons {
@@ -520,16 +518,12 @@ header nav ul li a:hover {
         margin-top: 70px;
         flex-direction: column;
         align-items: center;
-        top: 100px;
-
     }
-   
-
+  
 
     .box {
         width: 100px;
         height: 100px;
-
     }
 
     .box.active {
@@ -562,34 +556,32 @@ header nav ul li a:hover {
 
 }
 
-
-
-
 @media (max-width: 768px) {
             .hero-content h1 {
-                font-size: 1.5em;
+                font-size: 2.0em;
             }
 
             .hero-content p {
                 font-size: 1.2em;
             }
 
-         
+          
         }
 
 
 
 @media (max-width: 480px) {
             .hero-content h1 {
-                font-size: 1.5em;
-                margin-top: 95px;
+                font-size: 2.0em;
             }
 
             .hero-content p {
                 font-size: 1.2em;
             }
 
-         
+            #menu ul li a {
+                font-size: 2em;
+            }
         }
 
 
@@ -606,9 +598,6 @@ header nav ul li a:hover {
 
 
 }
-
-
-
     </style>
 </head>
 <body>
@@ -617,8 +606,8 @@ header nav ul li a:hover {
         <nav>
             <ul>
                 <li><a href="about.html">about</a></li>
-                <li><a href="apps.html">apps</a></li>
-                <li><a href="registro.html">log/in</a></li>
+                <li><a href="comenzar.html">comenzar</a></li>
+                <li><a href="register.html">log/in</a></li>
             </ul>
         </nav>
     </header>
@@ -627,86 +616,98 @@ header nav ul li a:hover {
         <button id="close-btn" onclick="toggleMenu()">✖</button>
         <ul>
             <li><a href="comenzar.html">COMENZAR</a></li>
-            <li><a href="sesiones.html">CURSOS</a></li>
+            <li><a href="cursos.html">CURSOS</a></li>
             <li><a href="apps.html">APPS</a></li>
             <li><a href="comunidad.html">COMUNIDAD</a></li>
-            <li><a href="registro.html">LOG/IN</a></li>
+            <li><a href="register.html">LOG/IN
+            </a></li>
         </ul>
     </div>
+
     <div id="hero">
         <div class="hero-content">
-            <h1>CURSOS - ACESORÍA</h1>
+            <h1 style="">APPS</h1>
        
-  
     <div class="container">
-        <div class="box" onclick="toggleBox(this, 1)">
-            <img src="sept.webp" alt="">
+        <div class="box" onclick="loadPage('https://arteypsique.com/tarot_syntheziser')">
+            <img src="tarotshynteziser.webp" alt="">
             <div class="content">
-                <p>Arquetipos y Símbología</p>
+                <p>tarot shynteziser</p>
+                <button class="open-new-window" onclick="openInNewTab('https://arteypsique.com/tarot_syntheziser'); event.stopPropagation();">Abrir en nueva ventana</button>
             </div>
         </div>
-        
-        <div class="box" onclick="toggleBox(this, 2)">
-            <img src="fondo.webp" alt="">
+        <div class="box" onclick="loadPage('https://soundtarot.com/')">
+            <img src="tarotfq.webp" alt="">
             <div class="content">
-                <p>Programación creativa</p>
+                <p>Tarot Listening</p>
+                <button class="open-new-window" onclick="openInNewTab('https://soundtarot.com/'); event.stopPropagation();">Abrir en nueva ventana</button>
             </div>
         </div>
-        <div class="box" onclick="toggleBox(this, 3)">
-            <img src="respira.webp" alt="">
+        <div class="box" onclick="loadPage('https://arteypsique.com/opencllg')">
+            <img src="collagetarot.gif" alt="">
             <div class="content">
-                <p>Psico- Creatividad</p>
+                <p>Collage</p>
+                <button class="open-new-window" onclick="openInNewTab('https://arteypsique.com/collage'); event.stopPropagation();">Abrir en nueva ventana</button>
             </div>
         </div>
-            <div class="box" onclick="toggleBox(this, 3)">
-                <img src="ico.webp" alt="">
-                <div class="content">
-                    <p>Psico-Marketing</p>
-                </div>
+        <div class="box" onclick="loadPage('https://arteypsique.com/paint')">
+            <img src="paint.webp" alt="">
+            <div class="content">
+                <p>Paint</p>
+                <button class="open-new-window" onclick="openInNewTab('https://arteypsique.com/paint'); event.stopPropagation();">Abrir en nueva ventana</button>
+            </div>
         </div>
     </div>
 
-<div class="nav-buttons">
-    <button onclick="location.href='apps.html'" class="nav-btn">
-        <i class="fas fa-arrow-left"></i>
-    </button>
-    <button onclick="location.href='sesiones.html'" class="nav-btn">
-        <i class="fas fa-arrow-right"></i>
-    </button>
-</div>
+    <div id="iframe-container">
+        <iframe id="content-iframe" src="" width="100%" height="400px" frameborder="0"></iframe>
+        <button id="open-window-btn" onclick="openInNewTab(document.getElementById('content-iframe').src)">Abrir en ventana</button>
+    </div>
 
-
-
+    <div class="nav-buttons">
+        <button onclick="location.href='comenzar.html'" class="nav-btn">
+            <i class="fas fa-arrow-left"></i>
+        </button>
+        <button onclick="location.href='cursos.html'" class="nav-btn">
+            <i class="fas fa-arrow-right"></i>
+        </button>
+    
+    
     </div>
 
     <script>
-        
+        let lastBox = null; // Variable para almacenar la última casilla seleccionada
+
+function loadPage(url, element) {
+    const iframe = document.getElementById('content-iframe');
+    const iframeContainer = document.getElementById('iframe-container');
+    const openWindowBtn = document.getElementById('open-window-btn');
+
+    // Si la misma casilla se vuelve a hacer clic, cerrar el iframe
+    if (lastBox === element) {
+        iframeContainer.style.display = 'none';
+        iframe.src = '';
+        openWindowBtn.style.display = 'none';
+        lastBox = null;
+    } else {
+        iframe.src = url;
+        iframeContainer.style.display = 'block';
+        openWindowBtn.style.display = 'block';
+        lastBox = element;
+    }
+}
+
+        function openInNewTab(url) {
+            window.open(url, '_blank');
+        }
 
         function toggleMenu() {
             const menu = document.getElementById('menu');
             menu.classList.toggle('show');
         }
-
-        function toggleBox(element, boxNumber) {
-            element.classList.toggle('active');
-            if (boxNumber === 1 && element.classList.contains('active')) {
-                iniciarRuidoVerde();
-                element.querySelector('.stop-button').classList.add('active');
-            } else if (boxNumber === 1) {
-                stopSound();
-                element.querySelector('.stop-button').classList.remove('active');
-            }
-        }
-
-        function stopSound() {
-            if (audioContext) {
-                lfo.stop(); // Detener el LFO
-                audioContext.close();
-                audioContext = null;
-            }
-        }
     </script>
 </body>
 </html>
+
 
 
