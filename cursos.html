@@ -608,6 +608,17 @@ header nav ul li a:hover {
 }
 
 
+.box img {
+    filter: grayscale(100%);
+    transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+.box:hover img {
+    filter: grayscale(0%);
+    transform: scale(1.05); /* Esto es opcional, pero añade un pequeño zoom en el hover */
+}
+
+
 
     </style>
 </head>
